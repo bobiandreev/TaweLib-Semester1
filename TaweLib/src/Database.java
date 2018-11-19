@@ -16,7 +16,9 @@ public class Database {
 	private Connection connectDatabase() {
 		Connection newConnection = null;
 		try {
+			System.out.println("Attempting to connect to database...");
 			newConnection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASS);
+			System.out.println("Connected!");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -34,6 +36,9 @@ public class Database {
 		
 	}
 	
+	public static void main(String args[]) {
+		Database newDB = new Database();
+	}
 	
 	
 	
