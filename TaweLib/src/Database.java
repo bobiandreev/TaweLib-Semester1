@@ -3,11 +3,46 @@ import java.sql.*;
 public class Database {
 	
 	//static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	static final String DB_URL = "jdbc:mysql://sql134.main-hosting.eu/u591224331_lib";
-	static final String DB_USERNAME = "u591224331_grp41";
-	static final String DB_PASS = "group41";
+	private static final String DB_URL = "jdbc:mysql://sql134.main-hosting.eu/u591224331_lib";
+	private static final String DB_USERNAME = "u591224331_grp41";
+	private static final String DB_PASS = "group41";
 	
-	public static void main(String args[]){
+	private Connection database;
+	
+	Database() {
+		this.database = connectDatabase();
+	}
+	
+	private Connection connectDatabase() {
+		Connection newConnection = null;
+		try {
+			System.out.println("Attempting to connect to database...");
+			newConnection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASS);
+			System.out.println("Connected!");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return newConnection;
+	}
+	
+	//Method to check database table exists and is functioning properly
+	private boolean checkDatabase() {
+		
+		return true;
+	}
+	
+	private void createDatabase() {
+		
+	}
+	
+	public static void main(String args[]) {
+		Database newDB = new Database();
+	}
+	
+	
+	
+	/*public static void main(String args[]){
 		
 		Connection conn = null;
 		Statement stmt = null;
@@ -54,5 +89,5 @@ public class Database {
 		   }//end try
 		   System.out.println("Goodbye!");
 		
-	}
+	}*/
 }
