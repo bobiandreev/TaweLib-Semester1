@@ -14,9 +14,8 @@ public class Resource {
 		this.year = year;
 		this.thumbnailImage = thumbnailImage;
 		this.numOfCopies = numOfCopies;
-		
 	}
-
+	
 	public int getID() {
 		return ID;
 	}
