@@ -6,9 +6,9 @@ public class LaptopComputer extends Resource {
 	private String model;
 	private String OS;
 	
-	public LaptopComputer(int ID, String title, int year, Image thumbnailImage, int numOfCopies, String manufacturer,
+	public LaptopComputer(String title, int year, Image thumbnailImage, int numOfCopies, String manufacturer,
 			String model, String oS) {
-		super(ID, title, year, thumbnailImage, numOfCopies);
+		super(title, year, thumbnailImage, numOfCopies);
 		this.manufacturer = manufacturer;
 		this.model = model;
 		OS = oS;

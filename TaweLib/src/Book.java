@@ -8,8 +8,8 @@ public class Book extends Resource {
 	private int ISBN;
 	private String language;
 	
-	public Book(String author, String genre, String publisher, int ISBN, String language, int ID, String title, int year, Image thumbnailImage, int numOfCopies) {
-		super(ID, title, year, thumbnailImage, numOfCopies);
+	public Book(String author, String genre, String publisher, int ISBN, String language, String title, int year, Image thumbnailImage, int numOfCopies) {
+		super( title, year, thumbnailImage, numOfCopies);
 		this.author = author;
 		this.genre = genre;
 		this.publisher = publisher;

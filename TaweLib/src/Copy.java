@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 
 public class Copy {
 	
@@ -14,6 +13,11 @@ public class Copy {
 	}
 	public void borrow() {
 		isBorrowed = true;
+	}
+	
+	@Override
+	public String toString() {
+		return "Copy [resourceId=" + resourceId + ", copyId=" + copyId + ", isBorrowed=" + isBorrowed + "]";
 	}
 	
 }

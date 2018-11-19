@@ -12,8 +12,13 @@ public class ResourceMain {
 		
 		
 		Image image = null;
-		Resource resource1 = new Resource(1,"TLOTR", 2001, image, 30);
-		resource1.toString();
+		Resource resource1 = new Resource("TLOTR", 2001, image, 30);
+		//resource1.toString();
+		
+		Resource r2 = new Resource("Hobbit", 1976, image, 29);
+		System.out.println(r2.getID());
+		System.out.println(resource1.copies.toString());
+		
 	}
 
 }

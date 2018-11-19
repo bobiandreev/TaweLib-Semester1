@@ -4,15 +4,15 @@ import javafx.scene.image.Image;
 
 public class Resource {
 	
-	protected int ID;
+	private static int ID = 0;
 	protected String title;
 	protected int year;
 	protected Image thumbnailImage;
 	protected int numOfCopies;
-	private ArrayList<Copy> copies = new ArrayList<>();
+	public ArrayList<Copy> copies = new ArrayList<>();
 	
-	public Resource(int ID, String title, int year, Image thumbnailImage, int numOfCopies) {
-		this.ID = ID;
+	public Resource(String title, int year, Image thumbnailImage, int numOfCopies) {
+		ID++;
 		this.title = title;
 		this.year = year;
 		this.thumbnailImage = thumbnailImage;
@@ -24,9 +24,6 @@ public class Resource {
 		return ID;
 	}
 
-	public void setID(int ID) {
-		this.ID = ID;
-	}
 
 	public String getTitle() {
 		return title;

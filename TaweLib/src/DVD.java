@@ -7,9 +7,9 @@ public class DVD extends Resource {
 	private String language;
 	private String subtitles;
 
-	public DVD(int ID, String title, int year, Image thumbnailImage, int numOfCopies, String director, int runtime,
+	public DVD( String title, int year, Image thumbnailImage, int numOfCopies, String director, int runtime,
 			String language, String subtitles) {
-		super(ID, title, year, thumbnailImage, numOfCopies);
+		super(title, year, thumbnailImage, numOfCopies);
 		this.director = director;
 		this.runtime = runtime;
 		this.language = language;
