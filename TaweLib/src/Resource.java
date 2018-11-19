@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import javafx.scene.image.Image;
 
 public class Resource {
@@ -7,6 +9,7 @@ public class Resource {
 	protected int year;
 	protected Image thumbnailImage;
 	protected int numOfCopies;
+	private ArrayList<Copy> copies = new ArrayList<>();
 	
 	public Resource(int ID, String title, int year, Image thumbnailImage, int numOfCopies) {
 		this.ID = ID;
@@ -14,6 +17,7 @@ public class Resource {
 		this.year = year;
 		this.thumbnailImage = thumbnailImage;
 		this.numOfCopies = numOfCopies;
+		generateCopies();
 	}
 	
 	public int getID() {
@@ -54,5 +58,11 @@ public class Resource {
 
 	public void setNumOfCopies(int numOfCopies) {
 		this.numOfCopies = numOfCopies;
+	}
+	
+	public void generateCopies() {
+		for (int i = 1; i <= numOfCopies; i++) {
+			copies.add(new Copy(this.getID(), i));
+		}
 	}
 }
