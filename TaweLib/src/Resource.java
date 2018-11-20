@@ -1,65 +1,96 @@
+
+/**
+ * A class that creates a new Resource object.
+ * @Author Boris Andreev and Kyriacos Mosphilis
+ */
+
 import java.util.ArrayList;
 
 import javafx.scene.image.Image;
 
 public class Resource {
-	
-	private static int ID = 0;
+
+	/**
+	 * @param id
+	 *            Static id which is updated every time a new resource is created.
+	 */
+	private static int id = 0;
+
 	protected String title;
 	protected int year;
 	protected Image thumbnailImage;
 	protected int numOfCopies;
 	public ArrayList<Copy> copies = new ArrayList<>();
-	
+
+	/**
+	 * Constructor of the object
+	 * 
+	 * @param title
+	 *            Title of the resource
+	 * @param year
+	 *            Year of resource release
+	 * @param thumbnailImage
+	 *            Cover image for the resource
+	 * @param numOfCopies
+	 *            How many copies exist of the resource in the library
+	 */
 	public Resource(String title, int year, Image thumbnailImage, int numOfCopies) {
-		ID++;
+		id++;
 		this.title = title;
 		this.year = year;
 		this.thumbnailImage = thumbnailImage;
 		this.numOfCopies = numOfCopies;
 		generateCopies();
 	}
-	
-	public int getID() {
-		return ID;
+
+	/**
+	 * Getter method for the id
+	 * 
+	 * @return resource id
+	 */
+	public int getid() {
+		return id;
 	}
 
-
+	/**
+	 * Getter method for the title of the resource
+	 * 
+	 * @return resource title
+	 */
 	public String getTitle() {
 		return title;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
+	/**
+	 * Getter method for the year of release
+	 * 
+	 * @return year of release of resource
+	 */
 	public int getYear() {
 		return year;
 	}
-
-	public void setYear(int year) {
-		this.year = year;
-	}
-
+	
+	/**
+	 * Getter method for the cover image of a resource
+	 * @return The thumbnail image of the resource
+	 */
 	public Image getThumbnailImage() {
 		return thumbnailImage;
 	}
 
-	public void setThumbnailImage(Image thumbnailImage) {
-		this.thumbnailImage = thumbnailImage;
-	}
-
+	/**
+	 * Getter method for the number of copies existing for the resource
+	 * @return Number of copies of the resource
+	 */
 	public int getNumOfCopies() {
 		return numOfCopies;
 	}
-
-	public void setNumOfCopies(int numOfCopies) {
-		this.numOfCopies = numOfCopies;
-	}
-	
+	/**
+	 * Method that generates the given number of copies for a given resource
+	 */
 	public void generateCopies() {
 		for (int i = 1; i <= numOfCopies; i++) {
-			copies.add(new Copy(this.getID(), i));
+			copies.add(new Copy(this.getid(), i));
 		}
 	}
 }

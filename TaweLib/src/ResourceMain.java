@@ -16,7 +16,7 @@ public class ResourceMain {
 		//resource1.toString();
 		
 		Resource r2 = new Resource("Hobbit", 1976, image, 29);
-		System.out.println(r2.getID());
+		System.out.println(r2.getid());
 		System.out.println(resource1.copies.toString());
 		
 	}
