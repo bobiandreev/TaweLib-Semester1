@@ -9,8 +9,9 @@ public class User {
 	private int mobileNumber; 
 	private String address; 
 	private Image profilePic;
+	private ArrayList<Copy> requestedItems = new ArrayList<>();
 	private ArrayList<Copy> borrowedItems = new ArrayList<>();
-
+	
 	public User(String username, String name, int mobileNumber, String address, Image profilePic) {
 		this.username = username;
 		this.name = name;
@@ -64,6 +65,6 @@ public class User {
 	}
 	
 	public void requestItem(Resource item) {
-		borrowedItems.add(Copy.borrowCopy(item));
+		requestedItems.add(Copy.borrowCopy(item));
 	}
 }
