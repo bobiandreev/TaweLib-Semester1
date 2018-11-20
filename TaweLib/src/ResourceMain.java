@@ -1,3 +1,8 @@
+/**
+ * Main method used to test Resource
+ * @author Boris Andreev and Kyriacos Mosphilis
+ * @version 1.0
+ */
 import java.awt.image.BufferedImage;
 import java.io.File;
 

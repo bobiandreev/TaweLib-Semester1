@@ -2,6 +2,7 @@
 /**
  * A class that creates a new Resource object.
  * @Author Boris Andreev and Kyriacos Mosphilis
+ * @version 1.0
  */
 
 import java.util.ArrayList;

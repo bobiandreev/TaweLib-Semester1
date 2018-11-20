@@ -1,4 +1,8 @@
-
+/**
+ * Class that creates a copy object for a resource
+ * @author Boris Andreev and Kyriacos Mosphilis
+ * @version 1.0
+ */
 public class Copy {
 	
 	
