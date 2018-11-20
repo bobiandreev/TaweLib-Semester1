@@ -17,11 +17,13 @@ public class Resource {
 	 */
 	private static int id = 0;
 
-	protected String title;
-	protected int year;
-	protected Image thumbnailImage;
-	protected int numOfCopies;
-	public ArrayList<Copy> copies = new ArrayList<>();
+	private String title;
+	private int year;
+	private Image thumbnailImage;
+	private int numOfCopies;
+	
+
+	private ArrayList<Copy> copies = new ArrayList<>();
 
 	/**
 	 * Constructor of the object
@@ -97,22 +99,8 @@ public class Resource {
 			copies.add(new Copy(this.getid(), i));
 		}
 	}
-
-	public void borrowCopy() {
-		/*
-		 * for (Copy copy: copies) { if (!copy.isBorrowed()) { copy.borrow();
-		 * System.out.println("User 1 borrowed: Copy " + copy.getCopyId()); break; } }
-		 * System.out.println("No copies are free right now!");
-		 */
-		int i = 0;
-		while (i < copies.size() && copies.get(i).isBorrowed()) {
-			i++;
-		}
-		copies.get(i).borrow();
-		System.out.println("User 1 borrowed: Copy " + copies.get(i).getCopyId());
-	}
-
-	public void returnCopy(int copyID) {
-		copies.get(copyID).returned();
+	
+	public ArrayList<Copy> getCopies() {
+		return copies;
 	}
 }

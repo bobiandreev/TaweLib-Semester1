@@ -34,7 +34,26 @@ public class Copy {
 	public boolean isBorrowed() {
 		return isBorrowed;
 	}
+	
+	public static Copy borrowCopy(Resource item) {
+		/*
+		 * for (Copy copy: copies) { if (!copy.isBorrowed()) { copy.borrow();
+		 * System.out.println("User 1 borrowed: Copy " + copy.getCopyId()); break; } }
+		 * System.out.println("No copies are free right now!");
+		 */
+		int i = 1;
+		while (i <= item.getCopies().size() && item.getCopies().get(i).isBorrowed()) {
+			i++;
+		}
+		item.getCopies().get(i).borrow();
+		//System.out.println("User 1 borrowed: Copy " + item.getCopies().get(i).getCopyId());
+		return item.getCopies().get(i);
+	}
+	
 
+	//public void returnCopy(int copyID) {
+		//copies.get(copyID).returned();
+	// }
 	@Override
 	public String toString() {
 		return "Copy [resourceId=" + resourceId + ", copyId=" + copyId + ", isBorrowed=" + isBorrowed + "]";

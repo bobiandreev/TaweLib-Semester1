@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import javafx.scene.image.Image;
 
 public class User {
@@ -7,6 +9,7 @@ public class User {
 	private int mobileNumber; 
 	private String address; 
 	private Image profilePic;
+	private ArrayList<Copy> borrowedItems = new ArrayList<>();
 
 	public User(String username, String name, int mobileNumber, String address, Image profilePic) {
 		this.username = username;
@@ -58,5 +61,9 @@ public class User {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	
+	public void requestItem(Resource item) {
+		borrowedItems.add(Copy.borrowCopy(item));
 	}
 }

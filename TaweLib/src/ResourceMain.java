@@ -23,7 +23,11 @@ public class ResourceMain {
 		Resource r2 = new Resource("Hobbit", 1976, image, 29);
 	//	System.out.println(r2.getid());
 	//	System.out.println(resource1.copies.toString());
-		r2.borrowCopy();
+	//	r2.borrowCopy();
+		
+		
+		User user1 = new User("user1", "user 1", 05454645, "Bay Campus", image);
+		user1.requestItem(r2);
 		
 	}
 
