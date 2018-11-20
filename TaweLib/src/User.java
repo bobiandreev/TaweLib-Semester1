@@ -1,25 +1,39 @@
-public class User {
-	
-	protected String userName; // create a userName 
-	protected String name; // the name of the user
-	protected int mobileNumber; // create a mobile number
-	protected String address; // address of the user
-	// profile image
+import javafx.scene.image.Image;
 
-	public User(String userName, String name, int mobileNumber, String address) {
-		this.userName = userName;
+public class User {
+
+	private String username; 
+	private String name; 
+	private int mobileNumber; 
+	private String address; 
+	protected Image profilePic;
+
+	public User(String username, String name, int mobileNumber, String address, Image profilePic) {
+		this.username = username;
 		this.name = name;
 		this.mobileNumber = mobileNumber;
 		this.address = address;
-
+		this.profilePic = profilePic;
 	}
 
-	public String getUserName() {
-		return userName;
+	public Image getProfilePic() {
+		return profilePic;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setProfilePic(Image profilePic) {
+		this.profilePic = profilePic;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUserame(String username) {
+		this.username = username;
 	}
 
 	public String getName() {
@@ -45,7 +59,4 @@ public class User {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
-	//setProfileImage (setter)
-	
 }

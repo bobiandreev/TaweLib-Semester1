@@ -1,10 +1,12 @@
+import javafx.scene.image.Image;
+
 public class Librarian extends User{
 
 	private String employmentDate;
 	private int staffNumber;
 	
-	public Librarian(String userName, String name, int mobileNumber, String address, String employmentDate, int staffNumber) {
-		super(userName, name, mobileNumber, address);
+	public Librarian(String username, String name, int mobileNumber, String address, Image profilePic, String employmentDate, int staffNumber) {
+		super(username, name, mobileNumber, address, profilePic);
 		this.employmentDate = employmentDate;
 		this.staffNumber = staffNumber;
 	}

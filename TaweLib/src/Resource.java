@@ -70,9 +70,10 @@ public class Resource {
 	public int getYear() {
 		return year;
 	}
-	
+
 	/**
 	 * Getter method for the cover image of a resource
+	 * 
 	 * @return The thumbnail image of the resource
 	 */
 	public Image getThumbnailImage() {
@@ -81,11 +82,13 @@ public class Resource {
 
 	/**
 	 * Getter method for the number of copies existing for the resource
+	 * 
 	 * @return Number of copies of the resource
 	 */
 	public int getNumOfCopies() {
 		return numOfCopies;
 	}
+
 	/**
 	 * Method that generates the given number of copies for a given resource
 	 */
@@ -93,5 +96,23 @@ public class Resource {
 		for (int i = 1; i <= numOfCopies; i++) {
 			copies.add(new Copy(this.getid(), i));
 		}
+	}
+
+	public void borrowCopy() {
+		/*
+		 * for (Copy copy: copies) { if (!copy.isBorrowed()) { copy.borrow();
+		 * System.out.println("User 1 borrowed: Copy " + copy.getCopyId()); break; } }
+		 * System.out.println("No copies are free right now!");
+		 */
+		int i = 0;
+		while (i < copies.size() && copies.get(i).isBorrowed()) {
+			i++;
+		}
+		copies.get(i).borrow();
+		System.out.println("User 1 borrowed: Copy " + copies.get(i).getCopyId());
+	}
+
+	public void returnCopy(int copyID) {
+		copies.get(copyID).returned();
 	}
 }
