@@ -1,3 +1,4 @@
+
 /**
  * Main method used to test Resource
  * @author Boris Andreev and Kyriacos Mosphilis
@@ -14,21 +15,19 @@ public class ResourceMain {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
-		
+
 		Image image = null;
 		Resource resource1 = new Resource("TLOTR", 2001, image, 30);
-		//resource1.toString();
-		
+		// resource1.toString();
+
 		Resource r2 = new Resource("Hobbit", 1976, image, 29);
-	//	System.out.println(r2.getid());
-	//	System.out.println(resource1.copies.toString());
-	//	r2.borrowCopy();
-		
-		
+		// System.out.println(r2.getid());
+		// System.out.println(resource1.copies.toString());
+		// r2.borrowCopy();
+
 		User user1 = new User("user1", "user 1", 05454645, "Bay Campus", image);
 		user1.requestItem(r2);
-		
+		user1.requestReturn();
 	}
 
 }

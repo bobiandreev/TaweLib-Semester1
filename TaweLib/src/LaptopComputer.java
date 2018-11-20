@@ -46,15 +46,19 @@ public class LaptopComputer extends Resource {
 	public String getManufacturer() {
 		return manufacturer;
 	}
+
 	/**
 	 * Getter method for the model of the laptop
-	 * @return The model of the laptop 
+	 * 
+	 * @return The model of the laptop
 	 */
 	public String getModel() {
 		return model;
 	}
+
 	/**
 	 * Getter method for laptop OS
+	 * 
 	 * @return Operating system running on the laptop
 	 */
 	public String getOS() {

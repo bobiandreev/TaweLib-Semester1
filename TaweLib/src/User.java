@@ -4,14 +4,14 @@ import javafx.scene.image.Image;
 
 public class User {
 
-	private String username; 
-	private String name; 
-	private int mobileNumber; 
-	private String address; 
+	private String username;
+	private String name;
+	private int mobileNumber;
+	private String address;
 	private Image profilePic;
 	private ArrayList<Copy> requestedItems = new ArrayList<>();
 	private ArrayList<Copy> borrowedItems = new ArrayList<>();
-	
+
 	public User(String username, String name, int mobileNumber, String address, Image profilePic) {
 		this.username = username;
 		this.name = name;
@@ -63,8 +63,13 @@ public class User {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
+
 	public void requestItem(Resource item) {
 		requestedItems.add(Copy.borrowCopy(item));
+		borrowedItems.add(Copy.borrowCopy(item));
+	}
+
+	public void requestReturn() {
+		Copy.returnCopy(borrowedItems.get(0)/* user chooses which copy to return here with the gui */);
 	}
 }

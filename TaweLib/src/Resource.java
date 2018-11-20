@@ -21,7 +21,6 @@ public class Resource {
 	private int year;
 	private Image thumbnailImage;
 	private int numOfCopies;
-	
 
 	private ArrayList<Copy> copies = new ArrayList<>();
 
@@ -99,7 +98,7 @@ public class Resource {
 			copies.add(new Copy(this.getid(), i));
 		}
 	}
-	
+
 	public ArrayList<Copy> getCopies() {
 		return copies;
 	}
