@@ -3,12 +3,12 @@ import javafx.scene.image.Image;
 public class Librarian extends User{
 
 	private String employmentDate;
-	private int staffNumber;
+	private static int staffNumber = 0;
 	
-	public Librarian(String username, String name, int mobileNumber, String address, Image profilePic, String employmentDate, int staffNumber) {
+	public Librarian(String username, String name, int mobileNumber, String address, Image profilePic, String employmentDate) {
 		super(username, name, mobileNumber, address, profilePic);
 		this.employmentDate = employmentDate;
-		this.staffNumber = staffNumber;
+		staffNumber++;
 	}
 
 	public String getEmploymentDate() {
@@ -22,9 +22,4 @@ public class Librarian extends User{
 	public int getStaffNumber() {
 		return staffNumber;
 	}
-
-	public void setStaffNumber(int staffNumber) {
-		this.staffNumber = staffNumber;
-	}
-
 }

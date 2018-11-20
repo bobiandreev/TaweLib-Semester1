@@ -6,7 +6,7 @@ public class User {
 	private String name; 
 	private int mobileNumber; 
 	private String address; 
-	protected Image profilePic;
+	private Image profilePic;
 
 	public User(String username, String name, int mobileNumber, String address, Image profilePic) {
 		this.username = username;
