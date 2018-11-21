@@ -54,14 +54,33 @@ public class SearchBrowse {
 	public static ArrayList<Resource> search(String keyword) {
 		ArrayList<Resource> list = new ArrayList<>();
 		int count = 0;
+		char[] keywordList = keyword.toLowerCase().toCharArray();
 		do {
-			if (resourceList.get(count).getTitle() == keyword) /* need to be changed to something sensible */{
-				list.add(resourceList.get(count));
+			Resource r = resourceList.get(count);
+			char[] titleList = r.getTitle().toLowerCase().toCharArray();
+			if (r.getTitle() == keyword) /* need to be changed to something sensible */{
+				list.add(r);
+			} else if (check(keywordList, titleList, 0)) {
+				list.add(r);
 			}
+			
 			count++;
 		} while (count != resourceList.size());
 		
 		return list;
+	}
+	
+	private static boolean check(char[] keyword, char[] title, int index) {
+		boolean flag = false;
+		while (index != keyword.length) {
+			if (keyword[index] == title[index]) {
+				flag = true;
+			} else {
+				flag = false;
+			}
+			index++;
+		}
+		return flag;
 	}
 	
 }

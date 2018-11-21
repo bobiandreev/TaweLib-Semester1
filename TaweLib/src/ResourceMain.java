@@ -36,7 +36,7 @@ public class ResourceMain {
 		SearchBrowse.addResource(r2);
 		SearchBrowse.addResource(r3);
 		System.out.println(SearchBrowse.getBooks().get(0).getTitle());
-		System.out.println(SearchBrowse.search("The Call of Cthulhu").get(0).getTitle());
+		System.out.println(SearchBrowse.search("t").toString());
 
 	}
 
