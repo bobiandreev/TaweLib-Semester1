@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
 import javafx.scene.image.Image;
 
 public class Librarian extends User {
@@ -10,10 +13,11 @@ public class Librarian extends User {
 
 	private String employmentDate;
 	private static int staffNumber = 0;
+	private ArrayList<User> users = new ArrayList<>();
 
-	public Librarian(String username, String name, int mobileNumber, String address, Image profilePic,
-			String employmentDate) {
-		super(username, name, mobileNumber, address, profilePic);
+	public Librarian(String username, String name, int mobileNumber, int houseNumber, String streetName,
+			String postcode, Image profilePic, String employmentDate) {
+		super(username, name, mobileNumber, houseNumber, streetName, postcode, profilePic);
 		this.employmentDate = employmentDate;
 		staffNumber++;
 	}
@@ -28,5 +32,50 @@ public class Librarian extends User {
 
 	public int getStaffNumber() {
 		return staffNumber;
+	}
+
+	public User addUser() {
+		// this will be done with read lines
+		Scanner in = new Scanner(System.in);
+		String username = in.nextLine();
+		String name = in.nextLine();
+		int phoneNumber = in.nextInt();
+		int houseNumber = in.nextInt();
+		String streetName = in.nextLine();
+		String postcode = in.nextLine();
+		Image profilePic = null; // allow the librarian to choose an image
+		return new User(username, name, phoneNumber, houseNumber, streetName, postcode, profilePic);
+	}
+
+	public void approveBorrow() {
+		for (User user : users) {
+			System.out.println(user.getName() + " has requested to borrow: ");
+			for (int i = 0; i < user.getRequestedItems().size(); i++) {
+				System.out.println(user.getRequestedItems().get(i));
+
+				if (true /* approved */) {
+					user.getBorrowedItems().add(user.getRequestedItems().get(i));
+					user.getRequestedItems().remove(i);
+				} else /* not approved */ {
+					user.getRequestedItems().remove(i);
+				}
+			}
+		}
+	}
+
+	public void approveReturn() {
+		for (User user : users) {
+			System.out.println(user.getName() + " has requested to return:");
+			for (int i = 0; i < user.getReturnRequests().size(); i++) {
+				System.out.println(user.getReturnRequests().get(i));
+
+				if (true /* approved */) {
+					user.getReturnRequests().remove(i);
+					user.getBorrowedItems().remove(i);
+				} else { // not approved
+					user.getReturnRequests().remove(i);
+				}
+			}
+		}
 	}
 }

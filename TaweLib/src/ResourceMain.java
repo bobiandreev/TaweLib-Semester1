@@ -25,9 +25,13 @@ public class ResourceMain {
 		// System.out.println(resource1.copies.toString());
 		// r2.borrowCopy();
 
-		User user1 = new User("user1", "user 1", 05454645, "Bay Campus", image);
+		User user1 = new User("user1", "user 1", 05454645, 56, "Bay Campus", "SA1 8PP", image);
 		user1.requestItem(r2);
 		user1.requestReturn();
+		
+		Librarian lib1 = new Librarian("lib1","lib 1", 54656597,65, "Singleton Campus", "SA1 4FS", image, "24/07");
+		
+		
 	}
 
 }

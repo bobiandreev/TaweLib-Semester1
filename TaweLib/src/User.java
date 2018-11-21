@@ -7,16 +7,22 @@ public class User {
 	private String username;
 	private String name;
 	private int mobileNumber;
-	private String address;
+	private int houseNumber;
+	private String streetName;
+	private String postcode;
 	private Image profilePic;
 	private ArrayList<Copy> requestedItems = new ArrayList<>();
 	private ArrayList<Copy> borrowedItems = new ArrayList<>();
+	private ArrayList<Copy> returnRequests = new ArrayList<>();
 
-	public User(String username, String name, int mobileNumber, String address, Image profilePic) {
+	public User(String username, String name, int mobileNumber, int houseNumber, String address, String postocode,
+			Image profilePic) {
 		this.username = username;
 		this.name = name;
 		this.mobileNumber = mobileNumber;
-		this.address = address;
+		this.houseNumber = houseNumber;
+		this.streetName = address;
+		this.postcode = postcode;
 		this.profilePic = profilePic;
 	}
 
@@ -28,24 +34,12 @@ public class User {
 		this.profilePic = profilePic;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
 	public String getUsername() {
 		return username;
 	}
 
-	public void setUserame(String username) {
-		this.username = username;
-	}
-
 	public String getName() {
 		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public int getMobileNumber() {
@@ -56,20 +50,62 @@ public class User {
 		this.mobileNumber = mobileNumber;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getStreetAddress() {
+		return streetName;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setAddress(String streetName) {
+		this.streetName = streetName;
 	}
 
+	public void setHouseNumber(int houseNumber) {
+		this.houseNumber = houseNumber;
+	}
+
+	public String getStreetName() {
+		return streetName;
+	}
+
+	public void setStreetName(String streetName) {
+		this.streetName = streetName;
+	}
+
+	public String getPostcode() {
+		return postcode;
+	}
+
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
+	}
+
+	public ArrayList<Copy> getReturnRequests() {
+		return returnRequests;
+	}
+
+	public ArrayList<Copy> getRequestedItems() {
+		return requestedItems;
+	}
+
+	public ArrayList<Copy> getBorrowedItems() {
+		return borrowedItems;
+	}
+	
+	public int getHouseNumber() {
+		return houseNumber;
+	}
+	
 	public void requestItem(Resource item) {
 		requestedItems.add(Copy.borrowCopy(item));
 		borrowedItems.add(Copy.borrowCopy(item));
 	}
 
-	public void requestReturn() {
-		Copy.returnCopy(borrowedItems.get(0)/* user chooses which copy to return here with the gui */);
+	public void requestReturn() { /* user chooses which copy to return here with the gui */
+	/*	for (int i = 0; i < borrowedItems.size(); i++) {
+			System.out.println(borrowedItems.get(i));
+		}
+		*/
+		returnRequests.add(borrowedItems.get(0)); // items which are requested to be returned are added here
 	}
+
+	
 }
