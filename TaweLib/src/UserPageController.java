@@ -18,9 +18,11 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- * The UserPageController Class which controls the UserPage.fxml
+ * The UserPageController Class which controls the UserPage on the GUI. It gets
+ * the correct user information from the login controller and displays the
+ * correct information for the specific user logging in.
  * 
- * @author Ming
+ * @author Ming and Boris
  *
  */
 public class UserPageController {
@@ -32,13 +34,18 @@ public class UserPageController {
 	private BorderPane userPagePane;
 
 	@FXML
-    private ImageView profilePicture = new ImageView();
-	
+	private ImageView profilePicture = new ImageView();
+
 	@FXML
 	private Label welcomeMessage = new Label();
 
 	private static User curUser;
-	
+
+	/**
+	 * This method is called whenever a user logs in. It sets the welcome message to
+	 * greet the specific user and also displays their profile picture and their
+	 * current negative balance.
+	 */
 	@FXML
 	public void initialize() {
 		curUser = LoginController.getLoggedUser();
@@ -49,6 +56,13 @@ public class UserPageController {
 		showCurrentBalanceBox.setText("Current Balance: " + Double.toString(curUser.getBalance()));
 	}
 
+	/**
+	 * This method loads the search and browse page where the user can see and
+	 * request the resources.
+	 * 
+	 * @param event
+	 *            Clicking on the browse and search button.
+	 */
 	@FXML
 	private void clickOnBrowseAndSearch(ActionEvent event) {
 		try {
@@ -70,6 +84,12 @@ public class UserPageController {
 		}
 	}
 
+	/**
+	 * This method loads the messages page of the user.
+	 * 
+	 * @param event
+	 *            Clicking on the notifications button.
+	 */
 	@FXML
 	private void clickOnNotification(ActionEvent event) {
 		try {
@@ -91,30 +111,14 @@ public class UserPageController {
 		}
 	}
 
+	/**
+	 * This method loads the borrowed items page of the user.
+	 * 
+	 * @param event
+	 *            Clicking on the borrowed items button
+	 */
 	@FXML
-	private void clickOnFinePayment(ActionEvent event) { // Show the current balance of the user
-		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("UserFinePaymentPage.fxml"));
-
-			BorderPane userFinePayment = (BorderPane) fxmlLoader.load();
-
-			Scene userFinePaymentScene = new Scene(userFinePayment, Main.USER_FINEPAYMENTPAGE_WIDTH,
-					Main.USER_FINEPAYMENTPAGE_HEIGHT);
-			Stage userFinePaymentStage = new Stage();
-
-			userFinePaymentStage.setScene(userFinePaymentScene);
-			userFinePaymentStage.setTitle(Main.USER_FINEPAYMENTPAGE_TITLE);
-			userFinePaymentStage.initModality(Modality.APPLICATION_MODAL);
-			userFinePaymentStage.showAndWait();
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.exit(-1);
-		}
-	}
-
-	@FXML
-	private void clickOnBorrowedItems(ActionEvent event) { // Jump to the BorrowedItems Page after the user click the
-															// button
+	private void clickOnBorrowedItems(ActionEvent event) {
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("UserBorrowedItemsPage.fxml"));
 
@@ -134,6 +138,12 @@ public class UserPageController {
 		}
 	}
 
+	/**
+	 * This method loads the requested items page of the user.
+	 * 
+	 * @param event
+	 *            Clicking on the requested items button
+	 */
 	@FXML
 	private void clickOnRequestedItems(ActionEvent event) { // Jump to the Requested Items Page after the user click the
 															// button
@@ -157,6 +167,12 @@ public class UserPageController {
 		}
 	}
 
+	/**
+	 * This method loads the reserved for the user items
+	 * 
+	 * @param event
+	 *            Clicking on the reserved items button
+	 */
 	@FXML
 	private void clickOnReservedItems(ActionEvent event) { // Jump to the Reserved Items Page after the user click the
 															// button
@@ -179,9 +195,15 @@ public class UserPageController {
 		}
 	}
 
+	/**
+	 * This method loads the page from where the user decides which if the histories
+	 * he wants displayed
+	 * 
+	 * @param event
+	 *            Clicking on the transaction history button
+	 */
 	@FXML
-	private void clickOnTransactionHistory(ActionEvent event) { // Jump to the Transaction History Page after the user
-																// click the button
+	private void clickOnTransactionHistory(ActionEvent event) {
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("TransactionHistoryPage.fxml"));
 
@@ -201,6 +223,12 @@ public class UserPageController {
 		}
 	}
 
+	/**
+	 * This method loads the window from where the user chooses a profile picture.
+	 * 
+	 * @param event
+	 *            Clicking on choose avatar button
+	 */
 	@FXML
 	private void clickOnChooseAvatar(ActionEvent event) {
 		try {
@@ -222,6 +250,12 @@ public class UserPageController {
 		}
 	}
 
+	/**
+	 * This method loads the page where the users information is displayed
+	 * 
+	 * @param event
+	 *            Clicking on the profile button
+	 */
 	@FXML
 	private void clickOnProfile(ActionEvent event) {
 		try {
@@ -242,16 +276,26 @@ public class UserPageController {
 		}
 	}
 
+	/**
+	 * Calls the method which closes the window and saves the information in the
+	 * database
+	 * 
+	 * @param event
+	 *            Clicking on the log out button
+	 */
 	@FXML
 	private void clickOnLogOut(ActionEvent event) {
 		closeWindow();
 		Database.saveData();
 	}
 
+	/**
+	 * Closes the window.
+	 */
 	@FXML
 	private void closeWindow() { // A method which close the window
 		Stage stage = (Stage) userPagePane.getScene().getWindow();
 		stage.close();
 	}
-	
+
 }

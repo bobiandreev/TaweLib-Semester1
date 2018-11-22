@@ -1,9 +1,6 @@
-
 import java.awt.image.RenderedImage;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.geometry.Insets;
@@ -17,7 +14,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -29,26 +25,33 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 
-/** Draw class is a function available to users when selecting an avatar, they can use the UI to create a custom drawing
+/**
+ * Draw class is a function available to users when selecting an avatar, they
+ * can use the UI to create a custom drawing
+ * 
  * @Author Riyaad Islam and Oliver Nixon
  * @version 1.0.0
- * @param primaryStage Object which holds data for the canvas
+ * @param primaryStage
+ *            Object which holds data for the canvas
  */
 public class Draw extends Application {
 
-	User curUser;
+	private User curUser;
+
 	@Override
 	public void start(Stage primaryStage) {
 		curUser = LoginController.getLoggedUser();
-		
-		/* Creating buttons for shapes */
+
+		/* Creating buttons for all functions */
 		ToggleButton pencilbutton = new ToggleButton("Pencil");
 		ToggleButton eraserbutton = new ToggleButton("Eraser");
 		ToggleButton linebutton = new ToggleButton("Straight Line");
 		ToggleButton rectanglebutton = new ToggleButton("Rectangle Shape");
 		ToggleButton circlebutton = new ToggleButton("Circle Shape");
+		ToggleButton clearbutton = new ToggleButton("Clear");
 
-		ToggleButton[] toolsArray = { pencilbutton, eraserbutton, linebutton, rectanglebutton, circlebutton };
+		ToggleButton[] toolsArray = { pencilbutton, eraserbutton, linebutton, rectanglebutton, circlebutton,
+				clearbutton };
 
 		ToggleGroup tools = new ToggleGroup();
 
@@ -63,16 +66,14 @@ public class Draw extends Application {
 
 		Slider slide = new Slider(1, 50, 3);
 		slide.setShowTickLabels(true);
-		slide.setShowTickMarks(true);
 
 		Label line_colour = new Label("Line Colour");
 		Label fill_colour = new Label("Fill Colour");
-		Label line_width = new Label("3.0");
+		Label line_width = new Label("Line Size");
 
-		Button open = new Button("Open");
 		Button save = new Button("Save");
 
-		Button[] basArray = { save, open };
+		Button[] basArray = { save };
 
 		for (Button button : basArray) {
 			button.setMinWidth(90);
@@ -80,14 +81,13 @@ public class Draw extends Application {
 			button.setTextFill(Color.BLACK);
 			button.setStyle("-fx-background-color: #666;");
 		}
-		save.setStyle("-fx-background-color: #80334d;");
-		open.setStyle("-fx-background-color: #80334d;");
+		save.setStyle("-fx-background-color: #ffffff;");
 
 		VBox buttons = new VBox(10);
-		buttons.getChildren().addAll(pencilbutton, eraserbutton, linebutton, rectanglebutton, circlebutton, line_colour,
-				colourpickerLine, fill_colour, colourpickerFill, line_width, slide, open, save);
+		buttons.getChildren().addAll(pencilbutton, eraserbutton, linebutton, rectanglebutton, circlebutton, clearbutton,
+				line_colour, colourpickerLine, fill_colour, colourpickerFill, line_width, slide, save);
 		buttons.setPadding(new Insets(5));
-		buttons.setStyle("-fx-background-color: #999");
+		buttons.setStyle("-fx-background-color: #4169e1");
 		buttons.setPrefWidth(100);
 
 		/* Creating the canvas */
@@ -124,6 +124,10 @@ public class Draw extends Application {
 				circle.setCenterX(e.getX());
 				circle.setCenterY(e.getY());
 
+			} else if (clearbutton.isSelected()) {
+				gc.setFill(colourpickerFill.getValue());
+				gc.clearRect(0, 0, 400, 470);
+
 			}
 		});
 
@@ -152,6 +156,7 @@ public class Draw extends Application {
 				gc.strokeLine(straightline.getStartX(), straightline.getStartY(), straightline.getEndX(),
 						straightline.getEndY());
 
+				// creates rectangle
 			} else if (rectanglebutton.isSelected()) {
 				rectangle.setWidth(Math.abs((e.getX() - rectangle.getX())));
 				rectangle.setHeight(Math.abs((e.getY() - rectangle.getY())));
@@ -167,6 +172,7 @@ public class Draw extends Application {
 				gc.strokeRect(rectangle.getX(), rectangle.getY(), rectangle.getWidth(), rectangle.getHeight());
 				gc.fillRect(rectangle.getX(), rectangle.getY(), rectangle.getWidth(), rectangle.getHeight());
 
+				// creates circle
 			} else if (circlebutton.isSelected()) {
 				circle.setRadius(
 						(Math.abs(e.getX() - circle.getCenterX()) + Math.abs(e.getY() - circle.getCenterY())) / 2);
@@ -199,10 +205,13 @@ public class Draw extends Application {
 			gc.setLineWidth(width);
 		});
 
-		/* Save and Open feature created */
+		/* Save feature created */
 
 		save.setOnAction((e) -> {
-			File outputFile = new File("src\\Avatar"+ curUser.getUsername()+ ".png");
+			FileChooser savecreation = new FileChooser();
+			savecreation.setTitle("Save File");
+
+			File outputFile = new File("src\\Avatar" + curUser.getUsername() + ".png");
 			if (outputFile != null) {
 				try {
 					WritableImage writeImage = new WritableImage(1080, 790);
@@ -210,25 +219,10 @@ public class Draw extends Application {
 					RenderedImage rendImg = SwingFXUtils.fromFXImage(writeImage, null);
 					ImageIO.write(rendImg, "png", outputFile);
 				} catch (IOException ex) {
-					System.out.println("Not Valid");
+					System.out.println("Invalid");
 				}
 			}
 
-		});
-
-		open.setOnAction((e) -> {
-			FileChooser openFile = new FileChooser();
-			openFile.setTitle("Open File");
-			File file = openFile.showOpenDialog(primaryStage);
-			if (file != null) {
-				try {
-					InputStream io = new FileInputStream(file);
-					Image img = new Image(io);
-					gc.drawImage(img, 0, 0);
-				} catch (IOException ex) {
-					System.out.println("Not Valid");
-				}
-			}
 		});
 
 		/* The stage and scene */
