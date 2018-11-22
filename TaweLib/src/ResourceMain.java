@@ -35,8 +35,14 @@ public class ResourceMain {
 		SearchBrowse.addResource(resource1);
 		SearchBrowse.addResource(r2);
 		SearchBrowse.addResource(r3);
-		System.out.println(SearchBrowse.getBooks().get(0).getTitle());
-		System.out.println(SearchBrowse.search("t").toString());
+		//System.out.println(SearchBrowse.getBooks().get(0).getTitle());
+		//System.out.println(SearchBrowse.search("t").toString());
+		
+		Resource r4 = new LaptopComputer("XPS", 2018, image, 3, "Dell", "XPS", "Windows");
+		Fine fine = new Fine(r3, 10);
+		System.out.println(fine.getCurrentFine());
+		Fine fine2 = new Fine(r4, 15);
+		System.out.println(fine2.getCurrentFine());
 
 	}
 
