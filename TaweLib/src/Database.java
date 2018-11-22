@@ -7,23 +7,55 @@ public class Database {
 	private static final String DB_USERNAME = "u591224331_grp41";
 	private static final String DB_PASS = "group41";
 	
-	private Connection database;
+	private Connection currentConnection;
 	
 	Database() {
-		this.database = connectDatabase();
+		this.currentConnection = createConnection();
 	}
 	
-	private Connection connectDatabase() {
+	public Connection getConnection() {
+		return this.currentConnection;
+	}
+	
+	public void setConnection(Connection con) {
+		this.currentConnection = con;
+	}
+	
+	public Connection createConnection() {
 		Connection newConnection = null;
 		try {
-			System.out.println("Attempting to connect to database...");
+			System.out.println("Attempting to create connect to database...");
 			newConnection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASS);
-			System.out.println("Connected!");
+			System.out.println("Connection created!");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		return newConnection;
+	}
+	
+	public void closeConnection() {
+		try {
+			System.out.println("Attempting to close database connection...");
+			this.getConnection().close();
+			System.out.println("Connection closed!");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public ResultSet select(String sqlStatement) {
+		Statement statement = null;
+		try {
+			statement = this.getConnection().createStatement();
+			String sql;
+			sql = sqlStatement;
+			ResultSet rs = statement.executeQuery(sql);
+			return rs;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	//Method to check database table exists and is functioning properly
@@ -38,6 +70,7 @@ public class Database {
 	
 	public static void main(String args[]) {
 		Database newDB = new Database();
+		newDB.createConnection()
 	}
 	
 	
