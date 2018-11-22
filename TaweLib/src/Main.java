@@ -1,9 +1,6 @@
-import java.text.ParseException;
 import java.util.ArrayList;
-
 import javafx.application.Application;
 import javafx.event.EventHandler;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.scene.Scene;
@@ -190,7 +187,7 @@ public class Main extends Application {
 				SearchBrowse.addResource(r);
 			}
 		} catch (NullPointerException e) {
-			System.out.println("Resource list is empty");
+			//System.out.println("Resource list is empty");
 			Database.setupFiles();
 			ArrayList<Resource> resourceList = new ArrayList<>();
 			resourceList.addAll(Database.getResourceList());
@@ -199,6 +196,7 @@ public class Main extends Application {
 			}
 		}
 
+		
 		try {
 			ArrayList<User> userList = new ArrayList<>();
 			userList.addAll(Database.getUserList());
@@ -206,7 +204,7 @@ public class Main extends Application {
 				Librarian.getUsersList().add(u);
 			}
 		} catch (NullPointerException e) {
-			System.out.println("User list is empty");
+			//System.out.println("User list is empty");
 			ArrayList<User> userList = new ArrayList<>();
 			userList.addAll(Database.getUserList());
 			for (User u : userList) {
@@ -222,7 +220,7 @@ public class Main extends Application {
 				Librarian.getLibrarianList().add(l);
 			}
 		} catch (NullPointerException e) {
-			System.out.println("Librarian list is empty");
+			//System.out.println("Librarian list is empty");
 			ArrayList<Librarian> libList = new ArrayList<>();
 			libList.addAll(Database.getLibList());
 			for (Librarian l : libList) {

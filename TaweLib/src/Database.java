@@ -26,7 +26,7 @@ public class Database {
 			objectOut.writeObject(al);
 			objectOut.close();
 			outFile.close();
-			System.out.println("Stored resource list in resourcelist.ser");
+			//System.out.println("Stored resource list in resourcelist.ser");
 		} catch (IOException e) {
 			//e.printStackTrace();
 		}
@@ -72,7 +72,7 @@ public class Database {
 			objectOut.writeObject(al);
 			objectOut.close();
 			outFile.close();
-			System.out.println("Stored user list in userlist.ser");
+			//System.out.println("Stored user list in userlist.ser");
 		} catch (IOException e) {
 			//e.printStackTrace();
 		}
@@ -118,7 +118,7 @@ public class Database {
 			objectOut.writeObject(al);
 			objectOut.close();
 			outFile.close();
-			System.out.println("Stored librarian list in liblist.ser");
+			//System.out.println("Stored librarian list in liblist.ser");
 		} catch (IOException e) {
 			//e.printStackTrace();
 		}
