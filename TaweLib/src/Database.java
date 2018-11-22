@@ -52,6 +52,9 @@ public class Database {
 			sql = sqlStatement;
 			ResultSet rs = statement.executeQuery(sql);
 			return rs;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
 		}
 	}
 	
