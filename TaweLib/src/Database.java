@@ -76,9 +76,20 @@ public class Database {
 		
 	}
 	
+	//Example of how to use select method and view results
 	public static void main(String args[]) {
 		Database newDB = new Database();
-		newDB.createConnection()
+		ResultSet rs = newDB.select("SELECT * FROM test");
+		try {
+			while(rs.next()){
+				String name = rs.getString("Name");
+				
+				System.out.println(name);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		newDB.closeConnection();
 	}
 	
 	
