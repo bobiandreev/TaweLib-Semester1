@@ -48,13 +48,21 @@ public class Database {
 		Statement statement = null;
 		try {
 			statement = this.getConnection().createStatement();
-			String sql;
-			sql = sqlStatement;
-			ResultSet rs = statement.executeQuery(sql);
+			ResultSet rs = statement.executeQuery(sqlStatement);
 			return rs;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+	
+	public void insert(String sqlStatement) {
+		Statement statement = null;
+		try {
+			statement = this.getConnection().createStatement();
+			statement.executeQuery(sqlStatement);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 	
