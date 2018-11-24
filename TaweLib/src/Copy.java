@@ -70,7 +70,7 @@ public class Copy {
 				return null;
 			}
 		}
-		
+
 		item.getCopies().get(i).request();
 		return item.getCopies().get(i);
 	}

@@ -111,7 +111,8 @@ public class User {
 		 * for (int i = 0; i < borrowedItems.size(); i++) {
 		 * System.out.println(borrowedItems.get(i)); }
 		 */
-	//	returnRequests.add(borrowedItems.get(0)); // items which are requested to be returned are added here
+		// returnRequests.add(borrowedItems.get(0)); // items which are requested to be
+		// returned are added here
 	}
 
 }

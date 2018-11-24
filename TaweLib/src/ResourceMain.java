@@ -29,16 +29,17 @@ public class ResourceMain {
 		user1.requestItem(r2);
 		user1.requestItem(r2);
 		user1.requestItem(r2);
-		
-		Librarian lib1 = new Librarian("lib1","lib 1", 54656597,65, "Singleton Campus", "SA1 4FS", image, "24/07");
-		
-		Resource r3 = new Book("H.P. Lovecraft", "Horror", "Vintage Classics", "9-95216-565", "English", "The Call of Cthulhu", 1926, image, 5);
+
+		Librarian lib1 = new Librarian("lib1", "lib 1", 54656597, 65, "Singleton Campus", "SA1 4FS", image, "24/07");
+
+		Resource r3 = new Book("H.P. Lovecraft", "Horror", "Vintage Classics", "9-95216-565", "English",
+				"The Call of Cthulhu", 1926, image, 5);
 		SearchBrowse.addResource(resource1);
 		SearchBrowse.addResource(r2);
 		SearchBrowse.addResource(r3);
-		//System.out.println(SearchBrowse.getBooks().get(0).getTitle());
-		//System.out.println(SearchBrowse.search("t").toString());
-		
+		// System.out.println(SearchBrowse.getBooks().get(0).getTitle());
+		// System.out.println(SearchBrowse.search("t").toString());
+
 		Resource r4 = new LaptopComputer("XPS", 2018, image, 3, "Dell", "XPS", "Windows");
 		Fine fine = new Fine(r3, 10);
 		System.out.println(fine.getCurrentFine());

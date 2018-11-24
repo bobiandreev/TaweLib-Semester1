@@ -103,7 +103,7 @@ public class Resource {
 	public ArrayList<Copy> getCopies() {
 		return copies;
 	}
-	
+
 	public void addToWaitList(User user) {
 		waitingList.add(user);
 	}
