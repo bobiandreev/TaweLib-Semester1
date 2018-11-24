@@ -54,10 +54,13 @@ public class Librarian extends User {
 				System.out.println(user.getRequestedItems().get(i));
 
 				if (true /* approved */) {
-					user.getBorrowedItems().add(user.getRequestedItems().get(i));
-					user.getRequestedItems().remove(i);
+					user.getBorrowedItems().add(user.getRequestedItems().get(i)); // adds to borrowed items list in user
+					user.getRequestedItems().get(i).borrow(); // sets the boolean borrow in copy to true
+					user.getRequestedItems().get(i).removeRequest(); // sets the boolean request in copy to false
+					user.getRequestedItems().remove(i); // removes the copy from requested items list in user
 				} else /* not approved */ {
 					user.getRequestedItems().remove(i);
+					user.getRequestedItems().get(i).removeRequest();
 				}
 			}
 		}
@@ -70,8 +73,9 @@ public class Librarian extends User {
 				System.out.println(user.getReturnRequests().get(i));
 
 				if (true /* approved */) {
-					user.getReturnRequests().remove(i);
-					user.getBorrowedItems().remove(i);
+					user.getReturnRequests().get(i).isReturned(); // sets boolean isBorrowed in copy to false
+					user.getReturnRequests().remove(i); // removes copy from returnRequests list in user
+					user.getBorrowedItems().remove(i); // removes copy from borrowedItems list in user
 				} else { // not approved
 					user.getReturnRequests().remove(i);
 				}

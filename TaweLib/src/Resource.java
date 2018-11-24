@@ -23,6 +23,7 @@ public class Resource {
 	private int numOfCopies;
 
 	private ArrayList<Copy> copies = new ArrayList<>();
+	private ArrayList<User> waitingList = new ArrayList<>();
 
 	/**
 	 * Constructor of the object
@@ -94,12 +95,16 @@ public class Resource {
 	 * Method that generates the given number of copies for a given resource
 	 */
 	public void generateCopies() {
-		for (int i = 1; i <= numOfCopies; i++) {
-			copies.add(new Copy(this.getid(), i));
+		for (int i = 0; i < numOfCopies; i++) {
+			copies.add(new Copy(this, i));
 		}
 	}
 
 	public ArrayList<Copy> getCopies() {
 		return copies;
+	}
+	
+	public void addToWaitList(User user) {
+		waitingList.add(user);
 	}
 }

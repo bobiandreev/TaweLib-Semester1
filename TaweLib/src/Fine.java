@@ -50,7 +50,7 @@ public class Fine {
 	/**
 	 * Getter method that returns the current fine.
 	 * 
-	 * @return The fine to be payed.
+	 * @return The fine to be paid.
 	 */
 	public int getCurrentFine() {
 		return currentFine;

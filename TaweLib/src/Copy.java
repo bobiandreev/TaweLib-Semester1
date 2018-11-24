@@ -6,12 +6,13 @@
  */
 public class Copy {
 
-	private int resourceId;
+	private Resource resource;
 	private int copyId;
 	private boolean isBorrowed = false;
+	private boolean isRequested = false;
 
-	public Copy(int resourceId, int copyId) {
-		this.resourceId = resourceId;
+	public Copy(Resource resource, int copyId) {
+		this.resource = resource;
 		this.copyId = copyId;
 	}
 
@@ -35,18 +36,20 @@ public class Copy {
 		return isBorrowed;
 	}
 
-	public static Copy borrowCopy(Resource item) {
-		/*
-		 * for (Copy copy: copies) { if (!copy.isBorrowed()) { copy.borrow();
-		 * System.out.println("User 1 borrowed: Copy " + copy.getCopyId()); break; } }
-		 * System.out.println("No copies are free right now!");
-		 */
-		int i = 1;
-		while (i <= item.getCopies().size() && item.getCopies().get(i).isBorrowed()) {
-			i++;
-		}
-		item.getCopies().get(i).borrow(); // this should not be marked as borrowed yet before the librarian approves it
-		return item.getCopies().get(i);
+	public Resource getResource() {
+		return resource;
+	}
+
+	public boolean isRequested() {
+		return isRequested;
+	}
+
+	public void request() {
+		isRequested = true;
+	}
+
+	public void removeRequest() {
+		isRequested = false;
 	}
 
 	public void isReturned() {
@@ -57,9 +60,37 @@ public class Copy {
 		copy.isReturned();
 	}
 
+	public static Copy requestCopy(Resource item) {
+		int i = 0;
+		while (i < item.getCopies().size() && item.getCopies().get(i).isBorrowed()
+				|| item.getCopies().get(i).isRequested()) {
+			i++;
+			if (i == item.getCopies().size()) {
+				// adds user to queue of users waiting for this resource
+				return null;
+			}
+		}
+		
+		item.getCopies().get(i).request();
+		return item.getCopies().get(i);
+	}
+
+	public static Copy checkCopy(Resource item) {
+		int i = 0;
+		while (i < item.getCopies().size() && item.getCopies().get(i).isBorrowed()
+				|| item.getCopies().get(i).isRequested()) {
+			i++;
+			if (i == item.getCopies().size()) {
+				// adds user to queue of users waiting for this resource
+				return null;
+			}
+		}
+		return item.getCopies().get(i);
+	}
+
 	@Override
 	public String toString() {
-		return "Copy [resourceId=" + resourceId + ", copyId=" + copyId + ", isBorrowed=" + isBorrowed + "]";
+		return "Copy [resource=" + resource + ", copyId=" + copyId + ", isBorrowed=" + isBorrowed + "]";
 	}
 
 }

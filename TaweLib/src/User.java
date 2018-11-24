@@ -15,7 +15,7 @@ public class User {
 	private ArrayList<Copy> borrowedItems = new ArrayList<>();
 	private ArrayList<Copy> returnRequests = new ArrayList<>();
 
-	public User(String username, String name, int mobileNumber, int houseNumber, String address, String postocode,
+	public User(String username, String name, int mobileNumber, int houseNumber, String address, String postcode,
 			Image profilePic) {
 		this.username = username;
 		this.name = name;
@@ -89,23 +89,29 @@ public class User {
 	public ArrayList<Copy> getBorrowedItems() {
 		return borrowedItems;
 	}
-	
+
 	public int getHouseNumber() {
 		return houseNumber;
 	}
-	
+
 	public void requestItem(Resource item) {
-		requestedItems.add(Copy.borrowCopy(item));
-		borrowedItems.add(Copy.borrowCopy(item));
-	}
-
-	public void requestReturn() { /* user chooses which copy to return here with the gui */
-	/*	for (int i = 0; i < borrowedItems.size(); i++) {
-			System.out.println(borrowedItems.get(i));
+		if (Copy.checkCopy(item) == null) {
+			item.addToWaitList(this);
+			System.out.println("Unfortunately all the copies are borrowed at the moment. \n"
+					+ "You have been added to the waiting list and will "
+					+ "receive a notification when a copy is available.");
+		} else {
+			requestedItems.add(Copy.requestCopy(item));
 		}
-		*/
-		returnRequests.add(borrowedItems.get(0)); // items which are requested to be returned are added here
+		// borrowedItems.add(Copy.borrowCopy(item));
 	}
 
-	
+	public void requestReturn(Copy copy) { /* user chooses which copy to return here with the gui */
+		/*
+		 * for (int i = 0; i < borrowedItems.size(); i++) {
+		 * System.out.println(borrowedItems.get(i)); }
+		 */
+	//	returnRequests.add(borrowedItems.get(0)); // items which are requested to be returned are added here
+	}
+
 }
