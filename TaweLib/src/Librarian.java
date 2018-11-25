@@ -14,6 +14,7 @@ public class Librarian extends User {
 	private String employmentDate;
 	private static int staffNumber = 0;
 	public static ArrayList<User> usersList = new ArrayList<>();
+	private Scanner in = new Scanner(System.in);
 
 	public Librarian(String username, String name, int mobileNumber, int houseNumber, String streetName,
 			String postcode, Image profilePic, String employmentDate) {
@@ -52,7 +53,6 @@ public class Librarian extends User {
 	 * example method
 	 */
 	public void approveBorrow() {
-		Scanner in = new Scanner(System.in);
 		for (User user : usersList) {
 			System.out.println(user.getName() + " has requested to borrow: ");
 
@@ -78,7 +78,6 @@ public class Librarian extends User {
 				}
 			}
 		}
-		in.close();
 	}
 
 	
@@ -87,7 +86,6 @@ public class Librarian extends User {
 	 * example method
 	 */
 	public void approveReturn() {
-		Scanner input = new Scanner(System.in);
 		for (User user : usersList) {
 			System.out.println(user.getName() + " has requested to return:");
 			for (int i = 0; i < user.getReturnRequests().size(); i++) {
@@ -96,7 +94,7 @@ public class Librarian extends User {
 			System.out.println();
 			while (!user.getReturnRequests().isEmpty()) {
 				System.out.println("Do you approve: " + user.getReturnRequests().get(0) + ("?	true/false"));
-				boolean flag = input.nextBoolean();
+				boolean flag = in.nextBoolean();
 
 
 				if (flag /* approved */) {
@@ -107,11 +105,10 @@ public class Librarian extends User {
 					user.getReturnRequests().remove(0); // removes copy from returnRequests list in user
 					user.getBorrowedItems().remove(0); // removes copy from borrowedItems list in user
 				} else { // not approved
-					user.getReturnRequests().remove(0);
 					user.getReturnRequests().get(0).setDateRequestReturn(null);
+					user.getReturnRequests().remove(0);
 				}
 			}
 		}
-		input.close();
 	}
 }
