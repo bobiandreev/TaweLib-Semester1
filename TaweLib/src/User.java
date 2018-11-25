@@ -107,12 +107,8 @@ public class User {
 	}
 
 	public void requestReturn(Copy copy) { /* user chooses which copy to return here with the gui */
-		/*
-		 * for (int i = 0; i < borrowedItems.size(); i++) {
-		 * System.out.println(borrowedItems.get(i)); }
-		 */
-		// returnRequests.add(borrowedItems.get(0)); // items which are requested to be
-		// returned are added here
+		 returnRequests.add(copy); // adds copy to be returned to the return requests list
+		 copy.setDateRequestReturn(Copy.getDateNow()); // sets the date when the return was requested
 	}
 
 }

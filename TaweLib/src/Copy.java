@@ -1,3 +1,6 @@
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Class that creates a copy object for a resource
  * 
@@ -10,7 +13,20 @@ public class Copy {
 	private int copyId;
 	private boolean isBorrowed = false;
 	private boolean isRequested = false;
+	private Date dateRequested;
+	private Date dateBorrowed;
+	private Date dateRequestReturn;
+	private Date dateReturned;
+	private static Date dateNow = new Date();
 
+	/**
+	 * Constructor for Copy object
+	 * 
+	 * @param resource
+	 *            This shows a copy of which resource is this object
+	 * @param copyId
+	 *            Sets an ID for the specific copy
+	 */
 	public Copy(Resource resource, int copyId) {
 		this.resource = resource;
 		this.copyId = copyId;
@@ -60,6 +76,48 @@ public class Copy {
 		copy.isReturned();
 	}
 
+	public Date getDateRequested() {
+		return dateRequested;
+	}
+
+	public void setDateRequested(Date dateRequested) {
+		this.dateRequested = dateRequested;
+	}
+
+	public Date getDateBorrowed() {
+		return dateBorrowed;
+	}
+
+	public void setDateBorrowed(Date dateBorrowed) {
+		this.dateBorrowed = dateBorrowed;
+	}
+
+	public static Date getDateNow() {
+		return dateNow;
+	}
+
+	public Date getDateRequestReturn() {
+		return dateRequestReturn;
+	}
+
+	public void setDateRequestReturn(Date dateRequestReturn) {
+		this.dateRequestReturn = dateRequestReturn;
+	}
+
+	public Date getDateReturned() {
+		return dateReturned;
+	}
+
+	public void setDateReturned(Date dateReturned) {
+		this.dateReturned = dateReturned;
+	}
+
+	/**
+	 * Method which allows the user to request a copy which then needs to be approved by a librarian.
+	 * 
+	 * @param item
+	 * @return
+	 */
 	public static Copy requestCopy(Resource item) {
 		int i = 0;
 		while (i < item.getCopies().size() && item.getCopies().get(i).isBorrowed()
@@ -72,6 +130,8 @@ public class Copy {
 		}
 
 		item.getCopies().get(i).request();
+		// SimpleDateFormat dateFormat = new SimpleDateFormat("E yyyy.MM.dd");
+		item.getCopies().get(i).setDateRequested(dateNow);
 		return item.getCopies().get(i);
 	}
 
