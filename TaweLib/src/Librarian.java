@@ -52,6 +52,7 @@ public class Librarian extends User {
 	 * example method
 	 */
 	public void approveBorrow() {
+		Scanner in = new Scanner(System.in);
 		for (User user : usersList) {
 			System.out.println(user.getName() + " has requested to borrow: ");
 
@@ -61,7 +62,6 @@ public class Librarian extends User {
 					System.out.println(user.getRequestedItems().get(0));
 
 					System.out.println("Do you approve: (true or false)");
-					Scanner in = new Scanner(System.in);
 					boolean flag = in.nextBoolean();
 
 					if (flag /* approved */) {
@@ -80,18 +80,23 @@ public class Librarian extends User {
 				}
 			}
 		}
+		in.close();
 	}
 
 	/**
 	 * example method
 	 */
 	public void approveReturn() {
+		Scanner in = new Scanner(System.in);
 		for (User user : usersList) {
 			System.out.println(user.getName() + " has requested to return:");
 			while (!user.getReturnRequests().isEmpty()) {
 				System.out.println(user.getReturnRequests().get(0));
 
-				if (true /* approved */) {
+				System.out.println("Do you approve: (true or false)");
+				boolean flag = in.nextBoolean();
+
+				if (flag /* approved */) {
 					user.getReturnRequests().get(0).isReturned(); // sets boolean isBorrowed in copy to false
 					user.getReturnRequests().get(0).setDateReturned(Copy.getDateNow());
 					user.getReturnRequests().get(0).setDateRequestReturn(null);
@@ -103,5 +108,6 @@ public class Librarian extends User {
 				}
 			}
 		}
+		in.close();
 	}
 }
