@@ -44,6 +44,7 @@ public class Librarian extends User {
 		String streetName = in.nextLine();
 		String postcode = in.nextLine();
 		Image profilePic = null; // allow the librarian to choose an image
+		in.close();
 		usersList.add(new User(username, name, phoneNumber, houseNumber, streetName, postcode, profilePic));
 	}
 
@@ -52,8 +53,13 @@ public class Librarian extends User {
 			System.out.println(user.getName() + " has requested to borrow: ");
 			for (int i = 0; i < user.getRequestedItems().size(); i++) {
 				System.out.println(user.getRequestedItems().get(i));
-
-				if (true /* approved */) {
+				
+				System.out.println("Do you approve: (true or false)");
+				Scanner in = new Scanner(System.in);
+				boolean flag = in.nextBoolean();
+				in.close();
+				
+				if (flag /* approved */) {
 					user.getBorrowedItems().add(user.getRequestedItems().get(i)); // adds to borrowed items list in user
 					user.getRequestedItems().get(i).borrow(); // sets the boolean borrow in copy to true
 					user.getRequestedItems().get(i).setDateBorrowed(Copy.getDateNow()); // sets the date when the copy
