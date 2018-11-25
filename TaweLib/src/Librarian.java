@@ -47,6 +47,9 @@ public class Librarian extends User {
 		usersList.add(new User(username, name, phoneNumber, houseNumber, streetName, postcode, profilePic));
 	}
 
+	/**
+	 * examle method
+	 */
 	public void approveBorrow() {
 		for (User user : usersList) {
 			System.out.println(user.getName() + " has requested to borrow: ");
@@ -68,6 +71,9 @@ public class Librarian extends User {
 		}
 	}
 
+	/**
+	 * example method
+	 */
 	public void approveReturn() {
 		for (User user : usersList) {
 			System.out.println(user.getName() + " has requested to return:");
