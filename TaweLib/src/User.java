@@ -95,22 +95,24 @@ public class User {
 	}
 
 	public void requestItem(Resource item) {
-		Copy freeCopy = Copy.checkCopy(item);
-		if (freeCopy == null) {
+		Copy freeCopy = Copy.checkCopy(item); // checks if there is a free copy
+		if (freeCopy == null) { // if there isnt a free copy user gets added to the waiting list for that
+								// resource
 			item.addToWaitList(this);
 			System.out.println("Unfortunately all the copies are borrowed at the moment. \n"
 					+ "You have been added to the waiting list and will "
 					+ "receive a notification when a copy is available.");
-		} else {
-			freeCopy.requestCopy();
+		} else { // if there is a free copy it gets added to the users requested items list and
+					// its variables are set to requested
+			freeCopy.requestCopy(this);
 			requestedItems.add(freeCopy);
 		}
 		// borrowedItems.add(Copy.borrowCopy(item));
 	}
 
 	public void requestReturn(Copy copy) { /* user chooses which copy to return here with the gui */
-		 returnRequests.add(copy); // adds copy to be returned to the return requests list
-		 copy.setDateRequestReturn(Copy.getDateNow()); // sets the date when the return was requested
+		returnRequests.add(copy); // adds copy to be returned to the return requests list
+		copy.setDateRequestReturn(Copy.getDateNow()); // sets the date when the return was requested
 	}
 
 }

@@ -17,6 +17,7 @@ public class Copy {
 	private Date dateBorrowed;
 	private Date dateRequestReturn;
 	private Date dateReturned;
+	private User requestedBy;
 	private static Date dateNow = new Date();
 
 	/**
@@ -116,12 +117,9 @@ public class Copy {
 	 * Method which allows the user to request a copy which then needs to be
 	 * approved by a librarian. Sets isRequested variable to true and sets the
 	 * dateRequested to the date now.
-	 * 
-	 * @param item
-	 *            The resource of which the user wants to request a copy.
-	 * @return A free copy for the user to request.
 	 */
-	public void requestCopy() {
+	public void requestCopy(User user) {
+		this.requestedBy = user;
 		this.request();
 		this.setDateRequested(dateNow);
 	}

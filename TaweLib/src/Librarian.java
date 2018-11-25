@@ -56,7 +56,8 @@ public class Librarian extends User {
 				if (true /* approved */) {
 					user.getBorrowedItems().add(user.getRequestedItems().get(i)); // adds to borrowed items list in user
 					user.getRequestedItems().get(i).borrow(); // sets the boolean borrow in copy to true
-					user.getRequestedItems().get(i).setDateBorrowed(Copy.getDateNow()); // sets the date when the copy is borrowed
+					user.getRequestedItems().get(i).setDateBorrowed(Copy.getDateNow()); // sets the date when the copy
+																						// is borrowed
 					user.getRequestedItems().get(i).removeRequest(); // sets the boolean request in copy to false
 					user.getRequestedItems().remove(i); // removes the copy from requested items list in user
 				} else /* not approved */ {
