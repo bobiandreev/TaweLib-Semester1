@@ -13,7 +13,7 @@ public class Librarian extends User {
 
 	private String employmentDate;
 	private static int staffNumber = 0;
-	private static ArrayList<User> usersList = new ArrayList<>();
+	public static ArrayList<User> usersList = new ArrayList<>();
 
 	public Librarian(String username, String name, int mobileNumber, int houseNumber, String streetName,
 			String postcode, Image profilePic, String employmentDate) {
@@ -54,24 +54,23 @@ public class Librarian extends User {
 	public void approveBorrow() {
 		for (User user : usersList) {
 			System.out.println(user.getName() + " has requested to borrow: ");
-			for (int i = 0; i < user.getRequestedItems().size(); i++) {
-				System.out.println(user.getRequestedItems().get(i));
+			while (!user.getRequestedItems().isEmpty()) {
+				System.out.println(user.getRequestedItems().get(0));
 				
 				System.out.println("Do you approve: (true or false)");
 				Scanner in = new Scanner(System.in);
 				boolean flag = in.nextBoolean();
-				in.close();
 				
 				if (flag /* approved */) {
-					user.getBorrowedItems().add(user.getRequestedItems().get(i)); // adds to borrowed items list in user
-					user.getRequestedItems().get(i).borrow(); // sets the boolean borrow in copy to true
-					user.getRequestedItems().get(i).setDateBorrowed(Copy.getDateNow()); // sets the date when the copy
+					user.getBorrowedItems().add(user.getRequestedItems().get(0)); // adds to borrowed items list in user
+					user.getRequestedItems().get(0).borrow(); // sets the boolean borrow in copy to true
+					user.getRequestedItems().get(0).setDateBorrowed(Copy.getDateNow()); // sets the date when the copy
 																						// is borrowed
-					user.getRequestedItems().get(i).removeRequest(); // sets the boolean request in copy to false
-					user.getRequestedItems().remove(i); // removes the copy from requested items list in user
+					user.getRequestedItems().get(0).removeRequest(); // sets the boolean request in copy to false
+					user.getRequestedItems().remove(0); // removes the copy from requested items list in user
 				} else /* not approved */ {
-					user.getRequestedItems().remove(i);
-					user.getRequestedItems().get(i).removeRequest();
+					user.getRequestedItems().remove(0);
+					user.getRequestedItems().get(0).removeRequest();
 				}
 			}
 		}
