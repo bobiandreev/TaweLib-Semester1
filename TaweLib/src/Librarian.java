@@ -13,7 +13,7 @@ public class Librarian extends User {
 
 	private String employmentDate;
 	private static int staffNumber = 0;
-	private ArrayList<User> users = new ArrayList<>();
+	private static ArrayList<User> usersList = new ArrayList<>();
 
 	public Librarian(String username, String name, int mobileNumber, int houseNumber, String streetName,
 			String postcode, Image profilePic, String employmentDate) {
@@ -34,7 +34,7 @@ public class Librarian extends User {
 		return staffNumber;
 	}
 
-	public User addUser() {
+	public void addUser() {
 		// this will be done with read lines
 		Scanner in = new Scanner(System.in);
 		String username = in.nextLine();
@@ -44,11 +44,11 @@ public class Librarian extends User {
 		String streetName = in.nextLine();
 		String postcode = in.nextLine();
 		Image profilePic = null; // allow the librarian to choose an image
-		return new User(username, name, phoneNumber, houseNumber, streetName, postcode, profilePic);
+		usersList.add(new User(username, name, phoneNumber, houseNumber, streetName, postcode, profilePic));
 	}
 
 	public void approveBorrow() {
-		for (User user : users) {
+		for (User user : usersList) {
 			System.out.println(user.getName() + " has requested to borrow: ");
 			for (int i = 0; i < user.getRequestedItems().size(); i++) {
 				System.out.println(user.getRequestedItems().get(i));
@@ -68,7 +68,7 @@ public class Librarian extends User {
 	}
 
 	public void approveReturn() {
-		for (User user : users) {
+		for (User user : usersList) {
 			System.out.println(user.getName() + " has requested to return:");
 			for (int i = 0; i < user.getReturnRequests().size(); i++) {
 				System.out.println(user.getReturnRequests().get(i));
