@@ -88,18 +88,18 @@ public class Librarian extends User {
 	public void approveReturn() {
 		for (User user : usersList) {
 			System.out.println(user.getName() + " has requested to return:");
-			for (int i = 0; i < user.getReturnRequests().size(); i++) {
-				System.out.println(user.getReturnRequests().get(i));
+			while (!user.getReturnRequests().isEmpty()) {
+				System.out.println(user.getReturnRequests().get(0));
 
 				if (true /* approved */) {
-					user.getReturnRequests().get(i).isReturned(); // sets boolean isBorrowed in copy to false
-					user.getReturnRequests().get(i).setDateReturned(Copy.getDateNow());
-					user.getReturnRequests().get(i).setDateRequestReturn(null);
-					user.getReturnRequests().get(i).setDateBorrowed(null);
-					user.getReturnRequests().remove(i); // removes copy from returnRequests list in user
-					user.getBorrowedItems().remove(i); // removes copy from borrowedItems list in user
+					user.getReturnRequests().get(0).isReturned(); // sets boolean isBorrowed in copy to false
+					user.getReturnRequests().get(0).setDateReturned(Copy.getDateNow());
+					user.getReturnRequests().get(0).setDateRequestReturn(null);
+					user.getReturnRequests().get(0).setDateBorrowed(null);
+					user.getReturnRequests().remove(0); // removes copy from returnRequests list in user
+					user.getBorrowedItems().remove(0); // removes copy from borrowedItems list in user
 				} else { // not approved
-					user.getReturnRequests().remove(i);
+					user.getReturnRequests().remove(0);
 				}
 			}
 		}
