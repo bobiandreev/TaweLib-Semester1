@@ -148,7 +148,7 @@ public class Copy {
 
 	@Override
 	public String toString() {
-		return "Copy [resource=" + resource + ", copyId=" + copyId + ", isBorrowed=" + isBorrowed + "]";
+		return "Copy number " + this.getCopyId() + " of resource " + this.getResource().getTitle();
 	}
 
 }
