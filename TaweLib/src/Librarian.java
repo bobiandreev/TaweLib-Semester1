@@ -13,7 +13,7 @@ public class Librarian extends User {
 
 	private String employmentDate;
 	private static int staffNumber = 0;
-	private ArrayList<User> users = new ArrayList<>();
+	private static ArrayList<User> usersList = new ArrayList<>();
 
 	public Librarian(String username, String name, int mobileNumber, int houseNumber, String streetName,
 			String postcode, Image profilePic, String employmentDate) {
@@ -34,7 +34,7 @@ public class Librarian extends User {
 		return staffNumber;
 	}
 
-	public User addUser() {
+	public void addUser() {
 		// this will be done with read lines
 		Scanner in = new Scanner(System.in);
 		String username = in.nextLine();
@@ -44,18 +44,29 @@ public class Librarian extends User {
 		String streetName = in.nextLine();
 		String postcode = in.nextLine();
 		Image profilePic = null; // allow the librarian to choose an image
-		return new User(username, name, phoneNumber, houseNumber, streetName, postcode, profilePic);
+		in.close();
+		usersList.add(new User(username, name, phoneNumber, houseNumber, streetName, postcode, profilePic));
 	}
 
+	/**
+	 * examle method
+	 */
 	public void approveBorrow() {
-		for (User user : users) {
+		for (User user : usersList) {
 			System.out.println(user.getName() + " has requested to borrow: ");
 			for (int i = 0; i < user.getRequestedItems().size(); i++) {
 				System.out.println(user.getRequestedItems().get(i));
-
-				if (true /* approved */) {
+				
+				System.out.println("Do you approve: (true or false)");
+				Scanner in = new Scanner(System.in);
+				boolean flag = in.nextBoolean();
+				in.close();
+				
+				if (flag /* approved */) {
 					user.getBorrowedItems().add(user.getRequestedItems().get(i)); // adds to borrowed items list in user
 					user.getRequestedItems().get(i).borrow(); // sets the boolean borrow in copy to true
+					user.getRequestedItems().get(i).setDateBorrowed(Copy.getDateNow()); // sets the date when the copy
+																						// is borrowed
 					user.getRequestedItems().get(i).removeRequest(); // sets the boolean request in copy to false
 					user.getRequestedItems().remove(i); // removes the copy from requested items list in user
 				} else /* not approved */ {
@@ -66,14 +77,20 @@ public class Librarian extends User {
 		}
 	}
 
+	/**
+	 * example method
+	 */
 	public void approveReturn() {
-		for (User user : users) {
+		for (User user : usersList) {
 			System.out.println(user.getName() + " has requested to return:");
 			for (int i = 0; i < user.getReturnRequests().size(); i++) {
 				System.out.println(user.getReturnRequests().get(i));
 
 				if (true /* approved */) {
 					user.getReturnRequests().get(i).isReturned(); // sets boolean isBorrowed in copy to false
+					user.getReturnRequests().get(i).setDateReturned(Copy.getDateNow());
+					user.getReturnRequests().get(i).setDateRequestReturn(null);
+					user.getReturnRequests().get(i).setDateBorrowed(null);
 					user.getReturnRequests().remove(i); // removes copy from returnRequests list in user
 					user.getBorrowedItems().remove(i); // removes copy from borrowedItems list in user
 				} else { // not approved
