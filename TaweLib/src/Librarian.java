@@ -69,6 +69,8 @@ public class Librarian extends User {
 				if (flag /* approved */) {
 					user.getBorrowedItems().add(user.getRequestedItems().get(0)); // adds to borrowed items list in user
 					user.getRequestedItems().get(0).borrow(); // sets the boolean borrow in copy to true
+					user.getRequestedItems().get(0).setRequestedBy(null);
+					user.getRequestedItems().get(0).setBorrowedBy(user); // sets the borrower of the copy to user 
 					user.getRequestedItems().get(0).setDateBorrowed(Copy.getDateNow()); // sets date when copy is taken
 					user.getRequestedItems().get(0).removeRequest(); // sets the boolean request in copy to false
 					user.getRequestedItems().remove(0); // removes the copy from requested items list in user
@@ -102,6 +104,7 @@ public class Librarian extends User {
 					user.getReturnRequests().get(0).setDateReturned(Copy.getDateNow());
 					user.getReturnRequests().get(0).setDateRequestReturn(null);
 					user.getReturnRequests().get(0).setDateBorrowed(null);
+					user.getReturnRequests().get(0).setBorrowedBy(null);
 					user.getReturnRequests().remove(0); // removes copy from returnRequests list in user
 					user.getBorrowedItems().remove(0); // removes copy from borrowedItems list in user
 				} else { // not approved

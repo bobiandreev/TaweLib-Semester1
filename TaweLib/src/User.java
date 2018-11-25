@@ -14,6 +14,7 @@ public class User {
 	private ArrayList<Copy> requestedItems = new ArrayList<>();
 	private ArrayList<Copy> borrowedItems = new ArrayList<>();
 	private ArrayList<Copy> returnRequests = new ArrayList<>();
+	private ArrayList<Copy> itemsToReturn = new ArrayList<>();
 
 	public User(String username, String name, int mobileNumber, int houseNumber, String address, String postcode,
 			Image profilePic) {
@@ -107,7 +108,6 @@ public class User {
 			freeCopy.requestCopy(this);
 			requestedItems.add(freeCopy);
 		}
-		// borrowedItems.add(Copy.borrowCopy(item));
 	}
 
 	public void requestReturn(Copy copy) { /* user chooses which copy to return here with the gui */

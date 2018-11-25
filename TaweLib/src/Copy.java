@@ -1,4 +1,5 @@
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -18,6 +19,10 @@ public class Copy {
 	private Date dateRequestReturn;
 	private Date dateReturned;
 	private User requestedBy;
+	private User borrowedBy;
+	public final int loanDuration = 14;
+	public final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	private Date dueDate;
 	private static Date dateNow = new Date();
 
 	/**
@@ -113,10 +118,29 @@ public class Copy {
 		this.dateReturned = dateReturned;
 	}
 
+	public User getRequestedBy() {
+		return requestedBy;
+	}
+
+	public void setRequestedBy(User requestedBy) {
+		this.requestedBy = requestedBy;
+	}
+
+	public User getBorrowedBy() {
+		return borrowedBy;
+	}
+
+	public void setBorrowedBy(User borrowedBy) {
+		this.borrowedBy = borrowedBy;
+	}
+
+	public Date getDueDate() {
+		return dueDate;
+	}
 	/**
 	 * Method which allows the user to request a copy which then needs to be
 	 * approved by a librarian. Sets isRequested variable to true and sets the
-	 * dateRequested to the date now.
+	 * dateRequested to the date now. Also stores which user currently has the copy.
 	 */
 	public void requestCopy(User user) {
 		this.requestedBy = user;
@@ -146,6 +170,14 @@ public class Copy {
 		return item.getCopies().get(i);
 	}
 
+	public void setDueDate(){
+		Calendar c = Calendar.getInstance();
+		c.setTime(dateBorrowed);
+		c.add(Calendar.DAY_OF_MONTH, loanDuration);
+		dueDate = c.getTime();
+		System.out.println("Due date: " + sdf.format(dueDate));
+	}
+	
 	@Override
 	public String toString() {
 		return "Copy number " + this.getCopyId() + " of resource " + this.getResource().getTitle();
