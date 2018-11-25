@@ -38,7 +38,7 @@ public class ResourceMain {
 		lib1.approveBorrow();
 		
 		r2.getCopies().get(0).setDueDate();
-		
+		user1.displayBorrowedItems();
 		user1.requestReturn(user1.getBorrowedItems().get(0));
 		lib1.approveReturn();
 		

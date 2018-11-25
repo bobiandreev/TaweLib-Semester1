@@ -22,7 +22,7 @@ public class Copy {
 	private User borrowedBy;
 	public final int loanDuration = 14;
 	public final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-	private Date dueDate;
+	private Date dueDate = null;
 	private static Date dateNow = new Date();
 
 	/**
@@ -180,7 +180,18 @@ public class Copy {
 	
 	@Override
 	public String toString() {
-		return "Copy number " + this.getCopyId() + " of resource " + this.getResource().getTitle();
+		return "Copy number " + this.getCopyId() + " of resource " + this.getResource().getTitle() + 
+				".";
 	}
 
+	public String toString1() {
+		if (this.getDueDate() == null) {
+		return	"Copy number " + this.getCopyId() + " of resource " + this.getResource().getTitle() + 
+			". No due date is set for this item";
+		}
+		else {
+			return "Copy number " + this.getCopyId() + " of resource " + this.getResource().getTitle() + 
+					". This item is due to be returned on: " + sdf.format(this.getDueDate());	
+		}
+	}
 }

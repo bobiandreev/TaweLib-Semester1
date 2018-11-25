@@ -11,6 +11,7 @@ public class User {
 	private String streetName;
 	private String postcode;
 	private Image profilePic;
+	private int fines;
 	private ArrayList<Copy> requestedItems = new ArrayList<>();
 	private ArrayList<Copy> borrowedItems = new ArrayList<>();
 	private ArrayList<Copy> returnRequests = new ArrayList<>();
@@ -107,6 +108,12 @@ public class User {
 					// its variables are set to requested
 			freeCopy.requestCopy(this);
 			requestedItems.add(freeCopy);
+		}
+	}
+	
+	public void displayBorrowedItems(){
+		for(int i = 0; i < borrowedItems.size(); i++) {
+			System.out.println(borrowedItems.get(i).toString1());
 		}
 	}
 
