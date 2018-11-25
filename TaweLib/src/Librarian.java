@@ -13,7 +13,7 @@ public class Librarian extends User {
 
 	private String employmentDate;
 	private static int staffNumber = 0;
-	private static ArrayList<User> usersList = new ArrayList<>();
+	public static ArrayList<User> usersList = new ArrayList<>();
 
 	public Librarian(String username, String name, int mobileNumber, int houseNumber, String streetName,
 			String postcode, Image profilePic, String employmentDate) {
@@ -54,7 +54,7 @@ public class Librarian extends User {
 	public void approveBorrow() {
 		for (User user : usersList) {
 			System.out.println(user.getName() + " has requested to borrow: ");
-			for (int i = 0; i < user.getRequestedItems().size(); i++) {
+			for (int i = 0; i < user.getRequestedItems().size() - 1; i++) {
 				System.out.println(user.getRequestedItems().get(i));
 				
 				System.out.println("Do you approve: (true or false)");
