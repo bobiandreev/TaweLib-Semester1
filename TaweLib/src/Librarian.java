@@ -56,45 +56,48 @@ public class Librarian extends User {
 		for (User user : usersList) {
 			System.out.println(user.getName() + " has requested to borrow: ");
 
-			for (int i = 0; i < user.getRequestedItems().size() - 1; i++) {
+			for (int i = 0; i < user.getRequestedItems().size(); i++) {
 				System.out.println(user.getRequestedItems().get(i));
-				while (!user.getRequestedItems().isEmpty()) {
-					System.out.println(user.getRequestedItems().get(0));
+			}
+			System.out.println();
+			while (!user.getRequestedItems().isEmpty()) {
 
-					System.out.println("Do you approve: (true or false)");
-					boolean flag = in.nextBoolean();
+				System.out.println("Do you approve: " + user.getRequestedItems().get(0) + "?:	true/false");
 
-					if (flag /* approved */) {
-						user.getBorrowedItems().add(user.getRequestedItems().get(0)); // adds to borrowed items list in
-																						// user
-						user.getRequestedItems().get(0).borrow(); // sets the boolean borrow in copy to true
-						user.getRequestedItems().get(0).setDateBorrowed(Copy.getDateNow()); // sets the date when the
-																							// copy
-																							// is borrowed
-						user.getRequestedItems().get(0).removeRequest(); // sets the boolean request in copy to false
-						user.getRequestedItems().remove(0); // removes the copy from requested items list in user
-					} else /* not approved */ {
-						user.getRequestedItems().remove(0);
-						user.getRequestedItems().get(0).removeRequest();
-					}
+				boolean flag = in.nextBoolean();
+
+				if (flag /* approved */) {
+					user.getBorrowedItems().add(user.getRequestedItems().get(0)); // adds to borrowed items list in user
+					user.getRequestedItems().get(0).borrow(); // sets the boolean borrow in copy to true
+					user.getRequestedItems().get(0).setDateBorrowed(Copy.getDateNow()); // sets date when copy is taken
+					user.getRequestedItems().get(0).removeRequest(); // sets the boolean request in copy to false
+					user.getRequestedItems().remove(0); // removes the copy from requested items list in user
+				} else /* not approved */ {
+					user.getRequestedItems().get(0).removeRequest();
+					user.getRequestedItems().remove(0);
 				}
 			}
 		}
 		in.close();
 	}
 
+	
+
 	/**
 	 * example method
 	 */
 	public void approveReturn() {
-		Scanner in = new Scanner(System.in);
+		Scanner input = new Scanner(System.in);
 		for (User user : usersList) {
 			System.out.println(user.getName() + " has requested to return:");
+			for (int i = 0; i < user.getReturnRequests().size(); i++) {
+				System.out.println(user.getReturnRequests().get(i));
+			}
+			System.out.println();
 			while (!user.getReturnRequests().isEmpty()) {
-				System.out.println(user.getReturnRequests().get(0));
+				System.out.println("Do you approve: " + user.getReturnRequests().get(0) + ("?	true/false"));
+				boolean flag = input.nextBoolean();
 
-				System.out.println("Do you approve: (true or false)");
-				boolean flag = in.nextBoolean();
 
 				if (flag /* approved */) {
 					user.getReturnRequests().get(0).isReturned(); // sets boolean isBorrowed in copy to false
@@ -105,9 +108,10 @@ public class Librarian extends User {
 					user.getBorrowedItems().remove(0); // removes copy from borrowedItems list in user
 				} else { // not approved
 					user.getReturnRequests().remove(0);
+					user.getReturnRequests().get(0).setDateRequestReturn(null);
 				}
 			}
 		}
-		in.close();
+		input.close();
 	}
 }

@@ -30,10 +30,14 @@ public class ResourceMain {
 		user1.requestItem(r2);
 		user1.requestItem(r2);
 
+
 		Librarian lib1 = new Librarian("lib1", "lib 1", 54656597, 65, "Singleton Campus", "SA1 4FS", image, "24/07");
 
 		lib1.usersList.add(user1);
 		lib1.approveBorrow();
+
+		user1.requestReturn(user1.getBorrowedItems().get(0));
+		lib1.approveReturn();
 		
 		Resource r3 = new Book("H.P. Lovecraft", "Horror", "Vintage Classics", "9-95216-565", "English",
 				"The Call of Cthulhu", 1926, image, 5);
