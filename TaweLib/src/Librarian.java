@@ -75,6 +75,9 @@ public class Librarian extends User {
 
 				if (true /* approved */) {
 					user.getReturnRequests().get(i).isReturned(); // sets boolean isBorrowed in copy to false
+					user.getReturnRequests().get(i).setDateReturned(Copy.getDateNow());
+					user.getReturnRequests().get(i).setDateRequestReturn(null);
+					user.getReturnRequests().get(i).setDateBorrowed(null);
 					user.getReturnRequests().remove(i); // removes copy from returnRequests list in user
 					user.getBorrowedItems().remove(i); // removes copy from borrowedItems list in user
 				} else { // not approved

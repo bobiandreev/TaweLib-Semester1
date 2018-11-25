@@ -113,28 +113,28 @@ public class Copy {
 	}
 
 	/**
-	 * Method which allows the user to request a copy which then needs to be approved by a librarian.
+	 * Method which allows the user to request a copy which then needs to be
+	 * approved by a librarian. Sets isRequested variable to true and sets the
+	 * dateRequested to the date now.
 	 * 
 	 * @param item
-	 * @return
+	 *            The resource of which the user wants to request a copy.
+	 * @return A free copy for the user to request.
 	 */
-	public static Copy requestCopy(Resource item) {
-		int i = 0;
-		while (i < item.getCopies().size() && item.getCopies().get(i).isBorrowed()
-				|| item.getCopies().get(i).isRequested()) {
-			i++;
-			if (i == item.getCopies().size()) {
-				// adds user to queue of users waiting for this resource
-				return null;
-			}
-		}
-
-		item.getCopies().get(i).request();
-		// SimpleDateFormat dateFormat = new SimpleDateFormat("E yyyy.MM.dd");
-		item.getCopies().get(i).setDateRequested(dateNow);
-		return item.getCopies().get(i);
+	public void requestCopy() {
+		this.request();
+		this.setDateRequested(dateNow);
 	}
 
+	/**
+	 * Method that goes through all copies to check if there is a free one for a
+	 * user to request.
+	 * 
+	 * @param item
+	 *            The resource for which the user checks if there is a free copy.
+	 * @return Null if there are no free copies and the Copy object which is free if
+	 *         there is one.
+	 */
 	public static Copy checkCopy(Resource item) {
 		int i = 0;
 		while (i < item.getCopies().size() && item.getCopies().get(i).isBorrowed()

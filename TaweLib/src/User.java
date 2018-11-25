@@ -95,13 +95,15 @@ public class User {
 	}
 
 	public void requestItem(Resource item) {
-		if (Copy.checkCopy(item) == null) {
+		Copy freeCopy = Copy.checkCopy(item);
+		if (freeCopy == null) {
 			item.addToWaitList(this);
 			System.out.println("Unfortunately all the copies are borrowed at the moment. \n"
 					+ "You have been added to the waiting list and will "
 					+ "receive a notification when a copy is available.");
 		} else {
-			requestedItems.add(Copy.requestCopy(item));
+			freeCopy.requestCopy();
+			requestedItems.add(freeCopy);
 		}
 		// borrowedItems.add(Copy.borrowCopy(item));
 	}
