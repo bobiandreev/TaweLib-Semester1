@@ -1,3 +1,4 @@
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -100,6 +101,7 @@ public class Librarian extends User {
 
 
 				if (flag /* approved */) {
+					checkOverdue(user, user.getReturnRequests().get(0));
 					user.getReturnRequests().get(0).isReturned(); // sets boolean isBorrowed in copy to false
 					user.getReturnRequests().get(0).setDateReturned(Copy.getDateNow());
 					user.getReturnRequests().get(0).setDateRequestReturn(null);
@@ -111,6 +113,18 @@ public class Librarian extends User {
 					user.getReturnRequests().get(0).setDateRequestReturn(null);
 					user.getReturnRequests().remove(0);
 				}
+			}
+		}
+	}
+	
+	private void checkOverdue(User user, Copy copy) {
+		if (copy.getDueDate() != null) {
+			if (copy.getDateRequestReturn() != Copy.getDateNow()) {
+				String dueDate = copy.sdf.format(copy.getDueDate());
+				String currentDate = copy.sdf.format(Copy.getDateNow());
+				Fine fine = new Fine(copy.getResource(), dueDate, currentDate);
+				System.out.println(user.getUsername() + "has to pay " + 
+						fine.getCurrentFine() + "for overdue item.");
 			}
 		}
 	}

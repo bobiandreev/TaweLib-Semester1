@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 /**
  * This class is for handling user fines.
@@ -21,8 +22,8 @@ public class Fine {
 	 * @param daysDelayed
 	 *            Days overdue.
 	 */
-	public Fine(Resource resource, int daysDelayed) {
-		calculateFine(resource, daysDelayed);
+	public Fine(Resource resource, String dueDate, String currentDate) {
+		calculateFine(resource, findDays(dueDate, currentDate));
 	}
 
 	/**
@@ -59,4 +60,62 @@ public class Fine {
 	public int getCurrentFine() {
 		return currentFine;
 	}
+	
+	private int findDays(String dueDate, String currentDate) {
+			int days;
+			Scanner input1 = new Scanner(dueDate);
+			Scanner input2 = new Scanner(currentDate);
+			input1.useDelimiter("/");
+			input2.useDelimiter("/");
+			int dueDay = input1.nextInt();
+			int dueMonth = input1.nextInt();
+			int dueYear = input1.nextInt();
+			int currentDay = input2.nextInt();
+			int currentMonth = input2.nextInt();
+			int currentYear = input2.nextInt();
+			input1.close();
+			input2.close();
+			if (dueMonth != currentMonth) {
+				days = findMonthDays(dueMonth, dueYear) - dueDay;
+				if (dueMonth != currentMonth - 1) {
+					for (int i = dueMonth + 1; i < currentMonth; i++) {
+						days += findMonthDays(i, dueYear);
+					}
+				}
+				days += currentDay;
+			} else {
+				days = currentDay - dueDay;
+			}
+			System.out.println(days);
+			
+		return days;
+	}
+	
+	private int findMonthDays(int month, int year) {
+		int days;
+		switch (month) {
+			case 2: 
+				if (year % 4 != 0) {
+					days = 28;
+				} else if (year % 100 != 0) {
+					days = 29;
+				} else if (year % 400 != 0) { 
+					days = 28;
+				} else {
+					days = 29;
+				}
+				break;
+			
+			case 4:
+			case 6:
+			case 9:
+			case 11:
+				days = 30;
+				break;
+			default: days = 31; 
+				
+		}
+		return days;
+	}
+	
 }
