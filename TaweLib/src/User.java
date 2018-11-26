@@ -11,7 +11,6 @@ public class User {
 	private String streetName;
 	private String postcode;
 	private Image profilePic;
-	private int fines;
 	private ArrayList<Copy> requestedItems = new ArrayList<>();
 	private ArrayList<Copy> borrowedItems = new ArrayList<>();
 	private ArrayList<Copy> returnRequests = new ArrayList<>();
@@ -83,6 +82,23 @@ public class User {
 	public ArrayList<Copy> getReturnRequests() {
 		return returnRequests;
 	}
+	
+	public String getFineHistory() {
+		String history = "";
+		int index = 0;
+		while (index != itemsToReturn.size()) {
+			Copy curCopy = itemsToReturn.get(index);
+			String dueDate = curCopy.sdf.format(curCopy.getDueDate());
+			String currentDate = curCopy.sdf.format(Copy.getDateNow());
+			Fine fine = new Fine (curCopy.getResource(), dueDate, currentDate);
+			history += curCopy.getDueDate() + ", amount due: " + 
+					fine.getCurrentFine() + ", copy: " + curCopy.getCopyId() +
+					" of " + curCopy.getResource().getTitle() + 
+					". Days overdue: " + fine.getDaysOverdue();
+			index++;
+		}
+		return history;
+	}
 
 	public ArrayList<Copy> getRequestedItems() {
 		return requestedItems;
@@ -94,6 +110,20 @@ public class User {
 
 	public int getHouseNumber() {
 		return houseNumber;
+	}
+	
+	public int getBalance() {
+		int totalFine = 0;
+		int index = 0;
+		while (index != itemsToReturn.size()) {
+			Copy curCopy = itemsToReturn.get(index);
+			String dueDate = curCopy.sdf.format(curCopy.getDueDate());
+			String currentDate = curCopy.sdf.format(Copy.getDateNow());
+			Fine fine = new Fine (curCopy.getResource(), dueDate, currentDate);
+			totalFine += fine.getCurrentFine();
+			index++;
+		}
+		return totalFine;
 	}
 
 	public void requestItem(Resource item) {

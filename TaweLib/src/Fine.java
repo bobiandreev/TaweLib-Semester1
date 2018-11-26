@@ -13,6 +13,7 @@ public class Fine {
 	private final int MAX_BOOK_DVD_FINE = 25;
 	private final int MAX_LAPTOP_FINE = 100;
 	private int currentFine;
+	private int daysOverdue;
 
 	/**
 	 * Constructor that create the current fine.
@@ -23,7 +24,8 @@ public class Fine {
 	 *            Days overdue.
 	 */
 	public Fine(Resource resource, String dueDate, String currentDate) {
-		calculateFine(resource, findDays(dueDate, currentDate));
+		daysOverdue = findDays(dueDate, currentDate);
+		calculateFine(resource, daysOverdue);
 	}
 
 	/**
@@ -59,6 +61,10 @@ public class Fine {
 	 */
 	public int getCurrentFine() {
 		return currentFine;
+	}
+	
+	public int getDaysOverdue() {
+		return daysOverdue;
 	}
 	
 	private int findDays(String dueDate, String currentDate) {
