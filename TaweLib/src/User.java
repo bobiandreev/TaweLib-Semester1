@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Date;
 
 import javafx.scene.image.Image;
 
@@ -15,6 +16,8 @@ public class User {
 	private ArrayList<Copy> borrowedItems = new ArrayList<>();
 	private ArrayList<Copy> returnRequests = new ArrayList<>();
 	private ArrayList<Copy> itemsToReturn = new ArrayList<>();
+	private ArrayList<Date> paymentDates = new ArrayList<>();
+	private ArrayList<Integer> paymentAmounts = new ArrayList<>();
 
 	public User(String username, String name, int mobileNumber, int houseNumber, String address, String postcode,
 			Image profilePic) {
@@ -94,8 +97,23 @@ public class User {
 			history += curCopy.getDueDate() + ", amount due: " + 
 					fine.getCurrentFine() + ", copy: " + curCopy.getCopyId() +
 					" of " + curCopy.getResource().getTitle() + 
-					". Days overdue: " + fine.getDaysOverdue();
+					". Days overdue: " + fine.getDaysOverdue() + "\n";
 			index++;
+		}
+		return history;
+	}
+	
+	public void setPaymentHistory(Date paymentDate, int amount) {
+		paymentDates.add(paymentDate);
+		paymentAmounts.add(amount);
+	}
+	
+	public String getPaymentHistory() {
+		String history = "";
+		int index = 0;
+		while (index != paymentDates.size()) {
+			history += paymentAmounts.get(index) + " was paid on " + 
+					paymentDates.get(index) + ".\n";
 		}
 		return history;
 	}
