@@ -98,19 +98,20 @@ public class Librarian extends User {
 			while (!user.getReturnRequests().isEmpty()) {
 				System.out.println("Do you approve: " + user.getReturnRequests().get(0) + ("?	true/false"));
 				boolean flag = in.nextBoolean();
-
+				Copy currentCopy = user.getReturnRequests().get(0);
 
 				if (flag /* approved */) {
 					checkOverdue(user, user.getReturnRequests().get(0));
-					user.getReturnRequests().get(0).isReturned(); // sets boolean isBorrowed in copy to false
-					user.getReturnRequests().get(0).setDateReturned(Copy.getDateNow());
-					user.getReturnRequests().get(0).setDateRequestReturn(null);
-					user.getReturnRequests().get(0).setDateBorrowed(null);
-					user.getReturnRequests().get(0).setBorrowedBy(null);
+					currentCopy.isReturned(); // sets boolean isBorrowed in copy to false
+					currentCopy.setDateReturned(Copy.getDateNow());
+					currentCopy.setCopyHistory();
+					currentCopy.setDateRequestReturn(null);
+					currentCopy.setDateBorrowed(null);
+					currentCopy.setBorrowedBy(null);
 					user.getReturnRequests().remove(0); // removes copy from returnRequests list in user
 					user.getBorrowedItems().remove(0); // removes copy from borrowedItems list in user
 				} else { // not approved
-					user.getReturnRequests().get(0).setDateRequestReturn(null);
+					currentCopy.setDateRequestReturn(null);
 					user.getReturnRequests().remove(0);
 				}
 			}
@@ -119,12 +120,12 @@ public class Librarian extends User {
 	
 	private void checkOverdue(User user, Copy copy) {
 		if (copy.getDueDate() != null) {
-			if (copy.getDateRequestReturn() != Copy.getDateNow()) {
-				String dueDate = copy.sdf.format(copy.getDueDate());
-				String currentDate = copy.sdf.format(Copy.getDateNow());
+			String dueDate = copy.sdf.format(copy.getDueDate()); //need to change this and the next line
+			String currentDate = copy.sdf.format(Copy.getDateNow());
+			if (!dueDate.equals(currentDate)) {
 				Fine fine = new Fine(copy.getResource(), dueDate, currentDate);
 				System.out.println(user.getUsername() + "has to pay " + 
-						fine.getCurrentFine() + "for overdue item.");
+						fine.getCurrentFine() + " for overdue item.");
 			}
 		}
 	}

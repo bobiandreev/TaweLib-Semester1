@@ -62,7 +62,7 @@ public class Fine {
 	}
 	
 	private int findDays(String dueDate, String currentDate) {
-			int days;
+			int days = 0;
 			Scanner input1 = new Scanner(dueDate);
 			Scanner input2 = new Scanner(currentDate);
 			input1.useDelimiter("/");
@@ -75,11 +75,22 @@ public class Fine {
 			int currentYear = input2.nextInt();
 			input1.close();
 			input2.close();
+			for (int i = dueYear; i < currentYear; i++) {
+				if(i % 4 != 0) {
+					days += 365;
+				} else if (i % 100 != 0) {
+					days += 366;
+				} else if (i % 400 != 0) { 
+					days += 365;
+				} else {
+					days += 366;
+				}
+			}
 			if (dueMonth != currentMonth) {
-				days = findMonthDays(dueMonth, dueYear) - dueDay;
+				days += findMonthDays(dueMonth, dueYear) - dueDay;
 				if (dueMonth != currentMonth - 1) {
-					for (int i = dueMonth + 1; i < currentMonth; i++) {
-						days += findMonthDays(i, dueYear);
+					for (int j = dueMonth + 1; j < currentMonth; j++) {
+						days += findMonthDays(j, dueYear);
 					}
 				}
 				days += currentDay;

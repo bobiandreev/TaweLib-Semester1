@@ -1,4 +1,5 @@
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -24,6 +25,7 @@ public class Copy {
 	public final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	private Date dueDate = null;
 	private static Date dateNow = new Date();
+	private ArrayList<String> copyHistory = new ArrayList<>();
 
 	/**
 	 * Constructor for Copy object
@@ -137,6 +139,24 @@ public class Copy {
 	public Date getDueDate() {
 		return dueDate;
 	}
+	
+	public void setDueDate(){
+		Calendar c = Calendar.getInstance();
+		c.setTime(dateBorrowed);
+		c.add(Calendar.DAY_OF_MONTH, loanDuration);
+		dueDate = c.getTime();
+		System.out.println("Due date: " + sdf.format(dueDate));
+	}
+	
+	public ArrayList<String> getCopyHistory() {
+		return copyHistory;
+	}
+	
+	public void setCopyHistory() {
+		copyHistory.add("Borrowed by " + getBorrowedBy().getUsername() + " on "
+				+ getDateBorrowed() + " and returned by " + getDateReturned());
+	}
+	
 	/**
 	 * Method which allows the user to request a copy which then needs to be
 	 * approved by a librarian. Sets isRequested variable to true and sets the
@@ -168,14 +188,6 @@ public class Copy {
 			}
 		}
 		return item.getCopies().get(i);
-	}
-
-	public void setDueDate(){
-		Calendar c = Calendar.getInstance();
-		c.setTime(dateBorrowed);
-		c.add(Calendar.DAY_OF_MONTH, loanDuration);
-		dueDate = c.getTime();
-		System.out.println("Due date: " + sdf.format(dueDate));
 	}
 	
 	@Override

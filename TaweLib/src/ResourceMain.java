@@ -31,19 +31,20 @@ public class ResourceMain {
 		user1.requestItem(r2);
 		user1.requestItem(r2);
 
-		r2.getCopies().get(0).setDateBorrowed(new Date());
+		//r2.getCopies().get(0).setDateBorrowed(new Date());
 		//r2.getCopies().get(0).setDueDate();
 		//System.out.println(r2.getCopies().get(0).toString1());
 		
 		Librarian lib1 = new Librarian("lib1", "lib 1", 54656597, 65, "Singleton Campus", "SA1 4FS", image, "24/07");
 
 		lib1.usersList.add(user1);
-		//lib1.approveBorrow();
+		lib1.approveBorrow();
 		
-		//r2.getCopies().get(0).setDueDate();
+		r2.getCopies().get(0).setDueDate();
 		user1.displayBorrowedItems();
-		//user1.requestReturn(user1.getBorrowedItems().get(0));
-		//lib1.approveReturn();
+		user1.requestReturn(user1.getBorrowedItems().get(0));
+		lib1.approveReturn();
+		System.out.println(r2.getCopies().get(0).getCopyHistory());
 		
 		Resource r3 = new Book("H.P. Lovecraft", "Horror", "Vintage Classics", "9-95216-565", "English",
 				"The Call of Cthulhu", 1926, image, 5);
@@ -54,8 +55,8 @@ public class ResourceMain {
 		// System.out.println(SearchBrowse.search("t").toString());
 
 		Resource r4 = new LaptopComputer("XPS", 2018, image, 3, "Dell", "XPS", "Windows");
-		Fine fine = new Fine(r3, "29/02/2020", "03/04/2020");
-		System.out.println(fine.getCurrentFine());
+		//Fine fine = new Fine(r3, "29/02/2020", "03/04/2020");
+		//System.out.println(fine.getCurrentFine());
 		//Fine fine2 = new Fine(r4, 15);
 		//System.out.println(fine2.getCurrentFine());
 
