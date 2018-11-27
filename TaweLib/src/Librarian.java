@@ -54,7 +54,7 @@ public class Librarian extends User {
 	 */
 	public void approveBorrow() {
 		for (User user : usersList) {
-			if (user.getBalance() == 0 || user.getReturnRequests().isEmpty()) {
+			if (user.getBalance() == 0) {
 				System.out.println(user.getName() + " has requested to borrow: ");
 
 				for (int i = 0; i < user.getRequestedItems().size(); i++) {
