@@ -90,14 +90,18 @@ public class SearchBrowse {
 	 * @return A list containing all the resources that have been filtered.
 	 */
 	public static ArrayList<Resource> search(String keyword) {
+		ArrayList<Resource> currentList;
 		if (!tempList.isEmpty()) {
-			
+			currentList = tempList;
+		} else {
+			currentList = resourceList;
 		}
+		
 		ArrayList<Resource> list = new ArrayList<>();
 		int count = 0;
 		char[] keywordList = keyword.toLowerCase().toCharArray();
 		do {
-			Resource r = resourceList.get(count);
+			Resource r = currentList.get(count);
 			char[] titleList = r.getTitle().toLowerCase().toCharArray();
 			if (r.getTitle() == keyword) {
 				list.add(r);
@@ -106,7 +110,7 @@ public class SearchBrowse {
 			}
 			
 			count++;
-		} while (count != resourceList.size());
+		} while (count != currentList.size());
 		
 		return list;
 	}
