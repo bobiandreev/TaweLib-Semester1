@@ -32,13 +32,13 @@ public class DVD extends Resource {
 	 * @param subtitles
 	 *            Subtitles available for the film
 	 */
-	public DVD(String title, int year, Image thumbnailImage, int numOfCopies, String director, int runtime,
-			String language, String subtitles) {
+	public DVD(String title, int year, Image thumbnailImage, int numOfCopies,
+			String director, int runtime) {
 		super(title, year, thumbnailImage, numOfCopies);
 		this.director = director;
 		this.runtime = runtime;
-		this.language = language;
-		this.subtitles = subtitles;
+		//this.language = language;
+		//this.subtitles = subtitles;
 	}
 
 	/**

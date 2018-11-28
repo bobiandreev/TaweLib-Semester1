@@ -96,7 +96,7 @@ public class Resource {
 	 */
 	public void generateCopies() {
 		for (int i = 0; i < numOfCopies; i++) {
-			copies.add(new Copy(this, i));
+			copies.add(new Copy(this, i+1));
 		}
 	}
 

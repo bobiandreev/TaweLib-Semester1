@@ -48,6 +48,37 @@ public class Librarian extends User {
 		in.close();
 		usersList.add(new User(username, name, phoneNumber, houseNumber, streetName, postcode, profilePic));
 	}
+	
+	public void addBook() {
+		String title = in.next();
+		int year = in.nextInt();
+		Image thumbnailImage = null;
+		int numOfCopies = in.nextInt();
+		String author = in.next();
+		String publisher = in.next();
+		SearchBrowse.addResource(new Book(title, year, thumbnailImage, numOfCopies, author, publisher));
+	}
+	
+	public void addDVD() {
+		String title = in.next();
+		int year = in.nextInt();
+		Image thumbnailImage = null;
+		int numOfCopies = in.nextInt();
+		String director = in.next();
+		int runtime = in.nextInt();
+		SearchBrowse.addResource(new DVD(title, year, thumbnailImage, numOfCopies, director, runtime));
+	}
+	
+	public void addLaptopComputer() {
+		String title = in.next();
+		int year = in.nextInt();
+		Image thumbnailImage = null;
+		int numOfCopies = in.nextInt();
+		String manufacturer = in.next();
+		String model = in.next();
+		String OS = in.next();
+		SearchBrowse.addResource(new LaptopComputer(title, year, thumbnailImage, numOfCopies, manufacturer, model, OS));
+	}
 
 	/**
 	 * example method

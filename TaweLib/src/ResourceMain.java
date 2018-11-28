@@ -4,11 +4,6 @@
  * @author Boris Andreev and Kyriacos Mosphilis
  * @version 1.0
  */
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.util.Date;
-
-import javax.imageio.ImageIO;
 
 import javafx.scene.image.Image;
 
@@ -31,7 +26,6 @@ public class ResourceMain {
 		user1.requestItem(r2);
 		user1.requestItem(r2);
 
-		//r2.getCopies().get(0).setDateBorrowed(new Date());
 		//r2.getCopies().get(0).setDueDate();
 		//System.out.println(r2.getCopies().get(0).toString1());
 		
@@ -46,8 +40,7 @@ public class ResourceMain {
 		lib1.approveReturn();
 		System.out.println(r2.getCopies().get(0).getCopyHistory());
 		
-		Resource r3 = new Book("H.P. Lovecraft", "Horror", "Vintage Classics", "9-95216-565", "English",
-				"The Call of Cthulhu", 1926, image, 5);
+		Resource r3 = new Book("The Call of Cthulhu", 1926, image, 5, "H.P. Lovecraft", "Vintage Classics");
 		SearchBrowse.addResource(resource1);
 		SearchBrowse.addResource(r2);
 		SearchBrowse.addResource(r3);

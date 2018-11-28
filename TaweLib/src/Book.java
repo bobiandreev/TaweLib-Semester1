@@ -36,14 +36,14 @@ public class Book extends Resource {
 	 * @param numOfCopies
 	 *            Number of copies for the book
 	 */
-	public Book(String author, String genre, String publisher, String ISBN, String language, String title, int year,
-			Image thumbnailImage, int numOfCopies) {
+	public Book(String title, int year,Image thumbnailImage, int numOfCopies,
+			String author, String publisher) {
 		super(title, year, thumbnailImage, numOfCopies);
 		this.author = author;
-		this.genre = genre;
+		//this.genre = genre;
 		this.publisher = publisher;
-		this.ISBN = ISBN;
-		this.language = language;
+		//this.ISBN = ISBN;
+		//this.language = language;
 	}
 
 	/**

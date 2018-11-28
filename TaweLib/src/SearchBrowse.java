@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class SearchBrowse {
 	
 	private static ArrayList<Resource> resourceList = new ArrayList<>();
-	
+	private static ArrayList<Resource> tempList = new ArrayList<>();
 	/**
 	 * Method that is used for adding new resources.
 	 * 
@@ -43,7 +43,7 @@ public class SearchBrowse {
 			}
 			count++;
 		} while (count != resourceList.size());
-		
+		tempList = bookList;
 		return bookList;
 	}
 	
@@ -61,7 +61,7 @@ public class SearchBrowse {
 			}
 			count++;
 		} while (count != resourceList.size());
-		
+		tempList = dvdList;
 		return dvdList;
 	}
 	
@@ -79,7 +79,7 @@ public class SearchBrowse {
 			}
 			count++;
 		} while (count != resourceList.size());
-		
+		tempList = laptopList;
 		return laptopList;
 	}
 	
@@ -90,6 +90,9 @@ public class SearchBrowse {
 	 * @return A list containing all the resources that have been filtered.
 	 */
 	public static ArrayList<Resource> search(String keyword) {
+		if (!tempList.isEmpty()) {
+			
+		}
 		ArrayList<Resource> list = new ArrayList<>();
 		int count = 0;
 		char[] keywordList = keyword.toLowerCase().toCharArray();
@@ -106,6 +109,10 @@ public class SearchBrowse {
 		} while (count != resourceList.size());
 		
 		return list;
+	}
+	
+	public static void resetTempList() {
+		tempList.clear();
 	}
 	
 	/**
