@@ -52,14 +52,14 @@ public class UserPageController {
 			
     		BorderPane returnItems = (BorderPane) fxmlLoader.load();
 			
-    		Scene requestItemsScene = new Scene(returnItems, Main.USER_REQUESTITEMSPAGE_WIDTH, Main.USER_REQUESTITEMSPAGE_HEIGHT);
-    		Stage userRequestItemsStage = new Stage();
+    		Scene returnItemsScene = new Scene(returnItems, Main.USER_REQUESTITEMSPAGE_WIDTH, Main.USER_REQUESTITEMSPAGE_HEIGHT);
+    		Stage userReturnItemsStage = new Stage();
 			
-    		userRequestItemsStage.setScene(requestItemsScene);
-    		userRequestItemsStage.setTitle(Main.USER_REQUESTITEMSPAGE_TITLE);
-    		userRequestItemsStage.initModality(Modality.APPLICATION_MODAL);
+    		userReturnItemsStage.setScene(returnItemsScene);
+    		userReturnItemsStage.setTitle(Main.USER_REQUESTITEMSPAGE_TITLE);
+    		userReturnItemsStage.initModality(Modality.APPLICATION_MODAL);
 			// Show the edit scene and wait for it to be closed
-    		userRequestItemsStage.showAndWait();
+    		userReturnItemsStage.showAndWait();
     	} catch (IOException e) {
 			e.printStackTrace();
 			System.exit(-1);

@@ -131,22 +131,59 @@ public class Librarian extends User {
 				}
 			}
 			Copy curCopy = Copy.checkCopy(curResource);
-
-			if (curCopy != null) {
-				curUser.getBorrowedItems().add(curCopy); // adds to borrowed items list in user
-				curCopy.borrow(); // sets the boolean borrow in copy to true
-				curCopy.setRequestedBy(null);
-				curCopy.setBorrowedBy(curUser); // sets the borrower of the copy to user
-				curCopy.setDateBorrowed(Copy.getDateNow()); // sets date when copy is taken
-				curCopy.removeRequest(); // sets the boolean request in copy to false
+			if (curResource != null) {
+				if (curCopy != null) {
+					curUser.getBorrowedItems().add(curCopy); // adds to borrowed items list in user
+					curCopy.borrow(); // sets the boolean borrow in copy to true
+					curCopy.setRequestedBy(null);
+					curCopy.setBorrowedBy(curUser); // sets the borrower of the copy to user
+					curCopy.setDateBorrowed(Copy.getDateNow()); // sets date when copy is taken
+					curCopy.removeRequest(); // sets the boolean request in copy to false
+				} else {
+					curResource.getWaitingList().add(curUser);
+					SearchBrowse.reserved(curResource);
+				}
 			} else {
-				curResource.getWaitingList().add(curUser);
-				SearchBrowse.reserved(curResource);
+				System.out.println("One of the inputs is wrong. Please re enter.");
+				username = in.next();
+				title = in.next();
+				loanACopy(username, title);
 			}
+
 		} else {
 			System.out.println(curUser.getUsername() + "cannot borrow " + "anything until he repays his fine.");
 		}
 
+	}
+
+	public void receiveReturn(String username, String title) {
+		User curUser = null;
+		for (User user : usersList) {
+			if (user.getUsername().equals(username)) {
+				curUser = user;
+			}
+		}
+
+		Copy curCopy = null;
+		for (Copy copy : curUser.getBorrowedItems()) {
+			if (copy.getResource().getTitle().equals(title)) {
+				curCopy = copy;
+			}
+		}
+		if (curCopy != null) {
+			checkOverdue(curUser, curCopy);
+			curCopy.returnCopy(); // sets boolean isBorrowed in copy to false
+			curCopy.setDateReturned(Copy.getDateNow());
+			curCopy.setCopyHistory();
+			curCopy.setDateRequestReturn(null);
+			curCopy.setDateBorrowed(null);
+			curCopy.setBorrowedBy(null);
+		} else {
+			System.out.println("One of the inputs is wrong. Please re enter.");
+			username = in.next();
+			title = in.next();
+			receiveReturn(username, title);
+		}
 	}
 
 	/**

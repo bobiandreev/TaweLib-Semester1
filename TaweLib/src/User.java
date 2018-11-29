@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
 import javafx.scene.image.Image;
@@ -29,6 +30,7 @@ public class User {
 		this.streetName = address;
 		this.postcode = postcode;
 		this.profilePic = profilePic;
+		Collections.reverse(messages);
 	}
 
 	public Image getProfilePic() {
@@ -163,6 +165,12 @@ public class User {
 		}
 	}
 
+	public void displayMessages() {
+		for (int i = 0; i < messages.size(); i++) {
+			System.out.println(messages.get(i));
+		}
+	}
+
 	public void requestReturn(Copy copy) { /* user chooses which copy to return here with the gui */
 		returnRequests.add(copy); // adds copy to be returned to the return requests list
 		copy.setDateRequestReturn(Copy.getDateNow()); // sets the date when the return was requested
@@ -170,31 +178,36 @@ public class User {
 
 	public void DueDateMessage(Copy copy) {
 		if (copy.getResource() instanceof Book || copy.getResource() instanceof DVD) {
-			messages.add("The item you have borrowed: " + copy.getResource().getTitle()
+			String messageBook = ("The item you have borrowed: " + copy.getResource().getTitle()
 					+ " has been requested by someone else and you have to return it by " + copy.getDueDateString()
-					+ " \n or a fine of 2 pounds per day up to a maximum of 25 pounds will start incurring.");
+					+ " \nor a fine of 2 pounds per day up to a maximum of 25 pounds will start incurring. \n");
+			messages.add(messageBook);
 		}
 		if (copy.getResource() instanceof LaptopComputer) {
-			messages.add("The item you have borrowed: " + copy.getResource().getTitle()
+			String messageLaptop = ("The item you have borrowed: " + copy.getResource().getTitle()
 					+ " has been requested by someone else and you have to return it by " + copy.getDueDateString()
-					+ " \n or a fine of 10 pounds per day up to a maximum of 100 pounds will start incurring.");
+					+ "\nor a fine of 10 pounds per day up to a maximum of 100 pounds will start incurring. \n");
+			messages.add(messageLaptop);
 		}
 
 	}
 
 	public void noCopyAvailable() {
-		messages.add("Unfortunately all the copies are already borrowed, requseted or reserved at the moment. \n"
+		String message = ("Unfortunately all the copies are already borrowed, requseted or reserved at the moment. \n"
 				+ "You have been added to the waiting list and will "
-				+ "receive a notification when a copy is available.");
+				+ "receive a notification when a copy is available. \n");
+		messages.add(message);
 	}
 
 	public void copyNowAvailable(Copy copy) {
-		messages.add("The item you have requested: " + copy.getResource().getTitle()
-				+ "is now available for you to borrow.");
+		String message = ("The item you have requested: " + copy.getResource().getTitle()
+				+ "is now available for you to borrow. \n");
+		messages.add(message);
 	}
 
 	public void reservedForYou() {
-		messages.add("The copy you have requested has been reserved for you. You will receive a message when "
-				+ "\n your copy is available for pick up.");
+		String message = ("The copy you have requested has been reserved for you. You will receive a message when"
+				+ "\nyour copy is available for pick up. \n");
+		messages.add(message);
 	}
 }
