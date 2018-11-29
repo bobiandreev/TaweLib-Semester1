@@ -4,16 +4,12 @@ import java.util.Scanner;
 import javafx.scene.image.Image;
 
 public class Librarian extends User {
-	// TODO create 2 methods called approve borrow and approve return
-	// Librarian should have the option to look through all of the requests of all
-	// users
-	// so there should be nested loops with a list of all users and the their list
-	// of requests for the librarian
-	// to approve
 
 	private String employmentDate;
 	private static int staffNumber = 0;
 	private static ArrayList<User> usersList = new ArrayList<>();
+	private static ArrayList<Librarian> librarianList = new ArrayList<>();
+	private Scanner in = new Scanner(System.in);
 
 	public Librarian(String username, String name, int mobileNumber, int houseNumber, String streetName,
 			String postcode, Image profilePic, String employmentDate) {
@@ -48,33 +44,109 @@ public class Librarian extends User {
 		usersList.add(new User(username, name, phoneNumber, houseNumber, streetName, postcode, profilePic));
 	}
 
+	public void addBook() {
+		String title = in.next();
+		int year = in.nextInt();
+		Image thumbnailImage = null;
+		int numOfCopies = in.nextInt();
+		String author = in.next();
+		String publisher = in.next();
+		SearchBrowse.addResource(new Book(title, year, thumbnailImage, numOfCopies, author, publisher));
+	}
+
+	public void addDVD() {
+		String title = in.next();
+		int year = in.nextInt();
+		Image thumbnailImage = null;
+		int numOfCopies = in.nextInt();
+		String director = in.next();
+		int runtime = in.nextInt();
+		SearchBrowse.addResource(new DVD(title, year, thumbnailImage, numOfCopies, director, runtime));
+	}
+
+	public static ArrayList<User> getUsersList() {
+		return usersList;
+	}
+
+	public void addLaptopComputer() {
+		String title = in.next();
+		int year = in.nextInt();
+		Image thumbnailImage = null;
+		int numOfCopies = in.nextInt();
+		String manufacturer = in.next();
+		String model = in.next();
+		String OS = in.next();
+		SearchBrowse.addResource(new LaptopComputer(title, year, thumbnailImage, numOfCopies, manufacturer, model, OS));
+	}
+
 	/**
-	 * examle method
+	 * example method
 	 */
 	public void approveBorrow() {
 		for (User user : usersList) {
-			System.out.println(user.getName() + " has requested to borrow: ");
-			for (int i = 0; i < user.getRequestedItems().size(); i++) {
-				System.out.println(user.getRequestedItems().get(i));
-				
-				System.out.println("Do you approve: (true or false)");
-				Scanner in = new Scanner(System.in);
-				boolean flag = in.nextBoolean();
-				in.close();
-				
-				if (flag /* approved */) {
-					user.getBorrowedItems().add(user.getRequestedItems().get(i)); // adds to borrowed items list in user
-					user.getRequestedItems().get(i).borrow(); // sets the boolean borrow in copy to true
-					user.getRequestedItems().get(i).setDateBorrowed(Copy.getDateNow()); // sets the date when the copy
-																						// is borrowed
-					user.getRequestedItems().get(i).removeRequest(); // sets the boolean request in copy to false
-					user.getRequestedItems().remove(i); // removes the copy from requested items list in user
-				} else /* not approved */ {
-					user.getRequestedItems().remove(i);
-					user.getRequestedItems().get(i).removeRequest();
+			if (user.getBalance() == 0) {
+				System.out.println(user.getName() + " has requested to borrow: ");
+
+				for (int i = 0; i < user.getRequestedItems().size(); i++) {
+					System.out.println(user.getRequestedItems().get(i));
 				}
+				System.out.println();
+				while (!user.getRequestedItems().isEmpty()) {
+					Copy currentCopy = user.getRequestedItems().get(0);
+					System.out.println("Do you approve: " + currentCopy + "?:	true/false");
+					boolean flag = in.nextBoolean();
+
+					if (flag /* approved */) {
+						user.getBorrowedItems().add(currentCopy); // adds to borrowed items list in user
+						currentCopy.borrow(); // sets the boolean borrow in copy to true
+						currentCopy.setRequestedBy(null);
+						currentCopy.setBorrowedBy(user); // sets the borrower of the copy to user
+						currentCopy.setDateBorrowed(Copy.getDateNow()); // sets date when copy is taken
+						currentCopy.removeRequest(); // sets the boolean request in copy to false
+						user.getRequestedItems().remove(0); // removes the copy from requested items list in user
+					} else /* not approved */ {
+						currentCopy.removeRequest();
+						user.getRequestedItems().remove(0);
+					}
+				}
+			} else {
+				System.out.println(user.getUsername() + "cannot borrow " + "anything until he repays his fine.");
+			}
+
+		}
+	}
+
+	public void loanACopy(String username, String title) {
+		User curUser = null;
+		for (User user : usersList) {
+			if (user.getUsername().equals(username)) {
+				curUser = user;
 			}
 		}
+		if (curUser.getBalance() == 0) {
+			Resource curResource = null;
+			for (Resource resource : SearchBrowse.getResources()) {
+				if (resource.getTitle().equals(title)) {
+					curResource = resource;
+				}
+			}
+			Copy curCopy = Copy.checkCopy(curResource);
+
+			if (curCopy != null) {
+				curUser.getBorrowedItems().add(curCopy); // adds to borrowed items list in user
+				curCopy.borrow(); // sets the boolean borrow in copy to true
+				curCopy.setRequestedBy(null);
+				curCopy.setBorrowedBy(curUser); // sets the borrower of the copy to user
+				curCopy.setDateBorrowed(Copy.getDateNow()); // sets date when copy is taken
+				curCopy.removeRequest(); // sets the boolean request in copy to false
+			} else {
+				curResource.getWaitingList().add(curUser);
+				SearchBrowse.reserved(curResource);
+			}
+		} else {
+			System.out.println(curUser.getUsername() + "cannot borrow " + "anything until he repays his fine.");
+		}
+
 	}
 
 	/**
@@ -85,17 +157,38 @@ public class Librarian extends User {
 			System.out.println(user.getName() + " has requested to return:");
 			for (int i = 0; i < user.getReturnRequests().size(); i++) {
 				System.out.println(user.getReturnRequests().get(i));
+			}
+			System.out.println();
+			while (!user.getReturnRequests().isEmpty()) {
+				Copy currentCopy = user.getReturnRequests().get(0);
+				System.out.println("Do you approve: " + currentCopy + ("?	true/false"));
+				boolean flag = in.nextBoolean();
 
-				if (true /* approved */) {
-					user.getReturnRequests().get(i).isReturned(); // sets boolean isBorrowed in copy to false
-					user.getReturnRequests().get(i).setDateReturned(Copy.getDateNow());
-					user.getReturnRequests().get(i).setDateRequestReturn(null);
-					user.getReturnRequests().get(i).setDateBorrowed(null);
-					user.getReturnRequests().remove(i); // removes copy from returnRequests list in user
-					user.getBorrowedItems().remove(i); // removes copy from borrowedItems list in user
+				if (flag /* approved */) {
+					checkOverdue(user, currentCopy);
+					currentCopy.returnCopy(); // sets boolean isBorrowed in copy to false
+					currentCopy.setDateReturned(Copy.getDateNow());
+					currentCopy.setCopyHistory();
+					currentCopy.setDateRequestReturn(null);
+					currentCopy.setDateBorrowed(null);
+					currentCopy.setBorrowedBy(null);
+					user.getReturnRequests().remove(0); // removes copy from returnRequests list in user
+					user.getBorrowedItems().remove(0); // removes copy from borrowedItems list in user
 				} else { // not approved
-					user.getReturnRequests().remove(i);
+					currentCopy.setDateRequestReturn(null);
+					user.getReturnRequests().remove(0);
 				}
+			}
+		}
+	}
+
+	private void checkOverdue(User user, Copy copy) {
+		if (copy.getDueDate() != null) {
+			String dueDate = copy.sdf.format(copy.getDueDate()); // need to change this and the next line
+			String currentDate = copy.sdf.format(Copy.getDateNow());
+			if (!dueDate.equals(currentDate)) {
+				Fine fine = new Fine(copy.getResource(), dueDate, currentDate);
+				System.out.println(user.getUsername() + "has to pay " + fine.getCurrentFine() + " for overdue item.");
 			}
 		}
 	}
