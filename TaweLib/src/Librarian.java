@@ -7,7 +7,7 @@ public class Librarian extends User {
 
 	private String employmentDate;
 	private static int staffNumber = 0;
-	public static ArrayList<User> usersList = new ArrayList<>();
+	private static ArrayList<User> usersList = new ArrayList<>();
 	private static ArrayList<Librarian> librarianList = new ArrayList<>();
 	private Scanner in = new Scanner(System.in);
 
@@ -64,6 +64,10 @@ public class Librarian extends User {
 		SearchBrowse.addResource(new DVD(title, year, thumbnailImage, numOfCopies, director, runtime));
 	}
 
+	public static ArrayList<User> getUsersList() {
+		return usersList;
+	}
+
 	public void addLaptopComputer() {
 		String title = in.next();
 		int year = in.nextInt();
@@ -110,6 +114,39 @@ public class Librarian extends User {
 			}
 
 		}
+	}
+
+	public void loanACopy(String username, String title) {
+		User curUser = null;
+		for (User user : usersList) {
+			if (user.getUsername().equals(username)) {
+				curUser = user;
+			}
+		}
+		if (curUser.getBalance() == 0) {
+			Resource curResource = null;
+			for (Resource resource : SearchBrowse.getResources()) {
+				if (resource.getTitle().equals(title)) {
+					curResource = resource;
+				}
+			}
+			Copy curCopy = Copy.checkCopy(curResource);
+
+			if (curCopy != null) {
+				curUser.getBorrowedItems().add(curCopy); // adds to borrowed items list in user
+				curCopy.borrow(); // sets the boolean borrow in copy to true
+				curCopy.setRequestedBy(null);
+				curCopy.setBorrowedBy(curUser); // sets the borrower of the copy to user
+				curCopy.setDateBorrowed(Copy.getDateNow()); // sets date when copy is taken
+				curCopy.removeRequest(); // sets the boolean request in copy to false
+			} else {
+				curResource.getWaitingList().add(curUser);
+				SearchBrowse.reserved(curResource);
+			}
+		} else {
+			System.out.println(curUser.getUsername() + "cannot borrow " + "anything until he repays his fine.");
+		}
+
 	}
 
 	/**

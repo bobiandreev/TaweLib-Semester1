@@ -149,6 +149,7 @@ public class User {
 								// resource
 			item.addToWaitList(this);
 			noCopyAvailable();
+			SearchBrowse.reserved(item);
 		} else { // if there is a free copy it gets added to the users requested items list and
 					// its variables are set to requested
 			freeCopy.requestCopy(this);
@@ -191,9 +192,9 @@ public class User {
 		messages.add("The item you have requested: " + copy.getResource().getTitle()
 				+ "is now available for you to borrow.");
 	}
-	
+
 	public void reservedForYou() {
-		messages.add("The copy you have requested has been resrerved for you. You will receive a message when "
+		messages.add("The copy you have requested has been reserved for you. You will receive a message when "
 				+ "\n your copy is available for pick up.");
 	}
 }
