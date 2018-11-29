@@ -49,7 +49,7 @@ public class Librarian extends User {
 		in.close();
 		usersList.add(new User(username, name, phoneNumber, houseNumber, streetName, postcode, profilePic));
 	}
-	
+
 	public void addBook() {
 		String title = in.next();
 		int year = in.nextInt();
@@ -59,7 +59,7 @@ public class Librarian extends User {
 		String publisher = in.next();
 		SearchBrowse.addResource(new Book(title, year, thumbnailImage, numOfCopies, author, publisher));
 	}
-	
+
 	public void addDVD() {
 		String title = in.next();
 		int year = in.nextInt();
@@ -69,7 +69,7 @@ public class Librarian extends User {
 		int runtime = in.nextInt();
 		SearchBrowse.addResource(new DVD(title, year, thumbnailImage, numOfCopies, director, runtime));
 	}
-	
+
 	public void addLaptopComputer() {
 		String title = in.next();
 		int year = in.nextInt();
@@ -102,7 +102,7 @@ public class Librarian extends User {
 						user.getBorrowedItems().add(currentCopy); // adds to borrowed items list in user
 						currentCopy.borrow(); // sets the boolean borrow in copy to true
 						currentCopy.setRequestedBy(null);
-						currentCopy.setBorrowedBy(user); // sets the borrower of the copy to user 
+						currentCopy.setBorrowedBy(user); // sets the borrower of the copy to user
 						currentCopy.setDateBorrowed(Copy.getDateNow()); // sets date when copy is taken
 						currentCopy.removeRequest(); // sets the boolean request in copy to false
 						user.getRequestedItems().remove(0); // removes the copy from requested items list in user
@@ -112,14 +112,11 @@ public class Librarian extends User {
 					}
 				}
 			} else {
-				System.out.println(user.getUsername() + "cannot borrow "
-						+ "anything until he repays his fine.");
+				System.out.println(user.getUsername() + "cannot borrow " + "anything until he repays his fine.");
 			}
-			
+
 		}
 	}
-
-	
 
 	/**
 	 * example method
@@ -138,7 +135,7 @@ public class Librarian extends User {
 
 				if (flag /* approved */) {
 					checkOverdue(user, currentCopy);
-					currentCopy.isReturned(); // sets boolean isBorrowed in copy to false
+					currentCopy.returnCopy(); // sets boolean isBorrowed in copy to false
 					currentCopy.setDateReturned(Copy.getDateNow());
 					currentCopy.setCopyHistory();
 					currentCopy.setDateRequestReturn(null);
@@ -153,15 +150,14 @@ public class Librarian extends User {
 			}
 		}
 	}
-	
+
 	private void checkOverdue(User user, Copy copy) {
 		if (copy.getDueDate() != null) {
-			String dueDate = copy.sdf.format(copy.getDueDate()); //need to change this and the next line
+			String dueDate = copy.sdf.format(copy.getDueDate()); // need to change this and the next line
 			String currentDate = copy.sdf.format(Copy.getDateNow());
 			if (!dueDate.equals(currentDate)) {
 				Fine fine = new Fine(copy.getResource(), dueDate, currentDate);
-				System.out.println(user.getUsername() + "has to pay " + 
-						fine.getCurrentFine() + " for overdue item.");
+				System.out.println(user.getUsername() + "has to pay " + fine.getCurrentFine() + " for overdue item.");
 			}
 		}
 	}

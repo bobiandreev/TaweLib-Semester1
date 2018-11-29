@@ -15,6 +15,7 @@ public class Copy {
 	private int copyId;
 	private boolean isBorrowed = false;
 	private boolean isRequested = false;
+	private boolean isReserved = true;
 	private Date dateRequested;
 	private Date dateBorrowed;
 	private Date dateRequestReturn;
@@ -44,10 +45,6 @@ public class Copy {
 		isBorrowed = true;
 	}
 
-	public void returned() {
-		isBorrowed = false;
-	}
-
 	public int getCopyId() {
 		return copyId;
 	}
@@ -56,7 +53,7 @@ public class Copy {
 		this.copyId = copyId;
 	}
 
-	public boolean isBorrowed() {
+	public boolean getIsBorrowed() {
 		return isBorrowed;
 	}
 
@@ -64,7 +61,7 @@ public class Copy {
 		return resource;
 	}
 
-	public boolean isRequested() {
+	public boolean getIsRequested() {
 		return isRequested;
 	}
 
@@ -76,12 +73,12 @@ public class Copy {
 		isRequested = false;
 	}
 
-	public void isReturned() {
-		isBorrowed = false;
+	public boolean getIsReturned() {
+		return isBorrowed;
 	}
 
-	public static void returnCopy(Copy copy) {
-		copy.isReturned();
+	public void returnCopy() {
+		isBorrowed = false;
 	}
 
 	public Date getDateRequested() {
@@ -140,6 +137,10 @@ public class Copy {
 		return dueDate;
 	}
 	
+	public String getDueDateString() {
+		return sdf.format(dueDate);
+	}
+	
 	public void setDueDate(){
 		Calendar c = Calendar.getInstance();
 		c.setTime(dateBorrowed);
@@ -179,8 +180,8 @@ public class Copy {
 	 */
 	public static Copy checkCopy(Resource item) {
 		int i = 0;
-		while (i < item.getCopies().size() && item.getCopies().get(i).isBorrowed()
-				|| item.getCopies().get(i).isRequested()) {
+		while (i < item.getCopies().size() && item.getCopies().get(i).getIsBorrowed()
+				|| item.getCopies().get(i).getIsRequested() || item.getCopies().get(i).getIsReserved()) {
 			i++;
 			if (i == item.getCopies().size()) {
 				// adds user to queue of users waiting for this resource
@@ -190,6 +191,14 @@ public class Copy {
 		return item.getCopies().get(i);
 	}
 	
+	public boolean getIsReserved() {
+		return isReserved;
+	}
+	
+	public void reserve() {
+		isReserved = true;
+	}
+
 	@Override
 	public String toString() {
 		return "Copy number " + this.getCopyId() + " of resource " + this.getResource().getTitle() + 

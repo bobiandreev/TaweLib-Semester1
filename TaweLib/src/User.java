@@ -17,7 +17,8 @@ public class User {
 	private ArrayList<Copy> returnRequests = new ArrayList<>();
 	private ArrayList<Copy> itemsToReturn = new ArrayList<>();
 	private ArrayList<Date> paymentDates = new ArrayList<>();
-	private ArrayList<Integer> paymentAmounts = new ArrayList<>();
+	private ArrayList<Double> paymentAmounts = new ArrayList<>();
+	private ArrayList<String> messages = new ArrayList<>();
 
 	public User(String username, String name, int mobileNumber, int houseNumber, String address, String postcode,
 			Image profilePic) {
@@ -85,7 +86,7 @@ public class User {
 	public ArrayList<Copy> getReturnRequests() {
 		return returnRequests;
 	}
-	
+
 	public String getFineHistory() {
 		String history = "";
 		int index = 0;
@@ -93,27 +94,25 @@ public class User {
 			Copy curCopy = itemsToReturn.get(index);
 			String dueDate = curCopy.sdf.format(curCopy.getDueDate());
 			String currentDate = curCopy.sdf.format(Copy.getDateNow());
-			Fine fine = new Fine (curCopy.getResource(), dueDate, currentDate);
-			history += curCopy.getDueDate() + ", amount due: " + 
-					fine.getCurrentFine() + ", copy: " + curCopy.getCopyId() +
-					" of " + curCopy.getResource().getTitle() + 
-					". Days overdue: " + fine.getDaysOverdue() + "\n";
+			Fine fine = new Fine(curCopy.getResource(), dueDate, currentDate);
+			history += curCopy.getDueDate() + ", amount due: " + fine.getCurrentFine() + ", copy: "
+					+ curCopy.getCopyId() + " of " + curCopy.getResource().getTitle() + ". Days overdue: "
+					+ fine.getDaysOverdue() + "\n";
 			index++;
 		}
 		return history;
 	}
-	
-	public void setPaymentHistory(Date paymentDate, int amount) {
+
+	public void setPaymentHistory(Date paymentDate, double amount) {
 		paymentDates.add(paymentDate);
 		paymentAmounts.add(amount);
 	}
-	
+
 	public String getPaymentHistory() {
 		String history = "";
 		int index = 0;
 		while (index != paymentDates.size()) {
-			history += paymentAmounts.get(index) + " was paid on " + 
-					paymentDates.get(index) + ".\n";
+			history += paymentAmounts.get(index) + " was paid on " + paymentDates.get(index) + ".\n";
 		}
 		return history;
 	}
@@ -129,7 +128,7 @@ public class User {
 	public int getHouseNumber() {
 		return houseNumber;
 	}
-	
+
 	public int getBalance() {
 		int totalFine = 0;
 		int index = 0;
@@ -137,7 +136,7 @@ public class User {
 			Copy curCopy = itemsToReturn.get(index);
 			String dueDate = curCopy.sdf.format(curCopy.getDueDate());
 			String currentDate = curCopy.sdf.format(Copy.getDateNow());
-			Fine fine = new Fine (curCopy.getResource(), dueDate, currentDate);
+			Fine fine = new Fine(curCopy.getResource(), dueDate, currentDate);
 			totalFine += fine.getCurrentFine();
 			index++;
 		}
@@ -149,18 +148,16 @@ public class User {
 		if (freeCopy == null) { // if there isnt a free copy user gets added to the waiting list for that
 								// resource
 			item.addToWaitList(this);
-			System.out.println("Unfortunately all the copies are borrowed at the moment. \n"
-					+ "You have been added to the waiting list and will "
-					+ "receive a notification when a copy is available.");
+			noCopyAvailable();
 		} else { // if there is a free copy it gets added to the users requested items list and
 					// its variables are set to requested
 			freeCopy.requestCopy(this);
 			requestedItems.add(freeCopy);
 		}
 	}
-	
-	public void displayBorrowedItems(){
-		for(int i = 0; i < borrowedItems.size(); i++) {
+
+	public void displayBorrowedItems() {
+		for (int i = 0; i < borrowedItems.size(); i++) {
 			System.out.println(borrowedItems.get(i).toString1());
 		}
 	}
@@ -170,4 +167,28 @@ public class User {
 		copy.setDateRequestReturn(Copy.getDateNow()); // sets the date when the return was requested
 	}
 
+	public void DueDateMessage(Copy copy) {
+		if (copy.getResource() instanceof Book || copy.getResource() instanceof DVD) {
+			messages.add("The item you have borrowed: " + copy.getResource().getTitle()
+					+ " has been requested by someone else and you have to return it by " + copy.getDueDateString()
+					+ " \n or a fine of 2 pounds per day up to a maximum of 25 pounds will start incurring.");
+		}
+		if (copy.getResource() instanceof LaptopComputer) {
+			messages.add("The item you have borrowed: " + copy.getResource().getTitle()
+					+ " has been requested by someone else and you have to return it by " + copy.getDueDateString()
+					+ " \n or a fine of 10 pounds per day up to a maximum of 100 pounds will start incurring.");
+		}
+
+	}
+
+	public void noCopyAvailable() {
+		messages.add("Unfortunately all the copies are already borrowed, requseted or reserved at the moment. \n"
+				+ "You have been added to the waiting list and will "
+				+ "receive a notification when a copy is available.");
+	}
+
+	public void copyNowAvailable(Copy copy) {
+		messages.add("The item you have requested: " + copy.getResource().getTitle()
+				+ "is now available for you to borrow.");
+	}
 }

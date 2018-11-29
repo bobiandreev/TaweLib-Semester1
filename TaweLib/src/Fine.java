@@ -62,77 +62,78 @@ public class Fine {
 	public int getCurrentFine() {
 		return currentFine;
 	}
-	
+
 	public int getDaysOverdue() {
 		return daysOverdue;
 	}
-	
+
 	private int findDays(String dueDate, String currentDate) {
-			int days = 0;
-			Scanner input1 = new Scanner(dueDate);
-			Scanner input2 = new Scanner(currentDate);
-			input1.useDelimiter("/");
-			input2.useDelimiter("/");
-			int dueDay = input1.nextInt();
-			int dueMonth = input1.nextInt();
-			int dueYear = input1.nextInt();
-			int currentDay = input2.nextInt();
-			int currentMonth = input2.nextInt();
-			int currentYear = input2.nextInt();
-			input1.close();
-			input2.close();
-			for (int i = dueYear; i < currentYear; i++) {
-				if(i % 4 != 0) {
-					days += 365;
-				} else if (i % 100 != 0) {
-					days += 366;
-				} else if (i % 400 != 0) { 
-					days += 365;
-				} else {
-					days += 366;
-				}
-			}
-			if (dueMonth != currentMonth) {
-				days += findMonthDays(dueMonth, dueYear) - dueDay;
-				if (dueMonth != currentMonth - 1) {
-					for (int j = dueMonth + 1; j < currentMonth; j++) {
-						days += findMonthDays(j, dueYear);
-					}
-				}
-				days += currentDay;
+		int days = 0;
+		Scanner input1 = new Scanner(dueDate);
+		Scanner input2 = new Scanner(currentDate);
+		input1.useDelimiter("/");
+		input2.useDelimiter("/");
+		int dueDay = input1.nextInt();
+		int dueMonth = input1.nextInt();
+		int dueYear = input1.nextInt();
+		int currentDay = input2.nextInt();
+		int currentMonth = input2.nextInt();
+		int currentYear = input2.nextInt();
+		input1.close();
+		input2.close();
+		for (int i = dueYear; i < currentYear; i++) {
+			if (i % 4 != 0) {
+				days += 365;
+			} else if (i % 100 != 0) {
+				days += 366;
+			} else if (i % 400 != 0) {
+				days += 365;
 			} else {
-				days = currentDay - dueDay;
+				days += 366;
 			}
-			System.out.println(days);
-			
+		}
+		if (dueMonth != currentMonth) {
+			days += findMonthDays(dueMonth, dueYear) - dueDay;
+			if (dueMonth != currentMonth - 1) {
+				for (int j = dueMonth + 1; j < currentMonth; j++) {
+					days += findMonthDays(j, dueYear);
+				}
+			}
+			days += currentDay;
+		} else {
+			days = currentDay - dueDay;
+		}
+		System.out.println(days);
+
 		return days;
 	}
-	
+
 	private int findMonthDays(int month, int year) {
 		int days;
 		switch (month) {
-			case 2: 
-				if (year % 4 != 0) {
-					days = 28;
-				} else if (year % 100 != 0) {
-					days = 29;
-				} else if (year % 400 != 0) { 
-					days = 28;
-				} else {
-					days = 29;
-				}
-				break;
-			
-			case 4:
-			case 6:
-			case 9:
-			case 11:
-				days = 30;
-				break;
-			default: days = 31; 
-				
+		case 2:
+			if (year % 4 != 0) {
+				days = 28;
+			} else if (year % 100 != 0) {
+				days = 29;
+			} else if (year % 400 != 0) {
+				days = 28;
+			} else {
+				days = 29;
+			}
+			break;
+
+		case 4:
+		case 6:
+		case 9:
+		case 11:
+			days = 30;
+			break;
+		default:
+			days = 31;
+
 		}
 		return days;
 	}
-	
+
 }
