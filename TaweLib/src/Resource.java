@@ -107,4 +107,12 @@ public class Resource {
 	public void addToWaitList(User user) {
 		waitingList.add(user);
 	}
+
+	public static int getId() {
+		return id;
+	}
+
+	public ArrayList<User> getWaitingList() {
+		return waitingList;
+	}
 }

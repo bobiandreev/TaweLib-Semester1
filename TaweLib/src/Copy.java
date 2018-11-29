@@ -15,14 +15,17 @@ public class Copy {
 	private int copyId;
 	private boolean isBorrowed = false;
 	private boolean isRequested = false;
-	private boolean isReserved = true;
+	private boolean isReserved = false;
 	private Date dateRequested;
 	private Date dateBorrowed;
 	private Date dateRequestReturn;
 	private Date dateReturned;
 	private User requestedBy;
 	private User borrowedBy;
+	private User reservedFor;
 	public final int loanDuration = 14;
+	public final int loanDurationLaptop = 1;
+	public final int loanDurationDVD = 2;
 	public final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	private Date dueDate = null;
 	private static Date dateNow = new Date();
@@ -136,28 +139,36 @@ public class Copy {
 	public Date getDueDate() {
 		return dueDate;
 	}
-	
+
 	public String getDueDateString() {
 		return sdf.format(dueDate);
 	}
-	
-	public void setDueDate(){
+
+	public User getReservedFor() {
+		return reservedFor;
+	}
+
+	public void setReservedFor(User reservedFor) {
+		this.reservedFor = reservedFor;
+	}
+
+	public void setDueDate() {
 		Calendar c = Calendar.getInstance();
 		c.setTime(dateBorrowed);
 		c.add(Calendar.DAY_OF_MONTH, loanDuration);
 		dueDate = c.getTime();
 		System.out.println("Due date: " + sdf.format(dueDate));
 	}
-	
+
 	public ArrayList<String> getCopyHistory() {
 		return copyHistory;
 	}
-	
+
 	public void setCopyHistory() {
-		copyHistory.add("Borrowed by " + getBorrowedBy().getUsername() + " on "
-				+ getDateBorrowed() + " and returned by " + getDateReturned());
+		copyHistory.add("Borrowed by " + getBorrowedBy().getUsername() + " on " + getDateBorrowed()
+				+ " and returned by " + getDateReturned());
 	}
-	
+
 	/**
 	 * Method which allows the user to request a copy which then needs to be
 	 * approved by a librarian. Sets isRequested variable to true and sets the
@@ -190,29 +201,27 @@ public class Copy {
 		}
 		return item.getCopies().get(i);
 	}
-	
+
 	public boolean getIsReserved() {
 		return isReserved;
 	}
-	
+
 	public void reserve() {
 		isReserved = true;
 	}
 
 	@Override
 	public String toString() {
-		return "Copy number " + this.getCopyId() + " of resource " + this.getResource().getTitle() + 
-				".";
+		return "Copy number " + this.getCopyId() + " of resource " + this.getResource().getTitle() + ".";
 	}
 
 	public String toString1() {
 		if (this.getDueDate() == null) {
-		return	"Copy number " + this.getCopyId() + " of resource " + this.getResource().getTitle() + 
-			". No due date is set for this item";
-		}
-		else {
-			return "Copy number " + this.getCopyId() + " of resource " + this.getResource().getTitle() + 
-					". This item is due to be returned on: " + sdf.format(this.getDueDate());	
+			return "Copy number " + this.getCopyId() + " of resource " + this.getResource().getTitle()
+					+ ". No due date is set for this item";
+		} else {
+			return "Copy number " + this.getCopyId() + " of resource " + this.getResource().getTitle()
+					+ ". This item is due to be returned on: " + sdf.format(this.getDueDate());
 		}
 	}
 }

@@ -1,5 +1,7 @@
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 
 /**
  * A class that stores all the resources that 
@@ -141,4 +143,33 @@ public class SearchBrowse {
 		return flag;
 	}
 	
+	// move this to a different class
+	// alfa stage - not tested
+	public static void reserved() {
+		for (Resource resource: resourceList) {
+			ArrayList<Date> datesBorrowed = new ArrayList<>();
+			for (Copy copy: resource.getCopies()) {
+				datesBorrowed.add(copy.getDateBorrowed());
+			}
+		//	Date minDate = Collections.min(datesBorrowed);	
+			for (User user: resource.getWaitingList()) {
+				Date minDate = Collections.min(datesBorrowed);
+			//	resource.getCopies().get(copyWithDate(resource));
+				Copy reservedCopy = copyWithDate(resource, minDate);
+				reservedCopy.setReservedFor(user);
+				reservedCopy.setDueDate();
+				reservedCopy.getBorrowedBy().DueDateMessage(reservedCopy);
+				reservedCopy.getReservedFor().reservedForYou();
+			}
+		}
+	}
+	// move with reserved method
+	public static Copy copyWithDate(Resource resource, Date date) {
+		for (Copy copy: resource.getCopies()) {
+			if (copy.getDateBorrowed().equals(date)) {
+				return copy;
+			}
+		}
+		return null;
+	}
 }

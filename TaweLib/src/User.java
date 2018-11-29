@@ -191,4 +191,9 @@ public class User {
 		messages.add("The item you have requested: " + copy.getResource().getTitle()
 				+ "is now available for you to borrow.");
 	}
+	
+	public void reservedForYou() {
+		messages.add("The copy you have requested has been resrerved for you. You will receive a message when "
+				+ "\n your copy is available for pick up.");
+	}
 }
