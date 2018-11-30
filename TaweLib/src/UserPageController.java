@@ -47,9 +47,23 @@ public class UserPageController {
     
     @FXML
     private void clickOnNotification(ActionEvent event) {
-    	alert.setHeaderText("Message For You");
-		alert.setContentText("You are a dumb!");
-		alert.showAndWait();
+    	try {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MessagePage.fxml"));
+		
+		BorderPane message = (BorderPane) fxmlLoader.load();
+		
+		Scene messageScene = new Scene(message, Main.MESSAGEPAGE_WIDTH, Main.MESSAGEPAGE_HEIGHT);
+		Stage messageStage = new Stage();
+		
+		messageStage.setScene(messageScene);
+		messageStage.setTitle(Main.MESSAGEPAGE_TITLE);
+		messageStage.initModality(Modality.APPLICATION_MODAL);
+		messageStage.showAndWait();
+	} catch (IOException e) {
+		e.printStackTrace();
+		System.exit(-1);
+
+	}
     }
     
     @FXML
@@ -153,10 +167,6 @@ public class UserPageController {
 		}
     } 
     
-    @FXML
-    private void clickOnDrawAvatar(ActionEvent event) {
-
-    }
     
     @FXML
     private void clickOnLogOut(ActionEvent event) { 
