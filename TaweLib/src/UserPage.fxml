@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="611.0" prefWidth="785.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserPageController">
+<BorderPane fx:id="userPagePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="611.0" prefWidth="785.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserPageController">
    <center>
       <VBox alignment="TOP_CENTER" prefHeight="467.0" prefWidth="785.0" BorderPane.alignment="CENTER">
          <children>
@@ -23,21 +23,20 @@
                   </ImageView>
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="18.0" layoutY="18.0" prefHeight="36.0" prefWidth="785.0" spacing="10.0">
+            <HBox alignment="CENTER" layoutX="18.0" layoutY="18.0" prefHeight="47.0" prefWidth="785.0" spacing="10.0">
                <padding>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
                <children>
-                  <Button mnemonicParsing="false" onAction="#clickOnCurrentBalance" text="Current Balance :" />
-                  <Label fx:id="showCurrentBalanceBox" prefHeight="27.0" prefWidth="74.0" textAlignment="CENTER" />
+                  <Button mnemonicParsing="false" onAction="#clickOnBrowseAndSearch" text="Browse and Search" textAlignment="CENTER" />
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="131.0" prefHeight="60.0" prefWidth="626.0" spacing="10.0">
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="131.0" prefHeight="38.0" prefWidth="785.0" spacing="10.0">
                <padding>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
                <children>
-                  <Button mnemonicParsing="false" onAction="#clickOnBorrowItems" text="Borrow Items" />
+                  <Button mnemonicParsing="false" onAction="#clickOnNotification" text="Notification" textAlignment="CENTER" />
                </children>
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="191.0" prefHeight="60.0" prefWidth="626.0" spacing="10.0">
@@ -45,7 +44,9 @@
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
                <children>
-                  <Button mnemonicParsing="false" onAction="#clickOnRequestItems" text="Request Items" />
+                  <Button mnemonicParsing="false" onAction="#clickOnBorrowedItems" text="Borrowed Items" />
+                  <Button mnemonicParsing="false" onAction="#clickOnRequestedItems" text="Requested Items" />
+                  <Button mnemonicParsing="false" onAction="#clickOnReservedItems" text="Reserved Items" />
                </children>
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="251.0" prefHeight="60.0" prefWidth="626.0" spacing="10.0">
@@ -53,7 +54,7 @@
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
                <children>
-                  <Button mnemonicParsing="false" onAction="#clickOnReservedItems" text="Reserved Items" />
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#clickOnFinePayment" text="Fine Payment" textAlignment="CENTER" />
                </children>
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="302.0" prefHeight="38.0" prefWidth="785.0" spacing="10.0">
@@ -65,6 +66,14 @@
                </children>
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="368.0" prefHeight="38.0" prefWidth="785.0" spacing="10.0">
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </padding>
+               <children>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#clickOnDrawAvatar" text="Draw Avatar" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="308.0" prefHeight="60.0" prefWidth="626.0" spacing="10.0">
                <padding>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>

@@ -10,9 +10,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="librarianPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="449.0" prefWidth="688.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LibrarianPageController">
+<BorderPane fx:id="librarianPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LibrarianPageController">
    <center>
-      <VBox prefHeight="392.0" prefWidth="680.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="392.0" prefWidth="907.0" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER" prefHeight="71.0" prefWidth="600.0">
                <children>
@@ -23,18 +23,58 @@
                   </ImageView>
                </children>
             </HBox>
-            <HBox layoutX="10.0" layoutY="10.0" prefHeight="49.0" prefWidth="600.0" />
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="59.0" prefHeight="49.0" prefWidth="600.0">
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="55.0" prefWidth="830.0" spacing="10.0">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#clickOnRecordOfUsers" text="Records of Users">
+                  <Button mnemonicParsing="false" onAction="#clickOnBorrowingRequest" text="Borrowing Request" />
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#clickOnReturningRequest" text="Returning Request" textAlignment="CENTER" />
+                  <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#clickOnLoanCopy" text="Loan Copy" textAlignment="CENTER" />
+                  <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#clickOnRecieveReturn" text="Recieve Return" />
+               </children>
+               <padding>
+                  <Insets top="10.0" />
+               </padding></HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="59.0" prefHeight="44.0" prefWidth="830.0">
+               <children>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#clickOnBrowseAndSearch" text="Browse and Search">
                      <opaqueInsets>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </opaqueInsets>
                   </Button>
                </children></HBox>
-            <HBox layoutX="10.0" layoutY="162.0" prefHeight="49.0" prefWidth="600.0" />
-            <HBox layoutX="10.0" layoutY="211.0" prefHeight="49.0" prefWidth="600.0" />
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="260.0" prefHeight="49.0" prefWidth="600.0">
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="162.0" prefHeight="41.0" prefWidth="830.0" spacing="10.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#clickOnCreateNewResources" text="Create New Resources" textAlignment="CENTER" />
+                  <Button mnemonicParsing="false" onAction="#clickOnViewResources" text="View Resources" textAlignment="CENTER" />
+               </children></HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="162.0" prefHeight="43.0" prefWidth="830.0">
+               <children>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#clickOnTransactionHistory" text="Transaction History">
+                     <opaqueInsets>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </opaqueInsets>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="211.0" prefHeight="40.0" prefWidth="830.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#clickOnDrawAvatar" text="Draw Avatar" />
+               </children></HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="260.0" prefHeight="42.0" prefWidth="830.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#clickOnViewOverdueResources" text="View Overdue Resources" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="260.0" prefHeight="47.0" prefWidth="830.0">
+               <children>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#clickOnCreateNewUser" prefHeight="25.0" prefWidth="123.0" text="Create New User" textAlignment="CENTER" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="358.0" prefHeight="46.0" prefWidth="830.0">
+               <children>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#clickOnFinePayment" prefHeight="22.0" prefWidth="101.0" text="Fine Payment" textAlignment="CENTER" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="407.0" prefHeight="48.0" prefWidth="830.0">
                <children>
                   <Button alignment="CENTER" mnemonicParsing="false" onAction="#clickOnLogOut" text="Log Out" textAlignment="CENTER" textFill="#e51010" />
                </children>

@@ -10,7 +10,6 @@ import javafx.stage.Stage;
  * @author Ming
  *
  */
-
 public class UserReservedItemsPageController {
 
     @FXML

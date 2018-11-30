@@ -5,30 +5,26 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 /**
- * The RecordsOfUsersPageController Class which controls the RecordsOfUsersPage.fxml
+ * The ViewOverdueResourcesPageController Class which controls the ViewOverdueResourcesPage.fxml
  * @author Ming
  *
  */
-public class RecordsOfUsersPageController {
+public class ViewOverdueResourcesPageController {
 
-	@FXML
-    private BorderPane recordsOfUsersPane;
-    
     @FXML
-    private ListView<?> recordOfUsersList;
-    
-    public void initialize() {
+    private BorderPane overdueResourcesPane;
 
-	}
+    @FXML
+    private ListView<?> overdueResourcesList;
 
     @FXML
     private void clickOnBack(ActionEvent event) {
     	closeWindow();
     }
-
+    
     @FXML
     private void closeWindow() { // A method which close the window
-		Stage stage = (Stage) recordsOfUsersPane.getScene().getWindow();
+		Stage stage = (Stage) overdueResourcesPane.getScene().getWindow();
 	    stage.close();
 	}
 }

@@ -1,29 +1,30 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-public class UserRequestItemsPageController {
+/**
+ * The UserBorrowedItemsPageController which controls the UserBorrowedItemsPage.fxml
+ * @author Ming
+ *
+ */
+public class UserBorrowedItemsPageController {
 
     @FXML
-    private BorderPane requestItemsPane;
+    private BorderPane borrowedItemsPane;
 
     @FXML
-    private ListView<?> requestItemsList;
-
-    @FXML
-    private Button confirmButton;
+    private ListView<?> borrowedItemsList;
 
     @FXML
     private void clickOnBack(ActionEvent event) {
     	closeWindow();
     }
 
-     @FXML
+    @FXML
     private void closeWindow() { // A method which close the window
-		Stage stage = (Stage) requestItemsPane.getScene().getWindow();
+		Stage stage = (Stage) borrowedItemsPane.getScene().getWindow();
 	    stage.close();
 	}
 }

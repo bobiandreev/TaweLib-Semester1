@@ -28,27 +28,21 @@ public class LoginController {
     public BorderPane homePagePane;
 
 	@FXML
-	private TextField username1; // Username of Users
+	private TextField userID; // Username of Users
 	
 	@FXML
-	private TextField username2; // Username of Librarian
-	
-	@FXML
-	private TextField browseAndSearch;
-	
-	@FXML
-	private TreeView<?> treeView; // Something to show on the Home Page
+	private TextField librarianID; // Username of Librarian
 	
 	Alert alert = new Alert(AlertType.ERROR);
 	
 	@FXML
 	private void clickOnLoginAsUser(ActionEvent event) {
-		String x = username1.getText();
-		if (x.isEmpty() ) { // The case if the user left username field blank
+		String x = userID.getText();
+		if (x.isEmpty() ) { // The case if the user left userID field blank
 			alert.setHeaderText(null);
-			alert.setContentText("Please fill in Username!");
+			alert.setContentText("Please fill in UserID!");
 			alert.showAndWait();
-		} else { // The case when the user fill in their username correctly
+		} else { // The case when the user fill in their userID correctly
 			try {
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("UserPage.fxml"));
 				
@@ -70,12 +64,12 @@ public class LoginController {
 	
 	@FXML
 	private void clickOnLoginAsLibrarian(ActionEvent event) {
-		String m = username2.getText();
-		if (m.isEmpty()) { // The case if the librarian left username field blank
+		String m = librarianID.getText();
+		if (m.isEmpty()) { // The case if the librarian left LibrarianID field blank
 			alert.setHeaderText(null);
-			alert.setContentText("Please fill in Username!");
+			alert.setContentText("Please fill in LibrarianID!");
 			alert.showAndWait();
-		} else { // The case when the librarian fill in their username correctly
+		} else { // The case when the librarian fill in their LibrarianID correctly
 			try {
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LibrarianPage.fxml"));
 				
@@ -93,12 +87,6 @@ public class LoginController {
 				System.exit(-1);
 				}
 		}
-	}
-	
-	@FXML
-	public void clickOnBrowseAndSearch(ActionEvent event) {	
-		String s = browseAndSearch.getText();
-		System.out.println(s);
 	}
 	
 }
