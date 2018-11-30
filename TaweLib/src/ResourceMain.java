@@ -38,6 +38,7 @@ public class ResourceMain {
 		user1.displayBorrowedItems();
 		user1.requestReturn(user1.getBorrowedItems().get(0));
 		lib1.approveReturn();
+		user1.displayMessages();
 		System.out.println(r2.getCopies().get(0).getCopyHistory());
 
 		Resource r3 = new Book("The Call of Cthulhu", 1926, image, 5, "H.P. Lovecraft", "Vintage Classics");
