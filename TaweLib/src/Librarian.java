@@ -82,7 +82,7 @@ public class Librarian extends User {
 	/**
 	 * example method
 	 */
-	public void approveBorrow() {
+	public static void approveBorrow(boolean flag) {
 		for (User user : usersList) {
 			if (user.getBalance() == 0) {
 				System.out.println(user.getName() + " has requested to borrow: ");
@@ -94,7 +94,6 @@ public class Librarian extends User {
 				while (!user.getRequestedItems().isEmpty()) {
 					Copy currentCopy = user.getRequestedItems().get(0);
 					System.out.println("Do you approve: " + currentCopy + "?:	true/false");
-					boolean flag = in.nextBoolean();
 
 					if (flag /* approved */) {
 						user.getBorrowedItems().add(currentCopy); // adds to borrowed items list in user
