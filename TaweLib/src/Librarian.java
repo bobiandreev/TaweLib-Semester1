@@ -7,7 +7,7 @@ public class Librarian extends User {
 
 	private String employmentDate;
 	private static int staffNumber = 0;
-	private static ArrayList<User> usersList = new ArrayList<>();
+	public static ArrayList<User> usersList = new ArrayList<>();
 	private static ArrayList<Librarian> librarianList = new ArrayList<>();
 	private Scanner in = new Scanner(System.in);
 
