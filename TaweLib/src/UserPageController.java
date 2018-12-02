@@ -1,4 +1,4 @@
-import javafx.scene.Scene;
+ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
@@ -22,8 +22,6 @@ public class UserPageController {
 	
     @FXML
     private BorderPane userPagePane;
-    
-    Alert alert = new Alert(AlertType.INFORMATION);
     
     @FXML
     private void clickOnBrowseAndSearch(ActionEvent event) {
@@ -167,6 +165,25 @@ public class UserPageController {
 		}
     } 
     
+    @FXML
+    private void clickOnChooseAvatar(ActionEvent event) {
+    	try {
+    		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ChooseAvatarPage.fxml"));
+			
+    		BorderPane chooseAvatar = (BorderPane) fxmlLoader.load();
+			
+    		Scene chooseAvatarScene = new Scene(chooseAvatar, Main.CHOOSEAVATARPAGE_WIDTH, Main.CHOOSEAVATARPAGE_HEIGHT);
+    		Stage chooseAvatarStage = new Stage();
+			
+    		chooseAvatarStage.setScene(chooseAvatarScene);
+    		chooseAvatarStage.setTitle(Main.CHOOSEAVATARPAGE_TITLE);
+    		chooseAvatarStage.initModality(Modality.APPLICATION_MODAL);
+    		chooseAvatarStage.showAndWait();
+    	} catch (IOException e) {
+			e.printStackTrace();
+			System.exit(-1);
+		}
+    }
     
     @FXML
     private void clickOnLogOut(ActionEvent event) { 
