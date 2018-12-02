@@ -32,17 +32,59 @@ public class Librarian extends User {
 
 	public void addUser() {
 		// this will be done with read lines
-		Scanner in = new Scanner(System.in);
-		String username = in.nextLine();
+		boolean flag = false;
+		String username = "";
+		do {
+			Scanner in = new Scanner(System.in);
+			username = in.nextLine();
+			flag = checkUserName(username);
+		} while (flag);
 		String name = in.nextLine();
-		int phoneNumber = in.nextInt();
+		int mobileNumber = in.nextInt();
 		int houseNumber = in.nextInt();
 		String streetName = in.nextLine();
 		String postcode = in.nextLine();
 		Image profilePic = null; // allow the librarian to choose an image
 		in.close();
-		usersList.add(new User(username, name, phoneNumber, houseNumber, streetName, postcode, profilePic));
+		usersList.add(new User(username, name, mobileNumber, houseNumber, streetName, postcode, profilePic));
 	}
+	
+	private boolean checkUserName(String username) {
+		for (int i = 0; i < usersList.size(); i++) {
+			if (username.equals(usersList.get(i).getUsername())) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void addLibrarian() {
+		boolean flag = false;
+		String username = "";
+		do {
+			Scanner in = new Scanner(System.in);
+			username = in.nextLine();
+			flag = checkLibrarianName(username);
+		} while (flag);
+		String name = in.nextLine();
+		int mobileNumber = in.nextInt();
+		int houseNumber = in.nextInt();
+		String streetName = in.nextLine();
+		String postcode = in.nextLine();
+		Image profilePic = null; // allow the librarian to choose an image
+		in.close();
+		usersList.add(new Librarian(username, name, mobileNumber, houseNumber, streetName, postcode, profilePic, postcode));
+	}
+	
+	private boolean checkLibrarianName(String username) {
+		for (int i = 0; i < librarianList.size(); i++) {
+			if (username.equals(librarianList.get(i).getUsername())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 
 	public void addBook() {
 		String title = in.next();
