@@ -188,7 +188,7 @@ public class Librarian extends User {
 	/**
 	 * example method
 	 */
-	public void approveReturn() {
+	public static void approveReturn(boolean flag) {
 		for (User user : usersList) {
 			System.out.println(user.getName() + " has requested to return:");
 			for (int i = 0; i < user.getReturnRequests().size(); i++) {
@@ -198,8 +198,7 @@ public class Librarian extends User {
 			while (!user.getReturnRequests().isEmpty()) {
 				Copy currentCopy = user.getReturnRequests().get(0);
 				System.out.println("Do you approve: " + currentCopy + ("?	true/false"));
-				boolean flag = in.nextBoolean();
-
+				
 				if (flag /* approved */) {
 					checkOverdue(user, currentCopy);
 					currentCopy.returnCopy(); // sets boolean isBorrowed in copy to false
@@ -218,7 +217,7 @@ public class Librarian extends User {
 		}
 	}
 
-	private void checkOverdue(User user, Copy copy) {
+	private static void checkOverdue(User user, Copy copy) {
 		if (copy.getDueDate() != null) {
 			String dueDate = copy.sdf.format(copy.getDueDate()); // need to change this and the next line
 			String currentDate = copy.sdf.format(Copy.getDateNow());

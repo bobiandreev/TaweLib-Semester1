@@ -32,12 +32,12 @@ public class ResourceMain {
 		Librarian lib1 = new Librarian("lib1", "lib 1", 54656597, 65, "Singleton Campus", "SA1 4FS", image, "24/07");
 
 		lib1.getUsersList().add(user1);
-		lib1.approveBorrow();
+		lib1.approveBorrow(true);
 		user1.requestItem(r2);
 		r2.getCopies().get(0).setDueDate();
 		user1.displayBorrowedItems();
 		user1.requestReturn(user1.getBorrowedItems().get(0));
-		lib1.approveReturn();
+		lib1.approveReturn(true);
 		user1.displayMessages();
 		System.out.println(r2.getCopies().get(0).getCopyHistory());
 

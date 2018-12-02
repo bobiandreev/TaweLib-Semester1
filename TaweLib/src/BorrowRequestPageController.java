@@ -28,21 +28,21 @@ public class BorrowRequestPageController {
     @FXML
     private ListView<String> borrowRequestList;
     
-    private ArrayList<BorrowRequest> borrowRequests = new ArrayList<BorrowRequest>();
+    /*private ArrayList<BorrowRequest> borrowRequests = new ArrayList<BorrowRequest>();
     
-    public void initialize() {
-    	borrowRequests.add(new BorrowRequest("Ming", "Harry Potter and the Sorcerer's Stone"));
-    	borrowRequests.add(new BorrowRequest("June", "Harry Potter and the Goblet of Fire"));
-    	addToList();
+    //public void initialize() {
+    //	borrowRequests.add(new BorrowRequest("Ming", "Harry Potter and the Sorcerer's Stone"));
+    //	borrowRequests.add(new BorrowRequest("June", "Harry Potter and the Goblet of Fire"));
+    //	addToList();
  
 	}
     
-    private void addToList() { //show it to interface
-		for (BorrowRequest t : borrowRequests) {
+  //  private void addToList() { //show it to interface
+//		for (BorrowRequest t : borrowRequests) {
 			borrowRequestList.getItems().add(t.toString());
 		}
 	}
-    
+    */
    
     @FXML
     private static void clickOnApprove(ActionEvent event) {
@@ -73,6 +73,7 @@ public class BorrowRequestPageController {
     @FXML
     private void clickOnNotApprove(ActionEvent event) {
     	decision = false;
+    	Librarian.approveReturn(decision);
 
     }
      
