@@ -7,7 +7,7 @@ public class Librarian extends User {
 
 	private String employmentDate;
 	private static int staffNumber = 0;
-	private static ArrayList<User> usersList = new ArrayList<>();
+	public static ArrayList<User> usersList = new ArrayList<>();
 	private static ArrayList<Librarian> librarianList = new ArrayList<>();
 	private Scanner in = new Scanner(System.in);
 
@@ -124,7 +124,7 @@ public class Librarian extends User {
 	/**
 	 * example method
 	 */
-	public void approveBorrow() {
+	public static void approveBorrow(boolean flag) {
 		for (User user : usersList) {
 			if (user.getBalance() == 0) {
 				System.out.println(user.getName() + " has requested to borrow: ");
@@ -136,7 +136,6 @@ public class Librarian extends User {
 				while (!user.getRequestedItems().isEmpty()) {
 					Copy currentCopy = user.getRequestedItems().get(0);
 					System.out.println("Do you approve: " + currentCopy + "?:	true/false");
-					boolean flag = in.nextBoolean();
 
 					if (flag /* approved */) {
 						user.getBorrowedItems().add(currentCopy); // adds to borrowed items list in user
@@ -231,7 +230,7 @@ public class Librarian extends User {
 	/**
 	 * example method
 	 */
-	public void approveReturn() {
+	public static void approveReturn(boolean flag) {
 		for (User user : usersList) {
 			System.out.println(user.getName() + " has requested to return:");
 			for (int i = 0; i < user.getReturnRequests().size(); i++) {
@@ -241,8 +240,7 @@ public class Librarian extends User {
 			while (!user.getReturnRequests().isEmpty()) {
 				Copy currentCopy = user.getReturnRequests().get(0);
 				System.out.println("Do you approve: " + currentCopy + ("?	true/false"));
-				boolean flag = in.nextBoolean();
-
+				
 				if (flag /* approved */) {
 					checkOverdue(user, currentCopy);
 					currentCopy.returnCopy(); // sets boolean isBorrowed in copy to false
@@ -261,7 +259,7 @@ public class Librarian extends User {
 		}
 	}
 
-	private void checkOverdue(User user, Copy copy) {
+	private static void checkOverdue(User user, Copy copy) {
 		if (copy.getDueDate() != null) {
 			String dueDate = copy.sdf.format(copy.getDueDate()); // need to change this and the next line
 			String currentDate = copy.sdf.format(Copy.getDateNow());
