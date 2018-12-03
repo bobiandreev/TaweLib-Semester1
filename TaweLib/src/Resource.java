@@ -5,6 +5,7 @@
  * @version 1.0
  */
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import javafx.scene.image.Image;
@@ -19,7 +20,7 @@ public class Resource {
 
 	private String title;
 	private int year;
-	private Image thumbnailImage;
+	private BufferedImage thumbnailImage;
 	private int numOfCopies;
 
 	private ArrayList<Copy> copies = new ArrayList<>();
@@ -37,7 +38,7 @@ public class Resource {
 	 * @param numOfCopies
 	 *            How many copies exist of the resource in the library
 	 */
-	public Resource(String title, int year, Image thumbnailImage, int numOfCopies) {
+	public Resource(String title, int year, BufferedImage thumbnailImage, int numOfCopies) {
 		id++;
 		this.title = title;
 		this.year = year;
@@ -78,7 +79,7 @@ public class Resource {
 	 * 
 	 * @return The thumbnail image of the resource
 	 */
-	public Image getThumbnailImage() {
+	public BufferedImage getThumbnailImage() {
 		return thumbnailImage;
 	}
 

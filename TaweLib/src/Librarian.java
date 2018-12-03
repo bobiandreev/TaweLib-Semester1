@@ -1,3 +1,4 @@
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,8 +13,8 @@ public class Librarian extends User {
 	private Scanner in = new Scanner(System.in);
 
 	public Librarian(String username, String name, int mobileNumber, int houseNumber, String streetName,
-			String postcode, Image profilePic, String employmentDate) {
-		super(username, name, mobileNumber, houseNumber, streetName, postcode, profilePic);
+			String postcode, BufferedImage image, String employmentDate) {
+		super(username, name, mobileNumber, houseNumber, streetName, postcode, image);
 		this.employmentDate = employmentDate;
 		staffNumber++;
 	}
@@ -43,7 +44,7 @@ public class Librarian extends User {
 		int houseNumber = in.nextInt();
 		String streetName = in.nextLine();
 		String postcode = in.nextLine();
-		Image profilePic = null; // allow the librarian to choose an image
+		BufferedImage profilePic = null; // allow the librarian to choose an image
 		in.close();
 		usersList.add(new User(username, name, phoneNumber, houseNumber, streetName, postcode, profilePic));
 	}
@@ -51,7 +52,7 @@ public class Librarian extends User {
 	public void addBook() {
 		String title = in.next();
 		int year = in.nextInt();
-		Image thumbnailImage = null;
+		BufferedImage thumbnailImage = null;
 		int numOfCopies = in.nextInt();
 		String author = in.next();
 		String publisher = in.next();
@@ -61,7 +62,7 @@ public class Librarian extends User {
 	public void addDVD() {
 		String title = in.next();
 		int year = in.nextInt();
-		Image thumbnailImage = null;
+		BufferedImage thumbnailImage = null;
 		int numOfCopies = in.nextInt();
 		String director = in.next();
 		int runtime = in.nextInt();
@@ -75,7 +76,7 @@ public class Librarian extends User {
 	public void addLaptopComputer() {
 		String title = in.next();
 		int year = in.nextInt();
-		Image thumbnailImage = null;
+		BufferedImage thumbnailImage = null;
 		int numOfCopies = in.nextInt();
 		String manufacturer = in.next();
 		String model = in.next();
