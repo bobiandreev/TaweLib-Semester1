@@ -17,7 +17,9 @@ public class RecieveReturnPageController {
 
     @FXML
     private void clickOnRecieve(ActionEvent event) {
-
+    	String username = this.userID.getText();
+    	String item = this.item.getText();
+    	Librarian.receiveReturn(username, item);
     }
 
     @FXML

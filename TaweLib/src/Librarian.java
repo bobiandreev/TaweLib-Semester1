@@ -35,8 +35,8 @@ public class Librarian extends User {
 
 	public int getStaffNumber() {
 		return staffNumber;
-	}	
-	
+	}
+
 	public void addUser() {
 		// this will be done with read lines
 		boolean flag = false;
@@ -55,7 +55,7 @@ public class Librarian extends User {
 		in.close();
 		usersList.add(new User(username, name, mobileNumber, houseNumber, streetName, postcode, profilePic));
 	}
-	
+
 	private boolean checkUserName(String username) {
 		for (int i = 0; i < usersList.size(); i++) {
 			if (username.equals(usersList.get(i).getUsername())) {
@@ -64,7 +64,7 @@ public class Librarian extends User {
 		}
 		return false;
 	}
-	
+
 	public void addLibrarian() {
 		boolean flag = false;
 		String username = "";
@@ -80,9 +80,10 @@ public class Librarian extends User {
 		String postcode = in.nextLine();
 		BufferedImage profilePic = null; // allow the librarian to choose an image
 		in.close();
-		librarianList.add(new Librarian(username, name, mobileNumber, houseNumber, streetName, postcode, profilePic, postcode));
+		librarianList.add(
+				new Librarian(username, name, mobileNumber, houseNumber, streetName, postcode, profilePic, postcode));
 	}
-	
+
 	private boolean checkLibrarianName(String username) {
 		for (int i = 0; i < librarianList.size(); i++) {
 			if (username.equals(librarianList.get(i).getUsername())) {
@@ -91,7 +92,6 @@ public class Librarian extends User {
 		}
 		return false;
 	}
-
 
 	public void addBook() {
 		String title = in.next();
@@ -189,8 +189,9 @@ public class Librarian extends User {
 					curCopy.removeRequest(); // sets the boolean request in copy to false
 					Alert alert = new Alert(AlertType.CONFIRMATION);
 					alert.setHeaderText("Great");
-			    	alert.setContentText(curUser.getName().toString() + " has been given " + curResource.getTitle());
-			    	alert.showAndWait();
+					alert.setContentText(
+							curUser.getName().toString() + " has been given " + curResource.getTitle().toString());
+					alert.showAndWait();
 				} else {
 					curResource.getWaitingList().add(curUser);
 					SearchBrowse.reserved(curResource);
@@ -198,8 +199,8 @@ public class Librarian extends User {
 			} else {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setHeaderText("Error!");
-		    	alert.setContentText("One of the inputs is wrong! Please re enter!");
-		    	alert.showAndWait();
+				alert.setContentText("One of the inputs is wrong! Please re enter!");
+				alert.showAndWait();
 			}
 
 		} else {
@@ -208,7 +209,7 @@ public class Librarian extends User {
 
 	}
 
-	public void receiveReturn(String username, String title) {
+	public static void receiveReturn(String username, String title) {
 		User curUser = null;
 		for (User user : usersList) {
 			if (user.getUsername().equals(username)) {
@@ -230,11 +231,16 @@ public class Librarian extends User {
 			curCopy.setDateRequestReturn(null);
 			curCopy.setDateBorrowed(null);
 			curCopy.setBorrowedBy(null);
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setHeaderText("Great");
+			alert.setContentText(
+					curUser.getName().toString() + " has been returned " + curCopy.getResource().getTitle().toString());
+			alert.showAndWait();
 		} else {
-			System.out.println("One of the inputs is wrong. Please re enter.");
-			username = in.next();
-			title = in.next();
-			receiveReturn(username, title);
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setHeaderText("Error!");
+			alert.setContentText("One of the inputs is wrong! Please re enter!");
+			alert.showAndWait();
 		}
 	}
 
@@ -251,7 +257,7 @@ public class Librarian extends User {
 			while (!user.getReturnRequests().isEmpty()) {
 				Copy currentCopy = user.getReturnRequests().get(0);
 				System.out.println("Do you approve: " + currentCopy + ("?	true/false"));
-				
+
 				if (flag /* approved */) {
 					checkOverdue(user, currentCopy);
 					currentCopy.returnCopy(); // sets boolean isBorrowed in copy to false
