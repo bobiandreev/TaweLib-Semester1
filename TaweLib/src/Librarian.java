@@ -148,7 +148,10 @@ public class Librarian extends User {
 					}
 				
 			} else {
-				System.out.println(curUser.getUsername() + "cannot borrow " + "anything until he repays his fine.");
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setHeaderText("Cannot Borrow");
+				alert.setContentText(curUser.getUsername() + "cannot borrow " + "anything until he repays his fine.");
+				alert.showAndWait();
 			}
 
 		

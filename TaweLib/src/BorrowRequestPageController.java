@@ -56,7 +56,9 @@ public class BorrowRequestPageController {
 		
 		
 		boolean yes = true;
-		Librarian.approveBorrow(yes);
+		Librarian.approveBorrow(yes,currentCopy);
+		borrowRequestList.getItems().remove(selectedIndex);
+		borrowRequestCopies.remove(selectedIndex);
 	}
 
 	@FXML
@@ -66,8 +68,30 @@ public class BorrowRequestPageController {
 
 	@FXML
 	void clickOnNotApprove(ActionEvent event) {
+		int selectedIndex = borrowRequestList.getSelectionModel().getSelectedIndex();
+		
+		if (selectedIndex < 0) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText(null);
+			alert.setContentText("Please select a book first.");
+			alert.showAndWait();
+			return;
+		}
+		
+		
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Info");
+		alert.setHeaderText(null);
+		alert.setContentText("Not Approved!");
+		alert.showAndWait();
+		
+		Copy currentCopy = borrowRequestCopies.get(selectedIndex);
+		
 		boolean no = false;
-		Librarian.approveBorrow(no);
+		Librarian.approveBorrow(no, currentCopy);
+		borrowRequestList.getItems().remove(selectedIndex);
+		borrowRequestCopies.remove(selectedIndex);
 	}
 
 	@FXML
