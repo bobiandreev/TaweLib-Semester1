@@ -42,10 +42,7 @@ public class Book extends Resource {
 			String author, String publisher) {
 		super(title, year, image, numOfCopies);
 		this.author = author;
-		//this.genre = genre;
 		this.publisher = publisher;
-		//this.ISBN = ISBN;
-		//this.language = language;
 	}
 
 	/**

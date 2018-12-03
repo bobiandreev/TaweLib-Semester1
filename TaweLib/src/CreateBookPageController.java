@@ -1,11 +1,17 @@
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -26,7 +32,7 @@ public class CreateBookPageController {
     private TextField year;
 
     @FXML
-    private TextField thumbnailImage;
+    private Button thumbnailImage;
 
     @FXML
     private TextField author;
@@ -45,6 +51,8 @@ public class CreateBookPageController {
     
     @FXML
     private TextField ISBN;
+    
+    private BufferedImage image;
 
     @FXML
     private void clickOnBack(ActionEvent event) {
@@ -61,11 +69,28 @@ public class CreateBookPageController {
     	String genre = this.genre.getText();
     	String language = this.language.getText();
     	String ISBN = this.ISBN.getText();
-    	Book newBook = new Book (title, year, null, numberOfCopies, author, publisher);
+    	BufferedImage image = this.image;
+    	Book newBook = new Book (title, year, image, numberOfCopies, author, publisher);
     	newBook.setGenre(genre);
     	newBook.setISBN(ISBN);
     	newBook.setLanguage(language);
     	System.out.println(newBook.toString());
+    }
+    
+    @FXML
+    public void clickOnThumbnailImage(ActionEvent event) throws IOException {
+    	FileChooser fc = new FileChooser();
+    	File selectedFile = fc.showOpenDialog(null);
+    	image = ImageIO.read(selectedFile.getAbsoluteFile());
+    	/* ImageIcon imgIcon = new ImageIcon(image);
+    	JLabel lbl = new JLabel();
+    	lbl.setIcon(imgIcon);
+    	JFrame frame = new JFrame("Image viewer");
+    	frame.getContentPane().add(lbl, BorderLayout.CENTER);
+    	frame.pack();
+    	frame.setLocationRelativeTo(null);
+    	frame.setVisible(true);
+    	*/
     }
     
     @FXML
