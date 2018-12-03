@@ -2,6 +2,8 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 
 public class Librarian extends User {
@@ -10,7 +12,7 @@ public class Librarian extends User {
 	private static int staffNumber = 0;
 	private static ArrayList<User> usersList = new ArrayList<>();
 	private static ArrayList<Librarian> librarianList = new ArrayList<>();
-	private Scanner in = new Scanner(System.in);
+	private static Scanner in = new Scanner(System.in);
 
 	public Librarian(String username, String name, int mobileNumber, int houseNumber, String streetName,
 			String postcode, BufferedImage profilePic, String employmentDate) {
@@ -33,8 +35,8 @@ public class Librarian extends User {
 
 	public int getStaffNumber() {
 		return staffNumber;
-	}
-
+	}	
+	
 	public void addUser() {
 		// this will be done with read lines
 		boolean flag = false;
@@ -162,7 +164,7 @@ public class Librarian extends User {
 		}
 	}
 
-	public void loanACopy(String username, String title) {
+	public static void loanACopy(String username, String title) {
 		User curUser = null;
 		for (User user : usersList) {
 			if (user.getUsername().equals(username)) {
@@ -176,8 +178,8 @@ public class Librarian extends User {
 					curResource = resource;
 				}
 			}
-			Copy curCopy = Copy.checkCopy(curResource);
 			if (curResource != null) {
+				Copy curCopy = Copy.checkCopy(curResource);
 				if (curCopy != null) {
 					curUser.getBorrowedItems().add(curCopy); // adds to borrowed items list in user
 					curCopy.borrow(); // sets the boolean borrow in copy to true
@@ -185,15 +187,19 @@ public class Librarian extends User {
 					curCopy.setBorrowedBy(curUser); // sets the borrower of the copy to user
 					curCopy.setDateBorrowed(Copy.getDateNow()); // sets date when copy is taken
 					curCopy.removeRequest(); // sets the boolean request in copy to false
+					Alert alert = new Alert(AlertType.CONFIRMATION);
+					alert.setHeaderText("Great");
+			    	alert.setContentText(curUser.getName().toString() + " has been given " + curResource.getTitle());
+			    	alert.showAndWait();
 				} else {
 					curResource.getWaitingList().add(curUser);
 					SearchBrowse.reserved(curResource);
 				}
 			} else {
-				System.out.println("One of the inputs is wrong. Please re enter.");
-				username = in.next();
-				title = in.next();
-				loanACopy(username, title);
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setHeaderText("Error!");
+		    	alert.setContentText("One of the inputs is wrong! Please re enter!");
+		    	alert.showAndWait();
 			}
 
 		} else {
