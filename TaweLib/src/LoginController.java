@@ -79,23 +79,31 @@ public class LoginController {
 			alert.setContentText("Please fill in LibrarianID!");
 			alert.showAndWait();
 		} else { // The case when the librarian fill in their LibrarianID correctly
-			try {
-				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LibrarianPage.fxml"));
+			for (int i = 0; i < Librarian.getLibrarianList().size(); i++) {
+				if (m.equals(Librarian.getLibrarianList().get(i).getUsername().toString())) {
+					try {
+						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LibrarianPage.fxml"));
 
-				BorderPane librarianPage = (BorderPane) fxmlLoader.load();
+						BorderPane librarianPage = (BorderPane) fxmlLoader.load();
 
-				Scene librarianScene = new Scene(librarianPage, Main.LIBRARIAN_PAGE_WIDTH, Main.LIBRARIAN_PAGE_HEIGHT);
-				Stage librarianStage = new Stage();
+						Scene librarianScene = new Scene(librarianPage, Main.LIBRARIAN_PAGE_WIDTH,
+								Main.LIBRARIAN_PAGE_HEIGHT);
+						Stage librarianStage = new Stage();
 
-				librarianStage.setScene(librarianScene);
-				librarianStage.setTitle(Main.LIBRARIAN_PAGE_TITLE);
-				librarianStage.initModality(Modality.APPLICATION_MODAL);
-				librarianStage.showAndWait();
-			} catch (IOException e) {
-				e.printStackTrace();
-				System.exit(-1);
+						librarianStage.setScene(librarianScene);
+						librarianStage.setTitle(Main.LIBRARIAN_PAGE_TITLE);
+						librarianStage.initModality(Modality.APPLICATION_MODAL);
+						librarianStage.showAndWait();
+					} catch (IOException e) {
+						e.printStackTrace();
+						System.exit(-1);
+					}
+				} else {
+					alert.setHeaderText("No such librarian!");
+					alert.setContentText("Wrong username or no such librarian exists!");
+					alert.showAndWait();
+				}
 			}
 		}
 	}
-
 }
