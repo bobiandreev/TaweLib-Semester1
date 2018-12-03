@@ -16,7 +16,7 @@ import javafx.stage.Stage;
  */
 public class ReturnRequestPageController {
 	private ArrayList<Copy> returnRequestCopies = new ArrayList<>();
- 
+
 	@FXML
 	private BorderPane returnRequestPane;
 
