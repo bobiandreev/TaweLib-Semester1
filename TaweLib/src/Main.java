@@ -141,6 +141,11 @@ public class Main extends Application {
 	public static final int MESSAGEPAGE_WIDTH = 600;
 	public static final int MESSAGEPAGE_HEIGHT = 400;
 	public static final String MESSAGEPAGE_TITLE = "Message Page";
+	
+	// Constants for the Choose Avatar Page window
+	public static final int CHOOSEAVATARPAGE_WIDTH = 600;
+	public static final int CHOOSEAVATARPAGE_HEIGHT = 350;
+	public static final String CHOOSEAVATARPAGE_TITLE = "Message Page";
 				
 	public void start(Stage primaryStage) {
 		try {

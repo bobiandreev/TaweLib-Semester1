@@ -70,7 +70,7 @@
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" text="Choose Avatar" />
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#clickOnChooseAvatar" text="Choose Avatar" />
                </children>
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="308.0" prefHeight="60.0" prefWidth="626.0" spacing="10.0">
