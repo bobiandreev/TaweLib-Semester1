@@ -61,6 +61,16 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="127.0" prefHeight="39.0" prefWidth="600.0" spacing="10.0">
                <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Number of Copies*">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="numOfCopies" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="127.0" prefHeight="39.0" prefWidth="600.0" spacing="10.0">
+               <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Manufacturer :">
                      <font>
                         <Font size="15.0" />
@@ -95,6 +105,7 @@
                   <Button mnemonicParsing="false" onAction="#clickOnBack" text="Back" />
                </children>
             </HBox>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="                                                  Fields marked with * are mandatory." textAlignment="CENTER" />
          </children>
       </VBox>
    </center>

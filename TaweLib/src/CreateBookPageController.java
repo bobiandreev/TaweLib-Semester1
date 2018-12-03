@@ -8,8 +8,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -53,7 +55,8 @@ public class CreateBookPageController {
     private TextField ISBN;
     
     private BufferedImage image;
-
+    Alert alert = new Alert(AlertType.CONFIRMATION);
+    
     @FXML
     private void clickOnBack(ActionEvent event) {
     	closeWindow();
@@ -74,7 +77,12 @@ public class CreateBookPageController {
     	newBook.setGenre(genre);
     	newBook.setISBN(ISBN);
     	newBook.setLanguage(language);
-    	System.out.println(newBook.toString());
+    	SearchBrowse.getResources().add(newBook);
+    	alert.setHeaderText("Success!");
+    	alert.setContentText("This book has been added to the catalogue successfully!");
+    	alert.showAndWait();
+    	closeWindow();
+    	//System.out.println(newBook.toString());
     }
     
     @FXML

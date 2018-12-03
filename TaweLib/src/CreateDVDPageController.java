@@ -6,8 +6,10 @@ import javax.imageio.ImageIO;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -42,13 +44,31 @@ public class CreateDVDPageController {
 	private TextField language;
 
 	@FXML
+	private TextField numOfCopies;
+
+	@FXML
 	private TextField availavleSubtitles;
 
+	Alert alert = new Alert(AlertType.CONFIRMATION);
 	private BufferedImage image;
 
 	@FXML
 	private void clickOnConfirm(ActionEvent event) {
-
+		String title = this.title.getText();
+		int year = Integer.parseInt(this.year.getText());
+		String director = this.director.getText();
+		int numberOfCopies = Integer.parseInt(this.numOfCopies.getText());
+		int runtime = Integer.parseInt(this.runtime.getText());
+		String language = this.language.getText();
+		String availableSubtitles = this.availavleSubtitles.getText();
+		DVD newDVD = new DVD(title, year, image, numberOfCopies, director, runtime);
+		newDVD.setSubtitles(availableSubtitles);
+		newDVD.setLanguage(language);
+		SearchBrowse.getResources().add(newDVD);
+		alert.setHeaderText("Success!");
+		alert.setContentText("This DVD has been added to the catalogue successfully!");
+		alert.showAndWait();
+		closeWindow();
 	}
 
 	@FXML

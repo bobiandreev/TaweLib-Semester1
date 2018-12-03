@@ -43,6 +43,10 @@ public class DVD extends Resource {
 		//this.subtitles = subtitles;
 	}
 
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+
 	/**
 	 * Getter method for film director
 	 * 
