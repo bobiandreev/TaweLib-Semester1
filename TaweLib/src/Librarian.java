@@ -76,9 +76,9 @@ public class Librarian extends User {
 		int houseNumber = in.nextInt();
 		String streetName = in.nextLine();
 		String postcode = in.nextLine();
-		Image profilePic = null; // allow the librarian to choose an image
+		BufferedImage profilePic = null; // allow the librarian to choose an image
 		in.close();
-		usersList.add(new Librarian(username, name, mobileNumber, houseNumber, streetName, postcode, profilePic, postcode));
+		librarianList.add(new Librarian(username, name, mobileNumber, houseNumber, streetName, postcode, profilePic, postcode));
 	}
 	
 	private boolean checkLibrarianName(String username) {
