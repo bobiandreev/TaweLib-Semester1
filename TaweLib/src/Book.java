@@ -84,16 +84,6 @@ public class Book extends Resource {
 	}
 
 	/**
-	 * Setter method for book publisher
-	 * 
-	 * @param publisher
-	 *            String that holds the publisher of the book
-	 */
-	public void setPublisher(String publisher) {
-		this.publisher = publisher;
-	}
-
-	/**
 	 * Getter method for book ISBN
 	 * 
 	 * @return The ISBN of the book

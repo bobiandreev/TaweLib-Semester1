@@ -15,9 +15,6 @@ public class CreateLaptopPageController {
     private BorderPane createLaptopPane;
 
     @FXML
-    private TextField itemID;
-
-    @FXML
     private TextField title;
 
     @FXML
