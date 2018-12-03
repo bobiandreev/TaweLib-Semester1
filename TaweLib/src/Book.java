@@ -56,16 +56,6 @@ public class Book extends Resource {
 	}
 
 	/**
-	 * Setter method for author of the book
-	 * 
-	 * @param author
-	 *            String that holds name of author
-	 */
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-
-	/**
 	 * Getter method for genre of the book
 	 * 
 	 * @return Genre of the book

@@ -4,6 +4,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -28,6 +29,9 @@ public class BrowseAndSearchPageController {
 
     @FXML
     private CheckBox laptopCheckBox;
+
+    @FXML
+    private ListView<String> browseAndSearchList;
     
     Alert alert = new Alert(AlertType.INFORMATION);
 

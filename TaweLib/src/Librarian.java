@@ -7,7 +7,7 @@ public class Librarian extends User {
 
 	private String employmentDate;
 	private static int staffNumber = 0;
-	public static ArrayList<User> usersList = new ArrayList<>();
+	private static ArrayList<User> usersList = new ArrayList<>();
 	private static ArrayList<Librarian> librarianList = new ArrayList<>();
 	private Scanner in = new Scanner(System.in);
 
@@ -24,6 +24,10 @@ public class Librarian extends User {
 
 	public void setEmploymentDate(String employmentDate) {
 		this.employmentDate = employmentDate;
+	}
+
+	public static ArrayList<Librarian> getLibrarianList() {
+		return librarianList;
 	}
 
 	public int getStaffNumber() {
