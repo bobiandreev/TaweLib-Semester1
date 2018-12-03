@@ -11,29 +11,38 @@ import javafx.stage.Stage;
  */
 public class ReturnRequestPageController {
 
-    @FXML
-    private BorderPane returnRequestPane;
+    @FXML private BorderPane returnRequestPane;
 
-    @FXML
-    private ListView<?> returnRequestList;
-
-    @FXML
-    private void clickOnApprove(ActionEvent event) {
-
-    }
-
-    @FXML
-    private void clickOnNotApprove(ActionEvent event) {
+    @FXML private ListView<String> returnRequestList;
+    
+    /**
+   	 * Actions will be made when the user click on the button
+   	 * @param event
+   	 */
+    @FXML private void clickOnApprove(ActionEvent event) {
 
     }
     
-    @FXML
-    private void clickOnBack(ActionEvent event) {
+    /**
+   	 * Actions will be made when the user click on the button
+   	 * @param event
+   	 */
+    @FXML private void clickOnNotApprove(ActionEvent event) {
+
+    }
+    
+    /**
+   	 * Actions will be made when the user click on the button
+   	 * @param event
+   	 */
+    @FXML private void clickOnBack(ActionEvent event) {
     	closeWindow();
     }
     
-    @FXML
-    private void closeWindow() { // A method which close the window
+    /**
+   	 * Close the window.
+   	 */
+    @FXML private void closeWindow() { // A method which close the window
 		Stage stage = (Stage) returnRequestPane.getScene().getWindow();
 	    stage.close();
 	}

@@ -12,31 +12,40 @@ import javafx.stage.Stage;
  */
 public class UserFinePaymentPageController {
 
-    @FXML
-    private BorderPane userFinePaymentPane;
+    @FXML private BorderPane userFinePaymentPane;
 
-    @FXML
-    private Label showCurrentBalanceBox;
+    @FXML private Label showCurrentBalanceBox;
 
-    @FXML
-    private TextField payAmount;
-
-    @FXML
-    private void clickOnShowCurrentBalance(ActionEvent event) {
+    @FXML private TextField payAmount;
+    
+    /**
+   	 * Actions will be made when the user click on the button
+   	 * @param event
+   	 */  
+    @FXML private void clickOnShowCurrentBalance(ActionEvent event) {
     	showCurrentBalanceBox.setText(Integer.toString(0));
     }
     
-    @FXML
-    private void clickOnConfirm(ActionEvent event) {
+    /**
+   	 * Actions will be made when the user click on the button
+   	 * @param event
+   	 */  
+    @FXML private void clickOnConfirm(ActionEvent event) {
 
     }
-    @FXML
-    private void clickOnBack(ActionEvent event) {
+    
+    /**
+   	 * Actions will be made when the user click on the button
+   	 * @param event
+   	 */  
+    @FXML private void clickOnBack(ActionEvent event) {
     	closeWindow();
     }
     
-    @FXML
-    private void closeWindow() { // A method which close the window
+    /**
+   	 * Close the window.
+   	 */
+    @FXML private void closeWindow() { // A method which close the window
 		Stage stage = (Stage) userFinePaymentPane.getScene().getWindow();
 	    stage.close();
 	}

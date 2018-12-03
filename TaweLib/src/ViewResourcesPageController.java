@@ -16,39 +16,61 @@ import javafx.stage.Stage;
  */
 public class ViewResourcesPageController {
 
-    @FXML
-    private BorderPane viewResourcesPane;
+    @FXML private BorderPane viewResourcesPane;
 
-    @FXML
-    private ListView<?> viewResourcesList;
+    @FXML private ListView<String> viewResourcesList;
 
-    @FXML
-    private void clickOnEdit(ActionEvent event) {
+    /**
+   	 * Initialize the controller.
+   	 * The following happen in this order:
+   	 * 1) First an instance of the controller is created (the constructor is called),
+   	 * 2) Next the @FXML variables are bound to the GUI components.
+   	 * 3) Finally, this initialize method is called.
+   	 */
+    public void initialize() {
+
+	}
+    
+    /**
+   	 * Actions will be made when the user click on the button
+   	 * @param event
+   	 */ 
+    @FXML private void clickOnEdit(ActionEvent event) {
     	try {
+    		// Create a FXML loader for loading the Edit Country FXML file.
     		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ChooseEditTypePage.fxml"));
-			
+    		// Run the loader
     		BorderPane chooseEditType = (BorderPane) fxmlLoader.load();
-			
+    		// Create a scene based on the loaded FXML scene graph
     		Scene chooseEditTypeScene = new Scene(chooseEditType, Main.CHOOSEEDITTYPEPAGE_WIDTH, Main.CHOOSEEDITTYPEPAGE_HEIGHT);
-    		Stage chooseEditTypeStage = new Stage();
-			
+    		// Create a new stage (i.e., window) based on the edit scene
+    		Stage chooseEditTypeStage = new Stage();			
     		chooseEditTypeStage.setScene(chooseEditTypeScene);
     		chooseEditTypeStage.setTitle(Main.CHOOSEEDITTYPEPAGE_TITLE);
+    		// Make the stage a modal window.
+    		// This means that it must be closed before you can interact with any other window from this application.
     		chooseEditTypeStage.initModality(Modality.APPLICATION_MODAL);
+    		// Show the edit scene and wait for it to be closed
     		chooseEditTypeStage.showAndWait();
     	} catch (IOException e) {
 			e.printStackTrace();
+			// Quit the program (with an error code)
 			System.exit(-1);
 		}
     }
     
-    @FXML
-    private void clickOnBack(ActionEvent event) {
+    /**
+   	 * Actions will be made when the user click on the button
+   	 * @param event
+   	 */ 
+    @FXML private void clickOnBack(ActionEvent event) {
     	closeWindow();
     }
     
-    @FXML
-    private void closeWindow() { // A method which close the window
+    /**
+   	 * Close the window.
+   	 */
+    @FXML private void closeWindow() { // A method which close the window
 		Stage stage = (Stage) viewResourcesPane.getScene().getWindow();
 	    stage.close();
 	}
