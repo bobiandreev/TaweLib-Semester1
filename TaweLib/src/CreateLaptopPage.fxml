@@ -56,7 +56,7 @@
                         <Font size="15.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="thumbnailImage" />
+                  <Button fx:id="thumbnailImage" mnemonicParsing="false" onAction="#clickOnThumbnailImage" text="Select Image" />
                </children>
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="127.0" prefHeight="39.0" prefWidth="600.0" spacing="10.0">
