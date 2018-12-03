@@ -129,37 +129,27 @@ public class Librarian extends User {
 	/**
 	 * example method
 	 */
-	public static void approveBorrow(boolean flag) {
-		for (User user : usersList) {
-			if (user.getBalance() == 0) {
-				System.out.println(user.getName() + " has requested to borrow: ");
-
-				for (int i = 0; i < user.getRequestedItems().size(); i++) {
-					System.out.println(user.getRequestedItems().get(i));
-				}
-				System.out.println();
-				while (!user.getRequestedItems().isEmpty()) {
-					Copy currentCopy = user.getRequestedItems().get(0);
-					System.out.println("Do you approve: " + currentCopy + "?:	true/false");
-
+	public static void approveBorrow(boolean flag, Copy curCopy) {
+		User curUser = curCopy.getRequestedBy();
+			if (curUser.getBalance() == 0) {
 					if (flag /* approved */) {
-						user.getBorrowedItems().add(currentCopy); // adds to borrowed items list in user
-						currentCopy.borrow(); // sets the boolean borrow in copy to true
-						currentCopy.setRequestedBy(null);
-						currentCopy.setBorrowedBy(user); // sets the borrower of the copy to user
-						currentCopy.setDateBorrowed(Copy.getDateNow()); // sets date when copy is taken
-						currentCopy.removeRequest(); // sets the boolean request in copy to false
-						user.getRequestedItems().remove(0); // removes the copy from requested items list in user
+						curUser.getBorrowedItems().add(curCopy); // adds to borrowed items list in curUser
+						curCopy.borrow(); // sets the boolean borrow in copy to true
+						curCopy.setRequestedBy(null);
+						curCopy.setBorrowedBy(curUser); // sets the borrower of the copy to curUser
+						curCopy.setDateBorrowed(Copy.getDateNow()); // sets date when copy is taken
+						curCopy.removeRequest(); // sets the boolean request in copy to false
+						curUser.getRequestedItems().remove(0); // removes the copy from requested items list in curUser
 					} else /* not approved */ {
-						currentCopy.removeRequest();
-						user.getRequestedItems().remove(0);
+						curCopy.removeRequest();
+						curUser.getRequestedItems().remove(0);
 					}
-				}
+				
 			} else {
-				System.out.println(user.getUsername() + "cannot borrow " + "anything until he repays his fine.");
+				System.out.println(curUser.getUsername() + "cannot borrow " + "anything until he repays his fine.");
 			}
 
-		}
+		
 	}
 
 	public void loanACopy(String username, String title) {
