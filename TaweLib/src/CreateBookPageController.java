@@ -34,6 +34,7 @@ public class CreateBookPageController {
     
     // need to add genre
     // need to add number of copies
+    // need to add ISBN
 
     @FXML
     private void clickOnBack(ActionEvent event) {
