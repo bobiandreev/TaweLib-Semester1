@@ -22,8 +22,22 @@ public class LoanCopyPageController {
 
     @FXML
 	private void clickOnLoan(ActionEvent event) {
-
-    }
+    	String username = this.userID.getText();
+    	String item = this.item.getText();
+    	Librarian.loanACopy(username, item);
+    /*	User curUser = null;
+    	Resource curResource = null;
+    	for (User user: Librarian.getUsersList()) {
+    		if (username.equals(user.getUsername().toString())) {
+    			user = curUser;
+    		}
+    	}
+    	for (Resource resource: SearchBrowse.getResources()) {
+    		if(item.equals(resource.getTitle().toString())) {
+    			resource = curResource;
+    		}
+    		*/
+    	}
     
     @FXML
     private void clickOnBack(ActionEvent event) {

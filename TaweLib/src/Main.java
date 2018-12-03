@@ -169,7 +169,8 @@ public class Main extends Application {
 		Librarian lib1 = new Librarian("lib1", "lib 1", 54656597, 65, "Singleton Campus", "SA1 4FS", null, "24/07");
 		Librarian.getUsersList().add(user1);
 		Librarian.getLibrarianList().add(lib1);
-		user1.requestItem(resource1);
+		//user1.requestItem(resource1);
+		SearchBrowse.getResources().add(resource1);
 		launch(args);
 	}
 }

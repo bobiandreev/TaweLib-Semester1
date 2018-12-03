@@ -2,6 +2,8 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 
 public class Librarian extends User {
@@ -10,7 +12,7 @@ public class Librarian extends User {
 	private static int staffNumber = 0;
 	private static ArrayList<User> usersList = new ArrayList<>();
 	private static ArrayList<Librarian> librarianList = new ArrayList<>();
-	private Scanner in = new Scanner(System.in);
+	private static Scanner in = new Scanner(System.in);
 
 	public Librarian(String username, String name, int mobileNumber, int houseNumber, String streetName,
 			String postcode, BufferedImage profilePic, String employmentDate) {
@@ -53,7 +55,7 @@ public class Librarian extends User {
 		in.close();
 		usersList.add(new User(username, name, mobileNumber, houseNumber, streetName, postcode, profilePic));
 	}
-	
+
 	private boolean checkUserName(String username) {
 		for (int i = 0; i < usersList.size(); i++) {
 			if (username.equals(usersList.get(i).getUsername())) {
@@ -62,7 +64,7 @@ public class Librarian extends User {
 		}
 		return false;
 	}
-	
+
 	public void addLibrarian() {
 		boolean flag = false;
 		String username = "";
@@ -78,9 +80,10 @@ public class Librarian extends User {
 		String postcode = in.nextLine();
 		BufferedImage profilePic = null; // allow the librarian to choose an image
 		in.close();
-		librarianList.add(new Librarian(username, name, mobileNumber, houseNumber, streetName, postcode, profilePic, postcode));
+		librarianList.add(
+				new Librarian(username, name, mobileNumber, houseNumber, streetName, postcode, profilePic, postcode));
 	}
-	
+
 	private boolean checkLibrarianName(String username) {
 		for (int i = 0; i < librarianList.size(); i++) {
 			if (username.equals(librarianList.get(i).getUsername())) {
@@ -89,7 +92,6 @@ public class Librarian extends User {
 		}
 		return false;
 	}
-
 
 	public void addBook() {
 		String title = in.next();
@@ -152,7 +154,7 @@ public class Librarian extends User {
 		
 	}
 
-	public void loanACopy(String username, String title) {
+	public static void loanACopy(String username, String title) {
 		User curUser = null;
 		for (User user : usersList) {
 			if (user.getUsername().equals(username)) {
@@ -166,8 +168,8 @@ public class Librarian extends User {
 					curResource = resource;
 				}
 			}
-			Copy curCopy = Copy.checkCopy(curResource);
 			if (curResource != null) {
+				Copy curCopy = Copy.checkCopy(curResource);
 				if (curCopy != null) {
 					curUser.getBorrowedItems().add(curCopy); // adds to borrowed items list in user
 					curCopy.borrow(); // sets the boolean borrow in copy to true
@@ -175,15 +177,20 @@ public class Librarian extends User {
 					curCopy.setBorrowedBy(curUser); // sets the borrower of the copy to user
 					curCopy.setDateBorrowed(Copy.getDateNow()); // sets date when copy is taken
 					curCopy.removeRequest(); // sets the boolean request in copy to false
+					Alert alert = new Alert(AlertType.CONFIRMATION);
+					alert.setHeaderText("Great");
+					alert.setContentText(
+							curUser.getName().toString() + " has been given " + curResource.getTitle().toString());
+					alert.showAndWait();
 				} else {
 					curResource.getWaitingList().add(curUser);
 					SearchBrowse.reserved(curResource);
 				}
 			} else {
-				System.out.println("One of the inputs is wrong. Please re enter.");
-				username = in.next();
-				title = in.next();
-				loanACopy(username, title);
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setHeaderText("Error!");
+				alert.setContentText("One of the inputs is wrong! Please re enter!");
+				alert.showAndWait();
 			}
 
 		} else {
@@ -192,7 +199,7 @@ public class Librarian extends User {
 
 	}
 
-	public void receiveReturn(String username, String title) {
+	public static void receiveReturn(String username, String title) {
 		User curUser = null;
 		for (User user : usersList) {
 			if (user.getUsername().equals(username)) {
@@ -214,11 +221,16 @@ public class Librarian extends User {
 			curCopy.setDateRequestReturn(null);
 			curCopy.setDateBorrowed(null);
 			curCopy.setBorrowedBy(null);
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setHeaderText("Great");
+			alert.setContentText(
+					curUser.getName().toString() + " has been returned " + curCopy.getResource().getTitle().toString());
+			alert.showAndWait();
 		} else {
-			System.out.println("One of the inputs is wrong. Please re enter.");
-			username = in.next();
-			title = in.next();
-			receiveReturn(username, title);
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setHeaderText("Error!");
+			alert.setContentText("One of the inputs is wrong! Please re enter!");
+			alert.showAndWait();
 		}
 	}
 
@@ -235,7 +247,7 @@ public class Librarian extends User {
 			while (!user.getReturnRequests().isEmpty()) {
 				Copy currentCopy = user.getReturnRequests().get(0);
 				System.out.println("Do you approve: " + currentCopy + ("?	true/false"));
-				
+
 				if (flag /* approved */) {
 					checkOverdue(user, currentCopy);
 					currentCopy.returnCopy(); // sets boolean isBorrowed in copy to false
