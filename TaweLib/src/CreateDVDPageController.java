@@ -15,9 +15,6 @@ public class CreateDVDPageController {
     private BorderPane createDVDPane;
 
     @FXML
-    private TextField itemID;
-
-    @FXML
     private TextField title;
 
     @FXML
@@ -32,6 +29,11 @@ public class CreateDVDPageController {
     @FXML
     private TextField runtime;
 
+    @FXML
+    private TextField language;
+
+    @FXML
+    private TextField availavleSubtitles;
   
     @FXML
     private void clickOnConfirm(ActionEvent event) {

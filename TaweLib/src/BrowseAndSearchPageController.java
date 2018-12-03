@@ -29,9 +29,9 @@ public class BrowseAndSearchPageController {
 
     @FXML
     private CheckBox laptopCheckBox;
-    
+
     @FXML
-    private ListView<String> resourceList;
+    private ListView<String> browseAndSearchList;
     
     Alert alert = new Alert(AlertType.INFORMATION);
 

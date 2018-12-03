@@ -1,7 +1,12 @@
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -15,7 +20,7 @@ public class CreateBookPageController {
     private BorderPane createBookPane;
 
     @FXML
-    private TextField itemID; // dont need
+    private TextField itemID;
 
     @FXML
     private TextField title;
@@ -31,10 +36,6 @@ public class CreateBookPageController {
 
     @FXML
     private TextField publisher;
-    
-    // need to add genre
-    // need to add number of copies
-    // need to add ISBN
 
     @FXML
     private void clickOnBack(ActionEvent event) {
@@ -43,12 +44,22 @@ public class CreateBookPageController {
 
     @FXML
     private void clickOnConfirm(ActionEvent event) {
-    	String title = this.title.getText();
-    	String author = this.author.getText();
-    	String publisher = this.publisher.getText();
-    	int year = Integer.parseInt(this.year.getText());
-    	Book newBook = new Book(title, year, null, 5, author, publisher);
-    	SearchBrowse.addResource(newBook);
+    	try {
+    		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CreateBookPage.fxml"));
+			
+    		BorderPane createBook = (BorderPane) fxmlLoader.load();
+			
+    		Scene createBookScene = new Scene(createBook, Main.CREATEBOOKPAGE_WIDTH, Main.CREATEBOOKPAGE_HEIGHT);
+    		Stage createBookStage = new Stage();
+			
+    		createBookStage.setScene(createBookScene);
+    		createBookStage.setTitle(Main.CREATEBOOKPAGE_TITLE);
+    		createBookStage.initModality(Modality.APPLICATION_MODAL);
+    		createBookStage.showAndWait();
+    	} catch (IOException e) {
+			e.printStackTrace();
+			System.exit(-1);
+		}
     }
     
     @FXML
