@@ -14,6 +14,7 @@ public class User {
 	private String streetName;
 	private String postcode;
 	private BufferedImage profilePic;
+	private double currentFine;
 	private ArrayList<Copy> requestedItems = new ArrayList<>();
 	private ArrayList<Copy> borrowedItems = new ArrayList<>();
 	private ArrayList<Copy> returnRequests = new ArrayList<>();
@@ -132,20 +133,24 @@ public class User {
 		return houseNumber;
 	}
 
-	public int getBalance() {
-		int totalFine = 0;
+	public double getBalance() {
+		//int totalFine = 0;
 		int index = 0;
 		while (index != itemsToReturn.size()) {
 			Copy curCopy = itemsToReturn.get(index);
 			String dueDate = curCopy.sdf.format(curCopy.getDueDate());
 			String currentDate = curCopy.sdf.format(Copy.getDateNow());
 			Fine fine = new Fine(curCopy.getResource(), dueDate, currentDate);
-			totalFine += fine.getCurrentFine();
+			currentFine += fine.getCurrentFine();
 			index++;
 		}
-		return totalFine;
+		return currentFine;
 	}
 
+	public void payFine (double payment) {
+		currentFine = currentFine - payment;
+	}
+	
 	public void requestItem(Resource item) {
 		Copy freeCopy = Copy.checkCopy(item); // checks if there is a free copy
 		if (freeCopy == null) { // if there isnt a free copy user gets added to the waiting list for that

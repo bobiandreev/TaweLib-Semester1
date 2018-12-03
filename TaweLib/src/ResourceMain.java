@@ -42,7 +42,7 @@ public class ResourceMain {
 		user1.displayBorrowedItems();
 		user1.requestReturn(user1.getBorrowedItems().get(0));
 		user1.requestReturn(user1.getBorrowedItems().get(1));
-		lib1.approveReturn(true);
+		//lib1.approveReturn(true);
 		user1.displayMessages();
 		System.out.println(r2.getCopies().get(0).getCopyHistory());
 		System.out.println(r2.getCopies().get(1).getCopyHistory());
