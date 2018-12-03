@@ -11,30 +11,24 @@ import javafx.stage.Stage;
  */
 public class EditLaptopPageController {
 
-    @FXML private BorderPane editLaptopPane;
+    @FXML
+    private BorderPane editLaptopPane;
 
-    @FXML private TextField quantity;
-    
-    /**
-   	 * Actions will be made when the user click on the button
-   	 * @param event
-   	 */
-    @FXML private void clickOnConfirm(ActionEvent event) {
+    @FXML
+    private TextField quantity;
+
+    @FXML
+    private void clickOnConfirm(ActionEvent event) {
 
     }
     
-    /**
-   	 * Actions will be made when the user click on the button
-   	 * @param event
-   	 */
-    @FXML private void clickOnBack(ActionEvent event) {
+    @FXML
+    private void clickOnBack(ActionEvent event) {
     	closeWindow();
     }
     
-    /**
-   	 * Close the window.
-   	 */
-    @FXML private void closeWindow() { // A method which close the window
+    @FXML
+    private void closeWindow() { // A method which close the window
 		Stage stage = (Stage) editLaptopPane.getScene().getWindow();
 	    stage.close();
 	}
