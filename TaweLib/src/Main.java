@@ -170,7 +170,6 @@ public class Main extends Application {
 		Librarian.getUsersList().add(user1);
 		Librarian.getLibrarianList().add(lib1);
 		user1.requestItem(resource1);
-		user1.requestReturn(resource1.getCopies().get(0));
 		SearchBrowse.getResources().add(resource1);
 		launch(args);
 	}

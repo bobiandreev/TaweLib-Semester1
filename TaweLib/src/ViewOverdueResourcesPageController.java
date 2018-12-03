@@ -15,31 +15,15 @@ public class ViewOverdueResourcesPageController {
     private BorderPane overdueResourcesPane;
 
     @FXML
-    private ListView<String> overdueResourcesList;
-    
-    /**
-   	 * Initialize the controller.
-   	 * The following happen in this order:
-   	 * 1) First an instance of the controller is created (the constructor is called),
-   	 * 2) Next the @FXML variables are bound to the GUI components.
-   	 * 3) Finally, this initialize method is called.
-   	 */
-    public void initialize() {
+    private ListView<?> overdueResourcesList;
 
-	}
-    
-    /**
-   	 * Actions will be made when the user click on the button
-   	 * @param event
-   	 */  
-    @FXML private void clickOnBack(ActionEvent event) {
+    @FXML
+    private void clickOnBack(ActionEvent event) {
     	closeWindow();
     }
     
-    /**
-   	 * Close the window.
-   	 */
-    @FXML private void closeWindow() { // A method which close the window
+    @FXML
+    private void closeWindow() { // A method which close the window
 		Stage stage = (Stage) overdueResourcesPane.getScene().getWindow();
 	    stage.close();
 	}

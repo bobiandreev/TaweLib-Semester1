@@ -15,36 +15,33 @@ import javafx.stage.Stage;
  */
 public class BrowseAndSearchPageController {
 
-    @FXML private BorderPane browseAndSearchPane;
+    @FXML
+    private BorderPane browseAndSearchPane;
 
-    @FXML private TextField searchItem;
+    @FXML
+    private TextField searchItem;
     
-    @FXML private CheckBox bookCheckBox;
+    @FXML
+    private CheckBox bookCheckBox;
 
-    @FXML private CheckBox DVDCheckBox;
+    @FXML
+    private CheckBox DVDCheckBox;
 
-    @FXML private CheckBox laptopCheckBox;
+    @FXML
+    private CheckBox laptopCheckBox;
 
-    @FXML private ListView<String> browseAndSearchList;
+    @FXML
+    private ListView<String> browseAndSearchList;
     
     Alert alert = new Alert(AlertType.INFORMATION);
-    
-    /**
-	 * Actions will be made when the user click on the button
-	 * @param event
-	 */
-    @FXML private void clickOnSearch(ActionEvent event) {
-    	
+
+    @FXML
+    private void clickOnSearch(ActionEvent event) {
+
     }
     
-    /**
-	 * Initialize the controller.
-	 * The following happen in this order:
-	 * 1) First an instance of the controller is created (the constructor is called),
-	 * 2) Next the @FXML variables are bound to the GUI components.
-	 * 3) Finally, this initialize method is called.
-	 */
 	public void initialize() {
+		// Setup the me
 		bookCheckBox.setOnAction(e -> {
 			handleBookCheckBoxAction();
 		});
@@ -56,39 +53,25 @@ public class BrowseAndSearchPageController {
 		laptopCheckBox.setOnAction(e -> {
 			handleLaptopCheckBoxAction();
 		});
+
 	}
 	
-	/**
-	 * Handle the Book Check Box.
-	 * Searching filter of resources.
-	 */
     private void handleBookCheckBoxAction() {
 
     }
     
-	/**
-	 * Handle the DVD Check Box.
-	 * Searching filter of resources.
-	 */
     private void handleDVDCheckBoxAction() {
 
     	
    	}
     
-	/**
-	 * Handle the Laptop Check Box.
-	 * Searching filter of resources.
-	 */
     private void handleLaptopCheckBoxAction() {
 
     	
    	}
     
-    /**
-   	 * Actions will be made when the user click on the button
-   	 * @param event
-   	 */
-    @FXML private void clickOnCheckForCopies(ActionEvent event) {
+    @FXML
+    private void clickOnCheckForCopies(ActionEvent event) {
     	//if numberOfCopies > 0 
     	//alert.setHeaderText("Copies Available");
 		//alert.setContentText("There are /*+ numberOfCopies +*/ available.");
@@ -99,18 +82,12 @@ public class BrowseAndSearchPageController {
 		//alert.showAndWait();
     }
 
-    /**
-   	 * Actions will be made when the user click on the button
-   	 * @param event
-   	 */
-    @FXML private void clickOnBack(ActionEvent event) {
+    @FXML
+    private void clickOnBack(ActionEvent event) {
     	closeWindow();
     }
-    
-    /**
-	 * Close the window.
-	 */
-    @FXML private void closeWindow() {
+        
+    private void closeWindow() { // A method which close the window
  		Stage stage = (Stage) browseAndSearchPane.getScene().getWindow();
  	    stage.close();
  	}

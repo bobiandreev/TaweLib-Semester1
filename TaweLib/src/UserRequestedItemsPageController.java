@@ -12,22 +12,17 @@ import javafx.stage.Stage;
  */
 public class UserRequestedItemsPageController {
 
-    @FXML private BorderPane requestedItemsPane;
+    @FXML
+    private BorderPane requestedItemsPane;
 
-    @FXML private ListView<?> requestedItemsList;
-    
-    /**
-   	 * Actions will be made when the user click on the button
-   	 * @param event
-   	 */  
-    @FXML private void clickOnBack(ActionEvent event) {
+    @FXML
+    private ListView<?> requestedItemsList;
+
+    @FXML
+    void clickOnBack(ActionEvent event) {
     	closeWindow();
     }
-    
-    /**
-   	 * Close the window.
-   	 */
-    @FXML private void closeWindow() { // A method which close the window
+    private void closeWindow() { // A method which close the window
 		Stage stage = (Stage) requestedItemsPane.getScene().getWindow();
 	    stage.close();
 	}

@@ -12,34 +12,30 @@ import javafx.stage.Stage;
  */
 public class EditBookPageController {
 
-    @FXML private BorderPane editBookPane;
+    @FXML
+    private BorderPane editBookPane;
 
-    @FXML private TextField quantity;
+    @FXML
+    private TextField quantity;
 
-    @FXML private TextField genre;
+    @FXML
+    private TextField genre;
 
-    @FXML private TextField language;
+    @FXML
+    private TextField language;
     
-    /**
-   	 * Actions will be made when the user click on the button
-   	 * @param event
-   	 */
-    @FXML private void clickOnConfirm(ActionEvent event) {
+    @FXML
+    private void clickOnConfirm(ActionEvent event) {
 
     }
     
-    /**
-   	 * Actions will be made when the user click on the button
-   	 * @param event
-   	 */
-    @FXML private void clickOnBack(ActionEvent event) {
+    @FXML
+    private void clickOnBack(ActionEvent event) {
     	closeWindow();
     }
     
-    /**
-   	 * Close the window.
-   	 */
-    @FXML private void closeWindow() { // A method which close the window
+    @FXML
+    private void closeWindow() { // A method which close the window
 		Stage stage = (Stage) editBookPane.getScene().getWindow();
 	    stage.close();
 	}

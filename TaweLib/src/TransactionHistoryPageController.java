@@ -13,19 +13,14 @@ import javafx.stage.Stage;
  */
 public class TransactionHistoryPageController {
 
-    @FXML private BorderPane transactionHistoryPane;
+    @FXML
+    private BorderPane transactionHistoryPane;
 
-    @FXML private ListView<String> transactionHistoryList;
+    @FXML
+    private ListView<String> transactionHistoryList;
     
     private ArrayList<TransactionHistory> transactionHistories = new ArrayList<TransactionHistory>();
     
-    /**
-   	 * Initialize the controller.
-   	 * The following happen in this order:
-   	 * 1) First an instance of the controller is created (the constructor is called),
-   	 * 2) Next the @FXML variables are bound to the GUI components.
-   	 * 3) Finally, this initialize method is called.
-   	 */
     public void initialize() {
     	transactionHistories.add(new TransactionHistory("Ming", "Harry Potter and the Sorcerer's Stone"));
     	transactionHistories.add(new TransactionHistory("Andy", "Harry Potter and the Chamber of Secrets"));
@@ -40,28 +35,18 @@ public class TransactionHistoryPageController {
  
 	}
     
-    /**
-   	 * Actions will be made when the user click on the button
-   	 * @param event
-   	 */
     private void addToList() { //show it to interface
 		for (TransactionHistory t : transactionHistories) {
 			transactionHistoryList.getItems().add(t.getDescriptionForList());
 		}
 	}
     
-    /**
-   	 * Actions will be made when the user click on the button
-   	 * @param event
-   	 */
-    @FXML private void clickOnBack(ActionEvent event) {
+    @FXML
+    private void clickOnBack(ActionEvent event) {
     	closeWindow();
     }
     
-    /**
-   	 * Close the window.
-   	 */
-    @FXML private void closeWindow() { // A method which close the window
+    private void closeWindow() { // A method which close the window
 		Stage stage = (Stage) transactionHistoryPane.getScene().getWindow();
 	    stage.close();
 	}
