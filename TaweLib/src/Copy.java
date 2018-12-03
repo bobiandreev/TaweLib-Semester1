@@ -28,7 +28,7 @@ public class Copy {
 	public final int loanDurationDVD = 2;
 	public final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	private Date dueDate = null;
-	private static Date dateNow;
+	private static Date dateNow = new Date();
 	private ArrayList<String> copyHistory = new ArrayList<>();
 
 	/**
@@ -157,7 +157,7 @@ public class Copy {
 	 * @return the current date and time.
 	 */
 	public static Date getDateNow() {
-		return dateNow = new Date();
+		return dateNow;
 	}
 
 	/**
