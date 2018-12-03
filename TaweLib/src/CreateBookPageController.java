@@ -20,9 +20,6 @@ public class CreateBookPageController {
     private BorderPane createBookPane;
 
     @FXML
-    private TextField itemID;
-
-    @FXML
     private TextField title;
 
     @FXML
@@ -36,6 +33,18 @@ public class CreateBookPageController {
 
     @FXML
     private TextField publisher;
+    
+    @FXML
+    private TextField numberOfCopies;
+    
+    @FXML
+    private TextField genre;
+    
+    @FXML
+    private TextField language;
+    
+    @FXML
+    private TextField ISBN;
 
     @FXML
     private void clickOnBack(ActionEvent event) {
@@ -44,22 +53,19 @@ public class CreateBookPageController {
 
     @FXML
     private void clickOnConfirm(ActionEvent event) {
-    	try {
-    		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CreateBookPage.fxml"));
-			
-    		BorderPane createBook = (BorderPane) fxmlLoader.load();
-			
-    		Scene createBookScene = new Scene(createBook, Main.CREATEBOOKPAGE_WIDTH, Main.CREATEBOOKPAGE_HEIGHT);
-    		Stage createBookStage = new Stage();
-			
-    		createBookStage.setScene(createBookScene);
-    		createBookStage.setTitle(Main.CREATEBOOKPAGE_TITLE);
-    		createBookStage.initModality(Modality.APPLICATION_MODAL);
-    		createBookStage.showAndWait();
-    	} catch (IOException e) {
-			e.printStackTrace();
-			System.exit(-1);
-		}
+    	String title = this.title.getText();
+    	int year = Integer.parseInt(this.year.getText());
+    	String author = this.author.getText();
+    	String publisher = this.publisher.getText();
+    	int numberOfCopies = Integer.parseInt(this.numberOfCopies.getText());
+    	String genre = this.genre.getText();
+    	String language = this.language.getText();
+    	String ISBN = this.ISBN.getText();
+    	Book newBook = new Book (title, year, null, numberOfCopies, author, publisher);
+    	newBook.setGenre(genre);
+    	newBook.setISBN(ISBN);
+    	newBook.setLanguage(language);
+    	System.out.println(newBook.toString());
     }
     
     @FXML

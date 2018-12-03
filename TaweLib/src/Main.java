@@ -94,12 +94,12 @@ public class Main extends Application {
 	
 	// Constants for the Create Book Page window
 	public static final int CREATEBOOKPAGE_WIDTH = 600;
-	public static final int CREATEBOOKPAGE_HEIGHT = 400;
+	public static final int CREATEBOOKPAGE_HEIGHT = 550;
 	public static final String CREATEBOOKPAGE_TITLE = "Create Book Page";
 	
 	// Constants for the Create DVD Page window
 	public static final int CREATEDVDPAGE_WIDTH = 600;
-	public static final int CREATEDVDPAGE_HEIGHT = 400;
+	public static final int CREATEDVDPAGE_HEIGHT = 500;
 	public static final String CREATEDVDPAGE_TITLE = "Create DVD Page";
 	
 	// Constants for the Create Laptop Page window
