@@ -33,8 +33,15 @@ public class LoginController {
 
 	@FXML
 	private TextField librarianID; // Username of Librarian
-
+	private static User loggedUser;
 	Alert alert = new Alert(AlertType.ERROR);
+
+	
+	
+	
+	public static User getLoggedUser() {
+		return loggedUser;
+	}
 
 	@FXML
 	private void clickOnLoginAsUser(ActionEvent event) {
@@ -46,6 +53,7 @@ public class LoginController {
 		} else { // The case when the user fill in their userID correctly
 			for (int i = 0; i < Librarian.getUsersList().size(); i++) {
 				if (x.equals(Librarian.getUsersList().get(i).getUsername().toString())) {
+					loggedUser = Librarian.getUsersList().get(i);
 					try {
 						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("UserPage.fxml"));
 

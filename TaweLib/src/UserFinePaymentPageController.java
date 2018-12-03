@@ -1,7 +1,9 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -23,12 +25,19 @@ public class UserFinePaymentPageController {
 
     @FXML
     private void clickOnShowCurrentBalance(ActionEvent event) {
-    	showCurrentBalanceBox.setText(Integer.toString(0));
+    	//showCurrentBalanceBox.setText(Integer.toString(0));
+    	String fines = String.valueOf(LoginController.getLoggedUser().getBalance());
+		showCurrentBalanceBox.setText(fines);
     }
     
     @FXML
     private void clickOnConfirm(ActionEvent event) {
-
+    	int paymentAmount = Integer.parseInt(this.payAmount.getText());
+    	LoginController.getLoggedUser().payFine(paymentAmount);
+    	Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setHeaderText("Payment Successful");
+		alert.setContentText("You have paid " + paymentAmount + " pounds towards your fine.");
+		alert.showAndWait();
     }
     @FXML
     private void clickOnBack(ActionEvent event) {
