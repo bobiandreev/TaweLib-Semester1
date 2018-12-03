@@ -3,8 +3,6 @@
  * Class that creates a DVD object
  * @author Boris Andreev and Kyriacos Mosphilis
  */
-import java.awt.image.BufferedImage;
-
 import javafx.scene.image.Image;
 
 public class DVD extends Resource {
@@ -34,7 +32,7 @@ public class DVD extends Resource {
 	 * @param subtitles
 	 *            Subtitles available for the film
 	 */
-	public DVD(String title, int year, BufferedImage thumbnailImage, int numOfCopies,
+	public DVD(String title, int year, Image thumbnailImage, int numOfCopies,
 			String director, int runtime) {
 		super(title, year, thumbnailImage, numOfCopies);
 		this.director = director;

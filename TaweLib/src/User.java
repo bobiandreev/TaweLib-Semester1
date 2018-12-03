@@ -1,4 +1,3 @@
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -13,7 +12,7 @@ public class User {
 	private int houseNumber;
 	private String streetName;
 	private String postcode;
-	private BufferedImage profilePic;
+	private Image profilePic;
 	private ArrayList<Copy> requestedItems = new ArrayList<>();
 	private ArrayList<Copy> borrowedItems = new ArrayList<>();
 	private ArrayList<Copy> returnRequests = new ArrayList<>();
@@ -23,7 +22,7 @@ public class User {
 	private ArrayList<String> messages = new ArrayList<>();
 
 	public User(String username, String name, int mobileNumber, int houseNumber, String address, String postcode,
-			BufferedImage profilePic) {
+			Image profilePic) {
 		this.username = username;
 		this.name = name;
 		this.mobileNumber = mobileNumber;
@@ -34,11 +33,11 @@ public class User {
 		Collections.reverse(messages);
 	}
 
-	public BufferedImage getProfilePic() {
+	public Image getProfilePic() {
 		return profilePic;
 	}
 
-	public void setProfilePic(BufferedImage profilePic) {
+	public void setProfilePic(Image profilePic) {
 		this.profilePic = profilePic;
 	}
 

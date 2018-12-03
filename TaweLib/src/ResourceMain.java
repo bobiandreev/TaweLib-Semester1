@@ -5,8 +5,6 @@
  * @version 1.0
  */
 
-import java.awt.image.BufferedImage;
-
 import javafx.scene.image.Image;
 
 public class ResourceMain {
@@ -14,7 +12,7 @@ public class ResourceMain {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		BufferedImage image = null;
+		Image image = null;
 		Resource resource1 = new Resource("TLOTR", 2001, image, 30);
 		// resource1.toString();
 

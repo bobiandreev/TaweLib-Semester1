@@ -4,8 +4,6 @@
  * @author Boris Andreev and Kyriacos Mosphilis
  * @version 1.0
  */
-import java.awt.image.BufferedImage;
-
 import javafx.scene.image.Image;
 
 public class Book extends Resource {
@@ -33,14 +31,14 @@ public class Book extends Resource {
 	 *            Title of the book
 	 * @param year
 	 *            Year when book was released
-	 * @param image
+	 * @param thumbnailImage
 	 *            Cover image of the book
 	 * @param numOfCopies
 	 *            Number of copies for the book
 	 */
-	public Book(String title, int year,BufferedImage image, int numOfCopies,
+	public Book(String title, int year,Image thumbnailImage, int numOfCopies,
 			String author, String publisher) {
-		super(title, year, image, numOfCopies);
+		super(title, year, thumbnailImage, numOfCopies);
 		this.author = author;
 		this.publisher = publisher;
 	}
