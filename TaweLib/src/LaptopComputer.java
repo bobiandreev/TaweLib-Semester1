@@ -4,6 +4,8 @@
  * @author Boris Andreev and Kyriacos Mosphilis
  * @version 1.00
  */
+import java.awt.image.BufferedImage;
+
 import javafx.scene.image.Image;
 
 public class LaptopComputer extends Resource {
@@ -30,7 +32,7 @@ public class LaptopComputer extends Resource {
 	 * @param OS
 	 *            Operating system running on the laptop
 	 */
-	public LaptopComputer(String title, int year, Image thumbnailImage, int numOfCopies, String manufacturer,
+	public LaptopComputer(String title, int year, BufferedImage thumbnailImage, int numOfCopies, String manufacturer,
 			String model, String OS) {
 		super(title, year, thumbnailImage, numOfCopies);
 		this.manufacturer = manufacturer;
