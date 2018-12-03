@@ -34,7 +34,7 @@ public class ResourceMain {
 		Librarian lib1 = new Librarian("lib1", "lib 1", 54656597, 65, "Singleton Campus", "SA1 4FS", image, "24/07");
 
 		lib1.getUsersList().add(user1);
-		lib1.approveBorrow(true);
+		//lib1.approveBorrow(true);
 		user1.requestItem(r2);
 		r2.getCopies().get(0).setDueDate();
 		user1.displayBorrowedItems();
