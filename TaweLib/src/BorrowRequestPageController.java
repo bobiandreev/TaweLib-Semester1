@@ -15,11 +15,9 @@ import javafx.stage.Stage;
 public class BorrowRequestPageController {
 	private ArrayList<Copy> borrowRequestCopies = new ArrayList<>();
 
-	@FXML
-	private BorderPane borrowRequestPane;
+	@FXML private BorderPane borrowRequestPane;
 
-	@FXML
-	private ListView<String> borrowRequestList;
+	@FXML private ListView<String> borrowRequestList;
 
 	// private ArrayList<String> borrowRequests = new ArrayList<>();
 	// private ArrayList<> borrowRequests = new ArrayList<>();
