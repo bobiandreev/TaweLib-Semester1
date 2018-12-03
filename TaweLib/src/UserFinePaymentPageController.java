@@ -14,12 +14,11 @@ import javafx.stage.Stage;
  */
 public class UserFinePaymentPageController {
 
-    @FXML
-    private BorderPane userFinePaymentPane;
+    @FXML private BorderPane userFinePaymentPane;
 
-    @FXML
-    private Label showCurrentBalanceBox;
+    @FXML private Label showCurrentBalanceBox;
 
+<<<<<<< HEAD
     @FXML
     private TextField payAmount;
 
@@ -28,8 +27,19 @@ public class UserFinePaymentPageController {
     	//showCurrentBalanceBox.setText(Integer.toString(0));
     	String fines = String.valueOf(LoginController.getLoggedUser().getBalance());
 		showCurrentBalanceBox.setText(fines);
+=======
+    @FXML private TextField payAmount;
+    
+    /**
+   	 * Actions will be made when the user click on the button
+   	 * @param event
+   	 */  
+    @FXML private void clickOnShowCurrentBalance(ActionEvent event) {
+    	showCurrentBalanceBox.setText(Integer.toString(0));
+>>>>>>> branch 'master' of https://gitlab.com/ONixon/group-41.git
     }
     
+<<<<<<< HEAD
     @FXML
     private void clickOnConfirm(ActionEvent event) {
     	int paymentAmount = Integer.parseInt(this.payAmount.getText());
@@ -38,14 +48,28 @@ public class UserFinePaymentPageController {
 		alert.setHeaderText("Payment Successful");
 		alert.setContentText("You have paid " + paymentAmount + " pounds towards your fine.");
 		alert.showAndWait();
+=======
+    /**
+   	 * Actions will be made when the user click on the button
+   	 * @param event
+   	 */  
+    @FXML private void clickOnConfirm(ActionEvent event) {
+
+>>>>>>> branch 'master' of https://gitlab.com/ONixon/group-41.git
     }
-    @FXML
-    private void clickOnBack(ActionEvent event) {
+    
+    /**
+   	 * Actions will be made when the user click on the button
+   	 * @param event
+   	 */  
+    @FXML private void clickOnBack(ActionEvent event) {
     	closeWindow();
     }
     
-    @FXML
-    private void closeWindow() { // A method which close the window
+    /**
+   	 * Close the window.
+   	 */
+    @FXML private void closeWindow() { // A method which close the window
 		Stage stage = (Stage) userFinePaymentPane.getScene().getWindow();
 	    stage.close();
 	}

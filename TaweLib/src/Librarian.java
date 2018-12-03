@@ -128,35 +128,6 @@ public class Librarian extends User {
 		SearchBrowse.addResource(new LaptopComputer(title, year, thumbnailImage, numOfCopies, manufacturer, model, OS));
 	}
 
-	/**
-	 * example method
-	 */
-	public static void approveBorrow(boolean flag, Copy curCopy) {
-		User curUser = curCopy.getRequestedBy();
-			if (curUser.getBalance() == 0) {
-					if (flag /* approved */) {
-						curUser.getBorrowedItems().add(curCopy); // adds to borrowed items list in curUser
-						curCopy.borrow(); // sets the boolean borrow in copy to true
-						curCopy.setRequestedBy(null);
-						curCopy.setBorrowedBy(curUser); // sets the borrower of the copy to curUser
-						curCopy.setDateBorrowed(Copy.getDateNow()); // sets date when copy is taken
-						curCopy.removeRequest(); // sets the boolean request in copy to false
-						curUser.getRequestedItems().remove(0); // removes the copy from requested items list in curUser
-					} else /* not approved */ {
-						curCopy.removeRequest();
-						curUser.getRequestedItems().remove(0);
-					}
-				
-			} else {
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setHeaderText("Cannot Borrow");
-				alert.setContentText(curUser.getUsername() + "cannot borrow " + "anything until he repays his fine.");
-				alert.showAndWait();
-			}
-
-		
-	}
-
 	public static void loanACopy(String username, String title) {
 		User curUser = null;
 		for (User user : usersList) {
@@ -217,7 +188,6 @@ public class Librarian extends User {
 			}
 		}
 		if (curCopy != null) {
-			checkOverdue(curUser, curCopy);
 			curCopy.returnCopy(); // sets boolean isBorrowed in copy to false
 			curCopy.setDateReturned(Copy.getDateNow());
 			curCopy.setCopyHistory();
@@ -240,43 +210,51 @@ public class Librarian extends User {
 	/**
 	 * example method
 	 */
-	public static void approveReturn(boolean flag) {
-		for (User user : usersList) {
-			System.out.println(user.getName() + " has requested to return:");
-			for (int i = 0; i < user.getReturnRequests().size(); i++) {
-				System.out.println(user.getReturnRequests().get(i));
+	public static void approveBorrow(boolean flag, Copy curCopy) {
+		User curUser = curCopy.getRequestedBy();
+		if (curUser.getBalance() == 0) {
+			if (flag /* approved */) {
+				curUser.getBorrowedItems().add(curCopy); // adds to borrowed items list in curUser
+				curCopy.borrow(); // sets the boolean borrow in copy to true
+				curCopy.setRequestedBy(null);
+				curCopy.setBorrowedBy(curUser); // sets the borrower of the copy to curUser
+				curCopy.setDateBorrowed(Copy.getDateNow()); // sets date when copy is taken
+				curCopy.removeRequest(); // sets the boolean request in copy to false
+				curUser.getRequestedItems().remove(0); // removes the copy from requested items list in curUser
+			} else /* not approved */ {
+				curCopy.removeRequest();
+				curUser.getRequestedItems().remove(0);
 			}
-			System.out.println();
-			while (!user.getReturnRequests().isEmpty()) {
-				Copy currentCopy = user.getReturnRequests().get(0);
-				System.out.println("Do you approve: " + currentCopy + ("?	true/false"));
 
-				if (flag /* approved */) {
-					checkOverdue(user, currentCopy);
-					currentCopy.returnCopy(); // sets boolean isBorrowed in copy to false
-					currentCopy.setDateReturned(Copy.getDateNow());
-					currentCopy.setCopyHistory();
-					currentCopy.setDateRequestReturn(null);
-					currentCopy.setDateBorrowed(null);
-					currentCopy.setBorrowedBy(null);
-					user.getReturnRequests().remove(0); // removes copy from returnRequests list in user
-					user.getBorrowedItems().remove(0); // removes copy from borrowedItems list in user
-				} else { // not approved
-					currentCopy.setDateRequestReturn(null);
-					user.getReturnRequests().remove(0);
-				}
-			}
+		} else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setHeaderText("Cannot Borrow");
+			alert.setContentText(curUser.getUsername() + "cannot borrow " + "anything until he repays his fine.");
+			alert.showAndWait();
 		}
+
 	}
 
-	private static void checkOverdue(User user, Copy copy) {
-		if (copy.getDueDate() != null) {
-			String dueDate = copy.sdf.format(copy.getDueDate()); // need to change this and the next line
-			String currentDate = copy.sdf.format(Copy.getDateNow());
-			if (!dueDate.equals(currentDate)) {
-				Fine fine = new Fine(copy.getResource(), dueDate, currentDate);
-				System.out.println(user.getUsername() + "has to pay " + fine.getCurrentFine() + " for overdue item.");
-			}
+	/**
+	 * example method
+	 */
+	public static void approveReturn(boolean flag, Copy curCopy) {
+		User curUser = curCopy.getBorrowedBy();
+
+		if (flag /* approved */) {
+			curCopy.returnCopy(); // sets boolean isBorrowed in copy to false
+			curCopy.setDateReturned(Copy.getDateNow());
+			curCopy.setCopyHistory();
+			curCopy.setDateRequestReturn(null);
+			curCopy.setDateBorrowed(null);
+			curCopy.setBorrowedBy(null);
+			curUser.getReturnRequests().remove(0); // removes copy from returnRequests list in curUser
+			curUser.getBorrowedItems().remove(0); // removes copy from borrowedItems list in curUser
+		} else { // not approved
+			curCopy.setDateRequestReturn(null);
+			curUser.getReturnRequests().remove(0);
 		}
+
 	}
+
 }

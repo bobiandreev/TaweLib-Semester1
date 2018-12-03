@@ -17,14 +17,12 @@ public class ChooseEditTypePageController {
 
     @FXML
     private BorderPane chooseEditTypePane;
-
-    @FXML
-    private void clickOnBack(ActionEvent event) {
-    	closeWindow();
-    }
-
-    @FXML
-    private void clickOnBook(ActionEvent event) {
+    
+    /**
+   	 * Actions will be made when the user click on the button
+   	 * @param event
+   	 */
+    @FXML private void clickOnBook(ActionEvent event) {
     	try {
     		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EditBookPage.fxml"));
 			
@@ -42,9 +40,12 @@ public class ChooseEditTypePageController {
 			System.exit(-1);
 		}
     }
-
-    @FXML
-    private void clickOnDVD(ActionEvent event) {
+    
+    /**
+   	 * Actions will be made when the user click on the button
+   	 * @param event
+   	 */
+    @FXML private void clickOnDVD(ActionEvent event) {
     	try {
     		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EditDVDPage.fxml"));
 			
@@ -63,8 +64,11 @@ public class ChooseEditTypePageController {
 		}
     }
 
-    @FXML
-    private void clickOnLaptop(ActionEvent event) {
+    /**
+   	 * Actions will be made when the user click on the button
+   	 * @param event
+   	 */
+    @FXML private void clickOnLaptop(ActionEvent event) {
     	try {
     		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EditLaptopPage.fxml"));
 			
@@ -83,8 +87,18 @@ public class ChooseEditTypePageController {
 		}
     }
     
-    @FXML
-    private void closeWindow() { // A method which close the window
+    /**
+   	 * Actions will be made when the user click on the button
+   	 * @param event
+   	 */
+    @FXML private void clickOnBack(ActionEvent event) {
+    	closeWindow();
+    }
+    
+    /**
+	 * Close the window.
+	 */
+    @FXML private void closeWindow() { // A method which close the window
 		Stage stage = (Stage) chooseEditTypePane.getScene().getWindow();
 	    stage.close();
 	}

@@ -12,15 +12,19 @@ import javafx.stage.Stage;
  */
 public class UserBorrowItemsPageController {
 
-    @FXML
-    private BorderPane borrowItemsPane;
+    @FXML private BorderPane borrowItemsPane;
 
-    @FXML
-    private ListView<?> borrowItemsListborrowItemsList;
+    @FXML private ListView<?> borrowItemsListborrowItemsList;
 
-    @FXML
-    private Button confirmButton;
+    @FXML private Button confirmButton;
     
+    /**
+   	 * Initialize the controller.
+   	 * The following happen in this order:
+   	 * 1) First an instance of the controller is created (the constructor is called),
+   	 * 2) Next the @FXML variables are bound to the GUI components.
+   	 * 3) Finally, this initialize method is called.
+   	 */
     public void initialize() {
 		confirmButton.setOnAction(e -> { handleConfirmButtonAction(); });
 
@@ -31,13 +35,18 @@ public class UserBorrowItemsPageController {
 	
     }
     
-    @FXML
-    private void clickOnBack(ActionEvent event) {
+    /**
+   	 * Actions will be made when the user click on the button
+   	 * @param event
+   	 */  
+    @FXML private void clickOnBack(ActionEvent event) {
     	closeWindow();
     }
     
-    @FXML
-    private void closeWindow() { // A method which close the window
+    /**
+   	 * Close the window.
+   	 */
+    @FXML private void closeWindow() { // A method which close the window
 		Stage stage = (Stage) borrowItemsPane.getScene().getWindow();
 	    stage.close();
 	}

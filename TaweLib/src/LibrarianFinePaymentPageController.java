@@ -11,30 +11,38 @@ import javafx.stage.Stage;
  */
 public class LibrarianFinePaymentPageController {
 
-    @FXML
-    private BorderPane librarianFinePaymentPane;
+    @FXML private BorderPane librarianFinePaymentPane;
 
-    @FXML
-    private ListView<?> finePaymentList;
-
-    @FXML
-    private void clickOnApprove(ActionEvent event) {
-
-    }
-
-
-    @FXML
-    private void clickOnNotApprove(ActionEvent event) {
+    @FXML private ListView<?> finePaymentList;
+    
+    /**
+   	 * Actions will be made when the user click on the button
+   	 * @param event
+   	 */
+    @FXML private void clickOnApprove(ActionEvent event) {
 
     }
 
-    @FXML
-    private void clickOnBack(ActionEvent event) {
+    /**
+   	 * Actions will be made when the user click on the button
+   	 * @param event
+   	 */
+    @FXML private void clickOnNotApprove(ActionEvent event) {
+
+    }
+    
+    /**
+   	 * Actions will be made when the user click on the button
+   	 * @param event
+   	 */
+    @FXML private void clickOnBack(ActionEvent event) {
     	closeWindow();
     }
     
-    @FXML
-    private void closeWindow() { // A method which close the window
+    /**
+   	 * Close the window.
+   	 */
+    @FXML private void closeWindow() { // A method which close the window
 		Stage stage = (Stage) librarianFinePaymentPane.getScene().getWindow();
 	    stage.close();
 	}
