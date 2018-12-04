@@ -146,7 +146,11 @@ public class Main extends Application {
 	public static final int CHOOSEAVATARPAGE_WIDTH = 600;
 	public static final int CHOOSEAVATARPAGE_HEIGHT = 350;
 	public static final String CHOOSEAVATARPAGE_TITLE = "Message Page";
-				
+	
+	
+	public static final int CHOOSEPROFILEPAGE_WIDTH = 600;
+	public static final int CHOOSEPROFILEPAGE_HEIGHT = 350;
+	public static final String CHOOSEPROFILEPAGE_TITLE = "Profile Page";
 	public void start(Stage primaryStage) {
 		try {
 			// Load the main scene.

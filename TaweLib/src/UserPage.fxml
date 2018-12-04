@@ -76,6 +76,7 @@
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
                <children>
+                  <Button fx:id="profile" mnemonicParsing="false" onAction="#clickOnProfile" text="Profile" />
                   <Button alignment="CENTER" mnemonicParsing="false" onAction="#clickOnChooseAvatar" text="Choose Avatar" />
                </children>
             </HBox>

@@ -185,6 +185,27 @@ public class UserPageController {
 		}
     }
     
+    
+    @FXML
+    private void clickOnProfile(ActionEvent event) {
+    	try {
+    		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("UserProfilePage.fxml"));
+			
+    		BorderPane profileInfo = (BorderPane) fxmlLoader.load();
+			
+    		Scene profileInfoScene = new Scene(profileInfo, Main.CHOOSEAVATARPAGE_WIDTH, Main.CHOOSEAVATARPAGE_HEIGHT);
+    		Stage profileInfoStage = new Stage();
+			
+    		profileInfoStage.setScene(profileInfoScene);
+    		profileInfoStage.setTitle(Main.CHOOSEPROFILEPAGE_TITLE);
+    		profileInfoStage.initModality(Modality.APPLICATION_MODAL);
+    		profileInfoStage.showAndWait();
+    	} catch (IOException e) {
+			e.printStackTrace();
+			System.exit(-1);
+		}
+    }
+    
     @FXML
     private void clickOnLogOut(ActionEvent event) { 
     	closeWindow();

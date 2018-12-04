@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 /**
  * The CreateNewUserPageController Class which controls the CreateNewUserPage.fxml
- * @author Ming
+ * @author Ming and Boris
  *
  */
 public class CreateNewUserPageController {
