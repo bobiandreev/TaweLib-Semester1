@@ -14,8 +14,8 @@ public class Librarian extends User {
 	private static ArrayList<Librarian> librarianList = new ArrayList<>();
 	private static Scanner in = new Scanner(System.in);
 
-	public Librarian(String username, String name, int mobileNumber, int houseNumber, String streetName,
-			String postcode, BufferedImage profilePic, String employmentDate) {
+	public Librarian(String username, String name, String mobileNumber, String houseNumber, String streetName,
+			String postcode, Image profilePic, String employmentDate) {
 		super(username, name, mobileNumber, houseNumber, streetName, postcode, profilePic);
 		this.employmentDate = employmentDate;
 		staffNumber++;
@@ -37,26 +37,18 @@ public class Librarian extends User {
 		return staffNumber;
 	}
 
-	public void addUser() {
+	public static void addUser(User user) {
 		// this will be done with read lines
 		boolean flag = false;
 		String username = "";
 		do {
-			Scanner in = new Scanner(System.in);
-			username = in.nextLine();
+			username = user.getUsername();
 			flag = checkUserName(username);
 		} while (flag);
-		String name = in.nextLine();
-		int mobileNumber = in.nextInt();
-		int houseNumber = in.nextInt();
-		String streetName = in.nextLine();
-		String postcode = in.nextLine();
-		BufferedImage profilePic = null; // allow the librarian to choose an image
-		in.close();
-		usersList.add(new User(username, name, mobileNumber, houseNumber, streetName, postcode, profilePic));
+		usersList.add(user);
 	}
 
-	private boolean checkUserName(String username) {
+	private static boolean checkUserName(String username) {
 		for (int i = 0; i < usersList.size(); i++) {
 			if (username.equals(usersList.get(i).getUsername())) {
 				return true;
@@ -74,11 +66,11 @@ public class Librarian extends User {
 			flag = checkLibrarianName(username);
 		} while (flag);
 		String name = in.nextLine();
-		int mobileNumber = in.nextInt();
-		int houseNumber = in.nextInt();
+		String mobileNumber = in.nextLine();
+		String houseNumber = in.nextLine();
 		String streetName = in.nextLine();
 		String postcode = in.nextLine();
-		BufferedImage profilePic = null; // allow the librarian to choose an image
+		Image profilePic = null; // allow the librarian to choose an image
 		in.close();
 		librarianList.add(
 				new Librarian(username, name, mobileNumber, houseNumber, streetName, postcode, profilePic, postcode));
@@ -148,17 +140,21 @@ public class Librarian extends User {
 					curUser.getBorrowedItems().add(curCopy); // adds to borrowed items list in user
 					curCopy.borrow(); // sets the boolean borrow in copy to true
 					curCopy.setRequestedBy(null);
+					curCopy.setDateRequested(null);
+					curCopy.setReservedFor(null);
 					curCopy.setBorrowedBy(curUser); // sets the borrower of the copy to user
 					curCopy.setDateBorrowed(Copy.getDateNow()); // sets date when copy is taken
 					curCopy.removeRequest(); // sets the boolean request in copy to false
-					Alert alert = new Alert(AlertType.CONFIRMATION);
-					alert.setHeaderText("Great");
-					alert.setContentText(
-							curUser.getName().toString() + " has been given " + curResource.getTitle().toString());
-					alert.showAndWait();
+					//Alert alert = new Alert(AlertType.CONFIRMATION);
+					//alert.setHeaderText("Great");
+					//alert.setContentText(
+					//		curUser.getName().toString() + " has been given " + curResource.getTitle().toString());
+					//alert.showAndWait();
+					System.out.println("a");
 				} else {
 					curResource.getWaitingList().add(curUser);
 					SearchBrowse.reserved(curResource);
+					curResource.getWaitingList().remove(curUser);
 				}
 			} else {
 				Alert alert = new Alert(AlertType.ERROR);

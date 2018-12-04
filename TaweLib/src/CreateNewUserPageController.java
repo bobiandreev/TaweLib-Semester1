@@ -1,12 +1,14 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 /**
  * The CreateNewUserPageController Class which controls the CreateNewUserPage.fxml
- * @author Ming
+ * @author Ming and Boris
  *
  */
 public class CreateNewUserPageController {
@@ -39,7 +41,17 @@ public class CreateNewUserPageController {
 
     @FXML
     private void clickOnConfirm(ActionEvent event) {
-
+    	String username = this.userID.getText();
+    	String name = this.name.getText();
+    	String mobileNumber = this.mobileNumber.getText();
+    	String houseNumber = this.houseNumber.getText();
+    	String streetName = this.streetName.getText();
+    	String postcode = this.postcode.getText();
+    	Librarian.addUser(new User(username, name, mobileNumber, houseNumber, streetName, postcode, null));
+    	Alert alert = new Alert(AlertType.CONFIRMATION);
+    	alert.setHeaderText("Done");
+		alert.setContentText("New user created!");
+		alert.showAndWait();
     }
     
     @FXML

@@ -18,7 +18,7 @@ public class Main extends Application {
 	
 	// Constants for the User Page window
 	public static final int USER_PAGE_WIDTH = 800;
-	public static final int USER_PAGE_HEIGHT = 600;
+	public static final int USER_PAGE_HEIGHT = 700;
 	public static final String USER_PAGE_TITLE = "User Page";
 	
 	// Constants for the Borrowed Items Page window
@@ -138,7 +138,7 @@ public class Main extends Application {
 	public static final String RECIEVERETURNPAGE_TITLE = "Recieve Return Page";
 	
 	// Constants for the Message Page window
-	public static final int MESSAGEPAGE_WIDTH = 600;
+	public static final int MESSAGEPAGE_WIDTH = 700;
 	public static final int MESSAGEPAGE_HEIGHT = 400;
 	public static final String MESSAGEPAGE_TITLE = "Message Page";
 	
@@ -146,7 +146,11 @@ public class Main extends Application {
 	public static final int CHOOSEAVATARPAGE_WIDTH = 600;
 	public static final int CHOOSEAVATARPAGE_HEIGHT = 350;
 	public static final String CHOOSEAVATARPAGE_TITLE = "Message Page";
-				
+	
+	
+	public static final int CHOOSEPROFILEPAGE_WIDTH = 600;
+	public static final int CHOOSEPROFILEPAGE_HEIGHT = 350;
+	public static final String CHOOSEPROFILEPAGE_TITLE = "Profile Page";
 	public void start(Stage primaryStage) {
 		try {
 			// Load the main scene.
@@ -164,19 +168,28 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
+
 		Resource resource1 = new Book("TLOTR", 2001, null, 3, "Tolkien", "Springer");
 		Resource resource2 = new LaptopComputer("XPS", 2018, null, 3, "Dell", "XPS", "Windows");
 		Resource resource3 = new DVD("TLOTR", 2001, null, 10, "Peter Jackson", 180);
 				//("TLOTR", 2001, null, 30);
-		User user1 = new User("user1", "user 1", 05454645, 56, "Bay Campus", "SA1 8PP", null);
-		Librarian lib1 = new Librarian("lib1", "lib 1", 54656597, 65, "Singleton Campus", "SA1 4FS", null, "24/07");
+		User user1 = new User("user1", "user 1", "05454645", "56", "Bay Campus", "SA1 8PP", null);
+		User user2 = new User("user2", "user 1", "05454645", "56", "Bay Campus", "SA1 8PP", null);
+		Librarian lib1 = new Librarian("lib1", "lib 1", "54656597", "65", "Singleton Campus", "SA1 4FS", null, "24/07");
 		Librarian.getUsersList().add(user1);
+		Librarian.getUsersList().add(user2);
 		Librarian.getLibrarianList().add(lib1);
 		user1.requestItem(resource1);
 		user1.requestReturn(resource1.getCopies().get(0));
 		SearchBrowse.addResource(resource1);
 		SearchBrowse.addResource(resource2);
 		SearchBrowse.addResource(resource3);
+		SearchBrowse.getResources().add(resource1);		
+		//Librarian.loanACopy("user2", "TLOTR");
+		//Librarian.loanACopy("user1", "TLOTR");
+		//Librarian.loanACopy("user1", "TLOTR");
+		//Librarian.loanACopy("user1", "TLOTR");
+		//Librarian.loanACopy("user1", "TLOTR");
 		launch(args);
 	}
 }

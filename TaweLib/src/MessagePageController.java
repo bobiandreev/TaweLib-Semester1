@@ -10,7 +10,13 @@ public class MessagePageController {
     private BorderPane messagePane;
 
     @FXML
-    private ListView<?> messageList;
+    private ListView<String> messageList;
+    
+    public void initialize() {
+    	for (int i = 0; i < LoginController.getLoggedUser().getMessages().size(); i++) {
+    		messageList.getItems().add(LoginController.getLoggedUser().getMessages().get(i));
+    	}
+    }
 
     @FXML
     private void clickOnBack(ActionEvent event) {

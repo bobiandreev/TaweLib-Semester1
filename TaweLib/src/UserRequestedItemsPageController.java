@@ -16,7 +16,20 @@ public class UserRequestedItemsPageController {
     private BorderPane requestedItemsPane;
 
     @FXML
-    private ListView<?> requestedItemsList;
+    private ListView<String> requestedItemsList;
+    
+    private User curUser;
+    
+    public void initialize() {
+    	curUser = LoginController.getLoggedUser();
+    	for(Copy copy: curUser.getRequestedItems()) {
+    		//returnRequestCopies.add(copy);
+    		Resource copyOf = copy.getResource();
+    		String copyProperties = (copyOf.getTitle() + ", " + copyOf.getYear()
+    		+ ". You have requested this on " + copy.getDateRequested());
+    		requestedItemsList.getItems().add(copyProperties);
+    	}
+    }
 
     @FXML
     void clickOnBack(ActionEvent event) {

@@ -9,22 +9,23 @@ public class User {
 
 	private String username;
 	private String name;
-	private int mobileNumber;
-	private int houseNumber;
+	private String mobileNumber;
+	private String houseNumber;
 	private String streetName;
 	private String postcode;
-	private BufferedImage profilePic;
+	private Image profilePic;
 	private double currentFine;
 	private ArrayList<Copy> requestedItems = new ArrayList<>();
 	private ArrayList<Copy> borrowedItems = new ArrayList<>();
 	private ArrayList<Copy> returnRequests = new ArrayList<>();
+	private ArrayList<Copy> reservedFor = new ArrayList<>();
 	private ArrayList<Copy> itemsToReturn = new ArrayList<>();
 	private ArrayList<Date> paymentDates = new ArrayList<>();
 	private ArrayList<Double> paymentAmounts = new ArrayList<>();
 	private ArrayList<String> messages = new ArrayList<>();
 
-	public User(String username, String name, int mobileNumber, int houseNumber, String address, String postcode,
-			BufferedImage image) {
+	public User(String username, String name, String mobileNumber, String houseNumber, String address, String postcode,
+			Image image) {
 		this.username = username;
 		this.name = name;
 		this.mobileNumber = mobileNumber;
@@ -35,11 +36,16 @@ public class User {
 		Collections.reverse(messages);
 	}
 
-	public BufferedImage getProfilePic() {
+	public Image getProfilePic() {
 		return profilePic;
 	}
 
-	public void setProfilePic(BufferedImage profilePic) {
+	
+	public ArrayList<Copy> getReservedFor() {
+		return reservedFor;
+	}
+
+	public void setProfilePic(Image profilePic) {
 		this.profilePic = profilePic;
 	}
 
@@ -51,11 +57,11 @@ public class User {
 		return name;
 	}
 
-	public int getMobileNumber() {
+	public String getMobileNumber() {
 		return mobileNumber;
 	}
 
-	public void setMobileNumber(int mobileNumber) {
+	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
 
@@ -67,7 +73,7 @@ public class User {
 		this.streetName = streetName;
 	}
 
-	public void setHouseNumber(int houseNumber) {
+	public void setHouseNumber(String houseNumber) {
 		this.houseNumber = houseNumber;
 	}
 
@@ -129,7 +135,7 @@ public class User {
 		return borrowedItems;
 	}
 
-	public int getHouseNumber() {
+	public String getHouseNumber() {
 		return houseNumber;
 	}
 
@@ -161,6 +167,7 @@ public class User {
 		} else { // if there is a free copy it gets added to the users requested items list and
 					// its variables are set to requested
 			freeCopy.requestCopy(this);
+			freeCopy.setDateRequested(Copy.getDateNow());
 			requestedItems.add(freeCopy);
 		}
 	}
@@ -171,9 +178,13 @@ public class User {
 		}
 	}
 
+	public ArrayList<String> getMessages() {
+		return messages;
+	}
+
 	public void displayMessages() {
 		for (int i = 0; i < messages.size(); i++) {
-			System.out.println(messages.get(i));
+			//System.out.println(messages.get(i));
 		}
 	}
 

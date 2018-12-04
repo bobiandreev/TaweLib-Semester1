@@ -350,6 +350,12 @@ public class Copy {
 		isReserved = false;
 	}
 	
+	
+	
+	public void setReserved(boolean isReserved) {
+		this.isReserved = isReserved;
+	}
+
 	@Override
 	public String toString() {
 		return "Copy number " + this.getCopyId() + " of resource " + this.getResource().getTitle() + ".";

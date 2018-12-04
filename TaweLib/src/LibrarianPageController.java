@@ -147,17 +147,17 @@ import javafx.stage.Stage;
     @FXML
     private void clickOnFinePayment(ActionEvent event) {
     	try {
-    		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LibrarianFinePaymentPage.fxml"));
+    		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FinePaymentPage.fxml"));
 			
-    		BorderPane librarianFinePayment = (BorderPane) fxmlLoader.load();
+    		BorderPane FinePayment = (BorderPane) fxmlLoader.load();
 			
-    		Scene librarianFinePaymentScene = new Scene(librarianFinePayment, Main.LIBRARIAN_FINEPAYMENTPAGE_WIDTH, Main.LIBRARIAN_FINEPAYMENTPAGE_HEIGHT);
-    		Stage librarianFinePaymentStage = new Stage();
+    		Scene FinePaymentScene = new Scene(FinePayment, Main.LIBRARIAN_FINEPAYMENTPAGE_WIDTH, Main.LIBRARIAN_FINEPAYMENTPAGE_HEIGHT);
+    		Stage FinePaymentStage = new Stage();
 			
-    		librarianFinePaymentStage.setScene(librarianFinePaymentScene);
-    		librarianFinePaymentStage.setTitle(Main.LIBRARIAN_FINEPAYMENTPAGE_TITLE);
-    		librarianFinePaymentStage.initModality(Modality.APPLICATION_MODAL);
-    		librarianFinePaymentStage.showAndWait();
+    		FinePaymentStage.setScene(FinePaymentScene);
+    		FinePaymentStage.setTitle(Main.LIBRARIAN_FINEPAYMENTPAGE_TITLE);
+    		FinePaymentStage.initModality(Modality.APPLICATION_MODAL);
+    		FinePaymentStage.showAndWait();
     	} catch (IOException e) {
 			e.printStackTrace();
 			System.exit(-1);

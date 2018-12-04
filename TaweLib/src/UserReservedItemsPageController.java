@@ -16,12 +16,20 @@ public class UserReservedItemsPageController {
     private BorderPane reservedItemsPane;
 
     @FXML
-    private ListView<?> reservedItemsList;
+    private ListView<String> reservedItemsList = new ListView<>();
 
-    private void handleConfirmButtonAction() {
-	// TODO Auto-generated method stub
-	
-    }  
+    private User curUser;
+    
+    public void initialize() {
+    	curUser = LoginController.getLoggedUser();
+    	for(Copy copy: curUser.getReservedFor()) {
+    		//returnRequestCopies.add(copy);
+    		Resource copyOf = copy.getResource();
+    		String copyProperties = (copyOf.getTitle() + ", " + copyOf.getYear()
+    		+ ". This has been reserved for you on " + copy.getDateRequested());
+    		reservedItemsList.getItems().add(copyProperties);
+    	}
+    }
     
     @FXML
     void clickOnBack(ActionEvent event) {
