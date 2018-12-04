@@ -17,7 +17,7 @@ public class Resource {
 	 *            Static id which is updated every time a new resource is created.
 	 */
 	private static int id = 0;
-
+	private int curResourceID = 0;
 	private String title;
 	private int year;
 	private BufferedImage thumbnailImage;
@@ -40,6 +40,7 @@ public class Resource {
 	 */
 	public Resource(String title, int year, BufferedImage image, int numOfCopies) {
 		id++;
+		this.curResourceID = id;
 		this.title = title;
 		this.year = year;
 		this.thumbnailImage = image;
@@ -53,7 +54,7 @@ public class Resource {
 	 * @return resource id
 	 */
 	public int getid() {
-		return id;
+		return curResourceID;
 	}
 
 	/**

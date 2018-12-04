@@ -13,7 +13,6 @@ import java.util.Date;
 public class SearchBrowse {
 
 	private static ArrayList<Resource> resourceList = new ArrayList<>();
-	private static ArrayList<Resource> tempList = new ArrayList<>();
 
 	/**
 	 * Method that is used for adding new resources.
@@ -48,7 +47,6 @@ public class SearchBrowse {
 			}
 			count++;
 		} while (count != resourceList.size());
-		tempList = bookList;
 		return bookList;
 	}
 
@@ -66,7 +64,6 @@ public class SearchBrowse {
 			}
 			count++;
 		} while (count != resourceList.size());
-		tempList = dvdList;
 		return dvdList;
 	}
 
@@ -84,7 +81,6 @@ public class SearchBrowse {
 			}
 			count++;
 		} while (count != resourceList.size());
-		tempList = laptopList;
 		return laptopList;
 	}
 
@@ -95,14 +91,7 @@ public class SearchBrowse {
 	 *            Is used to search for corresponding resources.
 	 * @return A list containing all the resources that have been filtered.
 	 */
-	public static ArrayList<Resource> search(String keyword) {
-		ArrayList<Resource> currentList;
-		if (!tempList.isEmpty()) {
-			currentList = tempList;
-		} else {
-			currentList = resourceList;
-		}
-
+	public static ArrayList<Resource> search(String keyword, ArrayList<Resource> currentList) {
 		ArrayList<Resource> list = new ArrayList<>();
 		int count = 0;
 		char[] keywordList = keyword.toLowerCase().toCharArray();
@@ -119,10 +108,6 @@ public class SearchBrowse {
 		} while (count != currentList.size());
 
 		return list;
-	}
-
-	public static void resetTempList() {
-		tempList.clear();
 	}
 
 	/**

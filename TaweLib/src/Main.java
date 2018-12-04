@@ -164,14 +164,19 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
-		Resource resource1 = new Resource("TLOTR", 2001, null, 30);
+		Resource resource1 = new Book("TLOTR", 2001, null, 3, "Tolkien", "Springer");
+		Resource resource2 = new LaptopComputer("XPS", 2018, null, 3, "Dell", "XPS", "Windows");
+		Resource resource3 = new DVD("TLOTR", 2001, null, 10, "Peter Jackson", 180);
+				//("TLOTR", 2001, null, 30);
 		User user1 = new User("user1", "user 1", 05454645, 56, "Bay Campus", "SA1 8PP", null);
 		Librarian lib1 = new Librarian("lib1", "lib 1", 54656597, 65, "Singleton Campus", "SA1 4FS", null, "24/07");
 		Librarian.getUsersList().add(user1);
 		Librarian.getLibrarianList().add(lib1);
 		user1.requestItem(resource1);
 		user1.requestReturn(resource1.getCopies().get(0));
-		SearchBrowse.getResources().add(resource1);
+		SearchBrowse.addResource(resource1);
+		SearchBrowse.addResource(resource2);
+		SearchBrowse.addResource(resource3);
 		launch(args);
 	}
 }
