@@ -148,6 +148,8 @@ public class Librarian extends User {
 					curUser.getBorrowedItems().add(curCopy); // adds to borrowed items list in user
 					curCopy.borrow(); // sets the boolean borrow in copy to true
 					curCopy.setRequestedBy(null);
+					curCopy.setDateRequested(null);
+					curCopy.setReservedFor(null);
 					curCopy.setBorrowedBy(curUser); // sets the borrower of the copy to user
 					curCopy.setDateBorrowed(Copy.getDateNow()); // sets date when copy is taken
 					curCopy.removeRequest(); // sets the boolean request in copy to false
