@@ -18,6 +18,7 @@ public class User {
 	private ArrayList<Copy> requestedItems = new ArrayList<>();
 	private ArrayList<Copy> borrowedItems = new ArrayList<>();
 	private ArrayList<Copy> returnRequests = new ArrayList<>();
+	private ArrayList<Copy> reservedFor = new ArrayList<>();
 	private ArrayList<Copy> itemsToReturn = new ArrayList<>();
 	private ArrayList<Date> paymentDates = new ArrayList<>();
 	private ArrayList<Double> paymentAmounts = new ArrayList<>();
@@ -37,6 +38,11 @@ public class User {
 
 	public BufferedImage getProfilePic() {
 		return profilePic;
+	}
+
+	
+	public ArrayList<Copy> getReservedFor() {
+		return reservedFor;
 	}
 
 	public void setProfilePic(BufferedImage profilePic) {

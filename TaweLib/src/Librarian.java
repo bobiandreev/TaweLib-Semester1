@@ -153,14 +153,17 @@ public class Librarian extends User {
 					curCopy.setBorrowedBy(curUser); // sets the borrower of the copy to user
 					curCopy.setDateBorrowed(Copy.getDateNow()); // sets date when copy is taken
 					curCopy.removeRequest(); // sets the boolean request in copy to false
-					Alert alert = new Alert(AlertType.CONFIRMATION);
-					alert.setHeaderText("Great");
-					alert.setContentText(
-							curUser.getName().toString() + " has been given " + curResource.getTitle().toString());
-					alert.showAndWait();
+					//Alert alert = new Alert(AlertType.CONFIRMATION);
+					//alert.setHeaderText("Great");
+					//alert.setContentText(
+					//		curUser.getName().toString() + " has been given " + curResource.getTitle().toString());
+					//alert.showAndWait();
+					System.out.println("a");
 				} else {
 					curResource.getWaitingList().add(curUser);
 					SearchBrowse.reserved(curResource);
+					
+					curResource.getWaitingList().remove(curUser);
 				}
 			} else {
 				Alert alert = new Alert(AlertType.ERROR);
