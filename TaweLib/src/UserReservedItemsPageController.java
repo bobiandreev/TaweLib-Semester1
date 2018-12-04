@@ -16,7 +16,7 @@ public class UserReservedItemsPageController {
     private BorderPane reservedItemsPane;
 
     @FXML
-    private ListView<String> reservedItemsList;
+    private ListView<String> reservedItemsList = new ListView<>();
 
     private User curUser;
     

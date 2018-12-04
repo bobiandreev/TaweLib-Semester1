@@ -162,7 +162,6 @@ public class Librarian extends User {
 				} else {
 					curResource.getWaitingList().add(curUser);
 					SearchBrowse.reserved(curResource);
-					
 					curResource.getWaitingList().remove(curUser);
 				}
 			} else {
