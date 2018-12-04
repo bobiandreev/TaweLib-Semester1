@@ -138,7 +138,7 @@ public class Main extends Application {
 	public static final String RECIEVERETURNPAGE_TITLE = "Recieve Return Page";
 	
 	// Constants for the Message Page window
-	public static final int MESSAGEPAGE_WIDTH = 600;
+	public static final int MESSAGEPAGE_WIDTH = 700;
 	public static final int MESSAGEPAGE_HEIGHT = 400;
 	public static final String MESSAGEPAGE_TITLE = "Message Page";
 	

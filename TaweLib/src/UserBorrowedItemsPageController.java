@@ -15,7 +15,22 @@ public class UserBorrowedItemsPageController {
     private BorderPane borrowedItemsPane;
 
     @FXML
-    private ListView<?> borrowedItemsList;
+    private ListView<String> borrowedItemsList;
+    
+    private User curUser;
+    
+    public void initialize() {
+    	curUser = LoginController.getLoggedUser();
+    	for(Copy copy: curUser.getBorrowedItems()) {
+    		Resource copyOf = copy.getResource();
+    		String copyProperties = (copyOf.getTitle() + ", " + copyOf.getYear()
+    		+ ". You have borrowed this on " + copy.getDateBorrowed()); 
+    		if (copy.getDueDate() != null) {
+    			copyProperties += ("\nThis item should be returned by " + copy.getDueDateString());
+    		}
+    		borrowedItemsList.getItems().add(copyProperties);
+    	}
+    }
 
     @FXML
     private void clickOnBack(ActionEvent event) {
