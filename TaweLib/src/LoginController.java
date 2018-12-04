@@ -36,9 +36,6 @@ public class LoginController {
 	private static User loggedUser;
 	Alert alert = new Alert(AlertType.ERROR);
 
-	
-	
-	
 	public static User getLoggedUser() {
 		return loggedUser;
 	}
@@ -52,7 +49,7 @@ public class LoginController {
 			alert.showAndWait();
 		} else { // The case when the user fill in their userID correctly
 			for (int i = 0; i < Librarian.getUsersList().size(); i++) {
-				if (x.equals(Librarian.getUsersList().get(i).getUsername().toString())) {
+				if (x.equals(Librarian.getUsersList().get(i).getUsername())) {
 					loggedUser = Librarian.getUsersList().get(i);
 					try {
 						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("UserPage.fxml"));
@@ -88,7 +85,7 @@ public class LoginController {
 			alert.showAndWait();
 		} else { // The case when the librarian fill in their LibrarianID correctly
 			for (int i = 0; i < Librarian.getLibrarianList().size(); i++) {
-				if (m.equals(Librarian.getLibrarianList().get(i).getUsername().toString())) {
+				if (m.equals(Librarian.getLibrarianList().get(i).getUsername())) {
 					try {
 						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LibrarianPage.fxml"));
 
