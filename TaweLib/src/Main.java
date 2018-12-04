@@ -165,18 +165,18 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		Resource resource1 = new Resource("TLOTR", 2001, null, 3);
-		User user1 = new User("user1", "user 1", 05454645, 56, "Bay Campus", "SA1 8PP", null);
-		User user2 = new User("user2", "user 1", 05454645, 56, "Bay Campus", "SA1 8PP", null);
-		Librarian lib1 = new Librarian("lib1", "lib 1", 54656597, 65, "Singleton Campus", "SA1 4FS", null, "24/07");
+		User user1 = new User("user1", "user 1", "05454645", "56", "Bay Campus", "SA1 8PP", null);
+		User user2 = new User("user2", "user 1", "05454645", "56", "Bay Campus", "SA1 8PP", null);
+		Librarian lib1 = new Librarian("lib1", "lib 1", "54656597", "65", "Singleton Campus", "SA1 4FS", null, "24/07");
 		Librarian.getUsersList().add(user1);
 		Librarian.getUsersList().add(user2);
 		Librarian.getLibrarianList().add(lib1);
-		//user1.requestItem(resource1);
-		//user1.requestReturn(resource1.getCopies().get(0));
+		user1.requestItem(resource1);
+		user1.requestReturn(resource1.getCopies().get(0));
 		SearchBrowse.getResources().add(resource1);		
-		Librarian.loanACopy("user2", "TLOTR");
-		Librarian.loanACopy("user1", "TLOTR");
-		Librarian.loanACopy("user1", "TLOTR");
+		//Librarian.loanACopy("user2", "TLOTR");
+		//Librarian.loanACopy("user1", "TLOTR");
+		//Librarian.loanACopy("user1", "TLOTR");
 		//Librarian.loanACopy("user1", "TLOTR");
 		//Librarian.loanACopy("user1", "TLOTR");
 		launch(args);

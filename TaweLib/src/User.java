@@ -9,8 +9,8 @@ public class User {
 
 	private String username;
 	private String name;
-	private int mobileNumber;
-	private int houseNumber;
+	private String mobileNumber;
+	private String houseNumber;
 	private String streetName;
 	private String postcode;
 	private BufferedImage profilePic;
@@ -24,7 +24,7 @@ public class User {
 	private ArrayList<Double> paymentAmounts = new ArrayList<>();
 	private ArrayList<String> messages = new ArrayList<>();
 
-	public User(String username, String name, int mobileNumber, int houseNumber, String address, String postcode,
+	public User(String username, String name, String mobileNumber, String houseNumber, String address, String postcode,
 			BufferedImage image) {
 		this.username = username;
 		this.name = name;
@@ -57,11 +57,11 @@ public class User {
 		return name;
 	}
 
-	public int getMobileNumber() {
+	public String getMobileNumber() {
 		return mobileNumber;
 	}
 
-	public void setMobileNumber(int mobileNumber) {
+	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
 
@@ -73,7 +73,7 @@ public class User {
 		this.streetName = streetName;
 	}
 
-	public void setHouseNumber(int houseNumber) {
+	public void setHouseNumber(String houseNumber) {
 		this.houseNumber = houseNumber;
 	}
 
@@ -135,7 +135,7 @@ public class User {
 		return borrowedItems;
 	}
 
-	public int getHouseNumber() {
+	public String getHouseNumber() {
 		return houseNumber;
 	}
 
