@@ -161,6 +161,7 @@ public class User {
 		} else { // if there is a free copy it gets added to the users requested items list and
 					// its variables are set to requested
 			freeCopy.requestCopy(this);
+			freeCopy.setDateRequested(Copy.getDateNow());
 			requestedItems.add(freeCopy);
 		}
 	}
