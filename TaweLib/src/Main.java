@@ -18,7 +18,7 @@ public class Main extends Application {
 	
 	// Constants for the User Page window
 	public static final int USER_PAGE_WIDTH = 800;
-	public static final int USER_PAGE_HEIGHT = 600;
+	public static final int USER_PAGE_HEIGHT = 700;
 	public static final String USER_PAGE_TITLE = "User Page";
 	
 	// Constants for the Borrowed Items Page window

@@ -95,10 +95,17 @@
       </VBox>
    </center>
    <top>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="58.0" prefWidth="277.0" text="Welcome To TaweLib :)" textAlignment="CENTER" textFill="#7395d0" BorderPane.alignment="CENTER">
+      <Label fx:id="welcomeMessage" alignment="CENTER" contentDisplay="CENTER" prefHeight="65.0" text="Welcome To TaweLib :)" textAlignment="CENTER" textFill="#7395d0" BorderPane.alignment="CENTER">
          <font>
             <Font size="24.0" />
          </font>
+         <graphic>
+            <HBox prefHeight="125.0" prefWidth="794.0">
+               <children>
+                  <ImageView fx:id="profilePicture" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </HBox>
+         </graphic>
       </Label>
    </top>
 </BorderPane>
