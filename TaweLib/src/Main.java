@@ -164,7 +164,7 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
-		Resource resource1 = new Resource("TLOTR", 2001, null, 30);
+		Resource resource1 = new Resource("TLOTR", 2001, null, 3);
 		User user1 = new User("user1", "user 1", 05454645, 56, "Bay Campus", "SA1 8PP", null);
 		Librarian lib1 = new Librarian("lib1", "lib 1", 54656597, 65, "Singleton Campus", "SA1 4FS", null, "24/07");
 		Librarian.getUsersList().add(user1);

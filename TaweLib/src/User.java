@@ -171,9 +171,13 @@ public class User {
 		}
 	}
 
+	public ArrayList<String> getMessages() {
+		return messages;
+	}
+
 	public void displayMessages() {
 		for (int i = 0; i < messages.size(); i++) {
-			System.out.println(messages.get(i));
+			//System.out.println(messages.get(i));
 		}
 	}
 
