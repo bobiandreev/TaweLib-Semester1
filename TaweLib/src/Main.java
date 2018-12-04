@@ -184,7 +184,6 @@ public class Main extends Application {
 		SearchBrowse.addResource(resource1);
 		SearchBrowse.addResource(resource2);
 		SearchBrowse.addResource(resource3);
-		SearchBrowse.getResources().add(resource1);		
 		//Librarian.loanACopy("user2", "TLOTR");
 		//Librarian.loanACopy("user1", "TLOTR");
 		//Librarian.loanACopy("user1", "TLOTR");
