@@ -66,7 +66,7 @@ public class CreateBookPageController {
     @FXML
     private void clickOnConfirm(ActionEvent event) {
     	String title = this.title.getText();
-    	int year = Integer.parseInt(this.year.getText());
+    	String year = this.year.getText();
     	String author = this.author.getText();
     	String publisher = this.publisher.getText();
     	int numberOfCopies = Integer.parseInt(this.numberOfCopies.getText());

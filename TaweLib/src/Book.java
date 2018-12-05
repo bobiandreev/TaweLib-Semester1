@@ -35,7 +35,7 @@ public class Book extends Resource {
 	 * @param publisher
 	 *            Publisher of the book.
 	 */
-	public Book(int resourceID, String title, int year, String imagePath, 
+	public Book(int resourceID, String title, String year, String imagePath, 
 			int numOfCopies, ResultSet copiesQuery, String author, String publisher) {
 		super(resourceID, title, year, imagePath, numOfCopies, copiesQuery);
 		this.author = author;
@@ -58,7 +58,7 @@ public class Book extends Resource {
 	 * @param publisher
 	 *            Publisher of the book.
 	 */
-	public Book(String title, int year,String image, int numOfCopies,
+	public Book(String title, String year,String image, int numOfCopies,
 			String author, String publisher) {
 		super(title, year, image, numOfCopies);
 		this.author = author;

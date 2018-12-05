@@ -35,7 +35,7 @@ public class LaptopComputer extends Resource {
 	 * @param OS
 	 *            Operating system running on the laptop.
 	 */
-	public LaptopComputer(int resourceID, String title, int year, 
+	public LaptopComputer(int resourceID, String title, String year, 
 			String imagePath, ResultSet copiesQuery, int numOfCopies, String manufacturer, 
 			String model, String OS) {
 		super(resourceID, title, year, imagePath, numOfCopies, copiesQuery);
@@ -62,7 +62,7 @@ public class LaptopComputer extends Resource {
 	 * @param OS
 	 *            Operating system running on the laptop
 	 */
-	public LaptopComputer(String title, int year, String thumbnailImage, int numOfCopies, String manufacturer,
+	public LaptopComputer(String title, String year, String thumbnailImage, int numOfCopies, String manufacturer,
 			String model, String OS) {
 		super(title, year, thumbnailImage, numOfCopies);
 		this.manufacturer = manufacturer;

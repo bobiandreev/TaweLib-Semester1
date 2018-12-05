@@ -53,7 +53,7 @@ public class CreateLaptopPageController {
 	@FXML
 	private void clickOnConfirm(ActionEvent event) {
 		String title = this.title.getText();
-		int year = Integer.parseInt(this.year.getText());
+		String year = this.year.getText();
 		String manufacturer = this.manufacturer.getText();
 		int numberOfCopies = Integer.parseInt(this.numOfCopies.getText());
 		String model = this.model.getText();

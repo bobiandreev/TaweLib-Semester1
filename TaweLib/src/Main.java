@@ -114,10 +114,10 @@ public class Main extends Application {
 	
 	// Constants for the Edit Book Page window
 	public static final int EDITBOOKPAGE_WIDTH = 600;
-	public static final int EDITBOOKPAGE_HEIGHT = 300;
+	public static final int EDITBOOKPAGE_HEIGHT = 600;
 	public static final String EDITBOOKPAGE_TITLE = "Edit Book Page";
 	
-	// Constants for the Edit Book Page window
+	// Constants for the Edit DVD Page window
 	public static final int EDITDVDPAGE_WIDTH = 600;
 	public static final int EDITDVDPAGE_HEIGHT = 300;
 	public static final String EDITDVDPAGE_TITLE = "Edit Book Page";
@@ -169,9 +169,9 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 
-		Resource resource1 = new Book("TLOTR", 2001, null, 3, "Tolkien", "Springer");
-		Resource resource2 = new LaptopComputer("XPS", 2018, null, 3, "Dell", "XPS", "Windows");
-		Resource resource3 = new DVD("TLOTR", 2001, null, 10, "Peter Jackson", 180);
+		Resource resource1 = new Book("TLOTR", "2001", null, 3, "Tolkien", "Springer");
+		Resource resource2 = new LaptopComputer("XPS", "2018", null, 3, "Dell", "XPS", "Windows");
+		Resource resource3 = new DVD("TLOTR", "2001", null, 10, "Peter Jackson", 180);
 				//("TLOTR", 2001, null, 30);
 		User user1 = new User("user1", "user 1", "05454645", "56", "Bay Campus", "SA1 8PP", "Avatar5.png");
 		User user2 = new User("user2", "user 1", "05454645", "56", "Bay Campus", "SA1 8PP", "Avatar5.png");

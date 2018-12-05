@@ -24,7 +24,7 @@ public class Resource {
 	private static int id = 0;
 	private int curResourceID;
 	private String title;
-	private int year;
+	private String year;
 	private String thumbnailImage;
 	private int numOfCopies;
 
@@ -47,7 +47,7 @@ public class Resource {
 	 * @param copiesQuery 
 	 * 			  The SQL query to re-generate the right copies.
 	 */
-	public Resource(int resourceID, String title, int year, String imagePath, int numOfCopies, ResultSet copiesQuery) {
+	public Resource(int resourceID, String title, String year, String imagePath, int numOfCopies, ResultSet copiesQuery) {
 		this.curResourceID = resourceID;
 		this.title = title;
 		this.year = year;
@@ -68,7 +68,7 @@ public class Resource {
 	 * @param numOfCopies
 	 *            How many copies exist of the resource in the library.
 	 */
-	public Resource(String title, int year, String image, int numOfCopies) {
+	public Resource(String title, String year, String image, int numOfCopies) {
 		id++;
 		this.curResourceID = id;
 		this.title = title;
@@ -101,7 +101,7 @@ public class Resource {
 	 * 
 	 * @return year of release of resource
 	 */
-	public int getYear() {
+	public String getYear() {
 		return year;
 	}
 

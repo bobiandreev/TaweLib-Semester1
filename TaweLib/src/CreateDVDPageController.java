@@ -55,7 +55,7 @@ public class CreateDVDPageController {
 	@FXML
 	private void clickOnConfirm(ActionEvent event) {
 		String title = this.title.getText();
-		int year = Integer.parseInt(this.year.getText());
+		String year = this.year.getText();
 		String director = this.director.getText();
 		int numberOfCopies = Integer.parseInt(this.numOfCopies.getText());
 		int runtime = Integer.parseInt(this.runtime.getText());

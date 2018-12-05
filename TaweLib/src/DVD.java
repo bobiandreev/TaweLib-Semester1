@@ -33,8 +33,9 @@ public class DVD extends Resource {
 	 * @param runtime
 	 *            Runtime of film.
 	 */
-	public DVD(int resourceID, String title, int year, String imagePath, int numOfCopies,
-			 ResultSet copiesQuery, String director, int runtime) {
+
+	public DVD(int resourceID, String title, String year, String imagePath, int numOfCopies,
+			String director, int runtime, ResultSet copiesQuery) {
 		super(resourceID, title, year, imagePath, numOfCopies, copiesQuery);
 		this.director = director;
 		this.runtime = runtime;
@@ -44,9 +45,15 @@ public class DVD extends Resource {
 	 * Constructor for a DVD.
 	 * 
 	 * @param title
+<<<<<<< HEAD
 	 *            Title of the DVD.
 	 * @param year
 	 *            Year of release.
+=======
+	 *            Title of the DVD
+	 * @param string
+	 *            Year of release
+>>>>>>> branch 'master' of https://gitlab.com/ONixon/group-41.git
 	 * @param thumbnailImage
 	 *            Cover Image.
 	 * @param numOfCopies
@@ -57,9 +64,9 @@ public class DVD extends Resource {
 	 *            Runtime of film.
 	 */
 
-	public DVD(String title, int year, String thumbnailImage, int numOfCopies,
+	public DVD(String title, String string, String thumbnailImage, int numOfCopies,
 			String director, int runtime) {
-		super(title, year, thumbnailImage, numOfCopies);
+		super(title, string, thumbnailImage, numOfCopies);
 		this.director = director;
 		this.runtime = runtime;
 		//this.language = language;
