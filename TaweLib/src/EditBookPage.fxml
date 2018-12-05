@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
@@ -9,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="editBookPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EditBookPageController">
+<BorderPane fx:id="editBookPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EditBookPageController">
    <top>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Book" BorderPane.alignment="CENTER">
          <font>
@@ -55,6 +60,16 @@
                <children>
                   <Button mnemonicParsing="false" onAction="#clickOnConfirm" text="Confirm" />
                   <Button mnemonicParsing="false" onAction="#clickOnBack" text="Back" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="98.0" prefHeight="44.0" prefWidth="600.0" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Change Language :" textAlignment="CENTER">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="language1" />
                </children>
             </HBox>
          </children>

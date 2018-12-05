@@ -1,12 +1,16 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -41,11 +45,101 @@ public class BrowseAndSearchPageController {
 	@FXML
 	private ListView<String> browseAndSearchList;
 
+	private static Resource resourceToEdit;
+	
 	Alert alert = new Alert(AlertType.INFORMATION);
 
+	
+	public static Resource getResourceToEdit() {
+		return resourceToEdit;
+	}
+	
     @FXML
     void clickOnEdit(ActionEvent event) {
+    	int selectedIndex = browseAndSearchList.getSelectionModel().getSelectedIndex();
 
+		if (selectedIndex < 0) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText(null);
+			alert.setContentText("Please select an item first.");
+			alert.showAndWait();
+			return;
+		}
+
+		Resource selectedResource = currentList.get(selectedIndex);
+		String resource = "";
+		resourceToEdit = selectedResource;
+		if (selectedResource instanceof Book) {
+			Book();
+		}
+		if (selectedResource instanceof DVD) {
+			DVD();
+		}
+		if (selectedResource instanceof LaptopComputer) {
+			Laptop();
+		}
+    	    }
+    
+    
+    @FXML
+    private void Book() {
+    	try {
+    		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EditBookPage.fxml"));
+			
+    		BorderPane editBook = (BorderPane) fxmlLoader.load();
+			
+    		Scene editBookScene = new Scene(editBook, Main.EDITBOOKPAGE_WIDTH, Main.EDITBOOKPAGE_HEIGHT);
+    		Stage editBookStage = new Stage();
+			
+    		editBookStage.setScene(editBookScene);
+    		editBookStage.setTitle(Main.EDITBOOKPAGE_TITLE);
+    		editBookStage.initModality(Modality.APPLICATION_MODAL);
+    		editBookStage.showAndWait();
+    	} catch (IOException e) {
+			e.printStackTrace();
+			System.exit(-1);
+		}
+    }
+    
+    @FXML
+    private void DVD() {
+    	try {
+    		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EditDVDPage.fxml"));
+			
+    		BorderPane editDVD = (BorderPane) fxmlLoader.load();
+			
+    		Scene editDVDScene = new Scene(editDVD, Main.EDITDVDPAGE_WIDTH, Main.EDITDVDPAGE_HEIGHT);
+    		Stage editDVDStage = new Stage();
+			
+    		editDVDStage.setScene(editDVDScene);
+    		editDVDStage.setTitle(Main.EDITDVDPAGE_TITLE);
+    		editDVDStage.initModality(Modality.APPLICATION_MODAL);
+    		editDVDStage.showAndWait();
+    	} catch (IOException e) {
+			e.printStackTrace();
+			System.exit(-1);
+		}
+    }
+
+    @FXML
+    private void Laptop() {
+    	try {
+    		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EditLaptopPage.fxml"));
+			
+    		BorderPane editDVD = (BorderPane) fxmlLoader.load();
+			
+    		Scene editLaptopScene = new Scene(editDVD, Main.EDITLAPTOPPAGE_WIDTH, Main.EDITLAPTOPPAGE_HEIGHT);
+    		Stage editLaptopStage = new Stage();
+			
+    		editLaptopStage.setScene(editLaptopScene);
+    		editLaptopStage.setTitle(Main.EDITLAPTOPPAGE_TITLE);
+    		editLaptopStage.initModality(Modality.APPLICATION_MODAL);
+    		editLaptopStage.showAndWait();
+    	} catch (IOException e) {
+			e.printStackTrace();
+			System.exit(-1);
+		}
     }
 	
     @FXML
@@ -56,7 +150,7 @@ public class BrowseAndSearchPageController {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
 			alert.setHeaderText(null);
-			alert.setContentText("Please select a book first.");
+			alert.setContentText("Please select an item first.");
 			alert.showAndWait();
 			return;
 		}

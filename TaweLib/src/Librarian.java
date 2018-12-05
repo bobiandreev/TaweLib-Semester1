@@ -87,7 +87,7 @@ public class Librarian extends User {
 
 	public void addBook() {
 		String title = in.next();
-		int year = in.nextInt();
+		String year = in.next();
 		String thumbnailImage = null;
 		int numOfCopies = in.nextInt();
 		String author = in.next();
