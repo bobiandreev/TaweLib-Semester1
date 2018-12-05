@@ -15,7 +15,7 @@ public class Librarian extends User {
 	private static Scanner in = new Scanner(System.in);
 
 	public Librarian(String username, String name, String mobileNumber, String houseNumber, String streetName,
-			String postcode, Image profilePic, String employmentDate) {
+			String postcode, String profilePic, String employmentDate) {
 		super(username, name, mobileNumber, houseNumber, streetName, postcode, profilePic);
 		this.employmentDate = employmentDate;
 		staffNumber++;
@@ -70,7 +70,7 @@ public class Librarian extends User {
 		String houseNumber = in.nextLine();
 		String streetName = in.nextLine();
 		String postcode = in.nextLine();
-		Image profilePic = null; // allow the librarian to choose an image
+		String profilePic = null; // allow the librarian to choose an image
 		in.close();
 		librarianList.add(
 				new Librarian(username, name, mobileNumber, houseNumber, streetName, postcode, profilePic, postcode));

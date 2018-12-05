@@ -81,6 +81,14 @@
                   <Button alignment="CENTER" mnemonicParsing="false" onAction="#clickOnBack" text="Back" textAlignment="CENTER" />
                </children>
             </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="265.0" prefHeight="39.0" prefWidth="600.0" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Users profile picture is automatically set to a default." />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
          </children>
       </VBox>
    </center>

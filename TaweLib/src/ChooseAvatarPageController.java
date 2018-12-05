@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.IOException;
+
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -45,7 +47,12 @@ public class ChooseAvatarPageController {
 	 */
 	@FXML
 	public void clickOnDrawAvatar(ActionEvent event) {
-
+		String[] args = null;
+		//Application.launch("Draw", args);
+		//Draw.start();
+		String pathToImage = ("Avatar6.png");
+		curUser.setProfilePic(pathToImage);
+		showAlert();
 	}
 
 	/**
@@ -55,8 +62,8 @@ public class ChooseAvatarPageController {
 	 */
 	@FXML
 	private void clickOnOK1(ActionEvent event) {
-		Image image = new Image("Avatar1.png");
-		curUser.setProfilePic(image);
+		String pathToImage = "Avatar1.png";
+		curUser.setProfilePic(pathToImage);
 		showAlert();
 	}
 
@@ -67,8 +74,8 @@ public class ChooseAvatarPageController {
 	 */
 	@FXML
 	private void clickOnOK2(ActionEvent event) {
-		Image image = new Image("Avatar2.png");
-		curUser.setProfilePic(image);
+		String pathToImage = "Avatar2.png";
+		curUser.setProfilePic(pathToImage);
 		showAlert();
 	}
 
@@ -79,8 +86,8 @@ public class ChooseAvatarPageController {
 	 */
 	@FXML
 	private void clickOnOK3(ActionEvent event) {
-		Image image = new Image("Avatar3.png");
-		curUser.setProfilePic(image);
+		String pathToImage = "Avatar3.png";
+		curUser.setProfilePic(pathToImage);
 		showAlert();
 	}
 
@@ -91,8 +98,8 @@ public class ChooseAvatarPageController {
 	 */
 	@FXML
 	private void clickOnOK5(ActionEvent event) {
-		Image image = new Image("Avatar5.png");
-		curUser.setProfilePic(image);
+		String pathToImage = "Avatar4.png";
+		curUser.setProfilePic(pathToImage);
 		showAlert();
 	}
 
@@ -103,8 +110,8 @@ public class ChooseAvatarPageController {
 	 */
 	@FXML
 	private void clickOnOk4(ActionEvent event) {
-		Image image = new Image("Avatar4.png");
-		curUser.setProfilePic(image);
+		String pathToImage = "Avatar4.png";
+		curUser.setProfilePic(pathToImage);
 		showAlert();
 	}
 

@@ -13,7 +13,7 @@ public class User {
 	private String houseNumber;
 	private String streetName;
 	private String postcode;
-	private Image profilePic;
+	private String profilePic;
 	private double currentFine;
 	private ArrayList<Copy> requestedItems = new ArrayList<>();
 	private ArrayList<Copy> borrowedItems = new ArrayList<>();
@@ -25,7 +25,7 @@ public class User {
 	private ArrayList<String> messages = new ArrayList<>();
 
 	public User(String username, String name, String mobileNumber, String houseNumber, String address, String postcode,
-			Image image) {
+			String image) {
 		this.username = username;
 		this.name = name;
 		this.mobileNumber = mobileNumber;
@@ -36,7 +36,7 @@ public class User {
 		Collections.reverse(messages);
 	}
 
-	public Image getProfilePic() {
+	public String getProfilePic() {
 		return profilePic;
 	}
 
@@ -45,7 +45,7 @@ public class User {
 		return reservedFor;
 	}
 
-	public void setProfilePic(Image profilePic) {
+	public void setProfilePic(String profilePic) {
 		this.profilePic = profilePic;
 	}
 

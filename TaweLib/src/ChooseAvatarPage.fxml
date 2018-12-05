@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
@@ -7,8 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-
-<BorderPane fx:id="chooseAvatarPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="343.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ChooseAvatarPageController">
+<BorderPane fx:id="chooseAvatarPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="343.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ChooseAvatarPageController">
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -42,7 +46,7 @@
             <Button layoutX="278.0" layoutY="123.0" mnemonicParsing="false" onAction="#clickOnOK3" text="OK" />
             <Button layoutX="392.0" layoutY="123.0" mnemonicParsing="false" onAction="#clickOnOk4" text="OK" />
             <Button layoutX="518.0" layoutY="123.0" mnemonicParsing="false" onAction="#clickOnOK5" text="OK" />
-            <Button contentDisplay="CENTER" layoutX="250.0" layoutY="212.0" mnemonicParsing="false" onAction="#clickOnDrawAvatar" text="Draw Avatar" textAlignment="CENTER" />
+            <Button fx:id="draw" contentDisplay="CENTER" layoutX="250.0" layoutY="212.0" mnemonicParsing="false" onAction="#clickOnDrawAvatar" text="Draw Avatar" textAlignment="CENTER" />
             <Button layoutX="272.0" layoutY="277.0" mnemonicParsing="false" onAction="#clickOnBack" text="Back" />
          </children>
          <BorderPane.margin>
