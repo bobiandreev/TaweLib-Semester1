@@ -46,17 +46,16 @@ public class BrowseAndSearchPageController {
 	private ListView<String> browseAndSearchList;
 
 	private static Resource resourceToEdit;
-	
+
 	Alert alert = new Alert(AlertType.INFORMATION);
 
-	
 	public static Resource getResourceToEdit() {
 		return resourceToEdit;
 	}
-	
-    @FXML
-    void clickOnEdit(ActionEvent event) {
-    	int selectedIndex = browseAndSearchList.getSelectionModel().getSelectedIndex();
+
+	@FXML
+	void clickOnEdit(ActionEvent event) {
+		int selectedIndex = browseAndSearchList.getSelectionModel().getSelectedIndex();
 
 		if (selectedIndex < 0) {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -79,72 +78,71 @@ public class BrowseAndSearchPageController {
 		if (selectedResource instanceof LaptopComputer) {
 			Laptop();
 		}
-    	    }
-    
-    
-    @FXML
-    private void Book() {
-    	try {
-    		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EditBookPage.fxml"));
-			
-    		BorderPane editBook = (BorderPane) fxmlLoader.load();
-			
-    		Scene editBookScene = new Scene(editBook, Main.EDITBOOKPAGE_WIDTH, Main.EDITBOOKPAGE_HEIGHT);
-    		Stage editBookStage = new Stage();
-			
-    		editBookStage.setScene(editBookScene);
-    		editBookStage.setTitle(Main.EDITBOOKPAGE_TITLE);
-    		editBookStage.initModality(Modality.APPLICATION_MODAL);
-    		editBookStage.showAndWait();
-    	} catch (IOException e) {
-			e.printStackTrace();
-			System.exit(-1);
-		}
-    }
-    
-    @FXML
-    private void DVD() {
-    	try {
-    		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EditDVDPage.fxml"));
-			
-    		BorderPane editDVD = (BorderPane) fxmlLoader.load();
-			
-    		Scene editDVDScene = new Scene(editDVD, Main.EDITDVDPAGE_WIDTH, Main.EDITDVDPAGE_HEIGHT);
-    		Stage editDVDStage = new Stage();
-			
-    		editDVDStage.setScene(editDVDScene);
-    		editDVDStage.setTitle(Main.EDITDVDPAGE_TITLE);
-    		editDVDStage.initModality(Modality.APPLICATION_MODAL);
-    		editDVDStage.showAndWait();
-    	} catch (IOException e) {
-			e.printStackTrace();
-			System.exit(-1);
-		}
-    }
+	}
 
-    @FXML
-    private void Laptop() {
-    	try {
-    		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EditLaptopPage.fxml"));
-			
-    		BorderPane editDVD = (BorderPane) fxmlLoader.load();
-			
-    		Scene editLaptopScene = new Scene(editDVD, Main.EDITLAPTOPPAGE_WIDTH, Main.EDITLAPTOPPAGE_HEIGHT);
-    		Stage editLaptopStage = new Stage();
-			
-    		editLaptopStage.setScene(editLaptopScene);
-    		editLaptopStage.setTitle(Main.EDITLAPTOPPAGE_TITLE);
-    		editLaptopStage.initModality(Modality.APPLICATION_MODAL);
-    		editLaptopStage.showAndWait();
-    	} catch (IOException e) {
+	@FXML
+	private void Book() {
+		try {
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EditBookPage.fxml"));
+
+			BorderPane editBook = (BorderPane) fxmlLoader.load();
+
+			Scene editBookScene = new Scene(editBook, Main.EDITBOOKPAGE_WIDTH, Main.EDITBOOKPAGE_HEIGHT);
+			Stage editBookStage = new Stage();
+
+			editBookStage.setScene(editBookScene);
+			editBookStage.setTitle(Main.EDITBOOKPAGE_TITLE);
+			editBookStage.initModality(Modality.APPLICATION_MODAL);
+			editBookStage.showAndWait();
+		} catch (IOException e) {
 			e.printStackTrace();
 			System.exit(-1);
 		}
-    }
-	
-    @FXML
-    void clickOnInfo(ActionEvent event) {
-    	int selectedIndex = browseAndSearchList.getSelectionModel().getSelectedIndex();
+	}
+
+	@FXML
+	private void DVD() {
+		try {
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EditDVDPage.fxml"));
+
+			BorderPane editDVD = (BorderPane) fxmlLoader.load();
+
+			Scene editDVDScene = new Scene(editDVD, Main.EDITDVDPAGE_WIDTH, Main.EDITDVDPAGE_HEIGHT);
+			Stage editDVDStage = new Stage();
+
+			editDVDStage.setScene(editDVDScene);
+			editDVDStage.setTitle(Main.EDITDVDPAGE_TITLE);
+			editDVDStage.initModality(Modality.APPLICATION_MODAL);
+			editDVDStage.showAndWait();
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.exit(-1);
+		}
+	}
+
+	@FXML
+	private void Laptop() {
+		try {
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EditLaptopPage.fxml"));
+
+			BorderPane editDVD = (BorderPane) fxmlLoader.load();
+
+			Scene editLaptopScene = new Scene(editDVD, Main.EDITLAPTOPPAGE_WIDTH, Main.EDITLAPTOPPAGE_HEIGHT);
+			Stage editLaptopStage = new Stage();
+
+			editLaptopStage.setScene(editLaptopScene);
+			editLaptopStage.setTitle(Main.EDITLAPTOPPAGE_TITLE);
+			editLaptopStage.initModality(Modality.APPLICATION_MODAL);
+			editLaptopStage.showAndWait();
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.exit(-1);
+		}
+	}
+
+	@FXML
+	void clickOnInfo(ActionEvent event) {
+		int selectedIndex = browseAndSearchList.getSelectionModel().getSelectedIndex();
 
 		if (selectedIndex < 0) {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -157,13 +155,13 @@ public class BrowseAndSearchPageController {
 
 		Resource selectedResource = currentList.get(selectedIndex);
 		String resource = "";
-		
+
 		alert.setTitle("Info");
 		alert.setHeaderText(null);
 		alert.setContentText(resource);
 		alert.showAndWait();
-    }
-    
+	}
+
 	/**
 	 * Actions will be made when the user click on the button
 	 * 
@@ -212,7 +210,7 @@ public class BrowseAndSearchPageController {
 							.add(resource.getID() + " " + resource.getTitle() + " " + resource.getYear());
 				}
 			}
-			
+
 		}
 
 	}

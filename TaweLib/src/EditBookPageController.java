@@ -63,7 +63,6 @@ public class EditBookPageController {
 		this.author.setText(bookToEdit.getAuthor());
 		this.publisher.setText(bookToEdit.getPublisher());
 		this.numberOfCopies.setText(Integer.toString(bookToEdit.getNumOfCopies()));
-		this.title.setText(bookToEdit.getTitle());
 		if (bookToEdit.getGenre() != null) {
 			this.genre.setText(bookToEdit.getGenre());
 		}

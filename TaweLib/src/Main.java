@@ -124,7 +124,7 @@ public class Main extends Application {
 	
 	// Constants for the Edit Laptop Page window
 	public static final int EDITLAPTOPPAGE_WIDTH = 600;
-	public static final int EDITLAPTOPPAGE_HEIGHT = 250;
+	public static final int EDITLAPTOPPAGE_HEIGHT = 450;
 	public static final String EDITLAPTOPPAGE_TITLE = "Edit Laptop Page";
 	
 	// Constants for the Loan Copy Page window
