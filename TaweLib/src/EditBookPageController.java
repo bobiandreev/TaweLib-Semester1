@@ -72,8 +72,7 @@ public class EditBookPageController {
 		}
 		if (bookToEdit.getLanguage() != null) {
 			this.language.setText(bookToEdit.getLanguage());
-		}
-		
+		}		
 		this.thumbnailImage.setImage(new Image(bookToEdit.getThumbnailImage()));
 	}
 
@@ -105,10 +104,10 @@ public class EditBookPageController {
 	}
 
 	@FXML
-    void clickOnNewImage(ActionEvent event) {
+	private void clickOnNewImage(ActionEvent event) {
 		FileChooser fc = new FileChooser();
     	File selectedFile = fc.showOpenDialog(null);
-    	path = selectedFile.getAbsolutePath().toString();
+    	path = selectedFile.toURI().toString();
 
     }
 	
