@@ -13,6 +13,8 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
+import javafx.scene.image.Image;
+
 public class Resource {
 
 	/**
@@ -23,7 +25,7 @@ public class Resource {
 	private int curResourceID;
 	private String title;
 	private int year;
-	private BufferedImage thumbnailImage;
+	private String thumbnailImage;
 	private int numOfCopies;
 
 	private ArrayList<Copy> copies = new ArrayList<>();
@@ -49,11 +51,6 @@ public class Resource {
 		this.curResourceID = resourceID;
 		this.title = title;
 		this.year = year;
-		try {
-		    this.thumbnailImage = ImageIO.read(new File(imagePath));
-		} catch (IOException e) {
-			
-		}
 		this.numOfCopies = numOfCopies;
 		id++;
 		generateCopies(copiesQuery);
@@ -71,7 +68,7 @@ public class Resource {
 	 * @param numOfCopies
 	 *            How many copies exist of the resource in the library.
 	 */
-	public Resource(String title, int year, BufferedImage image, int numOfCopies) {
+	public Resource(String title, int year, String image, int numOfCopies) {
 		id++;
 		this.curResourceID = id;
 		this.title = title;
@@ -113,7 +110,7 @@ public class Resource {
 	 * 
 	 * @return The thumbnail image of the resource
 	 */
-	public BufferedImage getThumbnailImage() {
+	public String getThumbnailImage() {
 		return thumbnailImage;
 	}
 

@@ -47,7 +47,8 @@ public class CreateNewUserPageController {
     	String houseNumber = this.houseNumber.getText();
     	String streetName = this.streetName.getText();
     	String postcode = this.postcode.getText();
-    	Librarian.addUser(new User(username, name, mobileNumber, houseNumber, streetName, postcode, null));
+    	String profilePic = "Avatar5.png";
+    	Librarian.addUser(new User(username, name, mobileNumber, houseNumber, streetName, postcode, profilePic));
     	Alert alert = new Alert(AlertType.CONFIRMATION);
     	alert.setHeaderText("Done");
 		alert.setContentText("New user created!");

@@ -48,7 +48,7 @@ public class CreateLaptopPageController {
 	
 	Alert alert = new Alert(AlertType.CONFIRMATION);
 
-	private BufferedImage image;
+	private String image;
 
 	@FXML
 	private void clickOnConfirm(ActionEvent event) {
@@ -70,7 +70,7 @@ public class CreateLaptopPageController {
 	public void clickOnThumbnailImage(ActionEvent event) throws IOException {
 		FileChooser fc = new FileChooser();
 		File selectedFile = fc.showOpenDialog(null);
-		image = ImageIO.read(selectedFile.getAbsoluteFile());
+		image = selectedFile.getCanonicalPath().toString();
 		/*
 		 * ImageIcon imgIcon = new ImageIcon(image); JLabel lbl = new JLabel();
 		 * lbl.setIcon(imgIcon); JFrame frame = new JFrame("Image viewer");

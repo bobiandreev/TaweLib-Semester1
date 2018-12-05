@@ -63,7 +63,7 @@ public class Main extends Application {
 	
 	// Constants for the Create New User Page window
 	public static final int CREATENEWUSERPAGE_WIDTH = 600;
-	public static final int CREATENEWUSERPAGE_HEIGHT = 400;
+	public static final int CREATENEWUSERPAGE_HEIGHT = 500;
 	public static final String CREATENEWUSERPAGE_TITLE = "Create New User Page";
 	
 	// Constants for the View Resources Page window
@@ -173,9 +173,9 @@ public class Main extends Application {
 		Resource resource2 = new LaptopComputer("XPS", 2018, null, 3, "Dell", "XPS", "Windows");
 		Resource resource3 = new DVD("TLOTR", 2001, null, 10, "Peter Jackson", 180);
 				//("TLOTR", 2001, null, 30);
-		User user1 = new User("user1", "user 1", "05454645", "56", "Bay Campus", "SA1 8PP", null);
-		User user2 = new User("user2", "user 1", "05454645", "56", "Bay Campus", "SA1 8PP", null);
-		Librarian lib1 = new Librarian("lib1", "lib 1", "54656597", "65", "Singleton Campus", "SA1 4FS", null, "24/07");
+		User user1 = new User("user1", "user 1", "05454645", "56", "Bay Campus", "SA1 8PP", "Avatar5.png");
+		User user2 = new User("user2", "user 1", "05454645", "56", "Bay Campus", "SA1 8PP", "Avatar5.png");
+		Librarian lib1 = new Librarian("lib1", "lib 1", "54656597", "65", "Singleton Campus", "SA1 4FS", "Avatar5.png", "24/07");
 		Librarian.getUsersList().add(user1);
 		Librarian.getUsersList().add(user2);
 		Librarian.getLibrarianList().add(lib1);

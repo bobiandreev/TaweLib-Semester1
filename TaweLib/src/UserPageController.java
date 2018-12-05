@@ -43,7 +43,8 @@ public class UserPageController {
 	public void initialize() {
 		curUser = LoginController.getLoggedUser();
 		welcomeMessage.setText("Welcome to Tawe Lib, " + curUser.getUsername());
-		profilePicture.setImage(curUser.getProfilePic());
+		Image image = new Image(curUser.getProfilePic());
+		profilePicture.setImage(image);
 	}
 
 	@FXML

@@ -56,8 +56,9 @@ public class DVD extends Resource {
 	 * @param runtime
 	 *            Runtime of film.
 	 */
-	public DVD(String title, int year, BufferedImage thumbnailImage,
-			int numOfCopies, String director, int runtime) {
+
+	public DVD(String title, int year, String thumbnailImage, int numOfCopies,
+			String director, int runtime) {
 		super(title, year, thumbnailImage, numOfCopies);
 		this.director = director;
 		this.runtime = runtime;

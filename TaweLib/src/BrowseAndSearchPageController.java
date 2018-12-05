@@ -115,7 +115,7 @@ public class BrowseAndSearchPageController {
 				for (Resource resource : SearchBrowse.search(keyword, tempList)) {
 					currentList.add(resource);
 					browseAndSearchList.getItems()
-							.add(resource.getid() + " " + resource.getTitle() + " " + resource.getYear());
+							.add(resource.getID() + " " + resource.getTitle() + " " + resource.getYear());
 				}
 			}
 			
@@ -299,28 +299,28 @@ public class BrowseAndSearchPageController {
 		// currentList = resourceList;
 		for (Resource resource : resourceList) {
 			currentList.add(resource);
-			browseAndSearchList.getItems().add(resource.getid() + " " + resource.getTitle() + " " + resource.getYear());
+			browseAndSearchList.getItems().add(resource.getID() + " " + resource.getTitle() + " " + resource.getYear());
 		}
 	}
 
 	private void addBookToList() {
 		for (Resource resource : bookList) {
 			currentList.add(resource);
-			browseAndSearchList.getItems().add(resource.getid() + " " + resource.getTitle() + " " + resource.getYear());
+			browseAndSearchList.getItems().add(resource.getID() + " " + resource.getTitle() + " " + resource.getYear());
 		}
 	}
 
 	private void addDVDToList() {
 		for (Resource resource : dvdList) {
 			currentList.add(resource);
-			browseAndSearchList.getItems().add(resource.getid() + " " + resource.getTitle() + " " + resource.getYear());
+			browseAndSearchList.getItems().add(resource.getID() + " " + resource.getTitle() + " " + resource.getYear());
 		}
 	}
 
 	private void addLaptopToList() {
 		for (Resource resource : laptopList) {
 			currentList.add(resource);
-			browseAndSearchList.getItems().add(resource.getid() + " " + resource.getTitle() + " " + resource.getYear());
+			browseAndSearchList.getItems().add(resource.getID() + " " + resource.getTitle() + " " + resource.getYear());
 		}
 	}
 }
