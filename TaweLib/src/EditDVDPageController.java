@@ -65,8 +65,14 @@ public class EditDVDPageController {
 		if (dvdToEdit.getLanguage() != null) {
 			this.language.setText(dvdToEdit.getLanguage());
 		}
+		else {
+			this.language.setText("");
+		}
 		if (dvdToEdit.getSubtitles() != null) {
 			this.availavleSubtitles.setText(dvdToEdit.getSubtitles());
+		}
+		else {
+			this.language.setText("");
 		}
 		this.thumbnailImage.setImage(new Image(dvdToEdit.getThumbnailImage()));
 	}

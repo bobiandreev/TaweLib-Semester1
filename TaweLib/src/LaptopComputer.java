@@ -16,7 +16,7 @@ public class LaptopComputer extends Resource {
 	 * Reader Constructor for a laptop.
 	 * 
 	 * @param resourceID
-	 * 			  The ID this resource had.
+	 *            The ID this resource had.
 	 * @param title
 	 *            Name of computer.
 	 * @param year
@@ -24,7 +24,7 @@ public class LaptopComputer extends Resource {
 	 * @param imagePath
 	 *            Path of the image.
 	 * @param copiesQuery
-	 * 			  The SQL query to re-generate the right copies.
+	 *            The SQL query to re-generate the right copies.
 	 * @param numOfCopies
 	 *            Total available computers in the library.
 	 * @param manufacturer
@@ -34,15 +34,14 @@ public class LaptopComputer extends Resource {
 	 * @param OS
 	 *            Operating system running on the laptop.
 	 */
-	public LaptopComputer(int resourceID, String title, String year, 
-			String imagePath, ResultSet copiesQuery, int numOfCopies, String manufacturer, 
-			String model, String OS) {
+	public LaptopComputer(int resourceID, String title, String year, String imagePath, ResultSet copiesQuery,
+			int numOfCopies, String manufacturer, String model, String OS) {
 		super(resourceID, title, year, imagePath, numOfCopies, copiesQuery);
 		this.manufacturer = manufacturer;
 		this.model = model;
 		this.OS = OS;
 	}
-	
+
 	/**
 	 * Constructor for a laptop.
 	 * 
@@ -94,6 +93,18 @@ public class LaptopComputer extends Resource {
 	 */
 	public String getOS() {
 		return OS;
+	}
+
+	public void setManufacturer(String manufacturer) {
+		this.manufacturer = manufacturer;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
+	}
+
+	public void setOS(String oS) {
+		OS = oS;
 	}
 	
 	public String toString() {
