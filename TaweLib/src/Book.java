@@ -38,7 +38,7 @@ public class Book extends Resource {
 	 * @param numOfCopies
 	 *            Number of copies for the book
 	 */
-	public Book(String title, int year,BufferedImage image, int numOfCopies,
+	public Book(String title, int year,String image, int numOfCopies,
 			String author, String publisher) {
 		super(title, year, image, numOfCopies);
 		this.author = author;

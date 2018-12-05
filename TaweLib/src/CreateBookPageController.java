@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
@@ -54,7 +55,7 @@ public class CreateBookPageController {
     @FXML
     private TextField ISBN;
     
-    private BufferedImage image;
+    private String image;
     Alert alert = new Alert(AlertType.CONFIRMATION);
     
     @FXML
@@ -72,7 +73,7 @@ public class CreateBookPageController {
     	String genre = this.genre.getText();
     	String language = this.language.getText();
     	String ISBN = this.ISBN.getText();
-    	BufferedImage image = this.image;
+    	String image = this.image;
     	Book newBook = new Book (title, year, image, numberOfCopies, author, publisher);
     	newBook.setGenre(genre);
     	newBook.setISBN(ISBN);
@@ -89,7 +90,7 @@ public class CreateBookPageController {
     public void clickOnThumbnailImage(ActionEvent event) throws IOException {
     	FileChooser fc = new FileChooser();
     	File selectedFile = fc.showOpenDialog(null);
-    	image = ImageIO.read(selectedFile.getAbsoluteFile());
+    	image = selectedFile.getCanonicalPath().toString();
     	/* ImageIcon imgIcon = new ImageIcon(image);
     	JLabel lbl = new JLabel();
     	lbl.setIcon(imgIcon);

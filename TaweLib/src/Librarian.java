@@ -88,7 +88,7 @@ public class Librarian extends User {
 	public void addBook() {
 		String title = in.next();
 		int year = in.nextInt();
-		BufferedImage thumbnailImage = null;
+		String thumbnailImage = null;
 		int numOfCopies = in.nextInt();
 		String author = in.next();
 		String publisher = in.next();
@@ -98,7 +98,7 @@ public class Librarian extends User {
 	public void addDVD() {
 		String title = in.next();
 		int year = in.nextInt();
-		BufferedImage thumbnailImage = null;
+		String thumbnailImage = null;
 		int numOfCopies = in.nextInt();
 		String director = in.next();
 		int runtime = in.nextInt();
@@ -112,7 +112,7 @@ public class Librarian extends User {
 	public void addLaptopComputer() {
 		String title = in.next();
 		int year = in.nextInt();
-		BufferedImage thumbnailImage = null;
+		String thumbnailImage = null;
 		int numOfCopies = in.nextInt();
 		String manufacturer = in.next();
 		String model = in.next();
