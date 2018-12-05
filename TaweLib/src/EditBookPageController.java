@@ -72,8 +72,7 @@ public class EditBookPageController {
 		}
 		if (bookToEdit.getLanguage() != null) {
 			this.language.setText(bookToEdit.getLanguage());
-		}
-		
+		}		
 		this.thumbnailImage.setImage(new Image(bookToEdit.getThumbnailImage()));
 	}
 
@@ -97,7 +96,6 @@ public class EditBookPageController {
 		bookToEdit.setISBN(ISBN);
 		bookToEdit.setLanguage(language);
 		bookToEdit.setThumbnailImage(path);
-		bookToEdit.setThumbnailImage(path);
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setHeaderText("Success!");
 		alert.setContentText("This book has been added to the catalogue successfully!");
@@ -105,10 +103,10 @@ public class EditBookPageController {
 	}
 
 	@FXML
-    void clickOnNewImage(ActionEvent event) {
+	private void clickOnNewImage(ActionEvent event) {
 		FileChooser fc = new FileChooser();
     	File selectedFile = fc.showOpenDialog(null);
-    	path = selectedFile.getAbsolutePath().toString();
+    	path = selectedFile.toURI().toString();
 
     }
 	

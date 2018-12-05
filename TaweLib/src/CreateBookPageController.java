@@ -90,7 +90,7 @@ public class CreateBookPageController {
     public void clickOnThumbnailImage(ActionEvent event) throws IOException {
     	FileChooser fc = new FileChooser();
     	File selectedFile = fc.showOpenDialog(null);
-    	image = selectedFile.getCanonicalPath().toString();
+    	image = selectedFile.toURI().toString();
     	/* ImageIcon imgIcon = new ImageIcon(image);
     	JLabel lbl = new JLabel();
     	lbl.setIcon(imgIcon);

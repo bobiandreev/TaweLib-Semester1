@@ -58,7 +58,7 @@ public class CreateDVDPageController {
 		String year = this.year.getText();
 		String director = this.director.getText();
 		int numberOfCopies = Integer.parseInt(this.numOfCopies.getText());
-		int runtime = Integer.parseInt(this.runtime.getText());
+		String runtime = this.runtime.getText();
 		String language = this.language.getText();
 		String availableSubtitles = this.availavleSubtitles.getText();
 		DVD newDVD = new DVD(title, year, image, numberOfCopies, director, runtime);
@@ -75,7 +75,7 @@ public class CreateDVDPageController {
 	public void clickOnThumbnailImage(ActionEvent event) throws IOException {
 		FileChooser fc = new FileChooser();
 		File selectedFile = fc.showOpenDialog(null);
-		image = selectedFile.getCanonicalPath().toString();
+		image = selectedFile.toURI().toString();
 		/*
 		 * ImageIcon imgIcon = new ImageIcon(image); JLabel lbl = new JLabel();
 		 * lbl.setIcon(imgIcon); JFrame frame = new JFrame("Image viewer");
