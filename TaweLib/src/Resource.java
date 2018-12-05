@@ -6,9 +6,12 @@
  */
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.sql.*;
 import java.util.ArrayList;
 
-import javafx.scene.image.Image;
+import javax.imageio.ImageIO;
 
 public class Resource {
 
@@ -27,16 +30,46 @@ public class Resource {
 	private ArrayList<User> waitingList = new ArrayList<>();
 
 	/**
-	 * Constructor of the object
+	 * Reader Constructor of the object.
+	 * 
+	 * @param resourceID 
+	 * 			  The ID this resource had.
+	 * @param title
+	 *            Title of the resource.
+	 * @param year
+	 *            Year of resource release.
+	 * @param imagePath
+	 *            Path of the image.
+	 * @param numOfCopies
+	 *            How many copies exist of the resource in the library.
+	 * @param copiesQuery 
+	 * 			  The SQL query to re-generate the right copies.
+	 */
+	public Resource(int resourceID, String title, int year, String imagePath, int numOfCopies, ResultSet copiesQuery) {
+		this.curResourceID = resourceID;
+		this.title = title;
+		this.year = year;
+		try {
+		    this.thumbnailImage = ImageIO.read(new File(imagePath));
+		} catch (IOException e) {
+			
+		}
+		this.numOfCopies = numOfCopies;
+		id++;
+		generateCopies(copiesQuery);
+	}
+	
+	/**
+	 * Constructor of the object.
 	 * 
 	 * @param title
-	 *            Title of the resource
+	 *            Title of the resource.
 	 * @param year
-	 *            Year of resource release
+	 *            Year of resource release.
 	 * @param image
-	 *            Cover image for the resource
+	 *            Cover image for the resource.
 	 * @param numOfCopies
-	 *            How many copies exist of the resource in the library
+	 *            How many copies exist of the resource in the library.
 	 */
 	public Resource(String title, int year, BufferedImage image, int numOfCopies) {
 		id++;
@@ -98,10 +131,14 @@ public class Resource {
 	 */
 	public void generateCopies() {
 		for (int i = 0; i < numOfCopies; i++) {
-			copies.add(new Copy(this, i+1));
+			copies.add(new Copy(this, i + 1));
 		}
 	}
 
+	public void generateCopies(ResultSet copiesQuery) {
+		//TODO Implement the generation of copies for the database.
+	}
+	
 	public ArrayList<Copy> getCopies() {
 		return copies;
 	}
@@ -117,4 +154,11 @@ public class Resource {
 	public ArrayList<User> getWaitingList() {
 		return waitingList;
 	}
+	
+	@Override
+	public String toString() {
+		String string= "";
+		return string;
+	}
+	
 }

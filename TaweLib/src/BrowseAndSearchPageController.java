@@ -43,6 +43,33 @@ public class BrowseAndSearchPageController {
 
 	Alert alert = new Alert(AlertType.INFORMATION);
 
+    @FXML
+    void clickOnEdit(ActionEvent event) {
+
+    }
+	
+    @FXML
+    void clickOnInfo(ActionEvent event) {
+    	int selectedIndex = browseAndSearchList.getSelectionModel().getSelectedIndex();
+
+		if (selectedIndex < 0) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText(null);
+			alert.setContentText("Please select a book first.");
+			alert.showAndWait();
+			return;
+		}
+
+		Resource selectedResource = currentList.get(selectedIndex);
+		String resource = "";
+		
+		alert.setTitle("Info");
+		alert.setHeaderText(null);
+		alert.setContentText(resource);
+		alert.showAndWait();
+    }
+    
 	/**
 	 * Actions will be made when the user click on the button
 	 * 

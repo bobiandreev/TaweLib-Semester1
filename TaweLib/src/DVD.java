@@ -4,8 +4,7 @@
  * @author Boris Andreev and Kyriacos Mosphilis
  */
 import java.awt.image.BufferedImage;
-
-import javafx.scene.image.Image;
+import java.sql.ResultSet;
 
 public class DVD extends Resource {
 
@@ -14,6 +13,32 @@ public class DVD extends Resource {
 	private String language;
 	private String subtitles;
 
+	/**
+	 * Reader Constructor of DVD.
+	 * 
+	 * @param resourceID
+	 * 			  The ID this resource had.
+	 * @param title
+	 *            Title of the DVD.
+	 * @param year
+	 *            Year of release.
+	 * @param imagePath
+	 *            Path of the image.
+	 * @param numOfCopies
+	 *            How many are available in the library.
+	 * @param director
+	 *            Director of the film.
+	 * @param runtime
+	 *            Runtime of film.
+	 * @param copiesQuery
+	 * 			  The SQL query to re-generate the right copies.
+	 */
+	public DVD(int resourceID, String title, int year, String imagePath, int numOfCopies,
+			String director, int runtime, ResultSet copiesQuery) {
+		super(resourceID, title, year, imagePath, numOfCopies, copiesQuery);
+		this.director = director;
+		this.runtime = runtime;
+	}
 	/**
 	 * Constructor for DVD
 	 * 
@@ -29,10 +54,6 @@ public class DVD extends Resource {
 	 *            Director of the film
 	 * @param runtime
 	 *            Runtime of film
-	 * @param language
-	 *            Language of the film
-	 * @param subtitles
-	 *            Subtitles available for the film
 	 */
 	public DVD(String title, int year, BufferedImage thumbnailImage, int numOfCopies,
 			String director, int runtime) {

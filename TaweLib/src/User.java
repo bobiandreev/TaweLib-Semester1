@@ -102,8 +102,8 @@ public class User {
 		int index = 0;
 		while (index != itemsToReturn.size()) {
 			Copy curCopy = itemsToReturn.get(index);
-			String dueDate = curCopy.sdf.format(curCopy.getDueDate());
-			String currentDate = curCopy.sdf.format(Copy.getDateNow());
+			String dueDate = curCopy.S_D_F.format(curCopy.getDueDate());
+			String currentDate = curCopy.S_D_F.format(Copy.getDateNow());
 			Fine fine = new Fine(curCopy.getResource(), dueDate, currentDate);
 			history += curCopy.getDueDate() + ", amount due: " + fine.getCurrentFine() + ", copy: "
 					+ curCopy.getCopyId() + " of " + curCopy.getResource().getTitle() + ". Days overdue: "
@@ -140,16 +140,17 @@ public class User {
 	}
 
 	public double getBalance() {
-		//int totalFine = 0;
+		double totalFine = 0;
 		int index = 0;
 		while (index != itemsToReturn.size()) {
 			Copy curCopy = itemsToReturn.get(index);
-			String dueDate = curCopy.sdf.format(curCopy.getDueDate());
-			String currentDate = curCopy.sdf.format(Copy.getDateNow());
+			String dueDate = curCopy.S_D_F.format(curCopy.getDueDate());
+			String currentDate = curCopy.S_D_F.format(Copy.getDateNow());
 			Fine fine = new Fine(curCopy.getResource(), dueDate, currentDate);
-			currentFine += fine.getCurrentFine();
+			totalFine += fine.getCurrentFine();
 			index++;
 		}
+		currentFine = totalFine;
 		return currentFine;
 	}
 

@@ -12,7 +12,7 @@ import java.util.Date;
 public class Copy {
 
 	private Resource resource;
-	private int copyId;
+	private int copyID;
 	private boolean isBorrowed = false;
 	private boolean isRequested = false;
 	private boolean isReserved = false;
@@ -23,23 +23,38 @@ public class Copy {
 	private User requestedBy;
 	private User borrowedBy;
 	private User reservedFor;
-	public final int loanDuration = 14;
-	public final int loanDurationLaptop = 1;
-	public final int loanDurationDVD = 2;
-	public final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	public final int LOAN_DURATION_BOOK = 14;
+	public final int LOAN_DURATION_DVD = 2;
+	public final int LOAN_DURATION_LAPTOP = 1;
+	public final SimpleDateFormat S_D_F = new SimpleDateFormat("dd/MM/yyyy");
 	private Date dueDate = null;
 	private static Date dateNow;
 	private ArrayList<String> copyHistory = new ArrayList<>();
 
+	
+//	public Copy(int resourceID, int copyID) {
+//		ArrayList<Resource> resourcesList = new ArrayList<>();
+//		resourcesList.addAll(SearchBrowse.getResources());
+//		Resource currentResource;
+//		int index = 0;
+//		do {
+//			currentResource = resourcesList.get(index);
+//			
+//		} while (resourceID != currentResource.getid());
+//		this.resource = currentResource;
+//		this.currentCopyID = copyID;
+//		copyID++;
+//	}
+	
 	/**
 	 * Constructor for Copy object
 	 * 
 	 * @param resource This shows a copy of which resource is this object
-	 * @param copyId   Sets an ID for the specific copy
+	 * @param copyID   Sets an ID for the specific copy
 	 */
-	public Copy(Resource resource, int copyId) {
+	public Copy(Resource resource, int copyID) {
 		this.resource = resource;
-		this.copyId = copyId;
+		this.copyID = copyID;
 	}
 
 	/**
@@ -55,16 +70,16 @@ public class Copy {
 	 * @return the ID of Copy.
 	 */
 	public int getCopyId() {
-		return copyId;
+		return copyID;
 	}
 
 	/**
 	 * Setter method for current Copy's ID.
 	 * 
-	 * @param copyId The new ID.
+	 * @param copyID The new ID.
 	 */
-	public void setCopyId(int copyId) {
-		this.copyId = copyId;
+	public void setCopyID(int copyID) {
+		this.copyID = copyID;
 	}
 
 	/**
@@ -265,7 +280,7 @@ public class Copy {
 	 * @return the date this copy must be returned as a String.
 	 */
 	public String getDueDateString() {
-		return sdf.format(dueDate);
+		return S_D_F.format(dueDate);
 	}
 
 	/**
@@ -274,9 +289,9 @@ public class Copy {
 	public void setDueDate() {
 		Calendar c = Calendar.getInstance();
 		c.setTime(dateBorrowed);
-		c.add(Calendar.DAY_OF_MONTH, loanDuration);
+		c.add(Calendar.DAY_OF_MONTH, LOAN_DURATION_BOOK);
 		dueDate = c.getTime();
-		System.out.println("Due date: " + sdf.format(dueDate));
+		System.out.println("Due date: " + S_D_F.format(dueDate));
 	}
 
 	/**
@@ -367,7 +382,7 @@ public class Copy {
 					+ ". No due date is set for this item";
 		} else {
 			return "Copy number " + this.getCopyId() + " of resource " + this.getResource().getTitle()
-					+ ". This item is due to be returned on: " + sdf.format(this.getDueDate());
+					+ ". This item is due to be returned on: " + S_D_F.format(this.getDueDate());
 		}
 	}
 }
