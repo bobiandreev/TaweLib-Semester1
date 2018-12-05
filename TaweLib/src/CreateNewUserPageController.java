@@ -48,11 +48,20 @@ public class CreateNewUserPageController {
     	String streetName = this.streetName.getText();
     	String postcode = this.postcode.getText();
     	String profilePic = "Avatar5.png";
-    	Librarian.addUser(new User(username, name, mobileNumber, houseNumber, streetName, postcode, profilePic));
-    	Alert alert = new Alert(AlertType.CONFIRMATION);
-    	alert.setHeaderText("Done");
-		alert.setContentText("New user created!");
-		alert.showAndWait();
+    	if (!Librarian.checkUserName(username)) {
+    		Librarian.addUser(new User(username, name, mobileNumber, houseNumber, streetName, postcode, profilePic));
+        	Alert alert = new Alert(AlertType.CONFIRMATION);
+        	alert.setHeaderText("Done");
+    		alert.setContentText("New user created!");
+    		alert.showAndWait();
+    	} else {
+    		Alert alert = new Alert(AlertType.ERROR);
+        	alert.setHeaderText("Problem Found");
+    		alert.setContentText("This username already exist!\n"
+    				+ "Please add a new username!");
+    		alert.showAndWait();
+    	}
+    	
     }
     
     @FXML

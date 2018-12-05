@@ -4,7 +4,6 @@
  * @author Boris Andreev and Kyriacos Mosphilis
  * @version 1.00
  */
-import java.awt.image.BufferedImage;
 import java.sql.ResultSet;
 
 public class LaptopComputer extends Resource {

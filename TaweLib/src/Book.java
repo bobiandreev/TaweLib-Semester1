@@ -4,7 +4,6 @@
  * @author Boris Andreev and Kyriacos Mosphilis
  * @version 1.0
  */
-import java.awt.image.BufferedImage;
 import java.sql.ResultSet;
 
 public class Book extends Resource {

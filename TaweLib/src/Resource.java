@@ -5,15 +5,8 @@
  * @version 1.0
  */
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
-
-import javafx.scene.image.Image;
 
 public class Resource {
 
@@ -162,6 +155,40 @@ public class Resource {
 
 	public ArrayList<User> getWaitingList() {
 		return waitingList;
+	}
+	
+	public void addCopy() {
+		boolean flag = true;
+		int index = 0;
+		int copyID = 0;
+		do {
+			if ((copies.get(index + 1).getCopyId() - 
+					copies.get(index).getCopyId()) != 1) {
+				copyID = index + 2;
+				flag = false;
+			}
+			index++;
+		} while (index != copies.size() - 1 && flag);
+		if (!flag) {
+			copies.add(new Copy(this, copyID));
+		} else {
+			copies.add(new Copy(this, index + 2));
+		}
+	}
+	
+	public void deleteCopy(int copyID) {
+		Copy copy = null;
+		boolean flag = true;
+		int index = 0;
+		do {
+			if (copyID == copies.get(index).getCopyId()) {
+				copy = copies.get(index);
+				flag = false;
+			}
+			index++;
+		} while(flag);
+		copies.remove(copy);
+		this.numOfCopies--;
 	}
 	
 	@Override

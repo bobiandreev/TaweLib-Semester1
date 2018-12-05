@@ -3,7 +3,6 @@
  * Class that creates a DVD object
  * @author Boris Andreev and Kyriacos Mosphilis
  */
-import java.awt.image.BufferedImage;
 import java.sql.ResultSet;
 
 public class DVD extends Resource {

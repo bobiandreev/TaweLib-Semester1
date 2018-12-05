@@ -1,10 +1,7 @@
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.Image;
 
 public class Librarian extends User {
 
@@ -39,16 +36,10 @@ public class Librarian extends User {
 
 	public static void addUser(User user) {
 		// this will be done with read lines
-		boolean flag = false;
-		String username = "";
-		do {
-			username = user.getUsername();
-			flag = checkUserName(username);
-		} while (flag);
 		usersList.add(user);
 	}
 
-	private static boolean checkUserName(String username) {
+	public static boolean checkUserName(String username) {
 		for (int i = 0; i < usersList.size(); i++) {
 			if (username.equals(usersList.get(i).getUsername())) {
 				return true;

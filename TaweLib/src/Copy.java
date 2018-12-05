@@ -139,6 +139,7 @@ public class Copy {
 			if (username.equals(users.get(index).getUsername())) {
 				user = users.get(index);
 			}
+			index++;
 		} while (username != user.getUsername());
 		return user;
 	}
