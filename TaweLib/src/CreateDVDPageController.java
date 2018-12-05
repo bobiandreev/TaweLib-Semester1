@@ -58,7 +58,7 @@ public class CreateDVDPageController {
 		String year = this.year.getText();
 		String director = this.director.getText();
 		int numberOfCopies = Integer.parseInt(this.numOfCopies.getText());
-		int runtime = Integer.parseInt(this.runtime.getText());
+		String runtime = this.runtime.getText();
 		String language = this.language.getText();
 		String availableSubtitles = this.availavleSubtitles.getText();
 		DVD newDVD = new DVD(title, year, image, numberOfCopies, director, runtime);

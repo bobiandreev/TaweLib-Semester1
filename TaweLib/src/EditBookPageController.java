@@ -96,7 +96,6 @@ public class EditBookPageController {
 		bookToEdit.setISBN(ISBN);
 		bookToEdit.setLanguage(language);
 		bookToEdit.setThumbnailImage(path);
-		bookToEdit.setThumbnailImage(path);
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setHeaderText("Success!");
 		alert.setContentText("This book has been added to the catalogue successfully!");

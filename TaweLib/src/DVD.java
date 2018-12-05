@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 public class DVD extends Resource {
 
 	private String director;
-	private int runtime;
+	private String runtime;
 	private String language;
 	private String subtitles;
 
@@ -35,7 +35,7 @@ public class DVD extends Resource {
 	 */
 
 	public DVD(int resourceID, String title, String year, String imagePath, int numOfCopies,
-			String director, int runtime, ResultSet copiesQuery) {
+			String director, String runtime, ResultSet copiesQuery) {
 		super(resourceID, title, year, imagePath, numOfCopies, copiesQuery);
 		this.director = director;
 		this.runtime = runtime;
@@ -65,7 +65,7 @@ public class DVD extends Resource {
 	 */
 
 	public DVD(String title, String string, String thumbnailImage, int numOfCopies,
-			String director, int runtime) {
+			String director, String runtime) {
 		super(title, string, thumbnailImage, numOfCopies);
 		this.director = director;
 		this.runtime = runtime;
@@ -91,7 +91,7 @@ public class DVD extends Resource {
 	 * 
 	 * @return The runtime of the film
 	 */
-	public int getRuntime() {
+	public String getRuntime() {
 		return runtime;
 	}
 
@@ -123,4 +123,13 @@ public class DVD extends Resource {
 		this.subtitles = subtitles;
 	}
 
+	public void setDirector(String director) {
+		this.director = director;
+	}
+
+	public void setRuntime(String runtime) {
+		this.runtime = runtime;
+	}
+
+	
 }
