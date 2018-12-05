@@ -140,4 +140,13 @@ public class Book extends Resource {
 		this.language = language;
 	}
 
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+
+	
 }

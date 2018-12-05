@@ -1,11 +1,17 @@
+import java.io.File;
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -26,7 +32,7 @@ public class EditBookPageController {
 	private TextField year;
 
 	@FXML
-	private Button thumbnailImage;
+	private ImageView thumbnailImage;
 
 	@FXML
 	private TextField author;
@@ -47,6 +53,7 @@ public class EditBookPageController {
 	private TextField ISBN;
 
 	private Book bookToEdit;
+	private String path;
 
 	@FXML
 	private void initialize() {
@@ -66,6 +73,8 @@ public class EditBookPageController {
 		if (bookToEdit.getLanguage() != null) {
 			this.language.setText(bookToEdit.getLanguage());
 		}
+		
+		this.thumbnailImage.setImage(new Image(bookToEdit.getThumbnailImage()));
 	}
 
 	@FXML
@@ -78,18 +87,31 @@ public class EditBookPageController {
 		String genre = this.genre.getText();
 		String language = this.language.getText();
 		String ISBN = this.ISBN.getText();
-		String image = this.image;
-		Book newBook = new Book(title, year, image, numberOfCopies, author, publisher);
-		newBook.setGenre(genre);
-		newBook.setISBN(ISBN);
-		newBook.setLanguage(language);
-		SearchBrowse.getResources().add(newBook);
+		String image = this.path;
+		bookToEdit.setTitle(title);
+		bookToEdit.setYear(year);
+		bookToEdit.setAuthor(author);
+		bookToEdit.setPublisher(publisher);
+		//bookToEdit.setNumOfCopies();
+		bookToEdit.setGenre(genre);
+		bookToEdit.setISBN(ISBN);
+		bookToEdit.setLanguage(language);
+		bookToEdit.setThumbnailImage(path);
+		bookToEdit.setThumbnailImage(path);
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setHeaderText("Success!");
 		alert.setContentText("This book has been added to the catalogue successfully!");
 		alert.showAndWait();
 	}
 
+	@FXML
+    void clickOnNewImage(ActionEvent event) {
+		FileChooser fc = new FileChooser();
+    	File selectedFile = fc.showOpenDialog(null);
+    	path = selectedFile.getAbsolutePath().toString();
+
+    }
+	
 	@FXML
 	private void clickOnBack(ActionEvent event) {
 		closeWindow();

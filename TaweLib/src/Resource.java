@@ -148,6 +148,18 @@ public class Resource {
 		return id;
 	}
 
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+	public void setThumbnailImage(String thumbnailImage) {
+		this.thumbnailImage = thumbnailImage;
+	}
+
 	public ArrayList<User> getWaitingList() {
 		return waitingList;
 	}
