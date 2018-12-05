@@ -20,7 +20,7 @@ public class Resource {
 	 *            Static id which is updated every time a new resource is created.
 	 */
 	private static int id = 0;
-	private int curResourceID = 0;
+	private int curResourceID;
 	private String title;
 	private int year;
 	private BufferedImage thumbnailImage;
@@ -30,7 +30,7 @@ public class Resource {
 	private ArrayList<User> waitingList = new ArrayList<>();
 
 	/**
-	 * Reader Constructor of the object.
+	 * Reader Constructor for a resource.
 	 * 
 	 * @param resourceID 
 	 * 			  The ID this resource had.
@@ -60,7 +60,7 @@ public class Resource {
 	}
 	
 	/**
-	 * Constructor of the object.
+	 * Constructor for a resource.
 	 * 
 	 * @param title
 	 *            Title of the resource.
@@ -82,11 +82,11 @@ public class Resource {
 	}
 
 	/**
-	 * Getter method for the id
+	 * Getter method for the ID.
 	 * 
-	 * @return resource id
+	 * @return resource ID.
 	 */
-	public int getid() {
+	public int getID() {
 		return curResourceID;
 	}
 

@@ -5,8 +5,7 @@
  * @version 1.0
  */
 import java.awt.image.BufferedImage;
-
-import javafx.scene.image.Image;
+import java.sql.ResultSet;
 
 public class Book extends Resource {
 
@@ -17,26 +16,47 @@ public class Book extends Resource {
 	private String language;
 
 	/**
-	 * Constructor for the book object
+	 * Reader Constructor for a book.
 	 * 
-	 * @param author
-	 *            Author of the book
-	 * @param genre
-	 *            Genre of the book
-	 * @param publisher
-	 *            Publisher of the book
-	 * @param ISBN
-	 *            ISBN of the boo
-	 * @param language
-	 *            Language of the book
+	 * @param resourceID
+	 * 			  The ID this resource had.
 	 * @param title
-	 *            Title of the book
+	 *            Title of the book.
 	 * @param year
-	 *            Year when book was released
+	 *            Year when book was released.
 	 * @param image
-	 *            Cover image of the book
+	 *            Path of the image.
 	 * @param numOfCopies
-	 *            Number of copies for the book
+	 *            Number of copies for the book.
+	 * @param copiesQuery
+	 * 			  The SQL query to re-generate the right copies.
+	 * @param author
+	 *            Author of the book.
+	 * @param publisher
+	 *            Publisher of the book.
+	 */
+	public Book(int resourceID, String title, int year, String imagePath, 
+			int numOfCopies, ResultSet copiesQuery, String author, String publisher) {
+		super(resourceID, title, year, imagePath, numOfCopies, copiesQuery);
+		this.author = author;
+		this.publisher = publisher;
+	}
+	
+	/**
+	 * Constructor for a book.
+	 * 
+	 * @param title
+	 *            Title of the book.
+	 * @param year
+	 *            Year when book was released.
+	 * @param image
+	 *            Cover image of the book.
+	 * @param numOfCopies
+	 *            Number of copies for the book.
+	 * @param author
+	 *            Author of the book.
+	 * @param publisher
+	 *            Publisher of the book.
 	 */
 	public Book(String title, int year,BufferedImage image, int numOfCopies,
 			String author, String publisher) {

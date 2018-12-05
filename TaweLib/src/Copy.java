@@ -1,7 +1,9 @@
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Scanner;
 
 /**
  * Class that creates a copy object for a resource
@@ -30,6 +32,7 @@ public class Copy {
 	private Date dueDate = null;
 	private static Date dateNow;
 	private ArrayList<String> copyHistory = new ArrayList<>();
+	private Scanner in;
 
 	
 //	public Copy(int resourceID, int copyID) {
@@ -47,6 +50,54 @@ public class Copy {
 //	}
 	
 	/**
+	 * 
+	 * @param resource This shows a copy of which resource is this object
+	 * @param copyID   Sets an ID for the specific copy
+	 * @param isBorrowed
+	 * @param isRequested
+	 * @param isReserved
+	 * @param dateRequested
+	 * @param dateBorrowed
+	 * @param dateRequestedReturn
+	 * @param dateReturned
+	 * @param requestedBy
+	 * @param borrowedBy
+	 * @param reservedFor
+	 * @param dueDate
+	 * @param copyHistory
+	 */
+	public Copy(Resource resource, int copyID, boolean isBorrowed,
+			boolean isRequested, boolean isReserved, String dateRequested,
+			String dateBorrowed, String dateRequestedReturn,
+			String dateReturned, String requestedBy, String borrowedBy,
+			String reservedFor, String dueDate, String copyHistory) {
+		this.resource = resource;
+		this.copyID = copyID;
+		this.isBorrowed = isBorrowed;
+		this.isRequested = isRequested;
+		this.isReserved = isReserved;
+		try {
+			this.dateRequested = dateParser(dateRequested);
+			this.dateBorrowed = dateParser(dateBorrowed);
+			this.dateRequestReturn = dateParser(dateRequestedReturn);
+			this.dateReturned = dateParser(dateReturned);
+			this.dueDate = dateParser(dueDate);
+		} catch (ParseException e) {
+			
+		}
+		this.requestedBy = userFinder(requestedBy);
+		this.borrowedBy = userFinder(borrowedBy);
+		this.reservedFor = userFinder(reservedFor);
+		in = new Scanner(copyHistory);
+		in.useDelimiter(",");
+		while (in.hasNext()) {
+			String line = in.next();
+			this.copyHistory.add(line);
+		}
+		
+	}
+	
+	/**
 	 * Constructor for Copy object
 	 * 
 	 * @param resource This shows a copy of which resource is this object
@@ -57,6 +108,41 @@ public class Copy {
 		this.copyID = copyID;
 	}
 
+	/**
+	 * Parses a string to date.
+	 * 
+	 * @param dateToParse The date we want to parse.
+	 * @return A Date object.
+	 * @throws ParseException If the input is invalid.
+	 */
+	private Date dateParser(String dateToParse) throws ParseException {
+		SimpleDateFormat parser = new SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy");
+		if (dateToParse.equals("null")) {
+			return null;
+		}
+		Date date = parser.parse(dateToParse);
+		return date;
+	}
+	
+	/**
+	 * Finds a User.
+	 * 
+	 * @param username The username of a user.
+	 * @return The a User.
+	 */
+	private User userFinder(String username) {
+		User user = null;
+		ArrayList<User> users = new ArrayList<>();
+		users.addAll(Librarian.getUsersList());
+		int index = 0;
+		do {
+			if (username.equals(users.get(index).getUsername())) {
+				user = users.get(index);
+			}
+		} while (username != user.getUsername());
+		return user;
+	}
+	
 	/**
 	 * Makes a copy borrowed, by making isBorrowed true.
 	 */
@@ -364,8 +450,6 @@ public class Copy {
 	public void removeReservation() {
 		isReserved = false;
 	}
-	
-	
 	
 	public void setReserved(boolean isReserved) {
 		this.isReserved = isReserved;

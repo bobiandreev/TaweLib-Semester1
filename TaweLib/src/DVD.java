@@ -14,7 +14,7 @@ public class DVD extends Resource {
 	private String subtitles;
 
 	/**
-	 * Reader Constructor of DVD.
+	 * Reader Constructor for a DVD.
 	 * 
 	 * @param resourceID
 	 * 			  The ID this resource had.
@@ -26,37 +26,38 @@ public class DVD extends Resource {
 	 *            Path of the image.
 	 * @param numOfCopies
 	 *            How many are available in the library.
+	 * @param copiesQuery
+	 * 			  The SQL query to re-generate the right copies.
 	 * @param director
 	 *            Director of the film.
 	 * @param runtime
 	 *            Runtime of film.
-	 * @param copiesQuery
-	 * 			  The SQL query to re-generate the right copies.
 	 */
 	public DVD(int resourceID, String title, int year, String imagePath, int numOfCopies,
-			String director, int runtime, ResultSet copiesQuery) {
+			 ResultSet copiesQuery, String director, int runtime) {
 		super(resourceID, title, year, imagePath, numOfCopies, copiesQuery);
 		this.director = director;
 		this.runtime = runtime;
 	}
+	
 	/**
-	 * Constructor for DVD
+	 * Constructor for a DVD.
 	 * 
 	 * @param title
-	 *            Title of the DVD
+	 *            Title of the DVD.
 	 * @param year
-	 *            Year of release
+	 *            Year of release.
 	 * @param thumbnailImage
-	 *            Cover Image
+	 *            Cover Image.
 	 * @param numOfCopies
-	 *            How many are available in the library
+	 *            How many are available in the library.
 	 * @param director
-	 *            Director of the film
+	 *            Director of the film.
 	 * @param runtime
-	 *            Runtime of film
+	 *            Runtime of film.
 	 */
-	public DVD(String title, int year, BufferedImage thumbnailImage, int numOfCopies,
-			String director, int runtime) {
+	public DVD(String title, int year, BufferedImage thumbnailImage,
+			int numOfCopies, String director, int runtime) {
 		super(title, year, thumbnailImage, numOfCopies);
 		this.director = director;
 		this.runtime = runtime;
