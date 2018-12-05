@@ -191,10 +191,11 @@ public class Resource {
 		this.numOfCopies--;
 	}
 	
-	@Override
 	public String toString() {
-		String string= "";
-		return string;
+		String result = "ID:\t\t\t\t" + this.getID() + "\nTitle:\t\t\t\t" 
+				+ this.getTitle() + "\nYear published:\t" + this.getYear() + 
+				"\nNumber of Copies:\t" + this.getNumOfCopies();
+		return result;
 	}
 	
 }

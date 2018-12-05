@@ -156,11 +156,10 @@ public class BrowseAndSearchPageController {
 		}
 
 		Resource selectedResource = currentList.get(selectedIndex);
-		String resource = "";
 		
 		alert.setTitle("Info");
 		alert.setHeaderText(null);
-		alert.setContentText(resource);
+		alert.setContentText(selectedResource.toString());
 		alert.showAndWait();
     }
     

@@ -95,4 +95,12 @@ public class LaptopComputer extends Resource {
 	public String getOS() {
 		return OS;
 	}
+	
+	public String toString() {
+		String result = super.toString();
+		result += "\nManufacturer:\t\t" + this.getManufacturer() +
+				"\nModel:\t\t\t" + this.getModel() + "\nOS:\t\t\t\t" + 
+				this.getOS();
+		return result;
+	}
 }

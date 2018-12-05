@@ -9,8 +9,8 @@ public class DVD extends Resource {
 
 	private String director;
 	private String runtime;
-	private String language;
-	private String subtitles;
+	private String language = "";
+	private String subtitles = "";
 
 	/**
 	 * Reader Constructor for a DVD.
@@ -129,6 +129,13 @@ public class DVD extends Resource {
 	public void setRuntime(String runtime) {
 		this.runtime = runtime;
 	}
-
+	
+	public String toString() {
+		String result = super.toString();
+		result += "\nDirector:\t\t\t" + this.getDirector() + "\nRuntime:\t\t\t" + 
+			   this.getRuntime() + " minutes" + "\nLanguage\t\t\t" + 
+			   this.getLanguage() + "\nSubtitles:\t\t\t" + this.getSubtitles();
+		return result;
+	}
 	
 }

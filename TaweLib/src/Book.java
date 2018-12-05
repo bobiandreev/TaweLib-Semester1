@@ -9,10 +9,10 @@ import java.sql.ResultSet;
 public class Book extends Resource {
 
 	private String author;
-	private String genre;
+	private String genre = "";
 	private String publisher;
-	private String ISBN;
-	private String language;
+	private String ISBN = "";
+	private String language = "";
 
 	/**
 	 * Reader Constructor for a book.
@@ -146,6 +146,13 @@ public class Book extends Resource {
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
 	}
-
 	
+	public String toString() {
+		String result = super.toString();
+		result += "\nAuthor:\t\t\t" + this.getAuthor() + "\nPublisher:\t\t\t" + 
+				this.getPublisher() + "\nGenre:\t\t\t" + this.getGenre() + 
+				"\nISBN:\t\t\t" + this.getISBN() +  "\nLanguage:\t\t" + 
+				this.getLanguage();
+		return result;
+	}
 }
