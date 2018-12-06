@@ -49,6 +49,8 @@ public class BrowseAndSearchPageController {
 
 	private static Resource resourceToEdit;
 
+	private User curUser;
+
 	Alert alert = new Alert(AlertType.INFORMATION);
 
 	public static Resource getResourceToEdit() {
@@ -57,28 +59,39 @@ public class BrowseAndSearchPageController {
 
 	@FXML
 	void clickOnEdit(ActionEvent event) {
-		int selectedIndex = browseAndSearchList.getSelectionModel().getSelectedIndex();
+		curUser = LoginController.getLoggedUser();
+		if (curUser instanceof Librarian) {
+			int selectedIndex = browseAndSearchList.getSelectionModel().getSelectedIndex();
 
-		if (selectedIndex < 0) {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error");
-			alert.setHeaderText(null);
-			alert.setContentText("Please select an item first.");
-			alert.showAndWait();
-			return;
-		}
+			if (selectedIndex < 0) {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Error");
+				alert.setHeaderText(null);
+				alert.setContentText("Please select an item first.");
+				alert.showAndWait();
+				return;
+			}
 
-		Resource selectedResource = currentList.get(selectedIndex);
-		String resource = "";
-		resourceToEdit = selectedResource;
-		if (selectedResource instanceof Book) {
-			Book();
+			Resource selectedResource = currentList.get(selectedIndex);
+			String resource = "";
+			resourceToEdit = selectedResource;
+			if (selectedResource instanceof Book) {
+				Book();
+			}
+			if (selectedResource instanceof DVD) {
+				DVD();
+			}
+			if (selectedResource instanceof LaptopComputer) {
+				Laptop();
+			}
 		}
-		if (selectedResource instanceof DVD) {
-			DVD();
-		}
-		if (selectedResource instanceof LaptopComputer) {
-			Laptop();
+		else {
+			Alert alert1 = new Alert(AlertType.ERROR);
+			alert1.setTitle("Error");
+			alert1.setHeaderText("Can not do this action!");
+			alert1.setContentText("Only librarians can edit items!");
+			alert1.showAndWait();
+			
 		}
 	}
 
