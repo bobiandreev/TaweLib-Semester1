@@ -34,7 +34,6 @@ public class LoginController {
 	@FXML
 	private TextField librarianID; // Username of Librarian
 	private static User loggedUser;
-	private static Librarian loggedLibrarian;
 	Alert alert = new Alert(AlertType.ERROR);
 
 	public static User getLoggedUser() {
@@ -93,7 +92,7 @@ public class LoginController {
 			boolean exists = true;
 			for (int i = 0; i < Librarian.getLibrarianList().size(); i++) {
 				if (m.equals(Librarian.getLibrarianList().get(i).getUsername())) {
-					loggedLibrarian = Librarian.getLibrarianList().get(i);
+					loggedUser = Librarian.getLibrarianList().get(i);
 					exists = false;
 				}
 			}
