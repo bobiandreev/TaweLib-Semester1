@@ -27,7 +27,12 @@ public class BrowseAndSearchPageController {
 	private ArrayList<Resource> bookList;
 	private ArrayList<Resource> dvdList;
 	private ArrayList<Resource> laptopList;
-	private ArrayList<Resource> currentList = new ArrayList<>();
+	private static ArrayList<Resource> currentList = new ArrayList<>();
+	private static Resource selectedResource;
+	
+	public static Resource getSelectedResource() {
+		return selectedResource;
+	}
 
 	@FXML
 	private BorderPane browseAndSearchPane;
@@ -361,7 +366,7 @@ public class BrowseAndSearchPageController {
 			return;
 		}
 
-		Resource selectedResource = currentList.get(selectedIndex);
+		selectedResource = currentList.get(selectedIndex);
 		String stringCopies = "";
 		String borrowed = "";
 		for (Copy copy : selectedResource.getCopies()) {

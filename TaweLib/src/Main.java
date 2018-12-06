@@ -180,8 +180,8 @@ public class Main extends Application {
 		Librarian.getUsersList().add(user1);
 		Librarian.getUsersList().add(user2);
 		Librarian.getLibrarianList().add(lib1);
-		user1.requestItem(resource1);
-		user1.requestReturn(resource1.getCopies().get(0));
+	//	user1.requestItem(resource1);
+	//	user1.requestReturn(resource1.getCopies().get(0));
 		SearchBrowse.addResource(resource1);
 		SearchBrowse.addResource(resource2);
 		SearchBrowse.addResource(resource3);

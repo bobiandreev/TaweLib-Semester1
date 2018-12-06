@@ -17,6 +17,25 @@ public class DisplayCopiesPageController {
 	@FXML
 	private BorderPane copyPane;
 
+	private User curUser;
+	private Resource resource;
+
+	@FXML
+	private void initialize() {
+		resource = BrowseAndSearchPageController.getSelectedResource();
+		String stringCopies = "";
+		String borrowed = "";
+		for (Copy copy : resource.getCopies()) {
+			if (copy.getIsBorrowed()) {
+				borrowed = "Borrowed.";
+			} else {
+				borrowed = "Available.";
+			}
+			stringCopies = "Copy: " + copy.getCopyId() + "\t\tStatus: " + borrowed + "\n";
+			copyList.getItems().add(stringCopies);
+		}
+	}
+
 	@FXML
 	void clickOnCheckCopyHistory(ActionEvent event) {
 		try {
@@ -40,7 +59,18 @@ public class DisplayCopiesPageController {
 
 	@FXML
 	void clickOnBack(ActionEvent event) {
-
+		closeWindow();
 	}
 
+	@FXML
+	void clickOnRequestACopy(ActionEvent event) {
+		curUser = LoginController.getLoggedUser();
+		curUser.requestItem(resource);
+	}
+
+	@FXML
+	private void closeWindow() { // A method which close the window
+		Stage stage = (Stage) copyPane.getScene().getWindow();
+		stage.close();
+	}
 }
