@@ -6,6 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
@@ -154,6 +156,9 @@ public class BrowseAndSearchPageController {
 		}
 		Resource selectedResource = currentList.get(selectedIndex);
 		alert.setTitle("Info");
+		Image image = new Image(selectedResource.getThumbnailImage(), 200, 135, true, true);
+		ImageView imageView = new ImageView(image);
+		alert.setGraphic(imageView);
 		alert.setHeaderText(null);
 		alert.setContentText(selectedResource.toString());
 		alert.showAndWait();
