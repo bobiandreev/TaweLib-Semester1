@@ -55,14 +55,6 @@
                   <Button mnemonicParsing="false" onAction="#clickOnReservedItems" text="Reserved Items" />
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="251.0" prefHeight="60.0" prefWidth="626.0" spacing="10.0">
-               <padding>
-                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-               </padding>
-               <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#clickOnFinePayment" text="Fine Payment" textAlignment="CENTER" />
-               </children>
-            </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="302.0" prefHeight="38.0" prefWidth="785.0" spacing="10.0">
                <padding>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
