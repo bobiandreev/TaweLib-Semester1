@@ -134,6 +134,22 @@ public class SearchBrowse {
 		}
 		return flag;
 	}
+	
+	public static Copy findCopy(String title, int copyID) {
+		Resource r = null;
+		Copy c = null;
+		int index = 0;
+		boolean flag = true;
+		do {
+			if (title == resourceList.get(index).getTitle()) {
+				r = resourceList.get(index);
+				flag = false;
+			}
+			index++;
+		} while(flag);
+		c = r.getCopies().get(copyID);
+		return c;
+	}
 
 	// move this to a different class
 	// alpha stage - not tested

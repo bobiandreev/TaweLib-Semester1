@@ -132,7 +132,7 @@ public class Copy {
 	 * @return A Date object.
 	 * @throws ParseException If the input is invalid.
 	 */
-	private Date dateParser(String dateToParse) throws ParseException {
+	public static Date dateParser(String dateToParse) throws ParseException {
 		SimpleDateFormat parser = new SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy");
 		if (dateToParse.equals("null")) {
 			return null;
