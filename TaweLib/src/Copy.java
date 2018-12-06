@@ -50,21 +50,36 @@ public class Copy {
 //	}
 	
 	/**
+	 * Reader Constructor for a Copy.
 	 * 
-	 * @param resource This shows a copy of which resource is this object
-	 * @param copyID   Sets an ID for the specific copy
+	 * @param resource 
+	 * 			This shows a copy of which resource is this object.
+	 * @param copyID   
+	 * 			Sets an ID for the specific copy.
 	 * @param isBorrowed
+	 * 			True if it's currently being borrowed, false otherwise.
 	 * @param isRequested
+	 * 			True if it's requested by someone, false otherwise.
 	 * @param isReserved
+	 * 			True if it's reserved for someone, false otherwise.
 	 * @param dateRequested
+	 * 			The date it was requested.
 	 * @param dateBorrowed
+	 * 			The date it was borrowed.
 	 * @param dateRequestedReturn
+	 * 			The date the borrower wants to return it.
 	 * @param dateReturned
+	 * 			The date it was returned.
 	 * @param requestedBy
+	 * 			The User it was requested by.
 	 * @param borrowedBy
+	 * 			The User that had borrowed the copy.
 	 * @param reservedFor
+	 * 			The User it is reserved for.
 	 * @param dueDate
+	 * 			The date the current borrower has to return it.
 	 * @param copyHistory
+	 * 			The borrowing history of this copy.
 	 */
 	public Copy(Resource resource, int copyID, boolean isBorrowed,
 			boolean isRequested, boolean isReserved, String dateRequested,
@@ -98,10 +113,12 @@ public class Copy {
 	}
 	
 	/**
-	 * Constructor for Copy object
+	 * Constructor for a Copy.
 	 * 
-	 * @param resource This shows a copy of which resource is this object
-	 * @param copyID   Sets an ID for the specific copy
+	 * @param resource 
+	 * 			This shows a copy of which resource is this object.
+	 * @param copyID   
+	 * 			Sets an ID for the specific copy.
 	 */
 	public Copy(Resource resource, int copyID) {
 		this.resource = resource;
@@ -135,6 +152,9 @@ public class Copy {
 		ArrayList<User> users = new ArrayList<>();
 		users.addAll(Librarian.getUsersList());
 		int index = 0;
+		if (username.equals("null")) {
+			return null;
+		}
 		do {
 			if (username.equals(users.get(index).getUsername())) {
 				user = users.get(index);
@@ -394,8 +414,14 @@ public class Copy {
 	 * Setter method of the borrowing history of a copy.
 	 */
 	public void setCopyHistory() {
-		copyHistory.add("Borrowed by " + getBorrowedBy().getUsername() + " on " + getDateBorrowed()
-				+ " and returned by " + getDateReturned());
+		if (this.getDateRequested() != null) {
+			copyHistory.remove(copyHistory.size() - 1);
+			copyHistory.add("Borrowed by " + getBorrowedBy().getUsername() + " on " + getDateBorrowed()
+			+ " and returned by " + getDateReturned());
+		} else {
+			copyHistory.add("Borrowed by " + getBorrowedBy().getUsername() + " on " + getDateBorrowed());
+		}
+		
 	}
 
 	/**
