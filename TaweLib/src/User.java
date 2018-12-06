@@ -1,8 +1,8 @@
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
-
-import javafx.scene.image.Image;
+import java.util.Scanner;
 
 public class User {
 
@@ -22,9 +22,10 @@ public class User {
 	private ArrayList<Date> paymentDates = new ArrayList<>();
 	private ArrayList<Double> paymentAmounts = new ArrayList<>();
 	private ArrayList<String> messages = new ArrayList<>();
-
-	public User(String username, String name, String mobileNumber, String houseNumber, String address, String postcode,
-			String image) {
+	private Scanner in;
+	
+	public User(String username, String name, String mobileNumber, 
+		   String houseNumber, String address, String postcode, String image) {
 		this.username = username;
 		this.name = name;
 		this.mobileNumber = mobileNumber;
@@ -38,7 +39,49 @@ public class User {
 	public String getProfilePic() {
 		return profilePic;
 	}
+	
+	public void setPaymentAmounts(String array) {
+		in = new Scanner(array);
+		in.useDelimiter(",");
+		while (in.hasNextDouble()) {
+			double payment = in.nextDouble();
+			paymentAmounts.add(payment);
+		}
+	}
+	
+	public void setPaymentDates(String array) throws ParseException {
+		String dateS = "";
+		in.useDelimiter(",");
+		while (in.hasNext()) {
+			dateS = in.next();
+		}
+		Date date = Copy.dateParser(dateS);
+		paymentDates.add(date);
+	}
+	
+	public void setItemToReturn(String array) {
+		in = new Scanner(array);
+		in.useDelimiter(",");
+		while (in.hasNext()) {
+			String rTitle = in.next();
+			int cID = in.nextInt();
+			itemsToReturn.add(SearchBrowse.findCopy(rTitle, cID));
+		}
+	}
+	
+	public ArrayList<Copy> getItemsToReturn(){
+		return itemsToReturn;
+	}
 
+	public void setReservedFor(String array) {
+		in = new Scanner(array);
+		in.useDelimiter(",");
+		while (in.hasNext()) {
+			String rTitle = in.next();
+			int cID = in.nextInt();
+			reservedFor.add(SearchBrowse.findCopy(rTitle, cID));
+		}
+	}
 	
 	public ArrayList<Copy> getReservedFor() {
 		return reservedFor;
@@ -91,6 +134,16 @@ public class User {
 	public void setPostcode(String postcode) {
 		this.postcode = postcode;
 	}
+	
+	public void setReturnRequests(String array) {
+		in = new Scanner(array);
+		in.useDelimiter(",");
+		while (in.hasNext()) {
+			String rTitle = in.next();
+			int cID = in.nextInt();
+			returnRequests.add(SearchBrowse.findCopy(rTitle, cID));
+		}
+	}
 
 	public ArrayList<Copy> getReturnRequests() {
 		return returnRequests;
@@ -125,9 +178,29 @@ public class User {
 		}
 		return history;
 	}
+	
+	public void setRequestedItems(String array) {
+		in = new Scanner(array);
+		in.useDelimiter(",");
+		while (in.hasNext()) {
+			String rTitle = in.next();
+			int cID = in.nextInt();
+			requestedItems.add(SearchBrowse.findCopy(rTitle, cID));
+		}
+	}
 
 	public ArrayList<Copy> getRequestedItems() {
 		return requestedItems;
+	}
+	
+	public void setBorrowedItems(String array) {
+		in = new Scanner(array);
+		in.useDelimiter(",");
+		while (in.hasNext()) {
+			String rTitle = in.next();
+			int cID = in.nextInt();
+			borrowedItems.add(SearchBrowse.findCopy(rTitle, cID));
+		}
 	}
 
 	public ArrayList<Copy> getBorrowedItems() {
