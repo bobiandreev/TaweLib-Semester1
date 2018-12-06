@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -22,6 +24,7 @@ public class DisplayCopiesPageController {
 
 	@FXML
 	private void initialize() {
+		curUser = LoginController.getLoggedUser();
 		resource = BrowseAndSearchPageController.getSelectedResource();
 		String stringCopies = "";
 		String borrowed = "";
@@ -38,22 +41,29 @@ public class DisplayCopiesPageController {
 
 	@FXML
 	void clickOnCheckCopyHistory(ActionEvent event) {
-		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DisplayCopiesPage.fxml"));
+		if (curUser instanceof Librarian) {
+			try {
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CopyHistoryPage.fxml"));
 
-			BorderPane copyHistory = (BorderPane) fxmlLoader.load();
+				BorderPane copyHistory = (BorderPane) fxmlLoader.load();
 
-			Scene copyHistoryScene = new Scene(copyHistory, Main.BROWSEANDSEARCHPAGE_WIDTH,
-					Main.BROWSEANDSEARCHPAGE_HEIGHT);
-			Stage copyHistoryStage = new Stage();
+				Scene copyHistoryScene = new Scene(copyHistory, Main.BROWSEANDSEARCHPAGE_WIDTH,
+						Main.BROWSEANDSEARCHPAGE_HEIGHT);
+				Stage copyHistoryStage = new Stage();
 
-			copyHistoryStage.setScene(copyHistoryScene);
-			copyHistoryStage.setTitle("Copy History Page");
-			copyHistoryStage.initModality(Modality.APPLICATION_MODAL);
-			copyHistoryStage.showAndWait();
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.exit(-1);
+				copyHistoryStage.setScene(copyHistoryScene);
+				copyHistoryStage.setTitle("Copy History Page");
+				copyHistoryStage.initModality(Modality.APPLICATION_MODAL);
+				copyHistoryStage.showAndWait();
+			} catch (IOException e) {
+				e.printStackTrace();
+				System.exit(-1);
+			}
+		} else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setHeaderText("Error!");
+			alert.setContentText("You don't have permission to see this!");
+			alert.showAndWait();
 		}
 	}
 
@@ -64,7 +74,6 @@ public class DisplayCopiesPageController {
 
 	@FXML
 	void clickOnRequestACopy(ActionEvent event) {
-		curUser = LoginController.getLoggedUser();
 		curUser.requestItem(resource);
 	}
 
