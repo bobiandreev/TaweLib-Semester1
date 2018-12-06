@@ -48,11 +48,15 @@ public class ChooseAvatarPageController {
 	@FXML
 	public void clickOnDrawAvatar(ActionEvent event) {
 		String[] args = null;
-		//Application.launch("Draw", args);
-		//Draw.start();
-		String pathToImage = ("Avatar6.png");
+		Draw drawing = new Draw();
+	//	Scene browseAndSearchScene = new Scene(null, Main.BROWSEANDSEARCHPAGE_WIDTH,
+	//			Main.BROWSEANDSEARCHPAGE_HEIGHT);
+		Stage drawingStage = new Stage();
+		drawing.start(drawingStage);
+		//File image = new File("Avatar" + curUser.getUsername() + ".png");
+		String pathToImage = ("Avatar" + curUser.getUsername() + ".png");
 		curUser.setProfilePic(pathToImage);
-		showAlert();
+		//showAlert();
 	}
 
 	/**

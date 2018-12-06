@@ -31,8 +31,11 @@ import javax.imageio.ImageIO;
 
 public class Draw extends Application {
 
+	User curUser;
+
 	@Override
 	public void start(Stage primaryStage) {
+		curUser = LoginController.getLoggedUser();
 
 		/* Creating buttons for shapes */
 		ToggleButton pencilbutton = new ToggleButton("Pencil");
@@ -195,14 +198,10 @@ public class Draw extends Application {
 		/* Save and Open feature created */
 
 		save.setOnAction((e) -> {
-			// FileChooser savefile = new FileChooser();
-			// File saveFile = new File();
-			// saveFile).setTitle("Save File");
-
-			File outputFile = new File("src\\Avatar6.png");
+			File outputFile = new File("src\\Avatar" + curUser.getUsername() + ".png");
 			if (outputFile != null) {
 				try {
-					WritableImage writeImage = new WritableImage(1080, 790);
+					WritableImage writeImage = new WritableImage(50, 50);
 					sketchpad.snapshot(null, writeImage);
 					RenderedImage rendImg = SwingFXUtils.fromFXImage(writeImage, null);
 					ImageIO.write(rendImg, "png", outputFile);
@@ -238,9 +237,5 @@ public class Draw extends Application {
 		primaryStage.setTitle("Avatar Paint");
 		primaryStage.setScene(scene);
 		primaryStage.show();
-	}
-
-	public static void main(String[] args) {
-		launch(args);
 	}
 }
