@@ -32,11 +32,10 @@ import javax.imageio.ImageIO;
 public class Draw extends Application {
 
 	User curUser;
-
 	@Override
 	public void start(Stage primaryStage) {
 		curUser = LoginController.getLoggedUser();
-
+		
 		/* Creating buttons for shapes */
 		ToggleButton pencilbutton = new ToggleButton("Pencil");
 		ToggleButton eraserbutton = new ToggleButton("Eraser");
@@ -198,10 +197,10 @@ public class Draw extends Application {
 		/* Save and Open feature created */
 
 		save.setOnAction((e) -> {
-			File outputFile = new File("src\\Avatar" + curUser.getUsername() + ".png");
+			File outputFile = new File("src\\Avatar"+ curUser.getUsername()+ ".png");
 			if (outputFile != null) {
 				try {
-					WritableImage writeImage = new WritableImage(50, 50);
+					WritableImage writeImage = new WritableImage(1080, 790);
 					sketchpad.snapshot(null, writeImage);
 					RenderedImage rendImg = SwingFXUtils.fromFXImage(writeImage, null);
 					ImageIO.write(rendImg, "png", outputFile);
