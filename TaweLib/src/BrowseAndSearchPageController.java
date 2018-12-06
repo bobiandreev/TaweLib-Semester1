@@ -372,11 +372,30 @@ public class BrowseAndSearchPageController {
 			}
 			stringCopies += "Copy: " + copy.getCopyId() + "\t\tStatus: " + borrowed + "\n";
 		}
-		alert.setTitle("Copies");
+		
+		try {
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CopyHistoryPage.fxml"));
+
+			BorderPane copyHistory = (BorderPane) fxmlLoader.load();
+
+			Scene copyHistoryScene = new Scene(copyHistory, Main.BROWSEANDSEARCHPAGE_WIDTH, Main.BROWSEANDSEARCHPAGE_HEIGHT);
+			Stage copyHistoryStage = new Stage();
+
+			copyHistoryStage.setScene(copyHistoryScene);
+			copyHistoryStage.setTitle("Copy History Page");
+			copyHistoryStage.initModality(Modality.APPLICATION_MODAL);
+			copyHistoryStage.showAndWait();
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.exit(-1);
+		}
+	}
+		
+	/*	alert.setTitle("Copies");
 		alert.setHeaderText(null);
 		alert.setContentText(stringCopies);
 		alert.showAndWait();
-	}
+		*/
 
 	/**
 	 * Actions will be made when the user click on the button
