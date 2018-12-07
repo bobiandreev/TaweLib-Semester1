@@ -26,10 +26,11 @@ public class User {
 	private ArrayList<Double> paymentAmounts = new ArrayList<>();
 	private ArrayList<String> messages = new ArrayList<>();
 	private ArrayList<String> paymentHistory = new ArrayList<>();
+	private ArrayList<String> fineHistory = new ArrayList<>();
 	private Scanner in;
-	
-	public User(String username, String name, String mobileNumber, 
-		   String houseNumber, String address, String postcode, String image) {
+
+	public User(String username, String name, String mobileNumber, String houseNumber, String address, String postcode,
+			String image) {
 		this.username = username;
 		this.name = name;
 		this.mobileNumber = mobileNumber;
@@ -43,7 +44,7 @@ public class User {
 	public String getProfilePic() {
 		return profilePic;
 	}
-	
+
 	public void setPaymentAmounts(String array) {
 		in = new Scanner(array);
 		in.useDelimiter(",");
@@ -52,7 +53,7 @@ public class User {
 			paymentAmounts.add(payment);
 		}
 	}
-	
+
 	public void setPaymentDates(String array) throws ParseException {
 		String dateS = "";
 		in.useDelimiter(",");
@@ -62,7 +63,7 @@ public class User {
 		Date date = Copy.dateParser(dateS);
 		paymentDates.add(date);
 	}
-	
+
 	public void setItemToReturn(String array) {
 		in = new Scanner(array);
 		in.useDelimiter(",");
@@ -72,8 +73,8 @@ public class User {
 			itemsToReturn.add(SearchBrowse.findCopy(rTitle, cID));
 		}
 	}
-	
-	public ArrayList<Copy> getItemsToReturn(){
+
+	public ArrayList<Copy> getItemsToReturn() {
 		return itemsToReturn;
 	}
 
@@ -86,7 +87,7 @@ public class User {
 			reservedFor.add(SearchBrowse.findCopy(rTitle, cID));
 		}
 	}
-	
+
 	public ArrayList<Copy> getReservedFor() {
 		return reservedFor;
 	}
@@ -138,7 +139,7 @@ public class User {
 	public void setPostcode(String postcode) {
 		this.postcode = postcode;
 	}
-	
+
 	public void setReturnRequests(String array) {
 		in = new Scanner(array);
 		in.useDelimiter(",");
@@ -153,20 +154,22 @@ public class User {
 		return returnRequests;
 	}
 
-	public String getFineHistory() {
+	public void checkFineHistory() {
 		String history = "";
-		int index = 0;
-		while (index != itemsToReturn.size()) {
-			Copy curCopy = itemsToReturn.get(index);
+		for (Copy copy : itemsToReturn) {
+			Copy curCopy = copy;
 			String dueDate = curCopy.S_D_F.format(curCopy.getDueDate());
 			String currentDate = curCopy.S_D_F.format(Copy.getDateNow());
 			Fine fine = new Fine(curCopy.getResource(), dueDate, currentDate);
 			history += curCopy.getDueDate() + ", amount due: " + fine.getCurrentFine() + ", copy: "
 					+ curCopy.getCopyId() + " of " + curCopy.getResource().getTitle() + ". Days overdue: "
 					+ fine.getDaysOverdue() + "\n";
-			index++;
+			fineHistory.add(history);
 		}
-		return history;
+	}
+	
+	public ArrayList<String> getFineHistory() {
+		return fineHistory;
 	}
 
 	public void setPaymentHistory(Date paymentDate, double amount) {
@@ -176,13 +179,13 @@ public class User {
 
 	public ArrayList<String> getPaymentHistory() {
 		String history = "";
-		for  (int index = 0; index < paymentDates.size(); index++) {
+		for (int index = 0; index < paymentDates.size(); index++) {
 			history = paymentAmounts.get(index) + " was paid on " + paymentDates.get(index) + ".\n";
 			paymentHistory.add(history);
 		}
 		return paymentHistory;
 	}
-	
+
 	public void setRequestedItems(String array) {
 		in = new Scanner(array);
 		in.useDelimiter(",");
@@ -196,7 +199,7 @@ public class User {
 	public ArrayList<Copy> getRequestedItems() {
 		return requestedItems;
 	}
-	
+
 	public void setBorrowedItems(String array) {
 		in = new Scanner(array);
 		in.useDelimiter(",");
@@ -230,10 +233,10 @@ public class User {
 		return currentFine;
 	}
 
-	public void payFine (double payment) {
+	public void payFine(double payment) {
 		currentFine = currentFine - payment;
 	}
-	
+
 	public void requestItem(Resource item) {
 		Copy freeCopy = Copy.checkCopy(item); // checks if there is a free copy
 		if (freeCopy == null) { // if there isnt a free copy user gets added to the waiting list for that
@@ -267,7 +270,7 @@ public class User {
 
 	public void displayMessages() {
 		for (int i = 0; i < messages.size(); i++) {
-			//System.out.println(messages.get(i));
+			// System.out.println(messages.get(i));
 		}
 	}
 

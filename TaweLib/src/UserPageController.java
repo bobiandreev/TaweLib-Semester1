@@ -44,6 +44,7 @@ public class UserPageController {
 		curUser = LoginController.getLoggedUser();
 		welcomeMessage.setText("Welcome to Tawe Lib, " + curUser.getUsername());
 		Image image = new Image(curUser.getProfilePic());
+		curUser.checkFineHistory();
 		profilePicture.setImage(image);
 		showCurrentBalanceBox.setText("Current Balance: " + Double.toString(curUser.getBalance()));
 	}
