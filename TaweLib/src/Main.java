@@ -171,19 +171,33 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
-		ArrayList<Resource> resourceList = Database.getResourceList();
-		for (Resource r : resourceList) {
-			SearchBrowse.addResource(r);
+		
+		
+		try	{
+			ArrayList<Resource> resourceList = Database.getResourceList();
+			for (Resource r : resourceList) {
+				SearchBrowse.addResource(r);
+			}
+		} catch (NullPointerException e) {
+			System.out.println("Resource list is empty");
 		}
 		
-		ArrayList<User> userList = Database.getUserList();
-		for (User u : userList) {
-			Librarian.getUsersList().add(u);
+		try {
+			ArrayList<User> userList = Database.getUserList();
+			for (User u : userList) {
+				Librarian.getUsersList().add(u);
+			}
+		} catch (NullPointerException e) {
+			System.out.println("User list is empty");
 		}
 		
-		ArrayList<Librarian> libList = Database.getLibList();
-		for (Librarian l : libList) {
-			Librarian.getLibrarianList().add(l);
+		try {
+			ArrayList<Librarian> libList = Database.getLibList();
+			for (Librarian l : libList) {
+				Librarian.getLibrarianList().add(l);
+			}
+		} catch (NullPointerException e) {
+			System.out.println("Librarian list is empty");
 		}
 		
 		Resource resource1 = new Book("TLOTR", "2001", "Avatar4.png", 3, "Tolkien", "Springer");
