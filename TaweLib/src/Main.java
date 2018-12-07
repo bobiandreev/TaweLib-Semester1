@@ -181,6 +181,11 @@ public class Main extends Application {
 			Librarian.getUsersList().add(u);
 		}
 		
+		ArrayList<Librarian> libList = Database.getLibList();
+		for (Librarian l : libList) {
+			Librarian.getLibrarianList().add(l);
+		}
+		
 		Resource resource1 = new Book("TLOTR", "2001", "Avatar4.png", 3, "Tolkien", "Springer");
 		Resource resource2 = new LaptopComputer("XPS", "2018", "Avatar4.png", 3, "Dell", "XPS", "Windows");
 		Resource resource3 = new DVD("TLOTR", "2001", "Avatar4.png", 10, "Peter Jackson", "180");
