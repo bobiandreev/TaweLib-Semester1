@@ -424,8 +424,8 @@ public class Copy {
 	 * Setter method of the borrowing history of a copy.
 	 */
 	public void setReturnHistory() {
-		copyHistory.add("Borrowed by " + this.getBorrowedBy().getUsername() + " on " + this.getDateBorrowed()
-				+ " and returned on " + this.getDateReturned());
+		copyHistory.add("Returned by " + this.getBorrowedBy().getUsername() + 
+				" on " +this.getDateReturned());
 	}
 
 	public void setBorrowHistory() {
