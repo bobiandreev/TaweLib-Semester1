@@ -247,6 +247,7 @@ import javafx.stage.Stage;
     @FXML
     private void clickOnLogOut(ActionEvent event) {
     	closeWindow();
+    	Database.saveData();
     }
     
     @FXML

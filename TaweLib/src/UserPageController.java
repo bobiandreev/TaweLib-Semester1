@@ -253,4 +253,5 @@ public class UserPageController {
 		Stage stage = (Stage) userPagePane.getScene().getWindow();
 		stage.close();
 	}
+	
 }
