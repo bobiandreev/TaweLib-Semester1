@@ -175,6 +175,12 @@ public class Main extends Application {
 		for (Resource r : resourceList) {
 			SearchBrowse.addResource(r);
 		}
+		
+		ArrayList<User> userList = Database.getUserList();
+		for (User u : userList) {
+			Librarian.getUsersList().add(u);
+		}
+		
 		Resource resource1 = new Book("TLOTR", "2001", "Avatar4.png", 3, "Tolkien", "Springer");
 		Resource resource2 = new LaptopComputer("XPS", "2018", "Avatar4.png", 3, "Dell", "XPS", "Windows");
 		Resource resource3 = new DVD("TLOTR", "2001", "Avatar4.png", 10, "Peter Jackson", "180");
