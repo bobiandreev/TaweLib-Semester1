@@ -1,9 +1,56 @@
 import java.sql.*;
+import java.io.*;
 import java.util.ArrayList;
 
 public class Database {
 	
-
+	
+	public static void storeResourceList(ArrayList<Resource> al) {
+		try {
+			FileOutputStream outFile = 
+					new FileOutputStream("resourcelist.ser");
+			ObjectOutputStream objectOut = new ObjectOutputStream(outFile);
+			objectOut.writeObject(al);
+			objectOut.close();
+			outFile.close();
+			System.out.println("Stored object in /data/resourcelist.ser");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static ArrayList<Resource> getResourceList() {
+		ArrayList<Resource> resourceList = null;
+		try {
+			FileInputStream inFile = 
+					new FileInputStream("resourcelist.ser");
+			ObjectInputStream objectIn = new ObjectInputStream(inFile);
+			resourceList = (ArrayList<Resource>) objectIn.readObject();
+			objectIn.close();
+			inFile.close();
+			return resourceList;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public static void main(String args[]) {
+		ArrayList<Resource> input = new ArrayList<Resource>();
+		input.add(new Resource(1, null, null, null, 0, null));
+		input.add(new Book(1, null, null, null, 0, null, null, null));
+		
+		Database.storeResourceList(input);
+		
+		ArrayList<Resource> fromFile = (ArrayList<Resource>) Database.getResourceList();
+		System.out.println(fromFile.get(0).getID());
+	}
+	
+	
+	/*
 	private static final String DB_URL = "jdbc:mysql://sql134.main-hosting.eu/u591224331_lib";
 	private static final String DB_USERNAME = "u591224331_grp41";
 	private static final String DB_PASS = "group41";
@@ -183,23 +230,5 @@ public class Database {
 	
 	private void createDatabase() {
 		
-	}
-	
-	//Example of how to use select method and view results
-	public static void main(String args[]) {
-		Database newDB = new Database();
-		ArrayList<Resource> poo = newDB.getResources();
-		/*
-		ResultSet rs = newDB.select("SELECT * FROM test");
-		try {
-			while(rs.next()){
-				String name = rs.getString("Name");
-				
-				System.out.println(name);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}*/
-		newDB.closeConnection();
-	}
+	}*/
 }
