@@ -17,7 +17,7 @@ public class FineHistoryPageController {
     private User curUser;
     
     @FXML
-    private void initalize() {
+    private void initialize() {
     	curUser = LoginController.getLoggedUser();
     	Collections.reverse(curUser.getFineHistory());
     	for (String string: curUser.getFineHistory()) {

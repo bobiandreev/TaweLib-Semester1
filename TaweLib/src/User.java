@@ -157,18 +157,20 @@ public class User implements Serializable {
 
 	public void checkFineHistory() {
 		String history = "";
-		for (Copy copy : itemsToReturn) {
-			Copy curCopy = copy;
-			String dueDate = curCopy.S_D_F.format(curCopy.getDueDate());
-			String currentDate = curCopy.S_D_F.format(Copy.getDateNow());
-			Fine fine = new Fine(curCopy.getResource(), dueDate, currentDate);
-			history += curCopy.getDueDate() + ", amount due: " + fine.getCurrentFine() + ", copy: "
-					+ curCopy.getCopyId() + " of " + curCopy.getResource().getTitle() + ". Days overdue: "
-					+ fine.getDaysOverdue() + "\n";
-			fineHistory.add(history);
+		for (Copy copy : borrowedItems) {
+			if (copy.getDueDate() != null) {
+				Copy curCopy = copy;
+				String dueDate = curCopy.S_D_F.format(curCopy.getDueDate());
+				String currentDate = curCopy.S_D_F.format(Copy.getDateNow());
+				Fine fine = new Fine(curCopy.getResource(), dueDate, currentDate);
+				history += curCopy.getDueDate() + ", amount due: " + fine.getCurrentFine() + ", copy: "
+						+ curCopy.getCopyId() + " of " + curCopy.getResource().getTitle() + ". Days overdue: "
+						+ fine.getDaysOverdue() + "\n";
+				fineHistory.add(history);
+			}
 		}
 	}
-	
+
 	public ArrayList<String> getFineHistory() {
 		return fineHistory;
 	}
@@ -240,12 +242,14 @@ public class User implements Serializable {
 
 	public void requestItem(Resource item) {
 		Copy freeCopy = Copy.checkCopy(item); // checks if there is a free copy
-		if (freeCopy == null) { // if there isnt a free copy user gets added to the waiting list for that
+		if (freeCopy == null) { // if there isnt a free copy user gets added to
+								// the waiting list for that
 								// resource
 			item.addToWaitList(this);
 			noCopyAvailable();
 			SearchBrowse.reserved(item);
-		} else { // if there is a free copy it gets added to the users requested items list and
+		} else { // if there is a free copy it gets added to the users requested
+					// items list and
 					// its variables are set to requested
 			freeCopy.requestCopy(this);
 			freeCopy.setDateRequested(Copy.getDateNow());
@@ -275,9 +279,14 @@ public class User implements Serializable {
 		}
 	}
 
-	public void requestReturn(Copy copy) { /* user chooses which copy to return here with the gui */
-		returnRequests.add(copy); // adds copy to be returned to the return requests list
-		copy.setDateRequestReturn(Copy.getDateNow()); // sets the date when the return was requested
+	public void requestReturn(
+			Copy copy) { /*
+							 * user chooses which copy to return here with the gui
+							 */
+		returnRequests.add(copy); // adds copy to be returned to the return
+									// requests list
+		copy.setDateRequestReturn(Copy.getDateNow()); // sets the date when the
+														// return was requested
 	}
 
 	public void DueDateMessage(Copy copy) {
