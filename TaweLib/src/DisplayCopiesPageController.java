@@ -43,24 +43,34 @@ public class DisplayCopiesPageController {
 	@FXML
 	void clickOnCheckCopyHistory(ActionEvent event) {
 		if (curUser instanceof Librarian) {
-			selectedCopy = resource.getCopies().get(copyList.getSelectionModel().getSelectedIndex());
-			try {
-				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CopyHistoryPage.fxml"));
+			
+			if (copyList.getSelectionModel().getSelectedIndex() < 0){
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setHeaderText("Error");
+				alert.setContentText("Please select a copy");
+				alert.showAndWait();
+				
+			} else {
+				selectedCopy = resource.getCopies().get(copyList.getSelectionModel().getSelectedIndex());
+				try {
+					FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CopyHistoryPage.fxml"));
 
-				BorderPane copyHistory = (BorderPane) fxmlLoader.load();
+					BorderPane copyHistory = (BorderPane) fxmlLoader.load();
 
-				Scene copyHistoryScene = new Scene(copyHistory, Main.BROWSEANDSEARCHPAGE_WIDTH,
-						Main.BROWSEANDSEARCHPAGE_HEIGHT);
-				Stage copyHistoryStage = new Stage();
+					Scene copyHistoryScene = new Scene(copyHistory, Main.BROWSEANDSEARCHPAGE_WIDTH,
+							Main.BROWSEANDSEARCHPAGE_HEIGHT);
+					Stage copyHistoryStage = new Stage();
 
-				copyHistoryStage.setScene(copyHistoryScene);
-				copyHistoryStage.setTitle("Copy History Page");
-				copyHistoryStage.initModality(Modality.APPLICATION_MODAL);
-				copyHistoryStage.showAndWait();
-			} catch (IOException e) {
-				e.printStackTrace();
-				System.exit(-1);
+					copyHistoryStage.setScene(copyHistoryScene);
+					copyHistoryStage.setTitle("Copy History Page");
+					copyHistoryStage.initModality(Modality.APPLICATION_MODAL);
+					copyHistoryStage.showAndWait();
+				} catch (IOException e) {
+					e.printStackTrace();
+					System.exit(-1);
+				}
 			}
+			
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setHeaderText("Error!");
