@@ -53,7 +53,7 @@ public class FinePaymentPageController {
 			} else {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setHeaderText("No such user!");
-				alert.setContentText("Wrong username or no such librarian exists!");
+				alert.setContentText("Wrong username or no such user exists!");
 				alert.showAndWait();
 			}
 		}
@@ -61,9 +61,24 @@ public class FinePaymentPageController {
 
 	@FXML
 	private void clickOnConfirm(ActionEvent event) {
-		double amount = Double.parseDouble(this.payAmount.getText());
-		curUser.payFine(amount);
-		curUser.setPaymentHistory(Copy.getDateNow(), amount);
+		Double amount = 0.0;
+		try {
+			amount = Double.parseDouble(this.payAmount.getText());
+		} catch (NumberFormatException e) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setHeaderText("Not a valid number");
+			alert.setContentText("Please enter a valid number!");
+			alert.showAndWait();
+		}
+
+		if (amount != 0.0) {
+			curUser.payFine(amount);
+			curUser.setPaymentHistory(Copy.getDateNow(), amount);
+			Alert alert1 = new Alert(AlertType.CONFIRMATION);
+			alert1.setHeaderText("Success");
+			alert1.setContentText("Fine payment successful!");
+			alert1.showAndWait();
+		}
 	}
 
 	@FXML

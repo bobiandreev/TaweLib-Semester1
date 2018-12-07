@@ -25,6 +25,7 @@ public class User {
 	private ArrayList<Date> paymentDates = new ArrayList<>();
 	private ArrayList<Double> paymentAmounts = new ArrayList<>();
 	private ArrayList<String> messages = new ArrayList<>();
+	private ArrayList<String> paymentHistory = new ArrayList<>();
 	private Scanner in;
 	
 	public User(String username, String name, String mobileNumber, 
@@ -173,13 +174,13 @@ public class User {
 		paymentAmounts.add(amount);
 	}
 
-	public String getPaymentHistory() {
+	public ArrayList<String> getPaymentHistory() {
 		String history = "";
-		int index = 0;
-		while (index != paymentDates.size()) {
-			history += paymentAmounts.get(index) + " was paid on " + paymentDates.get(index) + ".\n";
+		for  (int index = 0; index < paymentDates.size(); index++) {
+			history = paymentAmounts.get(index) + " was paid on " + paymentDates.get(index) + ".\n";
+			paymentHistory.add(history);
 		}
-		return history;
+		return paymentHistory;
 	}
 	
 	public void setRequestedItems(String array) {

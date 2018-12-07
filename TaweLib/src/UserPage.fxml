@@ -37,6 +37,11 @@
                   <Button mnemonicParsing="false" onAction="#clickOnBrowseAndSearch" text="Browse and Search" textAlignment="CENTER" />
                </children>
             </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="showCurrentBalanceBox" text="Current Balance: " />
+               </children>
+            </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="131.0" prefHeight="38.0" prefWidth="785.0" spacing="10.0">
                <padding>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
