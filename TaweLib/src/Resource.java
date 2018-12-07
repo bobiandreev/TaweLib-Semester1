@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class Resource implements Serializable{
+public class Resource implements Serializable {
 
 	/**
 	 * @param id
