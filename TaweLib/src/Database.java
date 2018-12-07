@@ -13,7 +13,7 @@ public class Database {
 			objectOut.writeObject(al);
 			objectOut.close();
 			outFile.close();
-			System.out.println("Stored object in /data/resourcelist.ser");
+			System.out.println("Stored resource list in /data/resourcelist.ser");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -46,7 +46,7 @@ public class Database {
 			objectOut.writeObject(al);
 			objectOut.close();
 			outFile.close();
-			System.out.println("Stored object in userlist.ser");
+			System.out.println("Stored user list in userlist.ser");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -62,6 +62,39 @@ public class Database {
 			objectIn.close();
 			inFile.close();
 			return userList;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public static void storeLibList(ArrayList<Librarian> al) {
+		try {
+			FileOutputStream outFile = 
+					new FileOutputStream("liblist.ser");
+			ObjectOutputStream objectOut = new ObjectOutputStream(outFile);
+			objectOut.writeObject(al);
+			objectOut.close();
+			outFile.close();
+			System.out.println("Stored librarian list in liblist.ser");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static ArrayList<Librarian> getLibList() {
+		ArrayList<Librarian> libList = null;
+		try {
+			FileInputStream inFile = 
+					new FileInputStream("liblist.ser");
+			ObjectInputStream objectIn = new ObjectInputStream(inFile);
+			libList = (ArrayList<Librarian>) objectIn.readObject();
+			objectIn.close();
+			inFile.close();
+			return libList;
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
