@@ -29,7 +29,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 
-/* Draw class is a function available to users when selecting an avatar, they can use the UI to create a custom drawing
+/** Draw class is a function available to users when selecting an avatar, they can use the UI to create a custom drawing
  * @Author Riyaad Islam and Oliver Nixon
  * @version 1.0.0
  * @param primaryStage Object which holds data for the canvas
