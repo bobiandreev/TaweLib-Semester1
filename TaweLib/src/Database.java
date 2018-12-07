@@ -104,6 +104,12 @@ public class Database {
 		}
 	}
 	
+	public static void saveData() {
+		Database.storeResourceList(SearchBrowse.getResources());
+		Database.storeUserList(Librarian.getUsersList());
+		Database.storeLibList(Librarian.getLibrarianList());
+	}
+	
 	public static void setupFiles() {
 		ArrayList<Resource> newResourceList = new ArrayList<Resource>();
 		ArrayList<User> newUserList = new ArrayList<User>();
