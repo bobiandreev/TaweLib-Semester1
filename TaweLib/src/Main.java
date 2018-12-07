@@ -180,6 +180,7 @@ public class Main extends Application {
 			}
 		} catch (NullPointerException e) {
 			System.out.println("Resource list is empty");
+			Database.setupFiles();
 		}
 		
 		try {
@@ -200,26 +201,6 @@ public class Main extends Application {
 			System.out.println("Librarian list is empty");
 		}
 		
-		Resource resource1 = new Book("TLOTR", "2001", "Avatar4.png", 3, "Tolkien", "Springer");
-		Resource resource2 = new LaptopComputer("XPS", "2018", "Avatar4.png", 3, "Dell", "XPS", "Windows");
-		Resource resource3 = new DVD("TLOTR", "2001", "Avatar4.png", 10, "Peter Jackson", "180");
-				//("TLOTR", 2001, null, 30);
-		User user1 = new User("user1", "user 1", "05454645", "56", "Bay Campus", "SA1 8PP", "Avatar5.png");
-		User user2 = new User("user2", "user 1", "05454645", "56", "Bay Campus", "SA1 8PP", "Avatar5.png");
-		Librarian lib1 = new Librarian("lib1", "lib 1", "54656597", "65", "Singleton Campus", "SA1 4FS", "Avatar5.png", "24/07");
-		Librarian.getUsersList().add(user1);
-		Librarian.getUsersList().add(user2);
-		Librarian.getLibrarianList().add(lib1);
-	//	user1.requestItem(resource1);
-	//	user1.requestReturn(resource1.getCopies().get(0));
-		SearchBrowse.addResource(resource1);
-		SearchBrowse.addResource(resource2);
-		SearchBrowse.addResource(resource3);
-		//Librarian.loanACopy("user2", "TLOTR");
-		//Librarian.loanACopy("user1", "TLOTR");
-		//Librarian.loanACopy("user1", "TLOTR");
-		//Librarian.loanACopy("user1", "TLOTR");
-		//Librarian.loanACopy("user1", "TLOTR");
 		launch(args);
 	}
 }

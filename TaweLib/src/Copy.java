@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.Scanner;
  * @author Boris Andreev and Kyriacos Mosphilis
  * @version 1.0
  */
-public class Copy {
+public class Copy implements Serializable {
 
 	private Resource resource;
 	private int copyID;
