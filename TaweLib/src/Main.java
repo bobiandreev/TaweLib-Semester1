@@ -172,7 +172,9 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		ArrayList<Resource> resourceList = Database.getResourceList();
-
+		for (Resource r : resourceList) {
+			SearchBrowse.addResource(r);
+		}
 		Resource resource1 = new Book("TLOTR", "2001", "Avatar4.png", 3, "Tolkien", "Springer");
 		Resource resource2 = new LaptopComputer("XPS", "2018", "Avatar4.png", 3, "Dell", "XPS", "Windows");
 		Resource resource3 = new DVD("TLOTR", "2001", "Avatar4.png", 10, "Peter Jackson", "180");
