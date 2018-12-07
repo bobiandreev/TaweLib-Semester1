@@ -1,8 +1,10 @@
 import java.util.ArrayList;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
@@ -154,6 +156,8 @@ public class Main extends Application {
 	public static final int CHOOSEPROFILEPAGE_WIDTH = 600;
 	public static final int CHOOSEPROFILEPAGE_HEIGHT = 350;
 	public static final String CHOOSEPROFILEPAGE_TITLE = "Profile Page";
+	
+	@Override
 	public void start(Stage primaryStage) {
 		try {
 			// Load the main scene.
@@ -164,14 +168,19 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.setTitle(HOMEPAGE_TITLE);
 			primaryStage.show();
-		
+			
+			primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+		          public void handle(WindowEvent we) {
+		              Database.saveData();
+		          }
+		    });
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public static void main(String[] args) {
-		
 		
 		try	{
 			ArrayList<Resource> resourceList = Database.getResourceList();
