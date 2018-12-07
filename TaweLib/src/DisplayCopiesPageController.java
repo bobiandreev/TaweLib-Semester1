@@ -21,6 +21,7 @@ public class DisplayCopiesPageController {
 
 	private User curUser;
 	private Resource resource;
+	private static Copy selectedCopy;
 
 	@FXML
 	private void initialize() {
@@ -42,6 +43,7 @@ public class DisplayCopiesPageController {
 	@FXML
 	void clickOnCheckCopyHistory(ActionEvent event) {
 		if (curUser instanceof Librarian) {
+			selectedCopy = resource.getCopies().get(copyList.getSelectionModel().getSelectedIndex());
 			try {
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CopyHistoryPage.fxml"));
 
@@ -65,6 +67,10 @@ public class DisplayCopiesPageController {
 			alert.setContentText("You don't have permission to see this!");
 			alert.showAndWait();
 		}
+	}
+	
+	public static Copy getSelectedCopy() {
+		return selectedCopy;
 	}
 
 	@FXML

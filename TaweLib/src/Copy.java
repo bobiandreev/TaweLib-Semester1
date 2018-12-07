@@ -2,6 +2,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -34,58 +35,55 @@ public class Copy {
 	private ArrayList<String> copyHistory = new ArrayList<>();
 	private Scanner in;
 
-	
-//	public Copy(int resourceID, int copyID) {
-//		ArrayList<Resource> resourcesList = new ArrayList<>();
-//		resourcesList.addAll(SearchBrowse.getResources());
-//		Resource currentResource;
-//		int index = 0;
-//		do {
-//			currentResource = resourcesList.get(index);
-//			
-//		} while (resourceID != currentResource.getid());
-//		this.resource = currentResource;
-//		this.currentCopyID = copyID;
-//		copyID++;
-//	}
-	
+	// public Copy(int resourceID, int copyID) {
+	// ArrayList<Resource> resourcesList = new ArrayList<>();
+	// resourcesList.addAll(SearchBrowse.getResources());
+	// Resource currentResource;
+	// int index = 0;
+	// do {
+	// currentResource = resourcesList.get(index);
+	//
+	// } while (resourceID != currentResource.getid());
+	// this.resource = currentResource;
+	// this.currentCopyID = copyID;
+	// copyID++;
+	// }
+
 	/**
 	 * Reader Constructor for a Copy.
 	 * 
-	 * @param resource 
-	 * 			This shows a copy of which resource is this object.
-	 * @param copyID   
-	 * 			Sets an ID for the specific copy.
+	 * @param resource
+	 *            This shows a copy of which resource is this object.
+	 * @param copyID
+	 *            Sets an ID for the specific copy.
 	 * @param isBorrowed
-	 * 			True if it's currently being borrowed, false otherwise.
+	 *            True if it's currently being borrowed, false otherwise.
 	 * @param isRequested
-	 * 			True if it's requested by someone, false otherwise.
+	 *            True if it's requested by someone, false otherwise.
 	 * @param isReserved
-	 * 			True if it's reserved for someone, false otherwise.
+	 *            True if it's reserved for someone, false otherwise.
 	 * @param dateRequested
-	 * 			The date it was requested.
+	 *            The date it was requested.
 	 * @param dateBorrowed
-	 * 			The date it was borrowed.
+	 *            The date it was borrowed.
 	 * @param dateRequestedReturn
-	 * 			The date the borrower wants to return it.
+	 *            The date the borrower wants to return it.
 	 * @param dateReturned
-	 * 			The date it was returned.
+	 *            The date it was returned.
 	 * @param requestedBy
-	 * 			The User it was requested by.
+	 *            The User it was requested by.
 	 * @param borrowedBy
-	 * 			The User that had borrowed the copy.
+	 *            The User that had borrowed the copy.
 	 * @param reservedFor
-	 * 			The User it is reserved for.
+	 *            The User it is reserved for.
 	 * @param dueDate
-	 * 			The date the current borrower has to return it.
+	 *            The date the current borrower has to return it.
 	 * @param copyHistory
-	 * 			The borrowing history of this copy.
+	 *            The borrowing history of this copy.
 	 */
-	public Copy(Resource resource, int copyID, boolean isBorrowed,
-			boolean isRequested, boolean isReserved, String dateRequested,
-			String dateBorrowed, String dateRequestedReturn,
-			String dateReturned, String requestedBy, String borrowedBy,
-			String reservedFor, String dueDate, String copyHistory) {
+	public Copy(Resource resource, int copyID, boolean isBorrowed, boolean isRequested, boolean isReserved,
+			String dateRequested, String dateBorrowed, String dateRequestedReturn, String dateReturned,
+			String requestedBy, String borrowedBy, String reservedFor, String dueDate, String copyHistory) {
 		this.resource = resource;
 		this.copyID = copyID;
 		this.isBorrowed = isBorrowed;
@@ -98,7 +96,7 @@ public class Copy {
 			this.dateReturned = dateParser(dateReturned);
 			this.dueDate = dateParser(dueDate);
 		} catch (ParseException e) {
-			
+
 		}
 		this.requestedBy = userFinder(requestedBy);
 		this.borrowedBy = userFinder(borrowedBy);
@@ -109,28 +107,31 @@ public class Copy {
 			String line = in.next();
 			this.copyHistory.add(line);
 		}
-		
+		Collections.reverse(this.copyHistory);
 	}
-	
+
 	/**
 	 * Constructor for a Copy.
 	 * 
-	 * @param resource 
-	 * 			This shows a copy of which resource is this object.
-	 * @param copyID   
-	 * 			Sets an ID for the specific copy.
+	 * @param resource
+	 *            This shows a copy of which resource is this object.
+	 * @param copyID
+	 *            Sets an ID for the specific copy.
 	 */
 	public Copy(Resource resource, int copyID) {
 		this.resource = resource;
 		this.copyID = copyID;
+		Collections.reverse(copyHistory);
 	}
 
 	/**
 	 * Parses a string to date.
 	 * 
-	 * @param dateToParse The date we want to parse.
+	 * @param dateToParse
+	 *            The date we want to parse.
 	 * @return A Date object.
-	 * @throws ParseException If the input is invalid.
+	 * @throws ParseException
+	 *             If the input is invalid.
 	 */
 	public static Date dateParser(String dateToParse) throws ParseException {
 		SimpleDateFormat parser = new SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy");
@@ -140,11 +141,12 @@ public class Copy {
 		Date date = parser.parse(dateToParse);
 		return date;
 	}
-	
+
 	/**
 	 * Finds a User.
 	 * 
-	 * @param username The username of a user.
+	 * @param username
+	 *            The username of a user.
 	 * @return The a User.
 	 */
 	private User userFinder(String username) {
@@ -163,7 +165,7 @@ public class Copy {
 		} while (username != user.getUsername());
 		return user;
 	}
-	
+
 	/**
 	 * Makes a copy borrowed, by making isBorrowed true.
 	 */
@@ -183,7 +185,8 @@ public class Copy {
 	/**
 	 * Setter method for current Copy's ID.
 	 * 
-	 * @param copyID The new ID.
+	 * @param copyID
+	 *            The new ID.
 	 */
 	public void setCopyID(int copyID) {
 		this.copyID = copyID;
@@ -249,7 +252,8 @@ public class Copy {
 	/**
 	 * Setter method of the date a User requested this copy.
 	 * 
-	 * @param dateRequested The date this copy is requested.
+	 * @param dateRequested
+	 *            The date this copy is requested.
 	 */
 	public void setDateRequested(Date dateRequested) {
 		this.dateRequested = dateRequested;
@@ -267,7 +271,8 @@ public class Copy {
 	/**
 	 * Setter method of the date a User borrowed this copy.
 	 * 
-	 * @param dateBorrowed The date this copy is borrowed.
+	 * @param dateBorrowed
+	 *            The date this copy is borrowed.
 	 */
 	public void setDateBorrowed(Date dateBorrowed) {
 		this.dateBorrowed = dateBorrowed;
@@ -294,7 +299,8 @@ public class Copy {
 	/**
 	 * Setter method of the date a User has requested to return this copy.
 	 * 
-	 * @param dateRequestReturn The date a User has requested to return this copy.
+	 * @param dateRequestReturn
+	 *            The date a User has requested to return this copy.
 	 */
 	public void setDateRequestReturn(Date dateRequestReturn) {
 		this.dateRequestReturn = dateRequestReturn;
@@ -312,7 +318,8 @@ public class Copy {
 	/**
 	 * Setter of the date this copy is returned.
 	 * 
-	 * @param dateReturned The date it is returned.
+	 * @param dateReturned
+	 *            The date it is returned.
 	 */
 	public void setDateReturned(Date dateReturned) {
 		this.dateReturned = dateReturned;
@@ -330,7 +337,8 @@ public class Copy {
 	/**
 	 * Setter method of the User that requested this copy.
 	 * 
-	 * @param requestedBy The User requesting this copy.
+	 * @param requestedBy
+	 *            The User requesting this copy.
 	 */
 	public void setRequestedBy(User requestedBy) {
 		this.requestedBy = requestedBy;
@@ -348,7 +356,8 @@ public class Copy {
 	/**
 	 * Setter method of the User that just got this copy.
 	 * 
-	 * @param borrowedBy The User that just got this copy.
+	 * @param borrowedBy
+	 *            The User that just got this copy.
 	 */
 	public void setBorrowedBy(User borrowedBy) {
 		this.borrowedBy = borrowedBy;
@@ -366,7 +375,8 @@ public class Copy {
 	/**
 	 * Setter of the User that wants to request the unavailable copy.
 	 * 
-	 * @param reservedFor The User that wants to request the unavailable copy.
+	 * @param reservedFor
+	 *            The User that wants to request the unavailable copy.
 	 */
 	public void setReservedFor(User reservedFor) {
 		this.reservedFor = reservedFor;
@@ -413,15 +423,13 @@ public class Copy {
 	/**
 	 * Setter method of the borrowing history of a copy.
 	 */
-	public void setCopyHistory() {
-		if (this.getDateRequested() != null) {
-			copyHistory.remove(copyHistory.size() - 1);
-			copyHistory.add("Borrowed by " + getBorrowedBy().getUsername() + " on " + getDateBorrowed()
-			+ " and returned by " + getDateReturned());
-		} else {
-			copyHistory.add("Borrowed by " + getBorrowedBy().getUsername() + " on " + getDateBorrowed());
-		}
-		
+	public void setReturnHistory() {
+		copyHistory.add("Borrowed by " + this.getBorrowedBy().getUsername() + " on " + this.getDateBorrowed()
+				+ " and returned on " + this.getDateReturned());
+	}
+
+	public void setBorrowHistory() {
+		copyHistory.add("Borrowed by " + this.getBorrowedBy().getUsername() + " on " + this.getDateBorrowed());
 	}
 
 	/**
@@ -439,7 +447,8 @@ public class Copy {
 	 * Method that goes through all copies to check if there is a free one for a
 	 * user to request.
 	 * 
-	 * @param item The resource for which the user checks if there is a free copy.
+	 * @param item
+	 *            The resource for which the user checks if there is a free copy.
 	 * @return Null if there are no free copies and the Copy object which is free if
 	 *         there is one.
 	 */
@@ -458,6 +467,7 @@ public class Copy {
 
 	/**
 	 * Getter method of isReserved variable.
+	 * 
 	 * @return true if the copy is reserved for someone else, otherwise false.
 	 */
 	public boolean getIsReserved() {
@@ -477,7 +487,7 @@ public class Copy {
 	public void removeReservation() {
 		isReserved = false;
 	}
-	
+
 	public void setReserved(boolean isReserved) {
 		this.isReserved = isReserved;
 	}

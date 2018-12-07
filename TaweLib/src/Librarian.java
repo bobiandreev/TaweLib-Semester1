@@ -108,12 +108,13 @@ public class Librarian extends User {
 					curCopy.setBorrowedBy(curUser); // sets the borrower of the copy to user
 					curCopy.setDateBorrowed(Copy.getDateNow()); // sets date when copy is taken
 					curCopy.removeRequest(); // sets the boolean request in copy to false
-					//Alert alert = new Alert(AlertType.CONFIRMATION);
-					//alert.setHeaderText("Great");
-					//alert.setContentText(
-					//		curUser.getName().toString() + " has been given " + curResource.getTitle().toString());
-					//alert.showAndWait();
-					System.out.println("a");
+					curCopy.setBorrowHistory();
+					Alert alert = new Alert(AlertType.CONFIRMATION);
+					alert.setHeaderText("Great");
+					alert.setContentText(
+							curUser.getName().toString() + " has been given " + curResource.getTitle().toString());
+					alert.showAndWait();
+					//System.out.println("a");
 				} else {
 					curResource.getWaitingList().add(curUser);
 					SearchBrowse.reserved(curResource);
@@ -147,9 +148,10 @@ public class Librarian extends User {
 			}
 		}
 		if (curCopy != null) {
+			curCopy.setDateReturned(Copy.getDateNow());
+			curCopy.setReturnHistory();
 			curCopy.returnCopy(); // sets boolean isBorrowed in copy to false
 			curCopy.setDateReturned(Copy.getDateNow());
-			curCopy.setCopyHistory();
 			curCopy.setDateRequestReturn(null);
 			curCopy.setDateBorrowed(null);
 			curCopy.setBorrowedBy(null);
@@ -158,6 +160,9 @@ public class Librarian extends User {
 			alert.setContentText(
 					curUser.getName().toString() + " has been returned " + curCopy.getResource().getTitle().toString());
 			alert.showAndWait();
+			if (curCopy.getIsReserved()) {
+				curCopy.getReservedFor().copyNowAvailable(curCopy);
+			}
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setHeaderText("Error!");
@@ -180,6 +185,7 @@ public class Librarian extends User {
 				curCopy.setDateBorrowed(Copy.getDateNow()); // sets date when copy is taken
 				curCopy.removeRequest(); // sets the boolean request in copy to false
 				curUser.getRequestedItems().remove(0); // removes the copy from requested items list in curUser
+				curCopy.setBorrowHistory();
 			} else /* not approved */ {
 				curCopy.removeRequest();
 				curUser.getRequestedItems().remove(0);
@@ -201,14 +207,18 @@ public class Librarian extends User {
 		User curUser = curCopy.getBorrowedBy();
 
 		if (flag /* approved */) {
+			curCopy.setDateReturned(Copy.getDateNow());
+			curCopy.setReturnHistory();
 			curCopy.returnCopy(); // sets boolean isBorrowed in copy to false
 			curCopy.setDateReturned(Copy.getDateNow());
-			curCopy.setCopyHistory();
 			curCopy.setDateRequestReturn(null);
 			curCopy.setDateBorrowed(null);
 			curCopy.setBorrowedBy(null);
 			curUser.getReturnRequests().remove(0); // removes copy from returnRequests list in curUser
 			curUser.getBorrowedItems().remove(0); // removes copy from borrowedItems list in curUser
+			if (curCopy.getIsReserved()) {
+				curCopy.getReservedFor().copyNowAvailable(curCopy);
+			}
 		} else { // not approved
 			curCopy.setDateRequestReturn(null);
 			curUser.getReturnRequests().remove(0);

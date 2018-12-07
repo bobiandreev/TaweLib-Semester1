@@ -4,6 +4,9 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.Scanner;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+
 public class User {
 
 	private String username;
@@ -242,6 +245,12 @@ public class User {
 			freeCopy.requestCopy(this);
 			freeCopy.setDateRequested(Copy.getDateNow());
 			requestedItems.add(freeCopy);
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setHeaderText("Success!");
+			alert.setContentText("You have requested a copy! If no copies are available now "
+					+ "one will be reserved for you.\nYou will reveive a message when you can get "
+					+ "your reserved copy!");
+			alert.showAndWait();
 		}
 	}
 
