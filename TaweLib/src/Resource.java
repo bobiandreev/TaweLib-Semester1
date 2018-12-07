@@ -5,10 +5,11 @@
  * @version 1.0
  */
 
+import java.io.Serializable;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class Resource {
+public class Resource implements Serializable{
 
 	/**
 	 * @param id
