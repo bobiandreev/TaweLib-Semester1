@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,7 +8,7 @@ import java.util.Scanner;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
-public class User {
+public class User implements Serializable {
 
 	private String username;
 	private String name;

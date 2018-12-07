@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -169,7 +171,21 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
-
+		ArrayList<Resource> resourceList = Database.getResourceList();
+		for (Resource r : resourceList) {
+			SearchBrowse.addResource(r);
+		}
+		
+		ArrayList<User> userList = Database.getUserList();
+		for (User u : userList) {
+			Librarian.getUsersList().add(u);
+		}
+		
+		ArrayList<Librarian> libList = Database.getLibList();
+		for (Librarian l : libList) {
+			Librarian.getLibrarianList().add(l);
+		}
+		
 		Resource resource1 = new Book("TLOTR", "2001", "Avatar4.png", 3, "Tolkien", "Springer");
 		Resource resource2 = new LaptopComputer("XPS", "2018", "Avatar4.png", 3, "Dell", "XPS", "Windows");
 		Resource resource3 = new DVD("TLOTR", "2001", "Avatar4.png", 10, "Peter Jackson", "180");
