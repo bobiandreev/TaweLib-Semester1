@@ -245,6 +245,7 @@ public class UserPageController {
 	@FXML
 	private void clickOnLogOut(ActionEvent event) {
 		closeWindow();
+		Database.saveData();
 	}
 
 	@FXML

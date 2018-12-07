@@ -172,6 +172,7 @@ public class Main extends Application {
 	}
 
 	public static void main(String[] args) {
+<<<<<<< HEAD
 		// ArrayList<Resource> resourceList = Database.getResourceList();
 		// for (Resource r : resourceList) {
 		// SearchBrowse.addResource(r);
@@ -214,6 +215,38 @@ public class Main extends Application {
 		Librarian.loanACopy("user1", "TLOTR");
 		Librarian.loanACopy("user1", "TLOTR");
 		// Librarian.loanACopy("user1", "TLOTR");
+=======
+		
+		
+		try	{
+			ArrayList<Resource> resourceList = Database.getResourceList();
+			for (Resource r : resourceList) {
+				SearchBrowse.addResource(r);
+			}
+		} catch (NullPointerException e) {
+			System.out.println("Resource list is empty");
+			Database.setupFiles();
+		}
+		
+		try {
+			ArrayList<User> userList = Database.getUserList();
+			for (User u : userList) {
+				Librarian.getUsersList().add(u);
+			}
+		} catch (NullPointerException e) {
+			System.out.println("User list is empty");
+		}
+		
+		try {
+			ArrayList<Librarian> libList = Database.getLibList();
+			for (Librarian l : libList) {
+				Librarian.getLibrarianList().add(l);
+			}
+		} catch (NullPointerException e) {
+			System.out.println("Librarian list is empty");
+		}
+		
+>>>>>>> branch 'master' of https://gitlab.com/ONixon/group-41.git
 		launch(args);
 	}
 }
