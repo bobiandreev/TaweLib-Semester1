@@ -1,3 +1,5 @@
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
 
 /**
@@ -14,6 +16,8 @@ public class Fine {
 	private final int MAX_LAPTOP_FINE = 100;
 	private int currentFine;
 	private int daysOverdue;
+	private static Scanner input1;
+	private static Scanner input2;
 
 	/**
 	 * Constructor that create the current fine.
@@ -67,10 +71,10 @@ public class Fine {
 		return daysOverdue;
 	}
 
-	private int findDays(String dueDate, String currentDate) {
+	private static int findDays(String dueDate, String currentDate) {
 		int days = 0;
-		Scanner input1 = new Scanner(dueDate);
-		Scanner input2 = new Scanner(currentDate);
+		input1 = new Scanner(dueDate);
+		input2 = new Scanner(currentDate);
 		input1.useDelimiter("/");
 		input2.useDelimiter("/");
 		int dueDay = input1.nextInt();
@@ -79,8 +83,6 @@ public class Fine {
 		int currentDay = input2.nextInt();
 		int currentMonth = input2.nextInt();
 		int currentYear = input2.nextInt();
-		input1.close();
-		input2.close();
 		for (int i = dueYear; i < currentYear; i++) {
 			if (i % 4 != 0) {
 				days += 365;
@@ -108,7 +110,7 @@ public class Fine {
 		return days;
 	}
 
-	private int findMonthDays(int month, int year) {
+	private static int findMonthDays(int month, int year) {
 		int days;
 		switch (month) {
 		case 2:
@@ -134,6 +136,37 @@ public class Fine {
 
 		}
 		return days;
+	}
+	
+	public static Date checkDuration(Copy copy) {
+		String dateBorrowed = copy.S_D_F.format(copy.getDateBorrowed());
+		String currentDate = copy.S_D_F.format(Copy.getDateNow());
+		int daysBorrowed = findDays(dateBorrowed, currentDate);
+		input1 = new Scanner(dateBorrowed);
+		input1.useDelimiter("/");
+		int borrowedDay = input1.nextInt();
+		Calendar calendar = Calendar.getInstance();
+		if (copy.getResource() instanceof Book) {
+			if (daysBorrowed <= copy.LOAN_DURATION_BOOK) {
+				borrowedDay = copy.LOAN_DURATION_BOOK - borrowedDay + 1;
+				calendar.add(Calendar.DAY_OF_YEAR, borrowedDay);
+				return calendar.getTime();
+			}
+		} else if (copy.getResource() instanceof DVD) {
+			if (daysBorrowed <= copy.LOAN_DURATION_DVD) {
+				borrowedDay = copy.LOAN_DURATION_DVD - borrowedDay + 1;
+				calendar.add(Calendar.DAY_OF_YEAR, borrowedDay);
+				return calendar.getTime();
+			}
+		} else {
+			if (daysBorrowed <= copy.LOAN_DURATION_LAPTOP) {
+				borrowedDay = copy.LOAN_DURATION_LAPTOP - borrowedDay + 1;
+				calendar.add(Calendar.DAY_OF_YEAR, borrowedDay);
+				return calendar.getTime();
+			}
+		}
+		
+		return Copy.getDateTomorrow();
 	}
 
 }

@@ -278,6 +278,12 @@ public class Copy implements Serializable {
 	public void setDateBorrowed(Date dateBorrowed) {
 		this.dateBorrowed = dateBorrowed;
 	}
+	
+	public static Date getDateTomorrow() {
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.DAY_OF_YEAR, 1);
+		return calendar.getTime();
+	}
 
 	/**
 	 * Getter method of the current date.

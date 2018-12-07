@@ -15,7 +15,24 @@ public class ViewOverdueResourcesPageController {
     private BorderPane overdueResourcesPane;
 
     @FXML
-    private ListView<?> overdueResourcesList;
+    private ListView<String> overdueResourcesList;
+    
+    public void initialize() {
+    	for (User user : Librarian.getUsersList()) {
+    		if (user.getBorrowedItems() != null) {
+    			for (Copy copy : user.getBorrowedItems()) {
+    				if (copy.getDueDate() != null) {
+    					String message = "This " + copy.getResource().getTitle()
+            					+ " copy, with number " + copy.getCopyId() + 
+            					" should have been returned from " + 
+            					copy.getBorrowedBy().getUsername() + " by " +
+            					copy.getDueDateString() + ".";
+            			overdueResourcesList.getItems().add(message);
+    				}	
+        		}
+    		}
+    	}
+    }
 
     @FXML
     private void clickOnBack(ActionEvent event) {
