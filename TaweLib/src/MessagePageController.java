@@ -1,3 +1,5 @@
+import java.util.Collections;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -12,9 +14,13 @@ public class MessagePageController {
     @FXML
     private ListView<String> messageList;
     
+    private User curUser;
+    
     public void initialize() {
-    	for (int i = 0; i < LoginController.getLoggedUser().getMessages().size(); i++) {
-    		messageList.getItems().add(LoginController.getLoggedUser().getMessages().get(i));
+    	curUser = LoginController.getLoggedUser();
+    	Collections.reverse(curUser.getMessages());
+    	for (int i = 0; i < curUser.getMessages().size(); i++) {
+    		messageList.getItems().add(curUser.getMessages().get(i));
     	}
     }
 

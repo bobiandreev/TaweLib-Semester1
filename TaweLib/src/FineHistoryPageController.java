@@ -1,3 +1,5 @@
+import java.util.Collections;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -12,6 +14,17 @@ public class FineHistoryPageController {
     @FXML
     private BorderPane fineHistoryPane;
 
+    private User curUser;
+    
+    @FXML
+    private void initalize() {
+    	curUser = LoginController.getLoggedUser();
+    	Collections.reverse(curUser.getFineHistory());
+    	for (String string: curUser.getFineHistory()) {
+    		fineHistoryList.getItems().add(string);
+    	}
+    }
+    
     @FXML
     void clickOnBack(ActionEvent event) {
     	closeWindow();

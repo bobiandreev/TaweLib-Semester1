@@ -27,7 +27,12 @@ public class BrowseAndSearchPageController {
 	private ArrayList<Resource> bookList;
 	private ArrayList<Resource> dvdList;
 	private ArrayList<Resource> laptopList;
-	private ArrayList<Resource> currentList = new ArrayList<>();
+	private static ArrayList<Resource> currentList = new ArrayList<>();
+	private static Resource selectedResource;
+	
+	public static Resource getSelectedResource() {
+		return selectedResource;
+	}
 
 	@FXML
 	private BorderPane browseAndSearchPane;
@@ -361,7 +366,7 @@ public class BrowseAndSearchPageController {
 			return;
 		}
 
-		Resource selectedResource = currentList.get(selectedIndex);
+		selectedResource = currentList.get(selectedIndex);
 		String stringCopies = "";
 		String borrowed = "";
 		for (Copy copy : selectedResource.getCopies()) {
@@ -374,17 +379,17 @@ public class BrowseAndSearchPageController {
 		}
 		
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CopyHistoryPage.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DisplayCopiesPage.fxml"));
 
-			BorderPane copyHistory = (BorderPane) fxmlLoader.load();
+			BorderPane copiesAvailable = (BorderPane) fxmlLoader.load();
 
-			Scene copyHistoryScene = new Scene(copyHistory, Main.BROWSEANDSEARCHPAGE_WIDTH, Main.BROWSEANDSEARCHPAGE_HEIGHT);
-			Stage copyHistoryStage = new Stage();
+			Scene copiesAvailableScene = new Scene(copiesAvailable, Main.BROWSEANDSEARCHPAGE_WIDTH, Main.BROWSEANDSEARCHPAGE_HEIGHT);
+			Stage copiesAvailableStage = new Stage();
 
-			copyHistoryStage.setScene(copyHistoryScene);
-			copyHistoryStage.setTitle("Copy History Page");
-			copyHistoryStage.initModality(Modality.APPLICATION_MODAL);
-			copyHistoryStage.showAndWait();
+			copiesAvailableStage.setScene(copiesAvailableScene);
+			copiesAvailableStage.setTitle("Copy History Page");
+			copiesAvailableStage.initModality(Modality.APPLICATION_MODAL);
+			copiesAvailableStage.showAndWait();
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.exit(-1);

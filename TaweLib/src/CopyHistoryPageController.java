@@ -1,4 +1,6 @@
 
+import java.util.Collections;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -13,6 +15,17 @@ public class CopyHistoryPageController {
     @FXML
     private BorderPane copyHistoryPane;
 
+    private Copy selectedCopy;
+    
+    @FXML
+    private void initialize() {
+    	selectedCopy = DisplayCopiesPageController.getSelectedCopy();
+    	for (int i = 0; i < selectedCopy.getCopyHistory().size(); i++) {
+    		String copyHistory = selectedCopy.getCopyHistory().get(i);
+    		copyHistoryList.getItems().add(copyHistory);
+    	}
+    }
+    
     @FXML
     void clickOnBack(ActionEvent event) {
     	closeWindow();
