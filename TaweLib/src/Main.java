@@ -172,7 +172,7 @@ public class Main extends Application {
 	}
 
 	public static void main(String[] args) {
-<<<<<<< HEAD
+
 		// ArrayList<Resource> resourceList = Database.getResourceList();
 		// for (Resource r : resourceList) {
 		// SearchBrowse.addResource(r);
@@ -187,7 +187,7 @@ public class Main extends Application {
 		// for (Librarian l : libList) {
 		// Librarian.getLibrarianList().add(l);
 		// }
-
+		/*test1
 		Resource resource1 = new Book("TLOTR", "2001", "Avatar4.png", 3, "Tolkien", "Springer");
 		Resource resource2 = new LaptopComputer("XPS", "2018", "Avatar4.png", 3, "Dell", "XPS", "Windows");
 		// Resource resource3 = new DVD("TLOTR", "2001", "Avatar4.png", 10,
@@ -215,7 +215,9 @@ public class Main extends Application {
 		Librarian.loanACopy("user1", "TLOTR");
 		Librarian.loanACopy("user1", "TLOTR");
 		// Librarian.loanACopy("user1", "TLOTR");
-=======
+		 * */
+		 
+
 		
 		
 		try	{
@@ -246,7 +248,7 @@ public class Main extends Application {
 			System.out.println("Librarian list is empty");
 		}
 		
->>>>>>> branch 'master' of https://gitlab.com/ONixon/group-41.git
+
 		launch(args);
 	}
 }
