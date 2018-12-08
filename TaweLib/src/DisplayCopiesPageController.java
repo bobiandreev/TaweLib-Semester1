@@ -11,6 +11,16 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * <h1> Display Copies Page Controller. (GUI) </h1>
+ * The DisplayCopiesPageController class which controls the DisplayCopiesPageController.fxml
+ * 
+ * 
+ * @author Ming
+ * @version 1.0
+ * @since 2018-12-06
+ *
+ */
 public class DisplayCopiesPageController {
 
 	@FXML
@@ -23,6 +33,11 @@ public class DisplayCopiesPageController {
 	private Resource resource;
 	private static Copy selectedCopy;
 
+	/**
+	 * Initialize the controller. Displays appropriate message according to
+	 * whether or not a copy of a requested item/resource is available.
+	 * (Checks first the status of a resource copy.)
+	 */
 	@FXML
 	private void initialize() {
 		curUser = LoginController.getLoggedUser();
@@ -40,6 +55,15 @@ public class DisplayCopiesPageController {
 		}
 	}
 
+	/**
+	 * Actions will be carried out when button is clicked to go through
+	 * the list of copies (copyList) for display. Appropriate alert boxes
+	 * pop up when unexpected/non-existent list item is being pulled or
+	 * when logged in as a User without permission (When User is not a
+	 * Librarian).
+	 * 
+	 * @param event - When the mouse clicks on the button.
+	 */
 	@FXML
 	void clickOnCheckCopyHistory(ActionEvent event) {
 		if (curUser instanceof Librarian) {
@@ -79,20 +103,41 @@ public class DisplayCopiesPageController {
 		}
 	}
 	
+	/**
+	 * Getter method which returns a selected copy.
+	 * 
+	 * @return selectedCopy
+	 * 			A copy item which has been selected. 
+	 */
 	public static Copy getSelectedCopy() {
 		return selectedCopy;
 	}
 
+	/**
+	 * Actions will be made when the user clicks on the button.
+	 * Returns to previous window by closing the current/most recent one.
+	 * 
+	 * @param event - When the mouse clicks on the button.
+	 */
 	@FXML
 	void clickOnBack(ActionEvent event) {
 		closeWindow();
 	}
 
+	/**
+	 * Actions will be made when the User clicks on the button.
+	 * Makes a request for a copy of an item/resource on behalf of the User.
+	 * 
+	 * @param event - When the mouse clicks on the button.
+	 */
 	@FXML
 	void clickOnRequestACopy(ActionEvent event) {
 		curUser.requestItem(resource);
 	}
 
+	/**
+	 * This method closes the window.
+	 */
 	@FXML
 	private void closeWindow() { // A method which close the window
 		Stage stage = (Stage) copyPane.getScene().getWindow();
