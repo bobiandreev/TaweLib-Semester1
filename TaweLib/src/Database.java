@@ -28,7 +28,7 @@ public class Database {
 			outFile.close();
 			System.out.println("Stored resource list in resourcelist.ser");
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 	
@@ -49,10 +49,10 @@ public class Database {
 			inFile.close();
 			return resourceList;
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return null;
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return null;
 		}
 	}
@@ -74,7 +74,7 @@ public class Database {
 			outFile.close();
 			System.out.println("Stored user list in userlist.ser");
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 
@@ -95,10 +95,10 @@ public class Database {
 			inFile.close();
 			return userList;
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return null;
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return null;
 		}
 	}
@@ -120,7 +120,7 @@ public class Database {
 			outFile.close();
 			System.out.println("Stored librarian list in liblist.ser");
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 	
@@ -141,10 +141,10 @@ public class Database {
 			inFile.close();
 			return libList;
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return null;
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return null;
 		}
 	}

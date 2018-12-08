@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
-import java.util.Scanner;
 
 /**
  * Class that creates a copy object for a resource
@@ -34,7 +33,6 @@ public class Copy implements Serializable {
 	private Date dueDate = null;
 	private static Date dateNow;
 	private ArrayList<String> copyHistory = new ArrayList<>();
-	private Scanner in;
 
 	/**
 	 * Constructor for a Copy.

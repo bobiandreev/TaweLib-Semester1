@@ -192,6 +192,11 @@ public class Main extends Application {
 		} catch (NullPointerException e) {
 			System.out.println("Resource list is empty");
 			Database.setupFiles();
+			ArrayList<Resource> resourceList = new ArrayList<>();
+			resourceList.addAll(Database.getResourceList());
+			for (Resource r : resourceList) {
+				SearchBrowse.addResource(r);
+			}
 		}
 
 		try {
@@ -202,6 +207,11 @@ public class Main extends Application {
 			}
 		} catch (NullPointerException e) {
 			System.out.println("User list is empty");
+			ArrayList<User> userList = new ArrayList<>();
+			userList.addAll(Database.getUserList());
+			for (User u : userList) {
+				Librarian.getUsersList().add(u);
+			}
 
 		}
 
@@ -213,6 +223,11 @@ public class Main extends Application {
 			}
 		} catch (NullPointerException e) {
 			System.out.println("Librarian list is empty");
+			ArrayList<Librarian> libList = new ArrayList<>();
+			libList.addAll(Database.getLibList());
+			for (Librarian l : libList) {
+				Librarian.getLibrarianList().add(l);
+			}
 		}
 
 		launch(args);
