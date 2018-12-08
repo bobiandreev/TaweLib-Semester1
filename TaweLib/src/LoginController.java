@@ -18,9 +18,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
 /**
+ * <h1> Login Controller for GUI. </h1>
  * The LoginController Class which controls the HomePage.fxml
  * 
  * @author Ming
+ * @version 1.0
+ * @since 2018-12-03
  *
  */
 public class LoginController {
@@ -36,10 +39,23 @@ public class LoginController {
 	private static User loggedUser;
 	Alert alert = new Alert(AlertType.ERROR);
 
+	/**
+	 * Getter method which gets the logged-in users.
+	 * 
+	 * @return loggedUser
+	 * 				A logged-in user of the system.
+	 */
 	public static User getLoggedUser() {
 		return loggedUser;
 	}
 
+	/**
+	 * Actions will be carried out when button is clicked to log in as a User. 
+	 * Actions carried out depends on whether UserID was appropriately entered. 
+	 * Inappropriate or unexpected input will trigger messages to be displayed in an alert box.
+	 * 
+	 * @param event - When the mouse clicks on the button.
+	 */
 	@FXML
 	private void clickOnLoginAsUser(ActionEvent event) {
 		String x = userID.getText();
@@ -81,6 +97,13 @@ public class LoginController {
 		}
 	}
 
+	/**
+	 * Actions will be carried out when button is clicked to log in as a Librarian. 
+	 * Actions carried out depends on whether librarianID was appropriately entered. 
+	 * Inappropriate or unexpected input will trigger messages to be displayed in an alert box.
+	 * 
+	 * @param event - When the mouse clicks on the button.
+	 */
 	@FXML
 	private void clickOnLoginAsLibrarian(ActionEvent event) {
 		String m = librarianID.getText();
