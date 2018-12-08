@@ -22,12 +22,15 @@ public class ViewOverdueResourcesPageController {
     		if (user.getBorrowedItems() != null) {
     			for (Copy copy : user.getBorrowedItems()) {
     				if (copy.getDueDate() != null) {
-    					String message = "This " + copy.getResource().getTitle()
-            					+ " copy, with number " + copy.getCopyId() + 
-            					" should have been returned from " + 
-            					copy.getBorrowedBy().getUsername() + " by " +
-            					copy.getDueDateString() + ".";
-            			overdueResourcesList.getItems().add(message);
+    					int totalDays = Integer.parseInt(Fine.findDays(copy.getDueDate(), Copy.getDateNow()).toString());
+    					if (totalDays > 0) {
+    						String message = "This " + copy.getResource().getTitle()
+                					+ " copy, with number " + copy.getCopyId() + 
+                					" should have been returned from " + 
+                					copy.getBorrowedBy().getUsername() + " by " +
+                					copy.getDueDateString() + ".";
+                			overdueResourcesList.getItems().add(message);
+    					}
     				}	
         		}
     		}

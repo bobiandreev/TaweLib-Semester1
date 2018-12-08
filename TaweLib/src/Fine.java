@@ -76,7 +76,7 @@ public class Fine {
 		return daysOverdue;
 	}
 
-	private static Period findDays(Date dueDate, Date currentDate) {
+	public static Period findDays(Date dueDate, Date currentDate) {
 		// int days = 0;
 		// input1 = new Scanner(dueDate);
 		// input2 = new Scanner(currentDate);
