@@ -156,7 +156,7 @@ public class Main extends Application {
 	public static final int CHOOSEPROFILEPAGE_WIDTH = 600;
 	public static final int CHOOSEPROFILEPAGE_HEIGHT = 350;
 	public static final String CHOOSEPROFILEPAGE_TITLE = "Profile Page";
-	
+
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -169,67 +169,20 @@ public class Main extends Application {
 			primaryStage.setTitle(HOMEPAGE_TITLE);
 			primaryStage.show();
 
-			
 			primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-		          public void handle(WindowEvent we) {
-		              Database.saveData();
-		          }
-		    });
-			
-		} catch(Exception e) {
+				public void handle(WindowEvent we) {
+					Database.saveData();
+				}
+			});
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	public static void main(String[] args) {
 
-		// ArrayList<Resource> resourceList = Database.getResourceList();
-		// for (Resource r : resourceList) {
-		// SearchBrowse.addResource(r);
-		// }
-		//
-		// ArrayList<User> userList = Database.getUserList();
-		// for (User u : userList) {
-		// Librarian.getUsersList().add(u);
-		// }
-		//
-		// ArrayList<Librarian> libList = Database.getLibList();
-		// for (Librarian l : libList) {
-		// Librarian.getLibrarianList().add(l);
-		// }
-		/*test1
-		Resource resource1 = new Book("TLOTR", "2001", "Avatar4.png", 3, "Tolkien", "Springer");
-		Resource resource2 = new LaptopComputer("XPS", "2018", "Avatar4.png", 3, "Dell", "XPS", "Windows");
-		// Resource resource3 = new DVD("TLOTR", "2001", "Avatar4.png", 10,
-		// "Peter Jackson", "180");
-		// ("TLOTR", 2001, null, 30);
-		User user1 = new User("user1", "user 1", "05454645", "56", "Bay Campus", "SA1 8PP", "Avatar5.png");
-		User user2 = new User("user2", "user 1", "05454645", "56", "Bay Campus", "SA1 8PP", "Avatar5.png");
-		Librarian lib1 = new Librarian("lib1", "lib 1", "54656597", "65", "Singleton Campus", "SA1 4FS", "Avatar5.png",
-				"24/07");
-		Librarian.getUsersList().add(user1);
-		Librarian.getUsersList().add(user2);
-		Librarian.getLibrarianList().add(lib1);
-		// user1.requestItem(resource1);
-		// user1.requestReturn(resource1.getCopies().get(0));
-		SearchBrowse.addResource(resource1);
-		SearchBrowse.addResource(resource2);
-		// SearchBrowse.addResource(resource3);
-		Librarian.loanACopy("user1", "TLOTR");
 		try {
-			resource1.getCopies().get(0).setDateBorrowed(Copy.dateParser("Mon Nov 10 00:00:00 GMT 2018"));
-		} catch (ParseException e) {
-			System.out.println("Thats wrong!");
-		}
-		Librarian.loanACopy("user1", "TLOTR");
-		Librarian.loanACopy("user1", "TLOTR");
-		Librarian.loanACopy("user1", "TLOTR");
-		// Librarian.loanACopy("user1", "TLOTR");
-		 * */
-		 
-
-		
-		try	{
 			ArrayList<Resource> resourceList = Database.getResourceList();
 			for (Resource r : resourceList) {
 				SearchBrowse.addResource(r);
@@ -238,7 +191,7 @@ public class Main extends Application {
 			System.out.println("Resource list is empty");
 			Database.setupFiles();
 		}
-		
+
 		try {
 			ArrayList<User> userList = Database.getUserList();
 			for (User u : userList) {
@@ -247,7 +200,7 @@ public class Main extends Application {
 		} catch (NullPointerException e) {
 			System.out.println("User list is empty");
 		}
-		
+
 		try {
 			ArrayList<Librarian> libList = Database.getLibList();
 			for (Librarian l : libList) {
@@ -256,7 +209,6 @@ public class Main extends Application {
 		} catch (NullPointerException e) {
 			System.out.println("Librarian list is empty");
 		}
-		
 
 		launch(args);
 	}
