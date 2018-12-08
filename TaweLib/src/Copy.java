@@ -411,10 +411,7 @@ public class Copy implements Serializable {
 	 * Setter of the due date.
 	 */
 	public void setDueDate() {
-		Calendar c = Calendar.getInstance();
-		c.setTime(dateBorrowed);
-		c.add(Calendar.DAY_OF_MONTH, LOAN_DURATION_BOOK);
-		dueDate = c.getTime();
+		dueDate = Fine.findDuration(this);
 		System.out.println("Due date: " + S_D_F.format(dueDate));
 	}
 

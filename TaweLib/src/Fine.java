@@ -146,26 +146,26 @@ public class Fine {
 		return days;
 	}
 
-	public static Date checkDuration(Copy copy) {
+	public static Date findDuration(Copy copy) {
 		Date dateBorrowed = copy.getDateBorrowed();
 		Date currentDate = Copy.getDateNow();
 		int daysBorrowed = findDays(dateBorrowed, currentDate).getDays();
 		int borrowedDay = Integer.parseInt(dateBorrowed.toString());
 		Calendar calendar = Calendar.getInstance();
 		if (copy.getResource() instanceof Book) {
-			if (daysBorrowed <= copy.LOAN_DURATION_BOOK) {
+			if (daysBorrowed < copy.LOAN_DURATION_BOOK) {
 				borrowedDay = copy.LOAN_DURATION_BOOK - borrowedDay + 1;
 				calendar.add(Calendar.DAY_OF_YEAR, borrowedDay);
 				return calendar.getTime();
 			}
 		} else if (copy.getResource() instanceof DVD) {
-			if (daysBorrowed <= copy.LOAN_DURATION_DVD) {
+			if (daysBorrowed < copy.LOAN_DURATION_DVD) {
 				borrowedDay = copy.LOAN_DURATION_DVD - borrowedDay + 1;
 				calendar.add(Calendar.DAY_OF_YEAR, borrowedDay);
 				return calendar.getTime();
 			}
 		} else {
-			if (daysBorrowed <= copy.LOAN_DURATION_LAPTOP) {
+			if (daysBorrowed < copy.LOAN_DURATION_LAPTOP) {
 				borrowedDay = copy.LOAN_DURATION_LAPTOP - borrowedDay + 1;
 				calendar.add(Calendar.DAY_OF_YEAR, borrowedDay);
 				return calendar.getTime();
