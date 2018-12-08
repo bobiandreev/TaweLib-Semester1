@@ -15,10 +15,12 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
+ * <h1> Create a new Laptop resource. </h1>
  * The CreateLaptopPageController Class which controls the CreateLaptopPage.fxml
  * 
  * @author Ming
- *
+ * @version 1.0
+ * @since 2018-12-03
  */
 public class CreateLaptopPageController {
 
@@ -50,6 +52,14 @@ public class CreateLaptopPageController {
 
 	private String image;
 
+	 /**
+	 * Actions will be made when the user clicks on the button. Triggers alert box
+	 * for indication of new Laptop item creation. (Creates a new Laptop resource
+	 * with all fields entered.)
+	 * 
+	 * @param event
+	 *            - When the mouse clicks on the button.
+	 */
 	@FXML
 	private void clickOnConfirm(ActionEvent event) {
 		String title = this.title.getText();
@@ -65,7 +75,13 @@ public class CreateLaptopPageController {
 		alert.showAndWait();
 		closeWindow();
 	}
-
+	/**
+	 * Actions will be made when the user clicks on the button.
+	 * Setting of thumbnail image for the Laptop.
+	 * 
+	 * @param event - When the mouse clicks on the button.
+	 * @throws IOException
+	 */
 	@FXML
 	public void clickOnThumbnailImage(ActionEvent event) throws IOException {
 		FileChooser fc = new FileChooser();
@@ -78,12 +94,21 @@ public class CreateLaptopPageController {
 		 * frame.setLocationRelativeTo(null); frame.setVisible(true);
 		 */
 	}
-
+	
+	/**
+	 * Actions will be made when the user clicks on the button.
+	 * Returns to previous window by closing the current/most recent one.
+	 * 
+	 * @param event - When the mouse clicks on the button.
+	 */
 	@FXML
 	private void clickOnBack(ActionEvent event) {
 		closeWindow();
 	}
 
+	/**
+     * This method closes the window.
+     */
 	@FXML
 	private void closeWindow() { // A method which close the window
 		Stage stage = (Stage) createLaptopPane.getScene().getWindow();
