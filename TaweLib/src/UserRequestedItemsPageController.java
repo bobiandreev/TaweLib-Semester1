@@ -10,52 +10,51 @@ import javafx.stage.Stage;
  * UserRequestedItemsPageController Class which controls the
  * UserRequestedItemsPage.fxml
  * 
- * @author Ming
+ * @author Ming and Boris
  * @version 1.0
  * @since 2018-12-05
  */
 public class UserRequestedItemsPageController {
 
-    @FXML
-    private BorderPane requestedItemsPane;
+	@FXML
+	private BorderPane requestedItemsPane;
 
-    @FXML
-    private ListView<String> requestedItemsList;
+	@FXML
+	private ListView<String> requestedItemsList;
 
-    private User curUser;
+	private User curUser;
 
-    /**
-     * This method handles the requested item of the User and displays the
-     * appropriate message accordingly.
-     */
-    public void initialize() {
-	curUser = LoginController.getLoggedUser();
-	for (Copy copy : curUser.getRequestedItems()) {
-	    // returnRequestCopies.add(copy);
-	    Resource copyOf = copy.getResource();
-	    String copyProperties = (copyOf.getTitle() + ", " + copyOf.getYear()
-		    + ". You have requested this on "
-		    + copy.getDateRequested());
-	    requestedItemsList.getItems().add(copyProperties);
+	/**
+	 * This method gets called whenever the requested items paged is opened. It goes
+	 * through the list of requested items of the user and displays them all.
+	 */
+	public void initialize() {
+		curUser = LoginController.getLoggedUser();
+		for (Copy copy : curUser.getRequestedItems()) {
+			// returnRequestCopies.add(copy);
+			Resource copyOf = copy.getResource();
+			String copyProperties = (copyOf.getTitle() + ", " + copyOf.getYear() + ". You have requested this on "
+					+ copy.getDateRequested());
+			requestedItemsList.getItems().add(copyProperties);
+		}
 	}
-    }
 
-    /**
-     * Actions will be made when the user clicks on the button. Returns to
-     * previous window by closing the current/most recent one.
-     * 
-     * @param event
-     */
-    @FXML
-    void clickOnBack(ActionEvent event) {
-	closeWindow();
-    }
+	/**
+	 * Calls the method which closes the window.
+	 * 
+	 * @param event
+	 *            Clicking on the back button.
+	 */
+	@FXML
+	void clickOnBack(ActionEvent event) {
+		closeWindow();
+	}
 
-    /**
-     * This method closes the window.
-     */
-    private void closeWindow() { // A method which close the window
-	Stage stage = (Stage) requestedItemsPane.getScene().getWindow();
-	stage.close();
-    }
+	/**
+	 * This method closes the window.
+	 */
+	private void closeWindow() { // A method which close the window
+		Stage stage = (Stage) requestedItemsPane.getScene().getWindow();
+		stage.close();
+	}
 }

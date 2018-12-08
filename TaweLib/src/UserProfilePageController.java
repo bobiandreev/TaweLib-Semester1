@@ -4,6 +4,12 @@ import javafx.scene.control.Label;
 
 import javafx.fxml.FXML;
 
+/**
+ * This class shows the user information of the currently logged user.
+ * 
+ * @author Boris Andreev
+ *
+ */
 public class UserProfilePageController {
 	@FXML
 	private Label usernameLabel;
@@ -19,6 +25,10 @@ public class UserProfilePageController {
 
 	private User curUser;
 
+	/**
+	 * This method gets called whenever the profile page is loaded. It sets the
+	 * labels to show the specific users information.
+	 */
 	@FXML
 	private void initialize() {
 		curUser = LoginController.getLoggedUser();
