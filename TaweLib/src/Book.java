@@ -15,33 +15,6 @@ public class Book extends Resource {
 	private String language = "";
 
 	/**
-	 * Reader Constructor for a book.
-	 * 
-	 * @param resourceID
-	 * 			  The ID this resource had.
-	 * @param title
-	 *            Title of the book.
-	 * @param year
-	 *            Year when book was released.
-	 * @param image
-	 *            Path of the image.
-	 * @param numOfCopies
-	 *            Number of copies for the book.
-	 * @param copiesQuery
-	 * 			  The SQL query to re-generate the right copies.
-	 * @param author
-	 *            Author of the book.
-	 * @param publisher
-	 *            Publisher of the book.
-	 */
-	public Book(int resourceID, String title, String year, String imagePath, 
-			int numOfCopies, ResultSet copiesQuery, String author, String publisher) {
-		super(resourceID, title, year, imagePath, numOfCopies, copiesQuery);
-		this.author = author;
-		this.publisher = publisher;
-	}
-	
-	/**
 	 * Constructor for a book.
 	 * 
 	 * @param title

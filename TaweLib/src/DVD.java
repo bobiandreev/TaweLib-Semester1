@@ -11,48 +11,16 @@ public class DVD extends Resource {
 	private String runtime;
 	private String language = "";
 	private String subtitles = "";
-
-	/**
-	 * Reader Constructor for a DVD.
-	 * 
-	 * @param resourceID
-	 * 			  The ID this resource had.
-	 * @param title
-	 *            Title of the DVD.
-	 * @param year
-	 *            Year of release.
-	 * @param imagePath
-	 *            Path of the image.
-	 * @param numOfCopies
-	 *            How many are available in the library.
-	 * @param copiesQuery
-	 * 			  The SQL query to re-generate the right copies.
-	 * @param director
-	 *            Director of the film.
-	 * @param runtime
-	 *            Runtime of film.
-	 */
-
-	public DVD(int resourceID, String title, String year, String imagePath, int numOfCopies,
-			String director, String runtime, ResultSet copiesQuery) {
-		super(resourceID, title, year, imagePath, numOfCopies, copiesQuery);
-		this.director = director;
-		this.runtime = runtime;
-	}
 	
 	/**
 	 * Constructor for a DVD.
 	 * 
 	 * @param title
-<<<<<<< HEAD
 	 *            Title of the DVD.
 	 * @param year
 	 *            Year of release.
-=======
-	 *            Title of the DVD
 	 * @param string
 	 *            Year of release
->>>>>>> branch 'master' of https://gitlab.com/ONixon/group-41.git
 	 * @param thumbnailImage
 	 *            Cover Image.
 	 * @param numOfCopies

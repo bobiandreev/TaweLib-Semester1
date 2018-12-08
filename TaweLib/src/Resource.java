@@ -29,32 +29,6 @@ public class Resource implements Serializable {
 	private ArrayList<User> waitingList = new ArrayList<>();
 
 	/**
-	 * Reader Constructor for a resource.
-	 * 
-	 * @param resourceID
-	 *            The ID this resource had.
-	 * @param title
-	 *            Title of the resource.
-	 * @param year
-	 *            Year of resource release.
-	 * @param imagePath
-	 *            Path of the image.
-	 * @param numOfCopies
-	 *            How many copies exist of the resource in the library.
-	 * @param copiesQuery
-	 *            The SQL query to re-generate the right copies.
-	 */
-	public Resource(int resourceID, String title, String year, String imagePath, int numOfCopies,
-			ResultSet copiesQuery) {
-		this.curResourceID = resourceID;
-		this.title = title;
-		this.year = year;
-		this.numOfCopies = numOfCopies;
-		id++;
-		// generateCopies(copiesQuery);
-	}
-
-	/**
 	 * Constructor for a resource.
 	 * 
 	 * @param title

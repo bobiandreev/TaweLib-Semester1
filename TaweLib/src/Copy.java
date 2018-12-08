@@ -51,67 +51,6 @@ public class Copy implements Serializable {
 	// }
 
 	/**
-	 * Reader Constructor for a Copy.
-	 * 
-	 * @param resource
-	 *            This shows a copy of which resource is this object.
-	 * @param copyID
-	 *            Sets an ID for the specific copy.
-	 * @param isBorrowed
-	 *            True if it's currently being borrowed, false otherwise.
-	 * @param isRequested
-	 *            True if it's requested by someone, false otherwise.
-	 * @param isReserved
-	 *            True if it's reserved for someone, false otherwise.
-	 * @param dateRequested
-	 *            The date it was requested.
-	 * @param dateBorrowed
-	 *            The date it was borrowed.
-	 * @param dateRequestedReturn
-	 *            The date the borrower wants to return it.
-	 * @param dateReturned
-	 *            The date it was returned.
-	 * @param requestedBy
-	 *            The User it was requested by.
-	 * @param borrowedBy
-	 *            The User that had borrowed the copy.
-	 * @param reservedFor
-	 *            The User it is reserved for.
-	 * @param dueDate
-	 *            The date the current borrower has to return it.
-	 * @param copyHistory
-	 *            The borrowing history of this copy.
-	 */
-	public Copy(Resource resource, int copyID, boolean isBorrowed, boolean isRequested, boolean isReserved,
-			String dateRequested, String dateBorrowed, String dateRequestedReturn, String dateReturned,
-			String requestedBy, String borrowedBy, String reservedFor, String dueDate, String copyHistory) {
-		this.resource = resource;
-		this.copyID = copyID;
-		this.isBorrowed = isBorrowed;
-		this.isRequested = isRequested;
-		this.isReserved = isReserved;
-		try {
-			this.dateRequested = dateParser(dateRequested);
-			this.dateBorrowed = dateParser(dateBorrowed);
-			this.dateRequestReturn = dateParser(dateRequestedReturn);
-			this.dateReturned = dateParser(dateReturned);
-			this.dueDate = dateParser(dueDate);
-		} catch (ParseException e) {
-
-		}
-		this.requestedBy = userFinder(requestedBy);
-		this.borrowedBy = userFinder(borrowedBy);
-		this.reservedFor = userFinder(reservedFor);
-		in = new Scanner(copyHistory);
-		in.useDelimiter(",");
-		while (in.hasNext()) {
-			String line = in.next();
-			this.copyHistory.add(line);
-		}
-		Collections.reverse(this.copyHistory);
-	}
-
-	/**
 	 * Constructor for a Copy.
 	 * 
 	 * @param resource
@@ -141,30 +80,6 @@ public class Copy implements Serializable {
 		}
 		Date date = parser.parse(dateToParse);
 		return date;
-	}
-
-	/**
-	 * Finds a User.
-	 * 
-	 * @param username
-	 *            The username of a user.
-	 * @return The a User.
-	 */
-	private User userFinder(String username) {
-		User user = null;
-		ArrayList<User> users = new ArrayList<>();
-		users.addAll(Librarian.getUsersList());
-		int index = 0;
-		if (username.equals("null")) {
-			return null;
-		}
-		do {
-			if (username.equals(users.get(index).getUsername())) {
-				user = users.get(index);
-			}
-			index++;
-		} while (username != user.getUsername());
-		return user;
 	}
 
 	/**
