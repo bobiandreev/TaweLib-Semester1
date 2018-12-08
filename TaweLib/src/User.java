@@ -157,16 +157,31 @@ public class User implements Serializable {
 
 	public void checkFineHistory() {
 		String history = "";
+		boolean once = true;
 		for (Copy copy : borrowedItems) {
 			if (copy.getDueDate() != null) {
 				Copy curCopy = copy;
-				String dueDate = curCopy.S_D_F.format(curCopy.getDueDate());
-				String currentDate = curCopy.S_D_F.format(Copy.getDateNow());
+				Date dueDate = curCopy.getDueDate();
+				Date currentDate = Copy.getDateNow();
 				Fine fine = new Fine(curCopy.getResource(), dueDate, currentDate);
 				history += curCopy.getDueDate() + ", amount due: " + fine.getCurrentFine() + ", copy: "
 						+ curCopy.getCopyId() + " of " + curCopy.getResource().getTitle() + ". Days overdue: "
 						+ fine.getDaysOverdue() + "\n";
-				fineHistory.add(history);
+				if (fine.getDaysOverdue() > 0) {
+					if (!fineHistory.isEmpty()) {
+						for (String string : fineHistory) {
+							if (history.equals(string)) {
+								once = false;
+							}
+						}
+						if (once) {
+							fineHistory.add(history);
+						}
+					}
+				}
+				else {
+					fineHistory.add(history);
+				}
 			}
 		}
 	}
@@ -221,20 +236,25 @@ public class User implements Serializable {
 		return houseNumber;
 	}
 
-	public double getBalance() {
+	public double calculateBalance() {
 		double totalFine = 0;
-		int index = 0;
 		for (Copy copy : borrowedItems) {
 			if (copy.getDueDate() != null) {
 				Copy curCopy = copy;
-				String dueDate = curCopy.S_D_F.format(curCopy.getDueDate());
-				String currentDate = curCopy.S_D_F.format(Copy.getDateNow());
+				Date dueDate = curCopy.getDueDate();
+				Date currentDate = Copy.getDateNow();
 				Fine fine = new Fine(curCopy.getResource(), dueDate, currentDate);
-				totalFine += fine.getCurrentFine();
-				index++;
+				totalFine = fine.getCurrentFine();
 			}
 		}
-		currentFine = totalFine;
+		return totalFine;
+	}
+
+	public double getBalance() {
+		if (currentFine != calculateBalance()) {
+			double additionalFine = calculateBalance() - currentFine;
+			currentFine += additionalFine;
+		}
 		return currentFine;
 	}
 

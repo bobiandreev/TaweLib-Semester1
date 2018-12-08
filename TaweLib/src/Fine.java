@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
@@ -27,9 +30,11 @@ public class Fine {
 	 * @param daysDelayed
 	 *            Days overdue.
 	 */
-	public Fine(Resource resource, String dueDate, String currentDate) {
-		daysOverdue = findDays(dueDate, currentDate);
-		calculateFine(resource, daysOverdue);
+	public Fine(Resource resource, Date dueDate, Date currentDate) {
+		daysOverdue = findDays(dueDate, currentDate).getDays();
+		if (daysOverdue > 0) {
+			calculateFine(resource, daysOverdue);
+		}
 	}
 
 	/**
@@ -71,80 +76,81 @@ public class Fine {
 		return daysOverdue;
 	}
 
-	private static int findDays(String dueDate, String currentDate) {
-		int days = 0;
-		input1 = new Scanner(dueDate);
-		input2 = new Scanner(currentDate);
-		input1.useDelimiter("/");
-		input2.useDelimiter("/");
-		int dueDay = input1.nextInt();
-		int dueMonth = input1.nextInt();
-		int dueYear = input1.nextInt();
-		int currentDay = input2.nextInt();
-		int currentMonth = input2.nextInt();
-		int currentYear = input2.nextInt();
-		for (int i = dueYear; i < currentYear; i++) {
-			if (i % 4 != 0) {
-				days += 365;
-			} else if (i % 100 != 0) {
-				days += 366;
-			} else if (i % 400 != 0) {
-				days += 365;
-			} else {
-				days += 366;
-			}
-		}
-		if (dueMonth != currentMonth) {
-			days += findMonthDays(dueMonth, dueYear) - dueDay;
-			if (dueMonth != currentMonth - 1) {
-				for (int j = dueMonth + 1; j < currentMonth; j++) {
-					days += findMonthDays(j, dueYear);
-				}
-			}
-			days += currentDay;
-		} else {
-			days = currentDay - dueDay;
-		}
-		System.out.println(days);
-
+	private static Period findDays(Date dueDate, Date currentDate) {
+		// int days = 0;
+		// input1 = new Scanner(dueDate);
+		// input2 = new Scanner(currentDate);
+		// input1.useDelimiter("/");
+		// input2.useDelimiter("/");
+		// int dueDay = input1.nextInt();
+		// int dueMonth = input1.nextInt();
+		// int dueYear = input1.nextInt();
+		// int currentDay = input2.nextInt();
+		// int currentMonth = input2.nextInt();
+		// int currentYear = input2.nextInt();
+		// for (int i = dueYear; i < currentYear; i++) {
+		// if (i % 4 != 0) {
+		// days += 365;
+		// } else if (i % 100 != 0) {
+		// days += 366;
+		// } else if (i % 400 != 0) {
+		// days += 365;
+		// } else {
+		// days += 366;
+		// }
+		// }
+		// if (dueMonth != currentMonth) {
+		// days += findMonthDays(dueMonth, dueYear) - dueDay;
+		// if (dueMonth != currentMonth - 1) {
+		// for (int j = dueMonth + 1; j < currentMonth; j++) {
+		// days += findMonthDays(j, dueYear);
+		// }
+		// }
+		// days += currentDay;
+		// } else {
+		// days = currentDay - dueDay;
+		// }
+		// System.out.println(days);
+		//
+		// return days;
+		// }
+		//
+		// private static int findMonthDays(int month, int year) {
+		// int days;
+		// switch (month) {
+		// case 2:
+		// if (year % 4 != 0) {
+		// days = 28;
+		// } else if (year % 100 != 0) {
+		// days = 29;
+		// } else if (year % 400 != 0) {
+		// days = 28;
+		// } else {
+		// days = 29;
+		// }
+		// break;
+		//
+		// case 4:
+		// case 6:
+		// case 9:
+		// case 11:
+		// days = 30;
+		// break;
+		// default:
+		// days = 31;
+		//
+		// }
+		LocalDate dateDue = dueDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		LocalDate dateNow = currentDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		Period days = Period.between(dateDue, dateNow);
 		return days;
 	}
 
-	private static int findMonthDays(int month, int year) {
-		int days;
-		switch (month) {
-		case 2:
-			if (year % 4 != 0) {
-				days = 28;
-			} else if (year % 100 != 0) {
-				days = 29;
-			} else if (year % 400 != 0) {
-				days = 28;
-			} else {
-				days = 29;
-			}
-			break;
-
-		case 4:
-		case 6:
-		case 9:
-		case 11:
-			days = 30;
-			break;
-		default:
-			days = 31;
-
-		}
-		return days;
-	}
-	
 	public static Date checkDuration(Copy copy) {
-		String dateBorrowed = copy.S_D_F.format(copy.getDateBorrowed());
-		String currentDate = copy.S_D_F.format(Copy.getDateNow());
-		int daysBorrowed = findDays(dateBorrowed, currentDate);
-		input1 = new Scanner(dateBorrowed);
-		input1.useDelimiter("/");
-		int borrowedDay = input1.nextInt();
+		Date dateBorrowed = copy.getDateBorrowed();
+		Date currentDate = Copy.getDateNow();
+		int daysBorrowed = findDays(dateBorrowed, currentDate).getDays();
+		int borrowedDay = Integer.parseInt(dateBorrowed.toString());
 		Calendar calendar = Calendar.getInstance();
 		if (copy.getResource() instanceof Book) {
 			if (daysBorrowed <= copy.LOAN_DURATION_BOOK) {
@@ -165,7 +171,7 @@ public class Fine {
 				return calendar.getTime();
 			}
 		}
-		
+
 		return Copy.getDateTomorrow();
 	}
 

@@ -114,21 +114,31 @@ public class Librarian extends User {
 					alert.setContentText(
 							curUser.getName().toString() + " has been given " + curResource.getTitle().toString());
 					alert.showAndWait();
-					//System.out.println("a");
+					// System.out.println("a");
 				} else {
 					curResource.getWaitingList().add(curUser);
 					SearchBrowse.reserved(curResource);
 					curResource.getWaitingList().remove(curUser);
+					Alert alert1 = new Alert(AlertType.WARNING);
+					alert1.setHeaderText("No free copies at the moment!");
+					alert1.setContentText("There were no free copies at the moment. You have been added"
+							+ "to the waiting list and a copy has been reserved for you. You will receive a message"
+							+ " when a copy is free.");
+					alert1.showAndWait();
 				}
 			} else {
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setHeaderText("Error!");
-				alert.setContentText("One of the inputs is wrong! Please re enter!");
-				alert.showAndWait();
+				Alert alert2 = new Alert(AlertType.ERROR);
+				alert2.setHeaderText("Error!");
+				alert2.setContentText("One of the inputs is wrong! Please re enter!");
+				alert2.showAndWait();
 			}
 
 		} else {
-			System.out.println(curUser.getUsername() + "cannot borrow " + "anything until he repays his fine.");
+			Alert alert3 = new Alert(AlertType.ERROR);
+			alert3.setHeaderText("Error!");
+			alert3.setContentText(curUser.getUsername() + " cannot borrow " + "anything until he repays his fine.");
+			alert3.showAndWait();
+
 		}
 
 	}
@@ -155,6 +165,9 @@ public class Librarian extends User {
 			curCopy.setDateRequestReturn(null);
 			curCopy.setDateBorrowed(null);
 			curCopy.setBorrowedBy(null);
+			curCopy.returnCopy();
+			curUser.getReturnRequests().remove(curCopy); // removes copy from returnRequests list in curUser
+			curUser.getBorrowedItems().remove(curCopy);
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setHeaderText("Great");
 			alert.setContentText(
@@ -214,8 +227,8 @@ public class Librarian extends User {
 			curCopy.setDateRequestReturn(null);
 			curCopy.setDateBorrowed(null);
 			curCopy.setBorrowedBy(null);
-			curUser.getReturnRequests().remove(0); // removes copy from returnRequests list in curUser
-			curUser.getBorrowedItems().remove(0); // removes copy from borrowedItems list in curUser
+			curUser.getReturnRequests().remove(curCopy); // removes copy from returnRequests list in curUser
+			curUser.getBorrowedItems().remove(curCopy); // removes copy from borrowedItems list in curUser
 			if (curCopy.getIsReserved()) {
 				curCopy.getReservedFor().copyNowAvailable(curCopy);
 			}

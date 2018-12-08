@@ -132,26 +132,30 @@ public class Resource implements Serializable {
 
 	public void addCopies(int newNumberOfCopies) {
 		int copiesToAdd = newNumberOfCopies - this.numOfCopies;
-		if (!copies.isEmpty()) {
-			for (int i = 0; i < copiesToAdd; i++) {
-				copies.add(new Copy(this, copies.get((copies.size() - 1)).getCopyId() + 1));
-				this.setNumOfCopies(i+1);
-			}
-		} else {
-			for (int j = 0; j < copiesToAdd; j++) {
-			copies.add(new Copy(this, j + 1));
-			this.setNumOfCopies(j + 1);
-		}
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setHeaderText("Success!");
 		alert.setContentText("Copies added successfuly!");
-		alert.showAndWait();
+		if (!copies.isEmpty()) {
+			for (int i = 0; i < copiesToAdd; i++) {
+				copies.add(new Copy(this, copies.get((copies.size() - 1)).getCopyId() + 1));
+				this.setNumOfCopies(newNumberOfCopies);
+				alert.showAndWait();
+			}
+		} else {
+			for (int j = 0; j < copiesToAdd; j++) {
+				copies.add(new Copy(this, j + 1));
+				this.setNumOfCopies(newNumberOfCopies);
+				alert.showAndWait();
+			}
 		}
 	}
 
 	public void removeCopies(int copiesToRemove) {
 		int notAvailable = 0;
 		ArrayList<Copy> freeCopies = new ArrayList<>();
+		Alert alert1 = new Alert(AlertType.CONFIRMATION);
+		alert1.setHeaderText("Success!");
+		alert1.setContentText("Copies removed successfuly!");
 		for (Copy copy : copies) {
 			if (copy.getIsBorrowed() || copy.getIsRequested() || copy.getIsReserved()) {
 				notAvailable++;
@@ -164,9 +168,10 @@ public class Resource implements Serializable {
 				copies.remove(freeCopies.get(i));
 			}
 			for (int j = 0; j < copies.size(); j++) {
-				copies.get(j).setCopyID(j+1);
-				this.setNumOfCopies(j+1);
+				copies.get(j).setCopyID(j + 1);
+				this.setNumOfCopies(j + 1);
 			}
+			alert1.showAndWait();
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setHeaderText("There are not enough free copies which can be removed!");
@@ -235,8 +240,7 @@ public class Resource implements Serializable {
 		copies.remove(copy);
 		this.numOfCopies--;
 	}
-	
-	
+
 	public void setNumOfCopies(int numOfCopies) {
 		this.numOfCopies = numOfCopies;
 	}
