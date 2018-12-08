@@ -13,6 +13,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * This class controls the GUI, it gets inputs from the GUI and does operations which then displays the information.
+ * @author Kyriacos
+ * @version 1.0.0
+ *
+ */
 public class FinePaymentPageController {
 
 	@FXML
@@ -29,6 +35,10 @@ public class FinePaymentPageController {
 
 	private User curUser;
 
+	/**
+	 * @param event is an imported handler for when any event happens to an object
+	 * @throws IOException
+	 */
 	@FXML
 	private void clickOnShowCurrentBalance(ActionEvent event) throws IOException {
 		String username = this.username.getText();
@@ -59,6 +69,9 @@ public class FinePaymentPageController {
 		}
 	}
 
+	/**
+	 * @param event is an imported handler for when any event happens to an object
+	 */
 	@FXML
 	private void clickOnConfirm(ActionEvent event) {
 		Double amount = 0.0;
@@ -81,6 +94,9 @@ public class FinePaymentPageController {
 		}
 	}
 
+	/**
+	 * @param event is an imported handler for when any event happens to an object
+	 */
 	@FXML
 	private void clickOnBack(ActionEvent event) {
 		closeWindow();
