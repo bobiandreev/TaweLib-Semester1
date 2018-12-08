@@ -188,9 +188,9 @@ public class Main extends Application {
 				SearchBrowse.addResource(r);
 			}
 		} catch (NullPointerException e) {
-			System.out.println("Resource list is empty");
 			Database.setupFiles();
-		}
+			System.out.println("Resource list is empty");
+					}
 
 		try {
 			ArrayList<User> userList = Database.getUserList();

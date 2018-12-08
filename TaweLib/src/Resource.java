@@ -67,6 +67,10 @@ public class Resource implements Serializable {
 	public String getTitle() {
 		return title;
 	}
+	
+	public static void setID() {
+		id = SearchBrowse.getResources().size();
+	}
 
 	/**
 	 * Getter method for the year of release
