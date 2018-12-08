@@ -19,9 +19,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
+ * <h1> Create a new Book resource. </h1>
  * The CreateBookPageController Class which controls the CreateBookPage.fxml
+ * 
  * @author Ming
- *
+ * @version 1.0
+ * @since 2018-12-03
  */
 public class CreateBookPageController {
 
@@ -57,12 +60,25 @@ public class CreateBookPageController {
     
     private String image;
     Alert alert = new Alert(AlertType.CONFIRMATION);
-    
+   
+    /**
+	 * Actions will be made when the user clicks on the button.
+	 * Returns to previous window by closing the current/most recent one.
+	 * 
+	 * @param event - When the mouse clicks on the button.
+	 */
     @FXML
     private void clickOnBack(ActionEvent event) {
     	closeWindow();
     }
 
+    /**
+	 * Actions will be made when the user clicks on the button.
+	 * Triggers alert box for indication of new Book item creation.
+	 * (Creates a new Book resource with all fields entered.)
+	 * 
+	 * @param event - When the mouse clicks on the button.
+	 */
     @FXML
     private void clickOnConfirm(ActionEvent event) {
     	String title = this.title.getText();
@@ -86,6 +102,13 @@ public class CreateBookPageController {
     	//System.out.println(newBook.toString());
     }
     
+    /**
+	 * Actions will be made when the user clicks on the button.
+	 * Setting of thumbnail image for the Book.
+	 * 
+	 * @param event - When the mouse clicks on the button.
+	 * @throws IOException
+	 */
     @FXML
     public void clickOnThumbnailImage(ActionEvent event) throws IOException {
     	FileChooser fc = new FileChooser();
@@ -102,6 +125,9 @@ public class CreateBookPageController {
     	*/
     }
     
+    /**
+     * This method closes the window.
+     */
     @FXML
     private void closeWindow() { // A method which close the window
 		Stage stage = (Stage) createBookPane.getScene().getWindow();
