@@ -1,5 +1,4 @@
 import java.io.IOException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,8 +8,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
+ * <h1> Choose/Create Type and Page (GUI). </h1>
  * The ChooseCreateTypePageController Class which controls the ChooseCreateTypePage.fxml
+ * 
  * @author Ming
+ * @version 1.0
+ * @since 2018-12-05
  *
  */
 public class ChooseCreateTypePageController {
@@ -18,6 +21,12 @@ public class ChooseCreateTypePageController {
     @FXML
     private BorderPane chooseCreateTypePane;
 
+    /**
+     * Appropriate actions will be carried out when button is clicked. The creation of a 
+     * new book resource will occur.
+     * 
+     * @param event
+     */
     @FXML
     private void clickOnBook(ActionEvent event) {
     	try {
@@ -37,7 +46,13 @@ public class ChooseCreateTypePageController {
 			System.exit(-1);
 		}
     }
-
+    
+    /**
+     * Appropriate actions will be carried out when button is clicked. The creation of a
+     * new DVD resource will occur.
+     * 
+     * @param event
+     */
     @FXML
     private void clickOnDVD(ActionEvent event) {
     	try {
@@ -58,6 +73,12 @@ public class ChooseCreateTypePageController {
 		}
     }
 
+    /**
+     * Appropriate actions will be carried out when button is clicked. The creation of a
+     * new Laptop resource will occur.
+     * 
+     * @param event
+     */
     @FXML
     private void clickOnLaptop(ActionEvent event) {
     	try {
@@ -78,11 +99,20 @@ public class ChooseCreateTypePageController {
 		}
     }
     
+    /**
+	 * Actions will be made when the user clicks on the button.
+	 * Returns to previous window by closing the current/most recent one.
+	 * 
+	 * @param event
+	 */
     @FXML
     private void clickOnBack(ActionEvent event) {
     	closeWindow();
     }
     
+    /**
+     * This method closes the window.
+     */
     @FXML
     private void closeWindow() { // A method which close the window
 		Stage stage = (Stage) chooseCreateTypePane.getScene().getWindow();
