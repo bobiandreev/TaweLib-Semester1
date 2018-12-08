@@ -6,9 +6,8 @@ import javafx.stage.Stage;
 
 /**
  * The LoanCopyPageController which controls the LoanCopyPage.fxml
- * 
  * @author Ming
- * @version 1.0
+ *
  */
 public class LoanCopyPageController {
 
@@ -21,34 +20,33 @@ public class LoanCopyPageController {
     @FXML
     private TextField item;
 
-    /**
-     * Method to loan a copy.
-     * 
-     * @param event Mouse click on Loan.
-     */
     @FXML
-    private void clickOnLoan(ActionEvent event) {
-	String username = this.userID.getText();
-	String item = this.item.getText();
-	Librarian.loanACopy(username, item);
-    }
-
-    /**
-     * Method to close the window.
-     * 
-     * @param event Mouse click on Back button.
-     */
+	private void clickOnLoan(ActionEvent event) {
+    	String username = this.userID.getText();
+    	String item = this.item.getText();
+    	Librarian.loanACopy(username, item);
+    /*	User curUser = null;
+    	Resource curResource = null;
+    	for (User user: Librarian.getUsersList()) {
+    		if (username.equals(user.getUsername().toString())) {
+    			user = curUser;
+    		}
+    	}
+    	for (Resource resource: SearchBrowse.getResources()) {
+    		if(item.equals(resource.getTitle().toString())) {
+    			resource = curResource;
+    		}
+    		*/
+    	}
+    
     @FXML
     private void clickOnBack(ActionEvent event) {
-	closeWindow();
+    	closeWindow();
     }
 
-    /**
-     * Method to close the window.
-     */
     @FXML
     private void closeWindow() { // A method which close the window
-	Stage stage = (Stage) loanCopyPane.getScene().getWindow();
-	stage.close();
-    }
+		Stage stage = (Stage) loanCopyPane.getScene().getWindow();
+	    stage.close();
+	}
 }
