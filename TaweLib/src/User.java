@@ -193,14 +193,11 @@ public class User implements Serializable {
 	public void setPaymentHistory(Date paymentDate, double amount) {
 		paymentDates.add(paymentDate);
 		paymentAmounts.add(amount);
+		String history = amount + " was paid on " + paymentDate + ".\n";
+		paymentHistory.add(history);
 	}
 
 	public ArrayList<String> getPaymentHistory() {
-		String history = "";
-		for (int index = 0; index < paymentDates.size(); index++) {
-			history = paymentAmounts.get(index) + " was paid on " + paymentDates.get(index) + ".\n";
-			paymentHistory.add(history);
-		}
 		return paymentHistory;
 	}
 
