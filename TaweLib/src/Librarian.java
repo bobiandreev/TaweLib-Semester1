@@ -3,6 +3,12 @@ import java.util.Scanner;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
+/**
+ * This class creates an object for librarian which is a type of user
+ * @author Kyriacos
+ * @version 1.0.0
+ *
+ */
 public class Librarian extends User {
 
 	private String employmentDate;
@@ -20,28 +26,47 @@ public class Librarian extends User {
 		currentStaffNumber = staffNumber;
 		librarianList.add(this);
 	}
-
+	
+	/**
+	 * @return Returns when the librarian was employed
+	 */
 	public String getEmploymentDate() {
 		return employmentDate;
 	}
 
+	/**
+	 * @param employmentDate This sets the date of employment
+	 */
 	public void setEmploymentDate(String employmentDate) {
 		this.employmentDate = employmentDate;
 	}
 
+	/**
+	 * @return List of all librarians
+	 */
 	public static ArrayList<Librarian> getLibrarianList() {
 		return librarianList;
 	}
 
+	/**
+	 * @return Returns the staff number of the librarian
+	 */
 	public int getStaffNumber() {
 		return staffNumber;
 	}
 
+	/**
+	 * @param user adds a user variable to the list of users
+	 */
 	public static void addUser(User user) {
 		// this will be done with read lines
 		usersList.add(user);
 	}
 
+	/**
+	 * @param username checks if username is valid
+	 * @return
+	 */
 	public static boolean checkUserName(String username) {
 		for (int i = 0; i < usersList.size(); i++) {
 			if (username.equals(usersList.get(i).getUsername())) {
@@ -51,6 +76,9 @@ public class Librarian extends User {
 		return false;
 	}
 
+	/**
+	 * Class for creating a new librarian object
+	 */
 	public void addLibrarian() {
 		boolean flag = false;
 		String username = "";
@@ -70,6 +98,10 @@ public class Librarian extends User {
 				new Librarian(username, name, mobileNumber, houseNumber, streetName, postcode, profilePic, postcode));
 	}
 
+	/**
+	 * @param username for storing username
+	 * @return returns boolean if username exists inside of the librarian list
+	 */
 	private boolean checkLibrarianName(String username) {
 		for (int i = 0; i < librarianList.size(); i++) {
 			if (username.equals(librarianList.get(i).getUsername())) {
@@ -79,10 +111,17 @@ public class Librarian extends User {
 		return false;
 	}
 
+	/**
+	 * @return returns list of users
+	 */
 	public static ArrayList<User> getUsersList() {
 		return usersList;
 	}
 
+	/**
+	 * @param username for storing username
+	 * @param title title of the user
+	 */
 	public static void loanACopy(String username, String title) {
 		User curUser = null;
 		for (User user : usersList) {
@@ -143,6 +182,10 @@ public class Librarian extends User {
 
 	}
 
+	/**
+	 * @param username for storing the username of the user
+	 * @param title for storing the title of the user
+	 */
 	public static void receiveReturn(String username, String title) {
 		User curUser = null;
 		for (User user : usersList) {
