@@ -34,20 +34,6 @@ public class Copy implements Serializable {
     private static Date dateNow;
     private ArrayList<String> copyHistory = new ArrayList<>();
 
-    // public Copy(int resourceID, int copyID) {
-    // ArrayList<Resource> resourcesList = new ArrayList<>();
-    // resourcesList.addAll(SearchBrowse.getResources());
-    // Resource currentResource;
-    // int index = 0;
-    // do {
-    // currentResource = resourcesList.get(index);
-    //
-    // } while (resourceID != currentResource.getid());
-    // this.resource = currentResource;
-    // this.currentCopyID = copyID;
-    // copyID++;
-    // }
-
     /**
      * Constructor for a Copy.
      * 

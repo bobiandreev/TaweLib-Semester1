@@ -6,6 +6,12 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+/**
+ * Class the controls the Receive Return Page.
+ * 
+ * @author Kyriacos Mosphilis and Boris Andreev.
+ * @version 1.0
+ */
 public class RecieveReturnPageController {
 
     @FXML
@@ -17,28 +23,41 @@ public class RecieveReturnPageController {
     @FXML
     private TextField item;
 
+    /**
+     * Method to receive a copy.
+     * 
+     * @param event Mouse click on Receive button.
+     */
     @FXML
     private void clickOnRecieve(ActionEvent event) {
-    	String username = this.userID.getText();
-    	String item = this.item.getText();
-    	try {
-    	Librarian.receiveReturn(username, item);
-    	} catch(NullPointerException e) {
-    		Alert alert = new Alert(AlertType.ERROR);
-    		alert.setHeaderText("Error!");
-    		alert.setContentText("This user does not have this item!");
-    		alert.showAndWait();
-    	}
+	String username = this.userID.getText();
+	String item = this.item.getText();
+	try {
+	    Librarian.receiveReturn(username, item);
+	} catch (NullPointerException e) {
+	    Alert alert = new Alert(AlertType.ERROR);
+	    alert.setHeaderText("Error!");
+	    alert.setContentText("This user does not have this item!");
+	    alert.showAndWait();
+	}
     }
 
+    /**
+     * Method to close the window.
+     * 
+     * @param event Mouse click on Back button.
+     */
     @FXML
     private void clickOnBack(ActionEvent event) {
-    	closeWindow();
+	closeWindow();
     }
-    
+
+     /**
+      * Method to close the window.
+      */
     @FXML
     private void closeWindow() { // A method which close the window
-		Stage stage = (Stage) recieveReturnPane.getScene().getWindow();
-	    stage.close();
-	} 
+	Stage stage = (Stage) recieveReturnPane.getScene().getWindow();
+	stage.close();
+    }
 }

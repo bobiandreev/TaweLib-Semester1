@@ -21,6 +21,9 @@ public class CopyHistoryPageController {
 
     private Copy selectedCopy;
 
+    /**
+     * Method to initialize the opening state of the window.
+     */
     @FXML
     private void initialize() {
 	selectedCopy = DisplayCopiesPageController.getSelectedCopy();
@@ -30,11 +33,19 @@ public class CopyHistoryPageController {
 	}
     }
 
+    /**
+     * Method to close the window.
+     * 
+     * @param event Mouse click on Back button.
+     */
     @FXML
     void clickOnBack(ActionEvent event) {
 	closeWindow();
     }
 
+    /**
+     * Method to close the window.
+     */
     @FXML
     private void closeWindow() { // A method which close the window
 	Stage stage = (Stage) copyHistoryPane.getScene().getWindow();

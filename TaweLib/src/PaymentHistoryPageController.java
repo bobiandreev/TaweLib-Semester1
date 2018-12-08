@@ -6,6 +6,12 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+/**
+ * Class the controls the payment history page.
+ * 
+ * @author Kyriacos Mosphilis and Boris Andreev.
+ * @version 1.0
+ */
 public class PaymentHistoryPageController {
 
     @FXML
@@ -15,24 +21,35 @@ public class PaymentHistoryPageController {
     private BorderPane paymentHistoryPane;
 
     private User curUser;
-    
+
+    /**
+     * Method to initialize the opening state of the window.
+     */
     @FXML
     private void initialize() {
-    	curUser = LoginController.getLoggedUser();
-    	Collections.reverse(curUser.getPaymentHistory());
-    	for (String string: curUser.getPaymentHistory()) {
-    		paymentHistoryList.getItems().add(string);
-    	}
-    }
-    
-    @FXML
-    void clickOnBack(ActionEvent event) {
-    	closeWindow();
+	curUser = LoginController.getLoggedUser();
+	Collections.reverse(curUser.getPaymentHistory());
+	for (String string : curUser.getPaymentHistory()) {
+	    paymentHistoryList.getItems().add(string);
+	}
     }
 
+    /**
+     * Method to close the window.
+     * 
+     * @param event Mouse click on Back button.
+     */
+    @FXML
+    void clickOnBack(ActionEvent event) {
+	closeWindow();
+    }
+
+    /**
+     * Method to close the window.
+     */
     @FXML
     private void closeWindow() { // A method which close the window
-		Stage stage = (Stage) paymentHistoryPane.getScene().getWindow();
-	    stage.close();
-	}
+	Stage stage = (Stage) paymentHistoryPane.getScene().getWindow();
+	stage.close();
+    }
 }
