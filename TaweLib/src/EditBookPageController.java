@@ -18,119 +18,146 @@ import javafx.stage.Stage;
  * The EditBookPageController Class which controls the EditBookPage.fxml
  * 
  * @author Ming
+ * @version 1.0
  *
  */
 public class EditBookPageController {
 
-	@FXML
-	private BorderPane editBookPane;
+    @FXML
+    private BorderPane editBookPane;
 
-	@FXML
-	private TextField title;
+    @FXML
+    private TextField title;
 
-	@FXML
-	private TextField year;
+    @FXML
+    private TextField year;
 
-	@FXML
-	private ImageView thumbnailImage;
+    @FXML
+    private ImageView thumbnailImage;
 
-	@FXML
-	private TextField author;
+    @FXML
+    private TextField author;
 
-	@FXML
-	private TextField publisher;
+    @FXML
+    private TextField publisher;
 
-	@FXML
-	private TextField numberOfCopies;
+    @FXML
+    private TextField numberOfCopies;
 
-	@FXML
-	private TextField genre;
+    @FXML
+    private TextField genre;
 
-	@FXML
-	private TextField language;
+    @FXML
+    private TextField language;
 
-	@FXML
-	private TextField ISBN;
+    @FXML
+    private TextField ISBN;
 
-	private Book bookToEdit;
-	private String path;
+    private Book bookToEdit;
+    private String path;
 
-	@FXML
-	private void initialize() {
-		bookToEdit = (Book) BrowseAndSearchPageController.getResourceToEdit();
-		path = bookToEdit.getThumbnailImage();
-		this.title.setText(bookToEdit.getTitle());
-		this.year.setText(bookToEdit.getYear());
-		this.author.setText(bookToEdit.getAuthor());
-		this.publisher.setText(bookToEdit.getPublisher());
-		this.numberOfCopies.setText(Integer.toString(bookToEdit.getNumOfCopies()));
-		if (bookToEdit.getGenre() != null) {
-			this.genre.setText(bookToEdit.getGenre());
-		}
-		if (bookToEdit.getISBN() != null) {
-			this.ISBN.setText(bookToEdit.getISBN());
-		}
-		if (bookToEdit.getLanguage() != null) {
-			this.language.setText(bookToEdit.getLanguage());
-		}
-		this.thumbnailImage.setImage(new Image(bookToEdit.getThumbnailImage()));
+    /**
+     * Initialize the controller. Displays appropriate message according to
+     * whether or not a copy of a requested item/resource is available. (Checks
+     * first the status of a resource copy.)
+     */
+    @FXML
+    private void initialize() {
+	bookToEdit = (Book) BrowseAndSearchPageController.getResourceToEdit();
+	path = bookToEdit.getThumbnailImage();
+	this.title.setText(bookToEdit.getTitle());
+	this.year.setText(bookToEdit.getYear());
+	this.author.setText(bookToEdit.getAuthor());
+	this.publisher.setText(bookToEdit.getPublisher());
+	this.numberOfCopies
+		.setText(Integer.toString(bookToEdit.getNumOfCopies()));
+	if (bookToEdit.getGenre() != null) {
+	    this.genre.setText(bookToEdit.getGenre());
 	}
-
-	@FXML
-	private void clickOnConfirm(ActionEvent event) {
-		String title = this.title.getText();
-		String year = this.year.getText();
-		String author = this.author.getText();
-		String publisher = this.publisher.getText();
-		try {
-			int numberOfCopies = Integer.parseInt(this.numberOfCopies.getText());
-			if (numberOfCopies > bookToEdit.getNumOfCopies()) {
-				bookToEdit.addCopies(numberOfCopies);
-			}
-			else {
-				bookToEdit.removeCopies(bookToEdit.getNumOfCopies() - numberOfCopies);
-			}
-		} catch (NumberFormatException e) {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setHeaderText("Please enter a valid number!");
-			alert.setContentText("No valid enter has been entered!");
-			alert.showAndWait();
-		}
-		String genre = this.genre.getText();
-		String language = this.language.getText();
-		String ISBN = this.ISBN.getText();
-		String image = this.path;
-		bookToEdit.setTitle(title);
-		bookToEdit.setYear(year);
-		bookToEdit.setAuthor(author);
-		bookToEdit.setPublisher(publisher);
-		// bookToEdit.setNumOfCopies();
-		bookToEdit.setGenre(genre);
-		bookToEdit.setISBN(ISBN);
-		bookToEdit.setLanguage(language);
-		bookToEdit.setThumbnailImage(path);
-		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setHeaderText("Success!");
-		alert.setContentText("This book has been added to the catalogue successfully!");
-		alert.showAndWait();
+	if (bookToEdit.getISBN() != null) {
+	    this.ISBN.setText(bookToEdit.getISBN());
 	}
-
-	@FXML
-	private void clickOnNewImage(ActionEvent event) {
-		FileChooser fc = new FileChooser();
-		File selectedFile = fc.showOpenDialog(null);
-		path = selectedFile.toURI().toString();
-
+	if (bookToEdit.getLanguage() != null) {
+	    this.language.setText(bookToEdit.getLanguage());
 	}
+	this.thumbnailImage.setImage(new Image(bookToEdit.getThumbnailImage()));
+    }
 
-	@FXML
-	private void clickOnBack(ActionEvent event) {
-		closeWindow();
+    /**
+     * Method that implements the changes on the current book being edited.
+     * 
+     * @param event Mouse click on Confirm button.
+     */
+    @FXML
+    private void clickOnConfirm(ActionEvent event) {
+	String title = this.title.getText();
+	String year = this.year.getText();
+	String author = this.author.getText();
+	String publisher = this.publisher.getText();
+	try {
+	    int numberOfCopies = Integer
+		    .parseInt(this.numberOfCopies.getText());
+	    if (numberOfCopies > bookToEdit.getNumOfCopies()) {
+		bookToEdit.addCopies(numberOfCopies);
+	    } else {
+		bookToEdit.removeCopies(
+			bookToEdit.getNumOfCopies() - numberOfCopies);
+	    }
+	} catch (NumberFormatException e) {
+	    Alert alert = new Alert(AlertType.ERROR);
+	    alert.setHeaderText("Please enter a valid number!");
+	    alert.setContentText("No valid enter has been entered!");
+	    alert.showAndWait();
 	}
+	String genre = this.genre.getText();
+	String language = this.language.getText();
+	String ISBN = this.ISBN.getText();
+	String image = this.path;
+	bookToEdit.setTitle(title);
+	bookToEdit.setYear(year);
+	bookToEdit.setAuthor(author);
+	bookToEdit.setPublisher(publisher);
+	// bookToEdit.setNumOfCopies();
+	bookToEdit.setGenre(genre);
+	bookToEdit.setISBN(ISBN);
+	bookToEdit.setLanguage(language);
+	bookToEdit.setThumbnailImage(path);
+	Alert alert = new Alert(AlertType.CONFIRMATION);
+	alert.setHeaderText("Success!");
+	alert.setContentText(
+		"This book has been added to the catalogue successfully!");
+	alert.showAndWait();
+    }
 
-	@FXML
-	private void closeWindow() { // A method which close the window
-		Stage stage = (Stage) editBookPane.getScene().getWindow();
-		stage.close();
-	}
+    /**
+     * Method that lets the librarian to pick a new picture for the resource.
+     * 
+     * @param event Mouse click on NewImage button.
+     */
+    @FXML
+    private void clickOnNewImage(ActionEvent event) {
+	FileChooser fc = new FileChooser();
+	File selectedFile = fc.showOpenDialog(null);
+	path = selectedFile.toURI().toString();
+
+    }
+
+    /**
+     * Method to close the window.
+     * 
+     * @param event Mouse click on Back button.
+     */
+    @FXML
+    private void clickOnBack(ActionEvent event) {
+	closeWindow();
+    }
+
+    /**
+     * Method to close the window.
+     */
+    @FXML
+    private void closeWindow() { // A method which close the window
+	Stage stage = (Stage) editBookPane.getScene().getWindow();
+	stage.close();
+    }
 }

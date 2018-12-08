@@ -219,6 +219,9 @@ public class Resource implements Serializable {
 		this.numOfCopies = numOfCopies;
 	}
 
+	/**
+	     * ToString method to print out nicely our Object.
+	     */
 	public String toString() {
 		String result = "ID:\t\t\t\t" + this.getID() + "\nTitle:\t\t\t\t" + this.getTitle() + "\nYear published:\t"
 				+ this.getYear() + "\nNumber of Copies:\t" + this.getNumOfCopies();

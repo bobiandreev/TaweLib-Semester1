@@ -15,8 +15,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
- * <h1> Create a new DVD resource. </h1>
- * The CreateDVDPageController Class which controls the CreateDVDPage.fxml
+ * <h1>Create a new DVD resource.</h1> The CreateDVDPageController Class which
+ * controls the CreateDVDPage.fxml
  * 
  * @author Ming
  * @version 1.0
@@ -24,99 +24,101 @@ import javafx.stage.Stage;
  */
 public class CreateDVDPageController {
 
-	@FXML
-	private BorderPane createDVDPane;
+    @FXML
+    private BorderPane createDVDPane;
 
-	@FXML
-	private TextField title;
+    @FXML
+    private TextField title;
 
-	@FXML
-	private TextField year;
+    @FXML
+    private TextField year;
 
-	@FXML
-	private Button thumbnailImage;
+    @FXML
+    private Button thumbnailImage;
 
-	@FXML
-	private TextField director;
+    @FXML
+    private TextField director;
 
-	@FXML
-	private TextField runtime;
+    @FXML
+    private TextField runtime;
 
-	@FXML
-	private TextField language;
+    @FXML
+    private TextField language;
 
-	@FXML
-	private TextField numOfCopies;
+    @FXML
+    private TextField numOfCopies;
 
-	@FXML
-	private TextField availavleSubtitles;
+    @FXML
+    private TextField availavleSubtitles;
 
-	Alert alert = new Alert(AlertType.CONFIRMATION);
-	private String image;
+    Alert alert = new Alert(AlertType.CONFIRMATION);
+    private String image;
 
-	/**
-	 * Actions will be made when the user clicks on the button.
-	 * Triggers alert box for indication of new DVD item creation.
-	 * (Creates a new DVD resource with all fields entered.)
-	 * 
-	 * @param event - When the mouse clicks on the button.
+    /**
+     * Actions will be made when the user clicks on the button. Triggers alert
+     * box for indication of new DVD item creation. (Creates a new DVD resource
+     * with all fields entered.)
+     * 
+     * @param event - When the mouse clicks on the button.
+     */
+    @FXML
+    private void clickOnConfirm(ActionEvent event) {
+	String title = this.title.getText();
+	String year = this.year.getText();
+	String director = this.director.getText();
+	int numberOfCopies = Integer.parseInt(this.numOfCopies.getText());
+	String runtime = this.runtime.getText();
+	String language = this.language.getText();
+	String availableSubtitles = this.availavleSubtitles.getText();
+	DVD newDVD = new DVD(title, year, image, numberOfCopies, director,
+		runtime);
+	newDVD.setSubtitles(availableSubtitles);
+	newDVD.setLanguage(language);
+	SearchBrowse.getResources().add(newDVD);
+	alert.setHeaderText("Success!");
+	alert.setContentText(
+		"This DVD has been added to the catalogue successfully!");
+	alert.showAndWait();
+	closeWindow();
+    }
+
+    /**
+     * Actions will be made when the user clicks on the button. Setting of
+     * thumbnail image for the Laptop.
+     * 
+     * @param event - When the mouse clicks on the button.
+     * @throws IOException
+     */
+    @FXML
+    public void clickOnThumbnailImage(ActionEvent event) throws IOException {
+	FileChooser fc = new FileChooser();
+	File selectedFile = fc.showOpenDialog(null);
+	image = selectedFile.toURI().toString();
+	/*
+	 * ImageIcon imgIcon = new ImageIcon(image); JLabel lbl = new JLabel();
+	 * lbl.setIcon(imgIcon); JFrame frame = new JFrame("Image viewer");
+	 * frame.getContentPane().add(lbl, BorderLayout.CENTER); frame.pack();
+	 * frame.setLocationRelativeTo(null); frame.setVisible(true);
 	 */
-	@FXML
-	private void clickOnConfirm(ActionEvent event) {
-		String title = this.title.getText();
-		String year = this.year.getText();
-		String director = this.director.getText();
-		int numberOfCopies = Integer.parseInt(this.numOfCopies.getText());
-		String runtime = this.runtime.getText();
-		String language = this.language.getText();
-		String availableSubtitles = this.availavleSubtitles.getText();
-		DVD newDVD = new DVD(title, year, image, numberOfCopies, director, runtime);
-		newDVD.setSubtitles(availableSubtitles);
-		newDVD.setLanguage(language);
-		SearchBrowse.getResources().add(newDVD);
-		alert.setHeaderText("Success!");
-		alert.setContentText("This DVD has been added to the catalogue successfully!");
-		alert.showAndWait();
-		closeWindow();
-	}
+    }
 
-	/**
-	 * Actions will be made when the user clicks on the button.
-	 * Setting of thumbnail image for the Laptop.
-	 * 
-	 * @param event - When the mouse clicks on the button.
-	 * @throws IOException
-	 */
-	@FXML
-	public void clickOnThumbnailImage(ActionEvent event) throws IOException {
-		FileChooser fc = new FileChooser();
-		File selectedFile = fc.showOpenDialog(null);
-		image = selectedFile.toURI().toString();
-		/*
-		 * ImageIcon imgIcon = new ImageIcon(image); JLabel lbl = new JLabel();
-		 * lbl.setIcon(imgIcon); JFrame frame = new JFrame("Image viewer");
-		 * frame.getContentPane().add(lbl, BorderLayout.CENTER); frame.pack();
-		 * frame.setLocationRelativeTo(null); frame.setVisible(true);
-		 */
-	}
+    /**
+     * Actions will be made when the user clicks on the button. Returns to
+     * previous window by closing the current/most recent one.
+     * 
+     * @param event - When the mouse clicks on the button.
+     */
+    @FXML
+    private void clickOnBack(ActionEvent event) {
+	closeWindow();
+    }
 
-	/**
-	 * Actions will be made when the user clicks on the button.
-	 * Returns to previous window by closing the current/most recent one.
-	 * 
-	 * @param event - When the mouse clicks on the button.
-	 */
-	@FXML
-	private void clickOnBack(ActionEvent event) {
-		closeWindow();
-	}
-
-	/**
-	 * This method closes the window.
-	 */
-	@FXML
-	private void closeWindow() { // A method which close the window
-		Stage stage = (Stage) createDVDPane.getScene().getWindow();
-		stage.close();
-	}
+    /**
+     * This method closes the window.
+     */
+    @FXML
+    private void closeWindow() { // A method which close the window
+	Stage stage = (Stage) createDVDPane.getScene().getWindow();
+	stage.close();
+    }
 }

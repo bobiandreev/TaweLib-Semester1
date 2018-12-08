@@ -1,109 +1,112 @@
-
 /**
  * Class that creates a DVD object
+ * 
  * @author Boris Andreev and Kyriacos Mosphilis
+ * @version 1.0
  */
-import java.sql.ResultSet;
-
 public class DVD extends Resource {
 
-	private String director;
-	private String runtime;
-	private String language = "";
-	private String subtitles = "";
-	
-	/**
-	 * Constructor for a DVD.
-	 * 
-	 * @param title
-	 *            Title of the DVD.
-	 * @param year
-	 *            Year of release.
-	 * @param string
-	 *            Year of release
-	 * @param thumbnailImage
-	 *            Cover Image.
-	 * @param numOfCopies
-	 *            How many are available in the library.
-	 * @param director
-	 *            Director of the film.
-	 * @param runtime
-	 *            Runtime of film.
-	 */
+    private String director;
+    private String runtime;
+    private String language = "";
+    private String subtitles = "";
 
-	public DVD(String title, String string, String thumbnailImage, int numOfCopies,
-			String director, String runtime) {
-		super(title, string, thumbnailImage, numOfCopies);
-		this.director = director;
-		this.runtime = runtime;
-		//this.language = language;
-		//this.subtitles = subtitles;
-	}
+    /**
+     * Constructor for a DVD.
+     * 
+     * @param title          Title of the DVD.
+     * @param year           Year of release.
+     * @param string         Year of release
+     * @param thumbnailImage Cover Image.
+     * @param numOfCopies    How many are available in the library.
+     * @param director       Director of the film.
+     * @param runtime        Runtime of film.
+     */
 
-	public void setLanguage(String language) {
-		this.language = language;
-	}
+    public DVD(String title, String string, String thumbnailImage,
+	    int numOfCopies, String director, String runtime) {
+	super(title, string, thumbnailImage, numOfCopies);
+	this.director = director;
+	this.runtime = runtime;
+    }
 
-	/**
-	 * Getter method for film director
-	 * 
-	 * @return Name of film director
-	 */
-	public String getDirector() {
-		return director;
-	}
+    public void setLanguage(String language) {
+	this.language = language;
+    }
 
-	/**
-	 * Getter method for film runtime
-	 * 
-	 * @return The runtime of the film
-	 */
-	public String getRuntime() {
-		return runtime;
-	}
+    /**
+     * Getter method for film director
+     * 
+     * @return Name of film director
+     */
+    public String getDirector() {
+	return director;
+    }
 
-	/**
-	 * Getter method for the film's language
-	 * 
-	 * @return The language of the film
-	 */
-	public String getLanguage() {
-		return language;
-	}
+    /**
+     * Getter method for film runtime
+     * 
+     * @return The runtime of the film
+     */
+    public String getRuntime() {
+	return runtime;
+    }
 
-	/**
-	 * Getter method for film's list of subtitles
-	 * 
-	 * @return Subtitles available for the film
-	 */
-	public String getSubtitles() {
-		return subtitles;
-	}
+    /**
+     * Getter method for the film's language
+     * 
+     * @return The language of the film
+     */
+    public String getLanguage() {
+	return language;
+    }
 
-	/**
-	 * Setter method for the film's subtitles
-	 * 
-	 * @param subtitles
-	 *            String that holds the available subtitles
-	 */
-	public void setSubtitles(String subtitles) {
-		this.subtitles = subtitles;
-	}
+    /**
+     * Getter method for film's list of subtitles
+     * 
+     * @return Subtitles available for the film
+     */
+    public String getSubtitles() {
+	return subtitles;
+    }
 
-	public void setDirector(String director) {
-		this.director = director;
-	}
+    /**
+     * Setter method for the film's subtitles
+     * 
+     * @param subtitles String that holds the available subtitles
+     */
+    public void setSubtitles(String subtitles) {
+	this.subtitles = subtitles;
+    }
 
-	public void setRuntime(String runtime) {
-		this.runtime = runtime;
-	}
-	
-	public String toString() {
-		String result = super.toString();
-		result += "\nDirector:\t\t\t" + this.getDirector() + "\nRuntime:\t\t\t" + 
-			   this.getRuntime() + " minutes" + "\nLanguage\t\t\t" + 
-			   this.getLanguage() + "\nSubtitles:\t\t\t" + this.getSubtitles();
-		return result;
-	}
-	
+    /**
+     * Setter method for the film's director.
+     * 
+     * @param director The director of the film.
+     */
+    public void setDirector(String director) {
+	this.director = director;
+    }
+
+    /**
+     * Setter method for the film's runtime.
+     * 
+     * @param runtime The runtime of the film.
+     */
+    public void setRuntime(String runtime) {
+	this.runtime = runtime;
+    }
+
+    /**
+     * ToString method to print out nicely our Object.
+     */
+    public String toString() {
+	String result = super.toString();
+	result += "\nDirector:\t\t\t" + this.getDirector() + "\nRuntime:\t\t\t"
+		+ this.getRuntime() + " minutes" + "\nLanguage\t\t\t"
+		+ this.getLanguage() + "\nSubtitles:\t\t\t"
+		+ this.getSubtitles();
+	return result;
+    }
+
 }
