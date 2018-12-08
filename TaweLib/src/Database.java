@@ -1,10 +1,23 @@
-import java.sql.*;
 import java.io.*;
 import java.util.ArrayList;
 
+
+/**
+ * Database class is used to serialize data that needs to be stored 
+ * between program instances.
+ * 
+ * @author Oliver Nixon, Riyaad Islam
+ * @version 1.0
+ */
 public class Database {
 	
-	
+	/**
+	 * Method used to serialize an ArrayList of Resource to store in
+	 * a .ser file.
+	 * @param al
+	 * 				The ArrayList of Resource to be serialized and written
+	 * 				to a file.
+	 */
 	public static void storeResourceList(ArrayList<Resource> al) {
 		try {
 			FileOutputStream outFile = 
@@ -13,12 +26,18 @@ public class Database {
 			objectOut.writeObject(al);
 			objectOut.close();
 			outFile.close();
-			System.out.println("Stored resource list in /data/resourcelist.ser");
+			System.out.println("Stored resource list in resourcelist.ser");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
+	/**
+	 * Getter method used to retrieve data from serialized file and deserialize
+	 * the data and return the ArrayList of Resource stored in the file.
+	 * 
+	 * @return The ArrayList of Resource stored in resourcelist.ser.
+	 */
 	public static ArrayList<Resource> getResourceList() {
 		ArrayList<Resource> resourceList = null;
 		try {
@@ -37,7 +56,14 @@ public class Database {
 			return null;
 		}
 	}
-	
+
+	/**
+	 * Method used to serialize an ArrayList of User to store in
+	 * a .ser file.
+	 * @param al
+	 * 				The ArrayList of User to be serialized and written
+	 * 				to a file.
+	 */
 	public static void storeUserList(ArrayList<User> al) {
 		try {
 			FileOutputStream outFile = 
@@ -51,7 +77,13 @@ public class Database {
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * Getter method used to retrieve data from serialized file and deserialize
+	 * the data and return the ArrayList of User stored in the file.
+	 * 
+	 * @return The ArrayList of User stored in userlist.ser.
+	 */
 	public static ArrayList<User> getUserList() {
 		ArrayList<User> userList = null;
 		try {
@@ -71,6 +103,13 @@ public class Database {
 		}
 	}
 
+	/**
+	 * Method used to serialize an ArrayList of Librarian to store in
+	 * a .ser file.
+	 * @param al
+	 * 				The ArrayList of Librarian to be serialized and written
+	 * 				to a file.
+	 */
 	public static void storeLibList(ArrayList<Librarian> al) {
 		try {
 			FileOutputStream outFile = 
@@ -85,6 +124,12 @@ public class Database {
 		}
 	}
 	
+	/**
+	 * Getter method used to retrieve data from serialized file and deserialize
+	 * the data and return the ArrayList of Librarian stored in the file.
+	 * 
+	 * @return The ArrayList of Librarian stored in liblist.ser.
+	 */
 	public static ArrayList<Librarian> getLibList() {
 		ArrayList<Librarian> libList = null;
 		try {
@@ -104,12 +149,22 @@ public class Database {
 		}
 	}
 	
+	/**
+	 * Void method to save data currently stored in the program to the .ser
+	 * files.
+	 */
 	public static void saveData() {
 		Database.storeResourceList(SearchBrowse.getResources());
 		Database.storeUserList(Librarian.getUsersList());
 		Database.storeLibList(Librarian.getLibrarianList());
 	}
 	
+	/**
+	 * Method to be called when there are no files currently on the system.
+	 * Should be set up to contain some data to avoid null pointer exception
+	 * on program startup.
+	 * 
+	 */
 	public static void setupFiles() {
 		ArrayList<Resource> newResourceList = new ArrayList<Resource>();
 		ArrayList<User> newUserList = new ArrayList<User>();

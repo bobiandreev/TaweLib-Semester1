@@ -13,10 +13,12 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
+ * <h1> Make desired changes on to a DVD resource. </h1>
  * The EditDVDPageController Class which controls the EditDVDPage.fxml
  * 
  * @author Ming
- *
+ * @version 1.0
+ * @since 2018-12-03
  */
 public class EditDVDPageController {
 
@@ -53,6 +55,10 @@ public class EditDVDPageController {
 	private DVD dvdToEdit;
 	private String path;
 
+	/**
+	 * Displays a window which enables the setting of a DVD resource.
+	 * The authorized User is allowed to make the desired changes.
+	 */
 	@FXML
 	private void initialize() {
 		dvdToEdit = (DVD) BrowseAndSearchPageController.getResourceToEdit();
@@ -85,6 +91,14 @@ public class EditDVDPageController {
 		path = selectedFile.toURI().toString();
 	}
 
+	/**
+	 * Actions will be made when the user clicks on the button.
+	 * Allows user to edit/confirm changes to the DVD item. 
+	 * Displays appropriate alert boxes depending on whether the changes
+	 * made to the item are acceptable and there are no inconsistencies.
+	 * 
+	 * @param event - When the mouse clicks on the button.
+	 */
 	@FXML
 	private void clickOnConfirm(ActionEvent event) {
 		String title = this.title.getText();
@@ -120,11 +134,20 @@ public class EditDVDPageController {
 		alert.showAndWait();
 	}
 
+	/**
+	 * Actions will be made when the user clicks on the button.
+	 * Returns to previous window by closing the current/most recent one.
+	 * 
+	 * @param event - When the mouse clicks on the button.
+	 */
 	@FXML
 	private void clickOnBack(ActionEvent event) {
 		closeWindow();
 	}
 
+	/**
+	 * This method closes the window.
+	 */
 	@FXML
 	private void closeWindow() { // A method which close the window
 		Stage stage = (Stage) editDVDPane.getScene().getWindow();

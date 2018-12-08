@@ -14,10 +14,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
+ * <h1> Choose Avatar as Profile Picture. </h1>
  * The ChooseAvatarPageController Class which controls the ChooseAvatarPage.fxml
  * 
  * @author Ming
- *
+ * @version 1.0
+ * @since 2018-12-03
  */
 public class ChooseAvatarPageController {
 
@@ -26,6 +28,10 @@ public class ChooseAvatarPageController {
 
 	private Alert alert = new Alert(AlertType.INFORMATION);
 
+	/**
+	 * This method displays an alert box for
+	 * when the User has selected an Avatar.
+	 */
 	public void showAlert() {
 		alert.setTitle("Confirmation Message");
 		alert.setHeaderText(null);
@@ -35,15 +41,22 @@ public class ChooseAvatarPageController {
 
 	private User curUser;
 
+	/**
+	 * This method sets/initializes the current User.
+	 */
 	@FXML
 	public void initialize() {
 		curUser = LoginController.getLoggedUser();
 	}
 
 	/**
-	 * Actions will be made when the user click on the button
+	 * Actions will be made when the user clicks on the button.
+	 * Sets up appropriate measures (opens necessary windows, etc)
+	 * to allow the User to draw a custom avatar and save it as
+	 * the preferred profile image.
 	 * 
-	 * @param event
+	 * @param event - When the mouse clicks on the button.
+	 * 		
 	 */
 	@FXML
 	public void clickOnDrawAvatar(ActionEvent event) {
@@ -60,9 +73,11 @@ public class ChooseAvatarPageController {
 	}
 
 	/**
-	 * Actions will be made when the user click on the button
+	 * Actions will be made when the user clicks on the button.
+	 * Selection and setting of the first profile picture option.
+	 * Displays appropriate alert box for indication to User.
 	 * 
-	 * @param event
+	 * @param event - When the mouse clicks on the button.
 	 */
 	@FXML
 	private void clickOnOK1(ActionEvent event) {
@@ -72,9 +87,11 @@ public class ChooseAvatarPageController {
 	}
 
 	/**
-	 * Actions will be made when the user click on the button
+	 * Actions will be made when the user clicks on the button.
+	 * Selection and setting of the second profile picture option.
+	 * Displays appropriate alert box for indication to User.
 	 * 
-	 * @param event
+	 * @param event - When the mouse clicks on the button.
 	 */
 	@FXML
 	private void clickOnOK2(ActionEvent event) {
@@ -84,9 +101,11 @@ public class ChooseAvatarPageController {
 	}
 
 	/**
-	 * Actions will be made when the user click on the button
+	 * Actions will be made when the user clicks on the button
+	 * Selection and setting of the third profile picture option.
+	 * Displays appropriate alert box for indication to User.
 	 * 
-	 * @param event
+	 * @param event - When the mouse clicks on the button.
 	 */
 	@FXML
 	private void clickOnOK3(ActionEvent event) {
@@ -96,9 +115,11 @@ public class ChooseAvatarPageController {
 	}
 
 	/**
-	 * Actions will be made when the user click on the button
+	 * Actions will be made when the user clicks on the button.
+	 * Selection and setting of the fifth profile picture option.
+	 * Displays appropriate alert box for indication to User.
 	 * 
-	 * @param event
+	 * @param event - When the mouse clicks on the button.
 	 */
 	@FXML
 	private void clickOnOK5(ActionEvent event) {
@@ -108,9 +129,11 @@ public class ChooseAvatarPageController {
 	}
 
 	/**
-	 * Actions will be made when the user click on the button
+	 * Actions will be made when the user clicks on the button.
+	 * Selection and setting of the fourth profile picture option.
+	 * Displays appropriate alert box for indication to User.
 	 * 
-	 * @param event
+	 * @param event - When the mouse clicks on the button.
 	 */
 	@FXML
 	private void clickOnOk4(ActionEvent event) {
@@ -120,9 +143,10 @@ public class ChooseAvatarPageController {
 	}
 
 	/**
-	 * Actions will be made when the user click on the button
+	 * Actions will be made when the user clicks on the button
+	 * Returns to previous window by closing the current/most recent one.
 	 * 
-	 * @param event
+	 * @param event - When the mouse clicks on the button.
 	 */
 	@FXML
 	private void clickOnBack(ActionEvent event) {

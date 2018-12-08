@@ -8,10 +8,13 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 /**
+ * <h1> Process borrow requests. </h1>
  * The BorrowRequestPageController Class which controls the
  * BorrowRequestPage.fxml
  * 
- * @author
+ * @author Ming
+ * @version 1.0
+ * @since 2018-12-04
  *
  */
 public class BorrowRequestPageController {
@@ -44,9 +47,11 @@ public class BorrowRequestPageController {
 	}
 
 	/**
-	 * Actions will be made when the user click on the button
+	 * Actions will be made when the user clicks on the button.
+	 * Approves the borrow request. Displays appropriate alert boxes
+	 * accordingly.
 	 * 
-	 * @param event
+	 * @param event - When the mouse clicks on the button.
 	 */
 	@FXML
 	void clickOnApprove(ActionEvent event) {
@@ -76,9 +81,11 @@ public class BorrowRequestPageController {
 	}
 
 	/**
-	 * Actions will be made when the user click on the button
+	 * Actions will be made when the user clicks on the button.
+	 * Disapprove borrow requests. Displays appropriate alert boxes
+	 * accordingly.
 	 * 
-	 * @param event
+	 * @param event - When the mouse clicks on the button.
 	 */
 	@FXML
 	void clickOnNotApprove(ActionEvent event) {
@@ -108,9 +115,10 @@ public class BorrowRequestPageController {
 	}
 
 	/**
-	 * Actions will be made when the user click on the button
+	 * Actions will be made when the user clicks on the button.
+	 * Returns to previous window by closing the current/most recent one.
 	 * 
-	 * @param event
+	 * @param event - When the mouse clicks on the button.
 	 */
 	@FXML
 	void clickOnBack(ActionEvent event) {
