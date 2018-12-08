@@ -52,6 +52,7 @@ public class EditLaptopPageController {
     @FXML
 	private void initialize() {
 		laptopToEdit = (LaptopComputer) BrowseAndSearchPageController.getResourceToEdit();
+		path = laptopToEdit.getThumbnailImage();
 		this.title.setText(laptopToEdit.getTitle());
 		this.year.setText(laptopToEdit.getYear());
 		this.manufacturer.setText(laptopToEdit.getManufacturer());
@@ -75,7 +76,20 @@ public class EditLaptopPageController {
 		String manufacturer = this.manufacturer.getText();
 		String model = this.model.getText();
 		String OS = this.operatingSystem.getText();
-		int numberOfCopies = Integer.parseInt(this.numOfCopies.getText());
+		try {
+			int numberOfCopies = Integer.parseInt(this.numOfCopies.getText());
+			if (numberOfCopies > laptopToEdit.getNumOfCopies()) {
+				laptopToEdit.addCopies(numberOfCopies);
+			}
+			else {
+				laptopToEdit.removeCopies(laptopToEdit.getNumOfCopies() - numberOfCopies);
+			}
+		} catch (NumberFormatException e) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setHeaderText("Please enter a valid number!");
+			alert.setContentText("No valid enter has been entered!");
+			alert.showAndWait();
+		}
 		String image = this.path;
 		laptopToEdit.setTitle(title);
 		laptopToEdit.setYear(year);

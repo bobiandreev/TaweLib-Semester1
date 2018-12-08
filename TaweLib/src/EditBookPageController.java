@@ -23,8 +23,8 @@ import javafx.stage.Stage;
 public class EditBookPageController {
 
 	@FXML
-    private BorderPane editBookPane;
-	
+	private BorderPane editBookPane;
+
 	@FXML
 	private TextField title;
 
@@ -58,6 +58,7 @@ public class EditBookPageController {
 	@FXML
 	private void initialize() {
 		bookToEdit = (Book) BrowseAndSearchPageController.getResourceToEdit();
+		path = bookToEdit.getThumbnailImage();
 		this.title.setText(bookToEdit.getTitle());
 		this.year.setText(bookToEdit.getYear());
 		this.author.setText(bookToEdit.getAuthor());
@@ -71,7 +72,7 @@ public class EditBookPageController {
 		}
 		if (bookToEdit.getLanguage() != null) {
 			this.language.setText(bookToEdit.getLanguage());
-		}		
+		}
 		this.thumbnailImage.setImage(new Image(bookToEdit.getThumbnailImage()));
 	}
 
@@ -81,7 +82,20 @@ public class EditBookPageController {
 		String year = this.year.getText();
 		String author = this.author.getText();
 		String publisher = this.publisher.getText();
-		int numberOfCopies = Integer.parseInt(this.numberOfCopies.getText());
+		try {
+			int numberOfCopies = Integer.parseInt(this.numberOfCopies.getText());
+			if (numberOfCopies > bookToEdit.getNumOfCopies()) {
+				bookToEdit.addCopies(numberOfCopies);
+			}
+			else {
+				bookToEdit.removeCopies(bookToEdit.getNumOfCopies() - numberOfCopies);
+			}
+		} catch (NumberFormatException e) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setHeaderText("Please enter a valid number!");
+			alert.setContentText("No valid enter has been entered!");
+			alert.showAndWait();
+		}
 		String genre = this.genre.getText();
 		String language = this.language.getText();
 		String ISBN = this.ISBN.getText();
@@ -90,7 +104,7 @@ public class EditBookPageController {
 		bookToEdit.setYear(year);
 		bookToEdit.setAuthor(author);
 		bookToEdit.setPublisher(publisher);
-		//bookToEdit.setNumOfCopies();
+		// bookToEdit.setNumOfCopies();
 		bookToEdit.setGenre(genre);
 		bookToEdit.setISBN(ISBN);
 		bookToEdit.setLanguage(language);
@@ -104,11 +118,11 @@ public class EditBookPageController {
 	@FXML
 	private void clickOnNewImage(ActionEvent event) {
 		FileChooser fc = new FileChooser();
-    	File selectedFile = fc.showOpenDialog(null);
-    	path = selectedFile.toURI().toString();
+		File selectedFile = fc.showOpenDialog(null);
+		path = selectedFile.toURI().toString();
 
-    }
-	
+	}
+
 	@FXML
 	private void clickOnBack(ActionEvent event) {
 		closeWindow();

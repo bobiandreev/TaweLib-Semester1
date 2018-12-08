@@ -56,6 +56,7 @@ public class EditDVDPageController {
 	@FXML
 	private void initialize() {
 		dvdToEdit = (DVD) BrowseAndSearchPageController.getResourceToEdit();
+		path = dvdToEdit.getThumbnailImage();
 		this.title.setText(dvdToEdit.getTitle());
 		this.year.setText(dvdToEdit.getYear());
 		this.runtime.setText(dvdToEdit.getRuntime());
@@ -90,7 +91,20 @@ public class EditDVDPageController {
 		String year = this.year.getText();
 		String runtime = this.runtime.getText();
 		String director = this.director.getText();
-		int numberOfCopies = Integer.parseInt(this.numOfCopies.getText());
+		try {
+			int numberOfCopies = Integer.parseInt(this.numOfCopies.getText());
+			if (numberOfCopies > dvdToEdit.getNumOfCopies()) {
+				dvdToEdit.addCopies(numberOfCopies);
+			}
+			else {
+				dvdToEdit.removeCopies(dvdToEdit.getNumOfCopies() - numberOfCopies);
+			}
+		} catch (NumberFormatException e) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setHeaderText("Please enter a valid number!");
+			alert.setContentText("No valid enter has been entered!");
+			alert.showAndWait();
+		}
 		String language = this.language.getText();
 		String image = this.path;
 		dvdToEdit.setTitle(title);

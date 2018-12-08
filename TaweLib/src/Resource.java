@@ -9,6 +9,9 @@ import java.io.Serializable;
 import java.sql.*;
 import java.util.ArrayList;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+
 public class Resource implements Serializable {
 
 	/**
@@ -28,8 +31,8 @@ public class Resource implements Serializable {
 	/**
 	 * Reader Constructor for a resource.
 	 * 
-	 * @param resourceID 
-	 * 			  The ID this resource had.
+	 * @param resourceID
+	 *            The ID this resource had.
 	 * @param title
 	 *            Title of the resource.
 	 * @param year
@@ -38,18 +41,19 @@ public class Resource implements Serializable {
 	 *            Path of the image.
 	 * @param numOfCopies
 	 *            How many copies exist of the resource in the library.
-	 * @param copiesQuery 
-	 * 			  The SQL query to re-generate the right copies.
+	 * @param copiesQuery
+	 *            The SQL query to re-generate the right copies.
 	 */
-	public Resource(int resourceID, String title, String year, String imagePath, int numOfCopies, ResultSet copiesQuery) {
+	public Resource(int resourceID, String title, String year, String imagePath, int numOfCopies,
+			ResultSet copiesQuery) {
 		this.curResourceID = resourceID;
 		this.title = title;
 		this.year = year;
 		this.numOfCopies = numOfCopies;
 		id++;
-		generateCopies(copiesQuery);
+		// generateCopies(copiesQuery);
 	}
-	
+
 	/**
 	 * Constructor for a resource.
 	 * 
@@ -126,10 +130,51 @@ public class Resource implements Serializable {
 		}
 	}
 
-	public void generateCopies(ResultSet copiesQuery) {
-		//TODO Implement the generation of copies for the database.
+	public void addCopies(int newNumberOfCopies) {
+		int copiesToAdd = newNumberOfCopies - this.numOfCopies;
+		if (!copies.isEmpty()) {
+			for (int i = 0; i < copiesToAdd; i++) {
+				copies.add(new Copy(this, copies.get((copies.size() - 1)).getCopyId() + 1));
+				this.setNumOfCopies(i+1);
+			}
+		} else {
+			for (int j = 0; j < copiesToAdd; j++) {
+			copies.add(new Copy(this, j + 1));
+			this.setNumOfCopies(j + 1);
+		}
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setHeaderText("Success!");
+		alert.setContentText("Copies added successfuly!");
+		alert.showAndWait();
+		}
 	}
-	
+
+	public void removeCopies(int copiesToRemove) {
+		int notAvailable = 0;
+		ArrayList<Copy> freeCopies = new ArrayList<>();
+		for (Copy copy : copies) {
+			if (copy.getIsBorrowed() || copy.getIsRequested() || copy.getIsReserved()) {
+				notAvailable++;
+			} else {
+				freeCopies.add(copy);
+			}
+		}
+		if (copiesToRemove > notAvailable) {
+			for (int i = 0; i < copiesToRemove; i++) {
+				copies.remove(freeCopies.get(i));
+			}
+			for (int j = 0; j < copies.size(); j++) {
+				copies.get(j).setCopyID(j+1);
+				this.setNumOfCopies(j+1);
+			}
+		} else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setHeaderText("There are not enough free copies which can be removed!");
+			alert.setContentText("Please wait until enough copies are returned so that they can be removed!");
+			alert.showAndWait();
+		}
+	}
+
 	public ArrayList<Copy> getCopies() {
 		return copies;
 	}
@@ -157,14 +202,13 @@ public class Resource implements Serializable {
 	public ArrayList<User> getWaitingList() {
 		return waitingList;
 	}
-	
+
 	public void addCopy() {
 		boolean flag = true;
 		int index = 0;
 		int copyID = 0;
 		do {
-			if ((copies.get(index + 1).getCopyId() - 
-					copies.get(index).getCopyId()) != 1) {
+			if ((copies.get(index + 1).getCopyId() - copies.get(index).getCopyId()) != 1) {
 				copyID = index + 2;
 				flag = false;
 			}
@@ -176,7 +220,7 @@ public class Resource implements Serializable {
 			copies.add(new Copy(this, index + 2));
 		}
 	}
-	
+
 	public void deleteCopy(int copyID) {
 		Copy copy = null;
 		boolean flag = true;
@@ -187,16 +231,20 @@ public class Resource implements Serializable {
 				flag = false;
 			}
 			index++;
-		} while(flag);
+		} while (flag);
 		copies.remove(copy);
 		this.numOfCopies--;
 	}
 	
+	
+	public void setNumOfCopies(int numOfCopies) {
+		this.numOfCopies = numOfCopies;
+	}
+
 	public String toString() {
-		String result = "ID:\t\t\t\t" + this.getID() + "\nTitle:\t\t\t\t" 
-				+ this.getTitle() + "\nYear published:\t" + this.getYear() + 
-				"\nNumber of Copies:\t" + this.getNumOfCopies();
+		String result = "ID:\t\t\t\t" + this.getID() + "\nTitle:\t\t\t\t" + this.getTitle() + "\nYear published:\t"
+				+ this.getYear() + "\nNumber of Copies:\t" + this.getNumOfCopies();
 		return result;
 	}
-	
+
 }

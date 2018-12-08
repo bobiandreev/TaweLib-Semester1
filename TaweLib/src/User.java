@@ -224,13 +224,15 @@ public class User implements Serializable {
 	public double getBalance() {
 		double totalFine = 0;
 		int index = 0;
-		while (index != itemsToReturn.size()) {
-			Copy curCopy = itemsToReturn.get(index);
-			String dueDate = curCopy.S_D_F.format(curCopy.getDueDate());
-			String currentDate = curCopy.S_D_F.format(Copy.getDateNow());
-			Fine fine = new Fine(curCopy.getResource(), dueDate, currentDate);
-			totalFine += fine.getCurrentFine();
-			index++;
+		for (Copy copy : borrowedItems) {
+			if (copy.getDueDate() != null) {
+				Copy curCopy = copy;
+				String dueDate = curCopy.S_D_F.format(curCopy.getDueDate());
+				String currentDate = curCopy.S_D_F.format(Copy.getDateNow());
+				Fine fine = new Fine(curCopy.getResource(), dueDate, currentDate);
+				totalFine += fine.getCurrentFine();
+				index++;
+			}
 		}
 		currentFine = totalFine;
 		return currentFine;
@@ -279,10 +281,9 @@ public class User implements Serializable {
 		}
 	}
 
-	public void requestReturn(
-			Copy copy) { /*
-							 * user chooses which copy to return here with the gui
-							 */
+	public void requestReturn(Copy copy) { /*
+											 * user chooses which copy to return here with the gui
+											 */
 		returnRequests.add(copy); // adds copy to be returned to the return
 									// requests list
 		copy.setDateRequestReturn(Copy.getDateNow()); // sets the date when the
