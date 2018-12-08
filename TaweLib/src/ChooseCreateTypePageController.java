@@ -22,6 +22,14 @@ public class ChooseCreateTypePageController {
     private BorderPane chooseCreateTypePane;
 
     /**
+     * Initialize method to set the static ID of resources to the resource list size.
+     */
+    @FXML 
+    private void initialize() {
+    	Resource.setID();
+    }
+    
+    /**
      * Appropriate actions will be carried out when button is clicked. The creation of a 
      * new book resource will occur.
      * 

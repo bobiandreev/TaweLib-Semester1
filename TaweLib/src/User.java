@@ -178,8 +178,7 @@ public class User implements Serializable {
 							fineHistory.add(history);
 						}
 					}
-				}
-				else {
+				} else {
 					fineHistory.add(history);
 				}
 			}

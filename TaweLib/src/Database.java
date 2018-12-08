@@ -169,18 +169,18 @@ public class Database {
 		ArrayList<Resource> newResourceList = new ArrayList<Resource>();
 		ArrayList<User> newUserList = new ArrayList<User>();
 		ArrayList<Librarian> newLibList = new ArrayList<Librarian>();
-		Resource resource1 = new Book("TLOTR", "2001", "Avatar4.png", 3, "Tolkien", "Springer");
-		Resource resource2 = new LaptopComputer("XPS", "2018", "Avatar4.png", 3, "Dell", "XPS", "Windows");
-		Resource resource3 = new DVD("TLOTR", "2001", "Avatar4.png", 10, "Peter Jackson", "180");
+		Resource resource1 = new Book("The Lord of The Rings Book", "2001", "LordAvatarBook.jpg", 3, "Tolkien", "Springer");
+		Resource resource2 = new LaptopComputer("XPS", "2018", "XPSAvatarImage.jpeg", 3, "Dell", "XPS", "Windows");
+		Resource resource3 = new DVD("The Lord of the Rings DVD", "2001", "LordAvatarDVD.jpg", 10, "Peter Jackson", "180");
 				//("TLOTR", 2001, null, 30);
-		User user1 = new User("user1", "user 1", "05454645", "56", "Bay Campus", "SA1 8PP", "Avatar5.png");
-		User user2 = new User("user2", "user 1", "05454645", "56", "Bay Campus", "SA1 8PP", "Avatar5.png");
-		Librarian lib1 = new Librarian("lib1", "lib 1", "54656597", "65", "Singleton Campus", "SA1 4FS", "Avatar5.png", "24/07");
+		User user1 = new User("user1", "Random Student", "07938681415", "56", "Bay Campus", "SA1 8PP", "Avatar5.png");
+	//	User user2 = new User("user2", "user 1", "05454645", "56", "Bay Campus", "SA1 8PP", "Avatar5.png");
+		Librarian lib1 = new Librarian("lib1", "Best Librarian", "0886080038", "65", "Singleton Campus", "SA1 4FS", "Avatar5.png", "24/07");
 		newResourceList.add(resource1);
 		newResourceList.add(resource2);
 		newResourceList.add(resource3);
 		newUserList.add(user1);
-		newUserList.add(user2);
+	//	newUserList.add(user2);
 		newLibList.add(lib1);
 		
 		Database.storeResourceList(newResourceList);
