@@ -104,6 +104,7 @@ public class DVD extends Resource {
 	 * Setter method for the DVDs runtime.
 	 * 
 	 * @param runtime
+	 *            How long the film is
 	 */
 	public void setRuntime(String runtime) {
 		this.runtime = runtime;

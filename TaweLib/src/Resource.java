@@ -7,7 +7,7 @@ import javafx.scene.control.Alert.AlertType;
 /**
  * A class that creates a new Resource object.
  * 
- * @Author Boris Andreev and Kyriacos Mosphilis
+ * @author Boris Andreev and Kyriacos Mosphilis
  * @version 1.0
  */
 public class Resource implements Serializable {

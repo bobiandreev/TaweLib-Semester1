@@ -89,6 +89,8 @@ public class SearchBrowse {
 	 * 
 	 * @param keyword
 	 *            Is used to search for corresponding resources.
+	 * @param currentList
+	 *            List which is currently being displayed
 	 * @return A list containing all the resources that have been filtered.
 	 */
 	public static ArrayList<Resource> search(String keyword,

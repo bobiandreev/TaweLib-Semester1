@@ -162,6 +162,7 @@ public class User implements Serializable {
 	 * Setter method for the street where the user lives
 	 * 
 	 * @param streetName
+	 *            Street where the user lives
 	 */
 	public void setStreetName(String streetName) {
 		this.streetName = streetName;

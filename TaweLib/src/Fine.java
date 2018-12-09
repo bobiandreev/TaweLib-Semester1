@@ -27,8 +27,10 @@ public class Fine {
 	 * 
 	 * @param resource
 	 *            The resource that has been overdue.
-	 * @param daysDelayed
-	 *            Days overdue.
+	 * @param currentDate
+	 *            the date right now
+	 * @param dueDate
+	 *            date when the item should have been returned
 	 */
 	public Fine(Resource resource, Date dueDate, Date currentDate) {
 		daysOverdue = findDays(dueDate, currentDate).getDays();
