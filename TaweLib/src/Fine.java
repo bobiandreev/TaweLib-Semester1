@@ -86,8 +86,10 @@ public class Fine {
 	public static Date findDuration(Copy copy) {
 		Date dateBorrowed = copy.getDateBorrowed();
 		Date currentDate = Copy.getDateNow();
+		Calendar c = Calendar.getInstance();
+		c.setTime(dateBorrowed);
 		int daysBorrowed = findDays(dateBorrowed, currentDate).getDays();
-		int borrowedDay = Integer.parseInt(dateBorrowed.toString());
+		int borrowedDay = c.get(Calendar.DAY_OF_WEEK);
 		Calendar calendar = Calendar.getInstance();
 		if (copy.getResource() instanceof Book) {
 			if (daysBorrowed < copy.LOAN_DURATION_BOOK) {

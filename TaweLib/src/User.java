@@ -299,6 +299,9 @@ public class User implements Serializable {
 	 */
 	public double calculateBalance() {
 		double totalFine = 0;
+		if (borrowedItems.isEmpty()) {
+			return currentFine;
+		}
 		for (Copy copy : borrowedItems) {
 			if (copy.getDueDate() != null) {
 				Copy curCopy = copy;

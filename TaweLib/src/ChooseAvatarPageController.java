@@ -123,7 +123,7 @@ public class ChooseAvatarPageController {
 	 */
 	@FXML
 	private void clickOnOK5(ActionEvent event) {
-		String pathToImage = "Avatar4.png";
+		String pathToImage = "Avatar5.png";
 		curUser.setProfilePic(pathToImage);
 		showAlert();
 	}

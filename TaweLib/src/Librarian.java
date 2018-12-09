@@ -139,7 +139,7 @@ public class Librarian extends User {
 		if (curUser.getBalance() == 0) {
 			Resource curResource = null;
 			for (Resource resource : SearchBrowse.getResources()) {
-				if (resource.getTitle().equals(title)) {
+				if (resource.getTitle().equalsIgnoreCase(title)) {
 					curResource = resource;
 				}
 			}
@@ -205,7 +205,7 @@ public class Librarian extends User {
 
 		Copy curCopy = null;
 		for (Copy copy : curUser.getBorrowedItems()) {
-			if (copy.getResource().getTitle().equals(title)) {
+			if (copy.getResource().getTitle().equalsIgnoreCase(title)) {
 				curCopy = copy;
 			}
 		}
@@ -213,7 +213,6 @@ public class Librarian extends User {
 			curCopy.setDateReturned(Copy.getDateNow());
 			curCopy.setReturnHistory();
 			curCopy.returnCopy(); // sets boolean isBorrowed in copy to false
-			curCopy.setDateReturned(Copy.getDateNow());
 			curCopy.setDateRequestReturn(null);
 			curCopy.setDateBorrowed(null);
 			curCopy.setBorrowedBy(null);
