@@ -171,6 +171,8 @@ public class SearchBrowse {
 		for (Copy copy : resource.getCopies()) {
 			if (copy.getDateBorrowed().equals(date) && !copy.getIsReserved()) {
 				return copy;
+			} else {
+				
 			}
 		}
 		return null;

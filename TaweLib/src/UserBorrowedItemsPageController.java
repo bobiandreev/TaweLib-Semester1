@@ -60,6 +60,16 @@ public class UserBorrowedItemsPageController {
 	@FXML
 	private void clickOnRequestToReturn(ActionEvent event) {
 		int selectedIndex = borrowedItemsList.getSelectionModel().getSelectedIndex();
+		
+		if (selectedIndex < 0) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText(null);
+			alert.setContentText("Please select an item first.");
+			alert.showAndWait();
+			return;
+		}
+		
 		Copy currentCopy = returnRequestCopies.get(selectedIndex);
 		curUser.requestReturn(currentCopy);
 		Alert alert = new Alert(AlertType.CONFIRMATION);

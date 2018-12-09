@@ -217,6 +217,7 @@ public class Librarian extends User {
 			curCopy.setDateRequestReturn(null);
 			curCopy.setDateBorrowed(null);
 			curCopy.setBorrowedBy(null);
+			curCopy.removeRequest();
 			curUser.getReturnRequests().remove(curCopy); // removes copy from returnRequests list in curUser
 			curUser.getBorrowedItems().remove(curCopy);
 			Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -277,6 +278,7 @@ public class Librarian extends User {
 			curCopy.setDateReturned(Copy.getDateNow());
 			curCopy.setReturnHistory();
 			curCopy.returnCopy(); // sets boolean isBorrowed in copy to false
+			curCopy.removeRequest();
 			curCopy.setDateReturned(Copy.getDateNow());
 			curCopy.setDateRequestReturn(null);
 			curCopy.setDateBorrowed(null);
