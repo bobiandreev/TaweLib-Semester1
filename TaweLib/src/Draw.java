@@ -31,8 +31,6 @@ import javax.imageio.ImageIO;
  * 
  * @author Riyaad Islam and Oliver Nixon
  * @version 1.0.0
- * @param primaryStage
- *            Object which holds data for the canvas
  */
 public class Draw extends Application {
 

@@ -164,7 +164,7 @@ public class Copy implements Serializable {
 	/**
 	 * Getter method of the date a User borrowed this copy.
 	 * 
-	 * @return
+	 * @return Returns the date borrowed
 	 */
 	public Date getDateBorrowed() {
 		return dateBorrowed;
@@ -313,7 +313,7 @@ public class Copy implements Serializable {
 	 */
 	public void setDueDate() {
 		dueDate = Fine.findDuration(this);
-		//System.out.println("Due date: " + S_D_F.format(dueDate));
+		// System.out.println("Due date: " + S_D_F.format(dueDate));
 	}
 
 	/**
@@ -343,6 +343,9 @@ public class Copy implements Serializable {
 	 * approved by a librarian. Sets isRequested variable to true and sets the
 	 * dateRequested to the date now. Also stores which user currently has the
 	 * copy.
+	 * 
+	 * @param user
+	 *            The user who has requested the item
 	 */
 	public void requestCopy(User user) {
 		this.requestedBy = user;

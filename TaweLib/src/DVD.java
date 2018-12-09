@@ -19,8 +19,6 @@ public class DVD extends Resource {
 	 *            Title of the DVD.
 	 * @param year
 	 *            Year of release.
-	 * @param string
-	 *            Year of release
 	 * @param thumbnailImage
 	 *            Cover Image.
 	 * @param numOfCopies
@@ -31,9 +29,9 @@ public class DVD extends Resource {
 	 *            Runtime of film.
 	 */
 
-	public DVD(String title, String string, String thumbnailImage,
+	public DVD(String title, String year, String thumbnailImage,
 			int numOfCopies, String director, String runtime) {
-		super(title, string, thumbnailImage, numOfCopies);
+		super(title, year, thumbnailImage, numOfCopies);
 		this.director = director;
 		this.runtime = runtime;
 		// this.language = language;

@@ -114,6 +114,7 @@ public class CreateBookPageController {
 	 * @param event
 	 *            - When the mouse clicks on the button.
 	 * @throws IOException
+	 *             Throws execption if the file doesnt exist
 	 */
 	@FXML
 	public void clickOnThumbnailImage(ActionEvent event) throws IOException {
