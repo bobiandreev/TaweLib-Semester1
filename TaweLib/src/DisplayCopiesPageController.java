@@ -62,7 +62,7 @@ public class DisplayCopiesPageController {
 	 * when logged in as a User without permission (When User is not a
 	 * Librarian).
 	 * 
-	 * @param event - When the mouse clicks on the button.
+	 * @param event - When the mouse clicks on the check copy history button.
 	 */
 	@FXML
 	void clickOnCheckCopyHistory(ActionEvent event) {

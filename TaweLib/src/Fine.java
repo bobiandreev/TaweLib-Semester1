@@ -76,13 +76,33 @@ public class Fine {
 		return daysOverdue;
 	}
 
+	/**
+	 * This method calculates how many days have passed between the due date of
+	 * an object and the date and time now.
+	 * 
+	 * @param dueDate
+	 *            Date when then the item was due
+	 * @param currentDate
+	 *            The date right now
+	 * @return The number of days between the 2 dates
+	 */
 	public static Period findDays(Date dueDate, Date currentDate) {
-		LocalDate dateDue = dueDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-		LocalDate dateNow = currentDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		LocalDate dateDue = dueDate.toInstant().atZone(ZoneId.systemDefault())
+				.toLocalDate();
+		LocalDate dateNow = currentDate.toInstant()
+				.atZone(ZoneId.systemDefault()).toLocalDate();
 		Period days = Period.between(dateDue, dateNow);
 		return days;
 	}
 
+	/**
+	 * This method calculate for how long has the user had the item for and uses
+	 * it to set a due date.
+	 * 
+	 * @param copy
+	 *            Item which the user has borrowed.
+	 * @return The due date for the item.
+	 */
 	public static Date findDuration(Copy copy) {
 		Date dateBorrowed = copy.getDateBorrowed();
 		Date currentDate = Copy.getDateNow();

@@ -13,10 +13,11 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
- * <h1> Make desired changes on to a DVD resource. </h1>
- * The EditDVDPageController Class which controls the EditDVDPage.fxml
+ * <h1>Make desired changes on to a DVD resource.</h1> The EditDVDPageController
+ * Class which controls the EditDVDPage.fxml. This class allows the user to edit
+ * the information about a selected DVD from the GUI.
  * 
- * @author Ming
+ * @author Ming and Boris
  * @version 1.0
  * @since 2018-12-03
  */
@@ -56,8 +57,9 @@ public class EditDVDPageController {
 	private String path;
 
 	/**
-	 * Displays a window which enables the setting of a DVD resource.
-	 * The authorized User is allowed to make the desired changes.
+	 * This method gets called whenever the window is opened. It gets the
+	 * information for the DVD and then it displays it at the fields so that the
+	 * librarian can only edit the things they need to.
 	 */
 	@FXML
 	private void initialize() {
@@ -71,19 +73,24 @@ public class EditDVDPageController {
 		this.title.setText(dvdToEdit.getTitle());
 		if (dvdToEdit.getLanguage() != null) {
 			this.language.setText(dvdToEdit.getLanguage());
-		}
-		else {
+		} else {
 			this.language.setText("");
 		}
 		if (dvdToEdit.getSubtitles() != null) {
 			this.availavleSubtitles.setText(dvdToEdit.getSubtitles());
-		}
-		else {
+		} else {
 			this.language.setText("");
 		}
 		this.thumbnailImage.setImage(new Image(dvdToEdit.getThumbnailImage()));
 	}
 
+	/**
+	 * This method is called when the user clicks on the new image button. It
+	 * allows them to select a new thumbnail image for the DVD.
+	 * 
+	 * @param event
+	 *            Clicking on the new image button.
+	 */
 	@FXML
 	void clickOnNewImage(ActionEvent event) {
 		FileChooser fc = new FileChooser();
@@ -92,12 +99,11 @@ public class EditDVDPageController {
 	}
 
 	/**
-	 * Actions will be made when the user clicks on the button.
-	 * Allows user to edit/confirm changes to the DVD item. 
-	 * Displays appropriate alert boxes depending on whether the changes
-	 * made to the item are acceptable and there are no inconsistencies.
+	 * This method is called when the confirm button is clicked. It sets the
+	 * information about the DVD to the information entered in the fields.
 	 * 
-	 * @param event - When the mouse clicks on the button.
+	 * @param event
+	 *            Clicking on the confirm button
 	 */
 	@FXML
 	private void clickOnConfirm(ActionEvent event) {
@@ -109,9 +115,9 @@ public class EditDVDPageController {
 			int numberOfCopies = Integer.parseInt(this.numOfCopies.getText());
 			if (numberOfCopies > dvdToEdit.getNumOfCopies()) {
 				dvdToEdit.addCopies(numberOfCopies);
-			}
-			else {
-				dvdToEdit.removeCopies(dvdToEdit.getNumOfCopies() - numberOfCopies);
+			} else {
+				dvdToEdit.removeCopies(
+						dvdToEdit.getNumOfCopies() - numberOfCopies);
 			}
 		} catch (NumberFormatException e) {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -130,15 +136,16 @@ public class EditDVDPageController {
 		dvdToEdit.setThumbnailImage(image);
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setHeaderText("Success!");
-		alert.setContentText("This book has been added to the catalogue successfully!");
+		alert.setContentText(
+				"This book has been added to the catalogue successfully!");
 		alert.showAndWait();
 	}
 
 	/**
-	 * Actions will be made when the user clicks on the button.
-	 * Returns to previous window by closing the current/most recent one.
+	 * Calls the method which closes the window.
 	 * 
-	 * @param event - When the mouse clicks on the button.
+	 * @param event
+	 *            Clicking on the back button.
 	 */
 	@FXML
 	private void clickOnBack(ActionEvent event) {
