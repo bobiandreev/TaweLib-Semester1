@@ -300,7 +300,7 @@ public class Copy implements Serializable {
 	 */
 	public void setDueDate() {
 		dueDate = Fine.findDuration(this);
-		System.out.println("Due date: " + S_D_F.format(dueDate));
+		//System.out.println("Due date: " + S_D_F.format(dueDate));
 	}
 
 	/**

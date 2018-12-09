@@ -2,6 +2,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -299,9 +301,6 @@ public class User implements Serializable {
 	 */
 	public double calculateBalance() {
 		double totalFine = 0;
-		if (borrowedItems.isEmpty()) {
-			return currentFine;
-		}
 		for (Copy copy : borrowedItems) {
 			if (copy.getDueDate() != null) {
 				Copy curCopy = copy;
@@ -323,7 +322,11 @@ public class User implements Serializable {
 	public double getBalance() {
 		if (currentFine != calculateBalance()) {
 			double additionalFine = calculateBalance() - currentFine;
-			currentFine += additionalFine;
+			if (additionalFine < 0) {
+				return currentFine;
+			} else {
+				currentFine += additionalFine;
+			}
 		}
 		return currentFine;
 	}
@@ -376,6 +379,9 @@ public class User implements Serializable {
 	 * @return The list of messages the user has
 	 */
 	public ArrayList<String> getMessages() {
+		Set<String> hs = new LinkedHashSet<>(messages);
+		messages.clear();
+		messages.addAll(hs);		
 		return messages;
 	}
 
