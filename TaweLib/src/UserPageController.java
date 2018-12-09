@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.NoSuchElementException;
 
 import javax.imageio.ImageIO;
 
@@ -55,7 +56,11 @@ public class UserPageController {
 		profilePicture.setImage(image);
 		showCurrentBalanceBox.setText("Current Balance: " + Double.toString(curUser.getBalance()));
 		for (Resource resource: SearchBrowse.getResources()) {
-			Copy.checkCopy(resource);
+			try{
+				Copy.checkCopy(resource);
+			} catch (NoSuchElementException e) {
+				
+			}
 		}
 	}
 

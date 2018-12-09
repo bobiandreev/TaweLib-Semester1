@@ -28,8 +28,7 @@ public class ViewOverdueResourcesPageController {
 			if (user.getBorrowedItems() != null) {
 				for (Copy copy : user.getBorrowedItems()) {
 					if (copy.getDueDate() != null) {
-						int totalDays = Integer
-								.parseInt(Fine.findDays(copy.getDueDate(), Copy.getDateNow()).toString());
+						int totalDays = Fine.findDays(copy.getDueDate(), Copy.getDateNow()).getDays();
 						if (totalDays > 0) {
 							String message = "This " + copy.getResource().getTitle() + " copy, with number "
 									+ copy.getCopyId() + " should have been returned from "
