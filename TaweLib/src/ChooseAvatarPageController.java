@@ -17,7 +17,7 @@ import javafx.stage.Stage;
  * <h1> Choose Avatar as Profile Picture. </h1>
  * The ChooseAvatarPageController Class which controls the ChooseAvatarPage.fxml
  * 
- * @author Ming
+ * @author Ming and Boris
  * @version 1.0
  * @since 2018-12-03
  */

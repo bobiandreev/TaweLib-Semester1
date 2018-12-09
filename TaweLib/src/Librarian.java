@@ -5,6 +5,7 @@ import javafx.scene.control.Alert.AlertType;
 
 /**
  * This class creates an object for librarian which is a type of user
+ * 
  * @author Kyriacos
  * @version 1.0.0
  *
@@ -26,7 +27,7 @@ public class Librarian extends User {
 		currentStaffNumber = staffNumber;
 		librarianList.add(this);
 	}
-	
+
 	/**
 	 * @return Returns when the librarian was employed
 	 */
@@ -35,7 +36,8 @@ public class Librarian extends User {
 	}
 
 	/**
-	 * @param employmentDate This sets the date of employment
+	 * @param employmentDate
+	 *            This sets the date of employment
 	 */
 	public void setEmploymentDate(String employmentDate) {
 		this.employmentDate = employmentDate;
@@ -56,7 +58,8 @@ public class Librarian extends User {
 	}
 
 	/**
-	 * @param user adds a user variable to the list of users
+	 * @param user
+	 *            adds a user variable to the list of users
 	 */
 	public static void addUser(User user) {
 		// this will be done with read lines
@@ -64,7 +67,8 @@ public class Librarian extends User {
 	}
 
 	/**
-	 * @param username checks if username is valid
+	 * @param username
+	 *            checks if username is valid
 	 * @return
 	 */
 	public static boolean checkUserName(String username) {
@@ -99,7 +103,8 @@ public class Librarian extends User {
 	}
 
 	/**
-	 * @param username for storing username
+	 * @param username
+	 *            for storing username
 	 * @return returns boolean if username exists inside of the librarian list
 	 */
 	private boolean checkLibrarianName(String username) {
@@ -119,8 +124,10 @@ public class Librarian extends User {
 	}
 
 	/**
-	 * @param username for storing username
-	 * @param title title of the user
+	 * @param username
+	 *            for storing username
+	 * @param title
+	 *            title of the user
 	 */
 	public static void loanACopy(String username, String title) {
 		User curUser = null;
@@ -183,8 +190,10 @@ public class Librarian extends User {
 	}
 
 	/**
-	 * @param username for storing the username of the user
-	 * @param title for storing the title of the user
+	 * @param username
+	 *            for storing the username of the user
+	 * @param title
+	 *            for storing the title of the user
 	 */
 	public static void receiveReturn(String username, String title) {
 		User curUser = null;
@@ -208,7 +217,6 @@ public class Librarian extends User {
 			curCopy.setDateRequestReturn(null);
 			curCopy.setDateBorrowed(null);
 			curCopy.setBorrowedBy(null);
-			curCopy.returnCopy();
 			curUser.getReturnRequests().remove(curCopy); // removes copy from returnRequests list in curUser
 			curUser.getBorrowedItems().remove(curCopy);
 			Alert alert = new Alert(AlertType.CONFIRMATION);
