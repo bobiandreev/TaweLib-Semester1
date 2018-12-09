@@ -14,7 +14,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- * This class controls the GUI, it gets inputs from the GUI and does operations which then displays the information.
+ * This class controls the GUI, it gets inputs from the GUI and does operations
+ * which then displays the information.
+ * 
  * @author Kyriacos
  * @version 1.0.0
  *
@@ -36,18 +38,25 @@ public class FinePaymentPageController {
 	private User curUser;
 
 	/**
-	 * @param event is an imported handler for when any event happens to an object
+	 * When the show current balance is clicked the current balance of the user
+	 * whose username is input is displayed.
+	 * 
+	 * @param event
+	 *            Clicking the show current balance button or pressing enter.
 	 * @throws IOException
+	 *             Exception if the balance is null.
 	 */
 	@FXML
-	private void clickOnShowCurrentBalance(ActionEvent event) throws IOException {
+	private void clickOnShowCurrentBalance(ActionEvent event)
+			throws IOException {
 		String username = this.username.getText();
 		if (username.isEmpty()) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setHeaderText("No input!");
 			alert.setContentText("Please input a username.");
 			alert.showAndWait();
-		} else { // The case when the librarian fill in their LibrarianID correctly
+		} else { // The case when the librarian fill in their LibrarianID
+					// correctly
 			ArrayList<User> usersList = new ArrayList<>();
 			usersList.addAll(Librarian.getUsersList());
 			int index = 0;
@@ -72,7 +81,11 @@ public class FinePaymentPageController {
 	}
 
 	/**
-	 * @param event is an imported handler for when any event happens to an object
+	 * Clicking on the confirm button calls this method which then deducts the
+	 * double (payment) input from the users current balance.
+	 * 
+	 * @param event
+	 *            clicking on the confirm button
 	 */
 	@FXML
 	private void clickOnConfirm(ActionEvent event) {
@@ -97,13 +110,19 @@ public class FinePaymentPageController {
 	}
 
 	/**
-	 * @param event is an imported handler for when any event happens to an object
+	 * Calls the method which closes the window.
+	 * 
+	 * @param event
+	 *            clicking on the back button.
 	 */
 	@FXML
 	private void clickOnBack(ActionEvent event) {
 		closeWindow();
 	}
 
+	/**
+	 * Closes the window.
+	 */
 	@FXML
 	private void closeWindow() { // A method which close the window
 		Stage stage = (Stage) finePaymentPane.getScene().getWindow();

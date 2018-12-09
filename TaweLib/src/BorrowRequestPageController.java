@@ -26,13 +26,15 @@ public class BorrowRequestPageController {
 	private ListView<String> borrowRequestList;
 
 	/**
-	 * This method gets called whenever the borrow request page is opened. It goes
-	 * through all users and their requests to borrow items and displays them.
+	 * This method gets called whenever the borrow request page is opened. It
+	 * goes through all users and their requests to borrow items and displays
+	 * them.
 	 */
 	public void initialize() {
 		for (User user : Librarian.getUsersList()) {
 			for (Copy copy : user.getRequestedItems()) {
-				String message = (user.getUsername().toString() + " has requested to borrow "
+				String message = (user.getUsername().toString()
+						+ " has requested to borrow "
 						+ copy.getResource().getTitle().toString());
 				borrowRequestCopies.add(copy);
 				borrowRequestList.getItems().add(message);
@@ -41,16 +43,17 @@ public class BorrowRequestPageController {
 	}
 
 	/**
-	 * When librarian has selected a request to approve and clicks approve this gets
-	 * executed. It updates the attributes for the copy of the resource and the user
-	 * requesting.
+	 * When librarian has selected a request to approve and clicks approve this
+	 * gets executed. It updates the attributes for the copy of the resource and
+	 * the user requesting.
 	 * 
 	 * @param event
 	 *            Clicking the approve button
 	 */
 	@FXML
 	void clickOnApprove(ActionEvent event) {
-		int selectedIndex = borrowRequestList.getSelectionModel().getSelectedIndex();
+		int selectedIndex = borrowRequestList.getSelectionModel()
+				.getSelectedIndex();
 
 		if (selectedIndex < 0) {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -76,16 +79,17 @@ public class BorrowRequestPageController {
 	}
 
 	/**
-	  * When librarian has selected a request to not approve and clicks not approve this gets
-	 * executed. It updates the attributes for the copy of the resource and the user
-	 * requesting.
+	 * When librarian has selected a request to not approve and clicks not
+	 * approve this gets executed. It updates the attributes for the copy of the
+	 * resource and the user requesting.
 	 * 
 	 * @param event
 	 *            Clicking not approve.
 	 */
 	@FXML
 	void clickOnNotApprove(ActionEvent event) {
-		int selectedIndex = borrowRequestList.getSelectionModel().getSelectedIndex();
+		int selectedIndex = borrowRequestList.getSelectionModel()
+				.getSelectedIndex();
 
 		if (selectedIndex < 0) {
 			Alert alert = new Alert(AlertType.ERROR);

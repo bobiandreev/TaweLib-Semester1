@@ -15,9 +15,11 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
- * The EditBookPageController Class which controls the EditBookPage.fxml
+ * The EditBookPageController Class which controls the EditBookPage.fxml. This
+ * class allows the user to edit the information about a selected book from the
+ * GUI
  * 
- * @author Ming
+ * @author Ming and Boris
  *
  */
 public class EditBookPageController {
@@ -55,6 +57,11 @@ public class EditBookPageController {
 	private Book bookToEdit;
 	private String path;
 
+	/**
+	 * This method gets called whenever the window is opened. It gets the
+	 * information for the book and then it displays it at the fields so that
+	 * the librarian can only edit the things they need to.
+	 */
 	@FXML
 	private void initialize() {
 		bookToEdit = (Book) BrowseAndSearchPageController.getResourceToEdit();
@@ -63,7 +70,8 @@ public class EditBookPageController {
 		this.year.setText(bookToEdit.getYear());
 		this.author.setText(bookToEdit.getAuthor());
 		this.publisher.setText(bookToEdit.getPublisher());
-		this.numberOfCopies.setText(Integer.toString(bookToEdit.getNumOfCopies()));
+		this.numberOfCopies
+				.setText(Integer.toString(bookToEdit.getNumOfCopies()));
 		if (bookToEdit.getGenre() != null) {
 			this.genre.setText(bookToEdit.getGenre());
 		}
@@ -76,6 +84,13 @@ public class EditBookPageController {
 		this.thumbnailImage.setImage(new Image(bookToEdit.getThumbnailImage()));
 	}
 
+	/**
+	 * This method is called when the confirm button is clicked. It sets the
+	 * information about a book to the information entered in the fields.
+	 * 
+	 * @param event
+	 *            Clicking on the confirm button
+	 */
 	@FXML
 	private void clickOnConfirm(ActionEvent event) {
 		String title = this.title.getText();
@@ -83,12 +98,13 @@ public class EditBookPageController {
 		String author = this.author.getText();
 		String publisher = this.publisher.getText();
 		try {
-			int numberOfCopies = Integer.parseInt(this.numberOfCopies.getText());
+			int numberOfCopies = Integer
+					.parseInt(this.numberOfCopies.getText());
 			if (numberOfCopies > bookToEdit.getNumOfCopies()) {
 				bookToEdit.addCopies(numberOfCopies);
-			}
-			else {
-				bookToEdit.removeCopies(bookToEdit.getNumOfCopies() - numberOfCopies);
+			} else {
+				bookToEdit.removeCopies(
+						bookToEdit.getNumOfCopies() - numberOfCopies);
 			}
 		} catch (NumberFormatException e) {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -111,10 +127,18 @@ public class EditBookPageController {
 		bookToEdit.setThumbnailImage(path);
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setHeaderText("Success!");
-		alert.setContentText("This book has been added to the catalogue successfully!");
+		alert.setContentText(
+				"This book has been added to the catalogue successfully!");
 		alert.showAndWait();
 	}
 
+	/**
+	 * This method is called when the user clicks on the new image button. It
+	 * allows them to select a new thumbnail image for the book.
+	 * 
+	 * @param event
+	 *            Clicking on the new image button.
+	 */
 	@FXML
 	private void clickOnNewImage(ActionEvent event) {
 		FileChooser fc = new FileChooser();
@@ -123,11 +147,20 @@ public class EditBookPageController {
 
 	}
 
+	/**
+	 * Calls the method which closes the window.
+	 * 
+	 * @param event
+	 *            Clicking on the back button.
+	 */
 	@FXML
 	private void clickOnBack(ActionEvent event) {
 		closeWindow();
 	}
 
+	/**
+	 * Closes the window.
+	 */
 	@FXML
 	private void closeWindow() { // A method which close the window
 		Stage stage = (Stage) editBookPane.getScene().getWindow();

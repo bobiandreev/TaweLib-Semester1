@@ -19,20 +19,25 @@ public class ViewOverdueResourcesPageController {
 	private ListView<String> overdueResourcesList;
 
 	/**
-	 * This method is called whenever the check overdue window is opened. It goes
-	 * through all of the users and through all of their borrowed items to check if
-	 * they have items that are overdue and displays them.
+	 * This method is called whenever the check overdue window is opened. It
+	 * goes through all of the users and through all of their borrowed items to
+	 * check if they have items that are overdue and displays them.
 	 */
 	public void initialize() {
 		for (User user : Librarian.getUsersList()) {
 			if (user.getBorrowedItems() != null) {
 				for (Copy copy : user.getBorrowedItems()) {
 					if (copy.getDueDate() != null) {
-						int totalDays = Fine.findDays(copy.getDueDate(), Copy.getDateNow()).getDays();
+						int totalDays = Fine
+								.findDays(copy.getDueDate(), Copy.getDateNow())
+								.getDays();
 						if (totalDays > 0) {
-							String message = "This " + copy.getResource().getTitle() + " copy, with number "
-									+ copy.getCopyId() + " should have been returned from "
-									+ copy.getBorrowedBy().getUsername() + " by " + copy.getDueDateString() + ".";
+							String message = "This "
+									+ copy.getResource().getTitle()
+									+ " copy, with number " + copy.getCopyId()
+									+ " should have been returned from "
+									+ copy.getBorrowedBy().getUsername()
+									+ " by " + copy.getDueDateString() + ".";
 							overdueResourcesList.getItems().add(message);
 						}
 					}

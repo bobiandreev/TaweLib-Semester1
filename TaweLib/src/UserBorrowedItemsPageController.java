@@ -30,37 +30,39 @@ public class UserBorrowedItemsPageController {
 	private User curUser;
 
 	/**
-	 * This method gets called whenever the user wants to see which items they have
-	 * borrowed. It goes through their list of borrowed items and displays every
-	 * item they have currently taken home. If some of the items have a due date set
-	 * then this is shown as well.
+	 * This method gets called whenever the user wants to see which items they
+	 * have borrowed. It goes through their list of borrowed items and displays
+	 * every item they have currently taken home. If some of the items have a
+	 * due date set then this is shown as well.
 	 */
 	public void initialize() {
 		curUser = LoginController.getLoggedUser();
 		for (Copy copy : curUser.getBorrowedItems()) {
 			returnRequestCopies.add(copy);
 			Resource copyOf = copy.getResource();
-			String copyProperties = (copyOf.getTitle() + ", " + copyOf.getYear() + ". You have borrowed this on "
-					+ copy.getDateBorrowed());
+			String copyProperties = (copyOf.getTitle() + ", " + copyOf.getYear()
+					+ ". You have borrowed this on " + copy.getDateBorrowed());
 			if (copy.getDueDate() != null) {
-				copyProperties += ("\nThis item should be returned by " + copy.getDueDateString());
+				copyProperties += ("\nThis item should be returned by "
+						+ copy.getDueDateString());
 			}
 			borrowedItemsList.getItems().add(copyProperties);
 		}
 	}
 
 	/**
-	 * If the user decides that they want to request a return of an item they click
-	 * the request to return button and the item selected by them in the gui is
-	 * requested to return/
+	 * If the user decides that they want to request a return of an item they
+	 * click the request to return button and the item selected by them in the
+	 * gui is requested to return/
 	 * 
 	 * @param event
 	 *            Clicking on the request to return button.
 	 */
 	@FXML
 	private void clickOnRequestToReturn(ActionEvent event) {
-		int selectedIndex = borrowedItemsList.getSelectionModel().getSelectedIndex();
-		
+		int selectedIndex = borrowedItemsList.getSelectionModel()
+				.getSelectedIndex();
+
 		if (selectedIndex < 0) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
@@ -69,12 +71,13 @@ public class UserBorrowedItemsPageController {
 			alert.showAndWait();
 			return;
 		}
-		
+
 		Copy currentCopy = returnRequestCopies.get(selectedIndex);
 		curUser.requestReturn(currentCopy);
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Request successful");
-		alert.setHeaderText("You have successfully requested to return the item!");
+		alert.setHeaderText(
+				"You have successfully requested to return the item!");
 		// alert.setContentText("Approved!");
 		alert.showAndWait();
 

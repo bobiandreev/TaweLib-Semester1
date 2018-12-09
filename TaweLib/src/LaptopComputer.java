@@ -30,8 +30,8 @@ public class LaptopComputer extends Resource {
 	 * @param OS
 	 *            Operating system running on the laptop
 	 */
-	public LaptopComputer(String title, String year, String thumbnailImage, int numOfCopies, String manufacturer,
-			String model, String OS) {
+	public LaptopComputer(String title, String year, String thumbnailImage,
+			int numOfCopies, String manufacturer, String model, String OS) {
 		super(title, year, thumbnailImage, numOfCopies);
 		this.manufacturer = manufacturer;
 		this.model = model;
@@ -65,23 +65,44 @@ public class LaptopComputer extends Resource {
 		return OS;
 	}
 
+	/**
+	 * Setter method for the laptop manufacturer.
+	 * 
+	 * @param manufacturer
+	 *            String for the laptop manufacturer
+	 */
 	public void setManufacturer(String manufacturer) {
 		this.manufacturer = manufacturer;
 	}
 
+	/**
+	 * Getter method for the laptop model.
+	 * 
+	 * @param model
+	 *            Model of the laptop.
+	 */
 	public void setModel(String model) {
 		this.model = model;
 	}
 
-	public void setOS(String oS) {
-		OS = oS;
+	/**
+	 * Setter method for the laptop OS.
+	 * 
+	 * @param OS
+	 *            The operating system of the laptop.
+	 */
+	public void setOS(String OS) {
+		this.OS = OS;
 	}
-	
+
+	/**
+	 * To string method for the laptop.
+	 */
 	public String toString() {
 		String result = super.toString();
-		result += "\nManufacturer:\t\t" + this.getManufacturer() +
-				"\nModel:\t\t\t" + this.getModel() + "\nOS:\t\t\t\t" + 
-				this.getOS();
+		result += "\nManufacturer:\t\t" + this.getManufacturer()
+				+ "\nModel:\t\t\t" + this.getModel() + "\nOS:\t\t\t\t"
+				+ this.getOS();
 		return result;
 	}
 }

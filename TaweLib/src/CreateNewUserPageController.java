@@ -37,13 +37,21 @@ public class CreateNewUserPageController {
 	@FXML
 	private TextField postcode;
 
+	/**
+	 * Calls the method which closes the window.
+	 * 
+	 * @param event
+	 *            Clicking on the back button
+	 */
 	@FXML
 	private void clickOnBack(ActionEvent event) {
 		closeWindow();
 	}
 
 	/**
-	 * This method is called when the confirm button is clicked.
+	 * This method is called when the confirm button is clicked. It creates a
+	 * new user object with the information filled in the text boxes.
+	 * 
 	 * @param event
 	 */
 	@FXML
@@ -66,12 +74,15 @@ public class CreateNewUserPageController {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setHeaderText("Problem Found");
 			alert.setContentText("This username already exist!\n"
-					+ "Please add a new username!");
+					+ "Please change username!");
 			alert.showAndWait();
 		}
 
 	}
 
+	/**
+	 * This method closes the window.
+	 */
 	@FXML
 	private void closeWindow() { // A method which close the window
 		Stage stage = (Stage) createNewUserPane.getScene().getWindow();

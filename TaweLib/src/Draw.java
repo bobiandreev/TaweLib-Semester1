@@ -50,8 +50,8 @@ public class Draw extends Application {
 		ToggleButton circlebutton = new ToggleButton("Circle Shape");
 		ToggleButton clearbutton = new ToggleButton("Clear");
 
-		ToggleButton[] toolsArray = { pencilbutton, eraserbutton, linebutton, rectanglebutton, circlebutton,
-				clearbutton };
+		ToggleButton[] toolsArray = { pencilbutton, eraserbutton, linebutton,
+				rectanglebutton, circlebutton, clearbutton };
 
 		ToggleGroup tools = new ToggleGroup();
 
@@ -84,8 +84,10 @@ public class Draw extends Application {
 		save.setStyle("-fx-background-color: #ffffff;");
 
 		VBox buttons = new VBox(10);
-		buttons.getChildren().addAll(pencilbutton, eraserbutton, linebutton, rectanglebutton, circlebutton, clearbutton,
-				line_colour, colourpickerLine, fill_colour, colourpickerFill, line_width, slide, save);
+		buttons.getChildren().addAll(pencilbutton, eraserbutton, linebutton,
+				rectanglebutton, circlebutton, clearbutton, line_colour,
+				colourpickerLine, fill_colour, colourpickerFill, line_width,
+				slide, save);
 		buttons.setPadding(new Insets(5));
 		buttons.setStyle("-fx-background-color: #4169e1");
 		buttons.setPrefWidth(100);
@@ -107,7 +109,8 @@ public class Draw extends Application {
 				gc.lineTo(e.getX(), e.getY());
 			} else if (eraserbutton.isSelected()) {
 				double lineWidth = gc.getLineWidth();
-				gc.clearRect(e.getX() - lineWidth / 2, e.getY() - lineWidth / 2, lineWidth, lineWidth);
+				gc.clearRect(e.getX() - lineWidth / 2, e.getY() - lineWidth / 2,
+						lineWidth, lineWidth);
 			} else if (linebutton.isSelected()) {
 				gc.setStroke(colourpickerLine.getValue());
 				straightline.setStartX(e.getX());
@@ -137,7 +140,8 @@ public class Draw extends Application {
 				gc.stroke();
 			} else if (eraserbutton.isSelected()) {
 				double lineWidth = gc.getLineWidth();
-				gc.clearRect(e.getX() - lineWidth / 2, e.getY() - lineWidth / 2, lineWidth, lineWidth);
+				gc.clearRect(e.getX() - lineWidth / 2, e.getY() - lineWidth / 2,
+						lineWidth, lineWidth);
 			}
 		});
 
@@ -148,12 +152,14 @@ public class Draw extends Application {
 				gc.closePath();
 			} else if (eraserbutton.isSelected()) {
 				double lineWidth = gc.getLineWidth();
-				gc.clearRect(e.getX() - lineWidth / 2, e.getY() - lineWidth / 2, lineWidth, lineWidth);
+				gc.clearRect(e.getX() - lineWidth / 2, e.getY() - lineWidth / 2,
+						lineWidth, lineWidth);
 			} else if (linebutton.isSelected()) {
 
 				straightline.setEndX(e.getX());
 				straightline.setEndY(e.getY());
-				gc.strokeLine(straightline.getStartX(), straightline.getStartY(), straightline.getEndX(),
+				gc.strokeLine(straightline.getStartX(),
+						straightline.getStartY(), straightline.getEndX(),
 						straightline.getEndY());
 
 				// creates rectangle
@@ -169,13 +175,15 @@ public class Draw extends Application {
 					rectangle.setY(e.getY());
 				}
 
-				gc.strokeRect(rectangle.getX(), rectangle.getY(), rectangle.getWidth(), rectangle.getHeight());
-				gc.fillRect(rectangle.getX(), rectangle.getY(), rectangle.getWidth(), rectangle.getHeight());
+				gc.strokeRect(rectangle.getX(), rectangle.getY(),
+						rectangle.getWidth(), rectangle.getHeight());
+				gc.fillRect(rectangle.getX(), rectangle.getY(),
+						rectangle.getWidth(), rectangle.getHeight());
 
 				// creates circle
 			} else if (circlebutton.isSelected()) {
-				circle.setRadius(
-						(Math.abs(e.getX() - circle.getCenterX()) + Math.abs(e.getY() - circle.getCenterY())) / 2);
+				circle.setRadius((Math.abs(e.getX() - circle.getCenterX())
+						+ Math.abs(e.getY() - circle.getCenterY())) / 2);
 
 				if (circle.getCenterX() > e.getX()) {
 					circle.setCenterX(e.getX());
@@ -184,8 +192,10 @@ public class Draw extends Application {
 					circle.setCenterY(e.getY());
 				}
 
-				gc.strokeOval(circle.getCenterX(), circle.getCenterY(), circle.getRadius(), circle.getRadius());
-				gc.fillOval(circle.getCenterX(), circle.getCenterY(), circle.getRadius(), circle.getRadius());
+				gc.strokeOval(circle.getCenterX(), circle.getCenterY(),
+						circle.getRadius(), circle.getRadius());
+				gc.fillOval(circle.getCenterX(), circle.getCenterY(),
+						circle.getRadius(), circle.getRadius());
 
 			}
 
@@ -211,12 +221,14 @@ public class Draw extends Application {
 			FileChooser savecreation = new FileChooser();
 			savecreation.setTitle("Save File");
 
-			File outputFile = new File("src\\Avatar" + curUser.getUsername() + ".png");
+			File outputFile = new File(
+					"src\\Avatar" + curUser.getUsername() + ".png");
 			if (outputFile != null) {
 				try {
 					WritableImage writeImage = new WritableImage(1080, 790);
 					sketchpad.snapshot(null, writeImage);
-					RenderedImage rendImg = SwingFXUtils.fromFXImage(writeImage, null);
+					RenderedImage rendImg = SwingFXUtils.fromFXImage(writeImage,
+							null);
 					ImageIO.write(rendImg, "png", outputFile);
 				} catch (IOException ex) {
 					System.out.println("Invalid");

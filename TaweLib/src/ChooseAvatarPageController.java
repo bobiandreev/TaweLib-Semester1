@@ -14,8 +14,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- * <h1> Choose Avatar as Profile Picture. </h1>
- * The ChooseAvatarPageController Class which controls the ChooseAvatarPage.fxml
+ * <h1>Choose Avatar as Profile Picture.</h1> The ChooseAvatarPageController
+ * Class which controls the ChooseAvatarPage.fxml
  * 
  * @author Ming and Boris
  * @version 1.0
@@ -29,13 +29,14 @@ public class ChooseAvatarPageController {
 	private Alert alert = new Alert(AlertType.INFORMATION);
 
 	/**
-	 * This method displays an alert box for
-	 * when the User has selected an Avatar.
+	 * This method displays an alert box for when the User has selected an
+	 * Avatar.
 	 */
 	public void showAlert() {
 		alert.setTitle("Confirmation Message");
 		alert.setHeaderText(null);
-		alert.setContentText("Selected Avatar has been confirmed! " + "Changes will have effect next time you log in!");
+		alert.setContentText("Selected Avatar has been confirmed! "
+				+ "Changes will have effect next time you log in!");
 		alert.showAndWait();
 	}
 
@@ -50,34 +51,36 @@ public class ChooseAvatarPageController {
 	}
 
 	/**
-	 * Actions will be made when the user clicks on the button.
-	 * Sets up appropriate measures (opens necessary windows, etc)
-	 * to allow the User to draw a custom avatar and save it as
-	 * the preferred profile image.
+	 * Actions will be made when the user clicks on the button. Sets up
+	 * appropriate measures (opens necessary windows, etc) to allow the User to
+	 * draw a custom avatar and save it as the preferred profile image.
 	 * 
-	 * @param event - When the mouse clicks on the button.
-	 * 		
+	 * @param event
+	 *            - When the mouse clicks on the button.
+	 * 
 	 */
 	@FXML
 	public void clickOnDrawAvatar(ActionEvent event) {
 		String[] args = null;
 		Draw drawing = new Draw();
-	//	Scene browseAndSearchScene = new Scene(null, Main.BROWSEANDSEARCHPAGE_WIDTH,
-	//			Main.BROWSEANDSEARCHPAGE_HEIGHT);
+		// Scene browseAndSearchScene = new Scene(null,
+		// Main.BROWSEANDSEARCHPAGE_WIDTH,
+		// Main.BROWSEANDSEARCHPAGE_HEIGHT);
 		Stage drawingStage = new Stage();
 		drawing.start(drawingStage);
-		//File image = new File("Avatar" + curUser.getUsername() + ".png");
+		// File image = new File("Avatar" + curUser.getUsername() + ".png");
 		String pathToImage = ("Avatar" + curUser.getUsername() + ".png");
 		curUser.setProfilePic(pathToImage);
-		//showAlert();
+		// showAlert();
 	}
 
 	/**
-	 * Actions will be made when the user clicks on the button.
-	 * Selection and setting of the first profile picture option.
-	 * Displays appropriate alert box for indication to User.
+	 * Actions will be made when the user clicks on the button. Selection and
+	 * setting of the first profile picture option. Displays appropriate alert
+	 * box for indication to User.
 	 * 
-	 * @param event - When the mouse clicks on the button.
+	 * @param event
+	 *            - When the mouse clicks on the button.
 	 */
 	@FXML
 	private void clickOnOK1(ActionEvent event) {
@@ -87,11 +90,12 @@ public class ChooseAvatarPageController {
 	}
 
 	/**
-	 * Actions will be made when the user clicks on the button.
-	 * Selection and setting of the second profile picture option.
-	 * Displays appropriate alert box for indication to User.
+	 * Actions will be made when the user clicks on the button. Selection and
+	 * setting of the second profile picture option. Displays appropriate alert
+	 * box for indication to User.
 	 * 
-	 * @param event - When the mouse clicks on the button.
+	 * @param event
+	 *            - When the mouse clicks on the button.
 	 */
 	@FXML
 	private void clickOnOK2(ActionEvent event) {
@@ -101,11 +105,12 @@ public class ChooseAvatarPageController {
 	}
 
 	/**
-	 * Actions will be made when the user clicks on the button
-	 * Selection and setting of the third profile picture option.
-	 * Displays appropriate alert box for indication to User.
+	 * Actions will be made when the user clicks on the button Selection and
+	 * setting of the third profile picture option. Displays appropriate alert
+	 * box for indication to User.
 	 * 
-	 * @param event - When the mouse clicks on the button.
+	 * @param event
+	 *            - When the mouse clicks on the button.
 	 */
 	@FXML
 	private void clickOnOK3(ActionEvent event) {
@@ -115,11 +120,12 @@ public class ChooseAvatarPageController {
 	}
 
 	/**
-	 * Actions will be made when the user clicks on the button.
-	 * Selection and setting of the fifth profile picture option.
-	 * Displays appropriate alert box for indication to User.
+	 * Actions will be made when the user clicks on the button. Selection and
+	 * setting of the fifth profile picture option. Displays appropriate alert
+	 * box for indication to User.
 	 * 
-	 * @param event - When the mouse clicks on the button.
+	 * @param event
+	 *            - When the mouse clicks on the button.
 	 */
 	@FXML
 	private void clickOnOK5(ActionEvent event) {
@@ -129,11 +135,12 @@ public class ChooseAvatarPageController {
 	}
 
 	/**
-	 * Actions will be made when the user clicks on the button.
-	 * Selection and setting of the fourth profile picture option.
-	 * Displays appropriate alert box for indication to User.
+	 * Actions will be made when the user clicks on the button. Selection and
+	 * setting of the fourth profile picture option. Displays appropriate alert
+	 * box for indication to User.
 	 * 
-	 * @param event - When the mouse clicks on the button.
+	 * @param event
+	 *            - When the mouse clicks on the button.
 	 */
 	@FXML
 	private void clickOnOk4(ActionEvent event) {
@@ -143,10 +150,11 @@ public class ChooseAvatarPageController {
 	}
 
 	/**
-	 * Actions will be made when the user clicks on the button
-	 * Returns to previous window by closing the current/most recent one.
+	 * Actions will be made when the user clicks on the button Returns to
+	 * previous window by closing the current/most recent one.
 	 * 
-	 * @param event - When the mouse clicks on the button.
+	 * @param event
+	 *            - When the mouse clicks on the button.
 	 */
 	@FXML
 	private void clickOnBack(ActionEvent event) {

@@ -11,7 +11,7 @@ public class DVD extends Resource {
 	private String runtime;
 	private String language = "";
 	private String subtitles = "";
-	
+
 	/**
 	 * Constructor for a DVD.
 	 * 
@@ -31,13 +31,13 @@ public class DVD extends Resource {
 	 *            Runtime of film.
 	 */
 
-	public DVD(String title, String string, String thumbnailImage, int numOfCopies,
-			String director, String runtime) {
+	public DVD(String title, String string, String thumbnailImage,
+			int numOfCopies, String director, String runtime) {
 		super(title, string, thumbnailImage, numOfCopies);
 		this.director = director;
 		this.runtime = runtime;
-		//this.language = language;
-		//this.subtitles = subtitles;
+		// this.language = language;
+		// this.subtitles = subtitles;
 	}
 
 	public void setLanguage(String language) {
@@ -91,23 +91,31 @@ public class DVD extends Resource {
 	}
 
 	/**
-	 * Setter method for the director of the film 
-	 * @param director Director of the film
+	 * Setter method for the director of the film
+	 * 
+	 * @param director
+	 *            Director of the film
 	 */
 	public void setDirector(String director) {
 		this.director = director;
 	}
 
+	/**
+	 * Setter method for the DVDs runtime.
+	 * 
+	 * @param runtime
+	 */
 	public void setRuntime(String runtime) {
 		this.runtime = runtime;
 	}
-	
+
 	public String toString() {
 		String result = super.toString();
-		result += "\nDirector:\t\t\t" + this.getDirector() + "\nRuntime:\t\t\t" + 
-			   this.getRuntime() + " minutes" + "\nLanguage\t\t\t" + 
-			   this.getLanguage() + "\nSubtitles:\t\t\t" + this.getSubtitles();
+		result += "\nDirector:\t\t\t" + this.getDirector() + "\nRuntime:\t\t\t"
+				+ this.getRuntime() + " minutes" + "\nLanguage\t\t\t"
+				+ this.getLanguage() + "\nSubtitles:\t\t\t"
+				+ this.getSubtitles();
 		return result;
 	}
-	
+
 }

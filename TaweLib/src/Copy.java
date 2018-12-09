@@ -38,8 +38,10 @@ public class Copy implements Serializable {
 	/**
 	 * Constructor for a Copy.
 	 * 
-	 * @param resource This shows a copy of which resource is this object.
-	 * @param copyID   Sets an ID for the specific copy.
+	 * @param resource
+	 *            This shows a copy of which resource is this object.
+	 * @param copyID
+	 *            Sets an ID for the specific copy.
 	 */
 	public Copy(Resource resource, int copyID) {
 		this.resource = resource;
@@ -50,12 +52,15 @@ public class Copy implements Serializable {
 	/**
 	 * Parses a string to date.
 	 * 
-	 * @param dateToParse The date we want to parse.
+	 * @param dateToParse
+	 *            The date we want to parse.
 	 * @return A Date object.
-	 * @throws ParseException If the input is invalid.
+	 * @throws ParseException
+	 *             If the input is invalid.
 	 */
 	public static Date dateParser(String dateToParse) throws ParseException {
-		SimpleDateFormat parser = new SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy");
+		SimpleDateFormat parser = new SimpleDateFormat(
+				"EEE MMM d HH:mm:ss zzz yyyy");
 		if (dateToParse.equals("null")) {
 			return null;
 		}
@@ -82,7 +87,8 @@ public class Copy implements Serializable {
 	/**
 	 * Setter method for current Copy's ID.
 	 * 
-	 * @param copyID The new ID.
+	 * @param copyID
+	 *            The new ID.
 	 */
 	public void setCopyID(int copyID) {
 		this.copyID = copyID;
@@ -148,7 +154,8 @@ public class Copy implements Serializable {
 	/**
 	 * Setter method of the date a User requested this copy.
 	 * 
-	 * @param dateRequested The date this copy is requested.
+	 * @param dateRequested
+	 *            The date this copy is requested.
 	 */
 	public void setDateRequested(Date dateRequested) {
 		this.dateRequested = dateRequested;
@@ -166,7 +173,8 @@ public class Copy implements Serializable {
 	/**
 	 * Setter method of the date a User borrowed this copy.
 	 * 
-	 * @param dateBorrowed The date this copy is borrowed.
+	 * @param dateBorrowed
+	 *            The date this copy is borrowed.
 	 */
 	public void setDateBorrowed(Date dateBorrowed) {
 		this.dateBorrowed = dateBorrowed;
@@ -199,7 +207,8 @@ public class Copy implements Serializable {
 	/**
 	 * Setter method of the date a User has requested to return this copy.
 	 * 
-	 * @param dateRequestReturn The date a User has requested to return this copy.
+	 * @param dateRequestReturn
+	 *            The date a User has requested to return this copy.
 	 */
 	public void setDateRequestReturn(Date dateRequestReturn) {
 		this.dateRequestReturn = dateRequestReturn;
@@ -217,7 +226,8 @@ public class Copy implements Serializable {
 	/**
 	 * Setter of the date this copy is returned.
 	 * 
-	 * @param dateReturned The date it is returned.
+	 * @param dateReturned
+	 *            The date it is returned.
 	 */
 	public void setDateReturned(Date dateReturned) {
 		this.dateReturned = dateReturned;
@@ -235,7 +245,8 @@ public class Copy implements Serializable {
 	/**
 	 * Setter method of the User that requested this copy.
 	 * 
-	 * @param requestedBy The User requesting this copy.
+	 * @param requestedBy
+	 *            The User requesting this copy.
 	 */
 	public void setRequestedBy(User requestedBy) {
 		this.requestedBy = requestedBy;
@@ -253,7 +264,8 @@ public class Copy implements Serializable {
 	/**
 	 * Setter method of the User that just got this copy.
 	 * 
-	 * @param borrowedBy The User that just got this copy.
+	 * @param borrowedBy
+	 *            The User that just got this copy.
 	 */
 	public void setBorrowedBy(User borrowedBy) {
 		this.borrowedBy = borrowedBy;
@@ -271,7 +283,8 @@ public class Copy implements Serializable {
 	/**
 	 * Setter of the User that wants to request the unavailable copy.
 	 * 
-	 * @param reservedFor The User that wants to request the unavailable copy.
+	 * @param reservedFor
+	 *            The User that wants to request the unavailable copy.
 	 */
 	public void setReservedFor(User reservedFor) {
 		this.reservedFor = reservedFor;
@@ -316,17 +329,20 @@ public class Copy implements Serializable {
 	 * Setter method of the borrowing history of a copy.
 	 */
 	public void setReturnHistory() {
-		copyHistory.add("Returned by " + this.getBorrowedBy().getUsername() + " on " + this.getDateReturned());
+		copyHistory.add("Returned by " + this.getBorrowedBy().getUsername()
+				+ " on " + this.getDateReturned());
 	}
 
 	public void setBorrowHistory() {
-		copyHistory.add("Borrowed by " + this.getBorrowedBy().getUsername() + " on " + this.getDateBorrowed());
+		copyHistory.add("Borrowed by " + this.getBorrowedBy().getUsername()
+				+ " on " + this.getDateBorrowed());
 	}
 
 	/**
 	 * Method which allows the user to request a copy which then needs to be
 	 * approved by a librarian. Sets isRequested variable to true and sets the
-	 * dateRequested to the date now. Also stores which user currently has the copy.
+	 * dateRequested to the date now. Also stores which user currently has the
+	 * copy.
 	 */
 	public void requestCopy(User user) {
 		this.requestedBy = user;
@@ -338,15 +354,19 @@ public class Copy implements Serializable {
 	 * Method that goes through all copies to check if there is a free one for a
 	 * user to request.
 	 * 
-	 * @param item The resource for which the user checks if there is a free copy.
-	 * @return Null if there are no free copies and the Copy object which is free if
-	 *         there is one.
+	 * @param item
+	 *            The resource for which the user checks if there is a free
+	 *            copy.
+	 * @return Null if there are no free copies and the Copy object which is
+	 *         free if there is one.
 	 */
 	public static Copy checkCopy(Resource item) {
 		// curUser = LoginController.getLoggedUser();
 		int i = 0;
-		while (i < item.getCopies().size() && item.getCopies().get(i).getIsBorrowed()
-				|| item.getCopies().get(i).getIsRequested() || item.getCopies().get(i).getIsReserved()) {
+		while (i < item.getCopies().size()
+				&& item.getCopies().get(i).getIsBorrowed()
+				|| item.getCopies().get(i).getIsRequested()
+				|| item.getCopies().get(i).getIsReserved()) {
 			Copy copy = item.getCopies().get(i);
 			i++;
 
@@ -395,16 +415,20 @@ public class Copy implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Copy number " + this.getCopyId() + " of resource " + this.getResource().getTitle() + ".";
+		return "Copy number " + this.getCopyId() + " of resource "
+				+ this.getResource().getTitle() + ".";
 	}
 
 	public String toString1() {
 		if (this.getDueDate() == null) {
-			return "Copy number " + this.getCopyId() + " of resource " + this.getResource().getTitle()
+			return "Copy number " + this.getCopyId() + " of resource "
+					+ this.getResource().getTitle()
 					+ ". No due date is set for this item";
 		} else {
-			return "Copy number " + this.getCopyId() + " of resource " + this.getResource().getTitle()
-					+ ". This item is due to be returned on: " + S_D_F.format(this.getDueDate());
+			return "Copy number " + this.getCopyId() + " of resource "
+					+ this.getResource().getTitle()
+					+ ". This item is due to be returned on: "
+					+ S_D_F.format(this.getDueDate());
 		}
 	}
 }

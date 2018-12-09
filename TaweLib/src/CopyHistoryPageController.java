@@ -18,8 +18,8 @@ public class CopyHistoryPageController {
 	private Copy selectedCopy;
 
 	/**
-	 * This is called whenever the copy history page is opened. It goes through the
-	 * list containing the copys history and displays it.
+	 * This is called whenever the copy history page is opened. It goes through
+	 * the list containing the copys history and displays it.
 	 * 
 	 */
 

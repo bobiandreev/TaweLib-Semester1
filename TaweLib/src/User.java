@@ -55,8 +55,8 @@ public class User implements Serializable {
 	 * @param image
 	 *            Path to the profile image of the user
 	 */
-	public User(String username, String name, String mobileNumber, String houseNumber, String address, String postcode,
-			String image) {
+	public User(String username, String name, String mobileNumber,
+			String houseNumber, String address, String postcode, String image) {
 		this.username = username;
 		this.name = name;
 		this.mobileNumber = mobileNumber;
@@ -198,9 +198,9 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * This method checks and adds the fine history of the user while collaborating
-	 * with the Fine class to see if there are any new fines. It also contains
-	 * checks to avoid duplication in the fine history list.
+	 * This method checks and adds the fine history of the user while
+	 * collaborating with the Fine class to see if there are any new fines. It
+	 * also contains checks to avoid duplication in the fine history list.
 	 */
 	public void checkFineHistory() {
 		String history = "";
@@ -210,9 +210,12 @@ public class User implements Serializable {
 				Copy curCopy = copy;
 				Date dueDate = curCopy.getDueDate();
 				Date currentDate = Copy.getDateNow();
-				Fine fine = new Fine(curCopy.getResource(), dueDate, currentDate);
-				history += curCopy.getDueDate() + ", amount due: " + fine.getCurrentFine() + ", copy: "
-						+ curCopy.getCopyId() + " of " + curCopy.getResource().getTitle() + ". Days overdue: "
+				Fine fine = new Fine(curCopy.getResource(), dueDate,
+						currentDate);
+				history += curCopy.getDueDate() + ", amount due: "
+						+ fine.getCurrentFine() + ", copy: "
+						+ curCopy.getCopyId() + " of "
+						+ curCopy.getResource().getTitle() + ". Days overdue: "
 						+ fine.getDaysOverdue() + "\n";
 				if (fine.getDaysOverdue() > 0) {
 					if (!fineHistory.isEmpty()) {
@@ -306,7 +309,8 @@ public class User implements Serializable {
 				Copy curCopy = copy;
 				Date dueDate = curCopy.getDueDate();
 				Date currentDate = Copy.getDateNow();
-				Fine fine = new Fine(curCopy.getResource(), dueDate, currentDate);
+				Fine fine = new Fine(curCopy.getResource(), dueDate,
+						currentDate);
 				totalFine = fine.getCurrentFine();
 			}
 		}
@@ -342,10 +346,10 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * This is the request item operation. When browsing the user selects an item
-	 * they wan to borrow. This method carries out the check if there are free
-	 * copies of this resource available for borrowing. If there are it sends to the
-	 * librarian for approval, if not reserves a copy for the user.
+	 * This is the request item operation. When browsing the user selects an
+	 * item they wan to borrow. This method carries out the check if there are
+	 * free copies of this resource available for borrowing. If there are it
+	 * sends to the librarian for approval, if not reserves a copy for the user.
 	 * 
 	 * @param item
 	 *            The item the user wants to borrow a copy from
@@ -366,9 +370,10 @@ public class User implements Serializable {
 			requestedItems.add(freeCopy);
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setHeaderText("Success!");
-			alert.setContentText("You have requested a copy! If no copies are available now "
-					+ "one will be reserved for you.\nYou will reveive a message when you can get "
-					+ "your reserved copy!");
+			alert.setContentText(
+					"You have requested a copy! If no copies are available now "
+							+ "one will be reserved for you.\nYou will reveive a message when you can get "
+							+ "your reserved copy!");
 			alert.showAndWait();
 		}
 	}
@@ -392,7 +397,8 @@ public class User implements Serializable {
 	 *            A copy which the user wants to return
 	 */
 	public void requestReturn(Copy copy) { /*
-											 * user chooses which copy to return here with the gui
+											 * user chooses which copy to return
+											 * here with the gui
 											 */
 		returnRequests.add(copy); // adds copy to be returned to the return
 		// requests list
@@ -401,23 +407,28 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * This method adds a message of which item the user has to return and by when.
-	 * It also lets them know what the fine will be like if they fail to return on
-	 * time.
+	 * This method adds a message of which item the user has to return and by
+	 * when. It also lets them know what the fine will be like if they fail to
+	 * return on time.
 	 * 
 	 * @param copy
 	 *            The item the user has to return.
 	 */
 	public void DueDateMessage(Copy copy) {
-		if (copy.getResource() instanceof Book || copy.getResource() instanceof DVD) {
-			String messageBook = ("The item you have borrowed: " + copy.getResource().getTitle()
-					+ " has been requested by someone else and you have to return it by " + copy.getDueDateString()
+		if (copy.getResource() instanceof Book
+				|| copy.getResource() instanceof DVD) {
+			String messageBook = ("The item you have borrowed: "
+					+ copy.getResource().getTitle()
+					+ " has been requested by someone else and you have to return it by "
+					+ copy.getDueDateString()
 					+ " \nor a fine of 2 pounds per day up to a maximum of 25 pounds will start incurring. \n");
 			messages.add(messageBook);
 		}
 		if (copy.getResource() instanceof LaptopComputer) {
-			String messageLaptop = ("The item you have borrowed: " + copy.getResource().getTitle()
-					+ " has been requested by someone else and you have to return it by " + copy.getDueDateString()
+			String messageLaptop = ("The item you have borrowed: "
+					+ copy.getResource().getTitle()
+					+ " has been requested by someone else and you have to return it by "
+					+ copy.getDueDateString()
 					+ "\nor a fine of 10 pounds per day up to a maximum of 100 pounds will start incurring. \n");
 			messages.add(messageLaptop);
 		}
@@ -436,14 +447,15 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * This method sends the user a message that a copy of the item he has requested
-	 * has become available.
+	 * This method sends the user a message that a copy of the item he has
+	 * requested has become available.
 	 * 
 	 * @param copy
 	 *            An item which the user has requested
 	 */
 	public void copyNowAvailable(Copy copy) {
-		String message = ("The item you have requested: " + copy.getResource().getTitle()
+		String message = ("The item you have requested: "
+				+ copy.getResource().getTitle()
 				+ "is now available for you to borrow. \n");
 		messages.add(message);
 	}
