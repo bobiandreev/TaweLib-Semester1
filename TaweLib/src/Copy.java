@@ -356,19 +356,17 @@ public class Copy implements Serializable {
 	 *         there is one.
 	 */
 	public static Copy checkCopy(Resource item) {
-		curUser = LoginController.getLoggedUser();
+	//	curUser = LoginController.getLoggedUser();
 		int i = 0;
 		while (i < item.getCopies().size() && item.getCopies().get(i).getIsBorrowed()
-				|| item.getCopies().get(i).getIsRequested() || item.getCopies().get(i).isReserved) {
+				|| item.getCopies().get(i).getIsRequested() || item.getCopies().get(i).getIsReserved()) {
 			Copy copy = item.getCopies().get(i);
 			i++;
 			
-			if (copy.getIsReserved()) {
-				if (curUser == copy.getReservedFor()) {
-					//curUser.copyNowAvailable(copy);
+			if (copy.getIsReserved() && !copy.getIsRequested()) {
 					copy.isReserved = false;
-					curUser.requestItem(item);
-				}
+					copy.getReservedFor().requestItem(item);;
+				
 			}
 			if (i == item.getCopies().size()) {
 				// adds user to queue of users waiting for this resource

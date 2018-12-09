@@ -51,12 +51,14 @@ public class FinePaymentPageController {
 			ArrayList<User> usersList = new ArrayList<>();
 			usersList.addAll(Librarian.getUsersList());
 			int index = 0;
+			boolean flag = true;
 			do {
 				if (username.equals(usersList.get(index).getUsername())) {
 					curUser = usersList.get(index);
+					flag = false;
 				}
 				index++;
-			} while (index != usersList.size() && username.equals(curUser.getUsername()));
+			} while (index != usersList.size() && flag);
 			if (username.equals(curUser.getUsername())) {
 				String balance = String.valueOf(curUser.getBalance());
 				showCurrentBalanceBox.setText(balance);
