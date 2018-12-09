@@ -138,6 +138,29 @@ public class Librarian extends User {
 	public static ArrayList<User> getUsersList() {
 		return usersList;
 	}
+	
+	/**
+	 * Class for creating a new librarian object and adds it to the librarian list
+	 */
+	public void addLibrarian() {
+		boolean flag = false;
+		String username = "";
+		do {
+			Scanner in = new Scanner(System.in);
+			username = in.nextLine();
+			flag = checkLibrarianName(username);
+		} while (flag);
+		String name = in.nextLine();
+		String mobileNumber = in.nextLine();
+		String houseNumber = in.nextLine();
+		String streetName = in.nextLine();
+		String postcode = in.nextLine();
+		String profilePic = null; // allow the librarian to choose an image
+		in.close();
+		librarianList.add(
+				new Librarian(username, name, mobileNumber, houseNumber, streetName, postcode, profilePic, postcode));
+	}
+
 
 	/**
 	 * This method allows librarians to loan copies to users. First it checks if

@@ -227,7 +227,6 @@ public class Main extends Application {
 				Librarian.getLibrarianList().add(l);
 			}
 		}
-
 		launch(args);
 	}
 }
