@@ -38,8 +38,8 @@ public class UserProfilePageController {
 		nameLabel.setText(name);
 		String mobile = (" " + curUser.getMobileNumber());
 		mobileLabel.setText(mobile);
-		String address = (" " + curUser.getHouseNumber() + " " + curUser.getStreetName() + ", "
-				+ curUser.getPostcode());
+		String address = (" " + curUser.getHouseNumber() + " "
+				+ curUser.getStreetName() + ", " + curUser.getPostcode());
 		addressLabel.setText(address);
 	}
 }

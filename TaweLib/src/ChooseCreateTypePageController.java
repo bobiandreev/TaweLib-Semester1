@@ -40,11 +40,13 @@ public class ChooseCreateTypePageController {
 	@FXML
 	private void clickOnBook(ActionEvent event) {
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CreateBookPage.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(
+					getClass().getResource("CreateBookPage.fxml"));
 
 			BorderPane createBook = (BorderPane) fxmlLoader.load();
 
-			Scene createBookScene = new Scene(createBook, Main.CREATEBOOKPAGE_WIDTH, Main.CREATEBOOKPAGE_HEIGHT);
+			Scene createBookScene = new Scene(createBook,
+					Main.CREATEBOOKPAGE_WIDTH, Main.CREATEBOOKPAGE_HEIGHT);
 			Stage createBookStage = new Stage();
 
 			createBookStage.setScene(createBookScene);
@@ -66,11 +68,13 @@ public class ChooseCreateTypePageController {
 	@FXML
 	private void clickOnDVD(ActionEvent event) {
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CreateDVDPage.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(
+					getClass().getResource("CreateDVDPage.fxml"));
 
 			BorderPane createDVD = (BorderPane) fxmlLoader.load();
 
-			Scene createDVDScene = new Scene(createDVD, Main.CREATEDVDPAGE_WIDTH, Main.CREATEDVDPAGE_HEIGHT);
+			Scene createDVDScene = new Scene(createDVD,
+					Main.CREATEDVDPAGE_WIDTH, Main.CREATEDVDPAGE_HEIGHT);
 			Stage createDVDStage = new Stage();
 
 			createDVDStage.setScene(createDVDScene);
@@ -92,12 +96,13 @@ public class ChooseCreateTypePageController {
 	@FXML
 	private void clickOnLaptop(ActionEvent event) {
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CreateLaptopPage.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(
+					getClass().getResource("CreateLaptopPage.fxml"));
 
 			BorderPane createLaptop = (BorderPane) fxmlLoader.load();
 
-			Scene createLaptopScene = new Scene(createLaptop, Main.CREATELAPTOPPAGE_WIDTH,
-					Main.CREATELAPTOPPAGE_HEIGHT);
+			Scene createLaptopScene = new Scene(createLaptop,
+					Main.CREATELAPTOPPAGE_WIDTH, Main.CREATELAPTOPPAGE_HEIGHT);
 			Stage createLaptopStage = new Stage();
 
 			createLaptopStage.setScene(createLaptopScene);

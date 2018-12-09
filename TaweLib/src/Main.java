@@ -159,7 +159,8 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			// Load the main scene.
-			BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("HomePage.fxml"));
+			BorderPane root = (BorderPane) FXMLLoader
+					.load(getClass().getResource("HomePage.fxml"));
 			Scene scene = new Scene(root, HOMEPAGE_WIDTH, HOMEPAGE_HEIGHT);
 
 			// Place the main scene on stage and show it.
@@ -187,7 +188,7 @@ public class Main extends Application {
 				SearchBrowse.addResource(r);
 			}
 		} catch (NullPointerException e) {
-			//System.out.println("Resource list is empty");
+			// System.out.println("Resource list is empty");
 			Database.setupFiles();
 			ArrayList<Resource> resourceList = new ArrayList<>();
 			resourceList.addAll(Database.getResourceList());
@@ -196,7 +197,6 @@ public class Main extends Application {
 			}
 		}
 
-		
 		try {
 			ArrayList<User> userList = new ArrayList<>();
 			userList.addAll(Database.getUserList());
@@ -204,7 +204,7 @@ public class Main extends Application {
 				Librarian.getUsersList().add(u);
 			}
 		} catch (NullPointerException e) {
-			//System.out.println("User list is empty");
+			// System.out.println("User list is empty");
 			ArrayList<User> userList = new ArrayList<>();
 			userList.addAll(Database.getUserList());
 			for (User u : userList) {
@@ -220,7 +220,7 @@ public class Main extends Application {
 				Librarian.getLibrarianList().add(l);
 			}
 		} catch (NullPointerException e) {
-			//System.out.println("Librarian list is empty");
+			// System.out.println("Librarian list is empty");
 			ArrayList<Librarian> libList = new ArrayList<>();
 			libList.addAll(Database.getLibList());
 			for (Librarian l : libList) {

@@ -91,7 +91,8 @@ public class SearchBrowse {
 	 *            Is used to search for corresponding resources.
 	 * @return A list containing all the resources that have been filtered.
 	 */
-	public static ArrayList<Resource> search(String keyword, ArrayList<Resource> currentList) {
+	public static ArrayList<Resource> search(String keyword,
+			ArrayList<Resource> currentList) {
 		ArrayList<Resource> list = new ArrayList<>();
 		int count = 0;
 		char[] keywordList = keyword.toLowerCase().toCharArray();
@@ -111,8 +112,8 @@ public class SearchBrowse {
 	}
 
 	/**
-	 * Method to check if the keyword is included in the title. It should start from
-	 * 0 as it indicates the first element of a list.
+	 * Method to check if the keyword is included in the title. It should start
+	 * from 0 as it indicates the first element of a list.
 	 * 
 	 * @param keyword
 	 *            The searching keyword broken down in characters.
@@ -136,7 +137,12 @@ public class SearchBrowse {
 	}
 
 	/**
-	 * Reserves an item for someone.
+	 * This method is called whenever a request for an item is made, however
+	 * there are no copies free. It then proceeds to go through all of the
+	 * borrowed date for the copies of the resource and add them to a list from
+	 * which the earliest date is selected. The copy with date method is called
+	 * which returns the copy object with that date. This copy has a due date
+	 * set and is set as reserved for the requsting user.
 	 * 
 	 * @param resource
 	 *            The item to be reserved.
@@ -164,15 +170,22 @@ public class SearchBrowse {
 		}
 	}
 
-	/*
-	 * Method to check if there is copy with a date borrowed and not reserved.
+	/**
+	 * Goes through all of the copies of a resources and returns the one with a
+	 * specific date borrowed.
+	 * 
+	 * @param resource
+	 *            Resource trough which copies the loop runs through
+	 * @param date
+	 *            Specific date borrowed
+	 * @return A copy with the specific date borrowed.
 	 */
 	public static Copy copyWithDate(Resource resource, Date date) {
 		for (Copy copy : resource.getCopies()) {
 			if (copy.getDateBorrowed().equals(date) && !copy.getIsReserved()) {
 				return copy;
 			} else {
-				
+
 			}
 		}
 		return null;

@@ -43,9 +43,9 @@ public class UserPageController {
 	private static User curUser;
 
 	/**
-	 * This method is called whenever a user logs in. It sets the welcome message to
-	 * greet the specific user and also displays their profile picture and their
-	 * current negative balance.
+	 * This method is called whenever a user logs in. It sets the welcome
+	 * message to greet the specific user and also displays their profile
+	 * picture and their current negative balance.
 	 */
 	@FXML
 	public void initialize() {
@@ -54,12 +54,13 @@ public class UserPageController {
 		Image image = new Image(curUser.getProfilePic());
 		curUser.checkFineHistory();
 		profilePicture.setImage(image);
-		showCurrentBalanceBox.setText("Current Balance: " + Double.toString(curUser.getBalance()));
-		for (Resource resource: SearchBrowse.getResources()) {
-			try{
+		showCurrentBalanceBox.setText(
+				"Current Balance: " + Double.toString(curUser.getBalance()));
+		for (Resource resource : SearchBrowse.getResources()) {
+			try {
 				Copy.checkCopy(resource);
 			} catch (NoSuchElementException e) {
-				
+
 			}
 		}
 	}
@@ -74,11 +75,13 @@ public class UserPageController {
 	@FXML
 	private void clickOnBrowseAndSearch(ActionEvent event) {
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("BrowseAndSearchPage.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(
+					getClass().getResource("BrowseAndSearchPage.fxml"));
 
 			BorderPane browseAndSearch = (BorderPane) fxmlLoader.load();
 
-			Scene browseAndSearchScene = new Scene(browseAndSearch, Main.BROWSEANDSEARCHPAGE_WIDTH,
+			Scene browseAndSearchScene = new Scene(browseAndSearch,
+					Main.BROWSEANDSEARCHPAGE_WIDTH,
 					Main.BROWSEANDSEARCHPAGE_HEIGHT);
 			Stage browseAndSearchStage = new Stage();
 
@@ -101,11 +104,13 @@ public class UserPageController {
 	@FXML
 	private void clickOnNotification(ActionEvent event) {
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MessagePage.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(
+					getClass().getResource("MessagePage.fxml"));
 
 			BorderPane message = (BorderPane) fxmlLoader.load();
 
-			Scene messageScene = new Scene(message, Main.MESSAGEPAGE_WIDTH, Main.MESSAGEPAGE_HEIGHT);
+			Scene messageScene = new Scene(message, Main.MESSAGEPAGE_WIDTH,
+					Main.MESSAGEPAGE_HEIGHT);
 			Stage messageStage = new Stage();
 
 			messageStage.setScene(messageScene);
@@ -128,11 +133,13 @@ public class UserPageController {
 	@FXML
 	private void clickOnBorrowedItems(ActionEvent event) {
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("UserBorrowedItemsPage.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(
+					getClass().getResource("UserBorrowedItemsPage.fxml"));
 
 			BorderPane borrowedItems = (BorderPane) fxmlLoader.load();
 
-			Scene borrowedItemsScene = new Scene(borrowedItems, Main.USER_BORROWEDITEMSPAGE_WIDTH,
+			Scene borrowedItemsScene = new Scene(borrowedItems,
+					Main.USER_BORROWEDITEMSPAGE_WIDTH,
 					Main.USER_BORROWEDITEMSPAGE_HEIGHT);
 			Stage userBorrowedItemsStage = new Stage();
 
@@ -153,19 +160,25 @@ public class UserPageController {
 	 *            Clicking on the requested items button
 	 */
 	@FXML
-	private void clickOnRequestedItems(ActionEvent event) { // Jump to the Requested Items Page after the user click the
+	private void clickOnRequestedItems(ActionEvent event) { // Jump to the
+															// Requested Items
+															// Page after the
+															// user click the
 															// button
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("UserRequestedItemsPage.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(
+					getClass().getResource("UserRequestedItemsPage.fxml"));
 
 			BorderPane requestedItems = (BorderPane) fxmlLoader.load();
 
-			Scene requestedItemsScene = new Scene(requestedItems, Main.USER_REQUESTEDITEMSPAGE_WIDTH,
+			Scene requestedItemsScene = new Scene(requestedItems,
+					Main.USER_REQUESTEDITEMSPAGE_WIDTH,
 					Main.USER_REQUESTEDITEMSPAGE_HEIGHT);
 			Stage userRequestedItemsStage = new Stage();
 
 			userRequestedItemsStage.setScene(requestedItemsScene);
-			userRequestedItemsStage.setTitle(Main.USER_REQUESTEDITEMSPAGE_TITLE);
+			userRequestedItemsStage
+					.setTitle(Main.USER_REQUESTEDITEMSPAGE_TITLE);
 			userRequestedItemsStage.initModality(Modality.APPLICATION_MODAL);
 			// Show the edit scene and wait for it to be closed
 			userRequestedItemsStage.showAndWait();
@@ -182,14 +195,19 @@ public class UserPageController {
 	 *            Clicking on the reserved items button
 	 */
 	@FXML
-	private void clickOnReservedItems(ActionEvent event) { // Jump to the Reserved Items Page after the user click the
+	private void clickOnReservedItems(ActionEvent event) { // Jump to the
+															// Reserved Items
+															// Page after the
+															// user click the
 															// button
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("UserReservedItemsPage.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(
+					getClass().getResource("UserReservedItemsPage.fxml"));
 
 			BorderPane reservedItems = (BorderPane) fxmlLoader.load();
 
-			Scene reservedItemsScene = new Scene(reservedItems, Main.USER_RESERVEDITEMSPAGE_WIDTH,
+			Scene reservedItemsScene = new Scene(reservedItems,
+					Main.USER_RESERVEDITEMSPAGE_WIDTH,
 					Main.USER_RESERVEDITEMSPAGE_HEIGHT);
 			Stage userReservedItemsStage = new Stage();
 
@@ -204,8 +222,8 @@ public class UserPageController {
 	}
 
 	/**
-	 * This method loads the page from where the user decides which if the histories
-	 * he wants displayed
+	 * This method loads the page from where the user decides which if the
+	 * histories he wants displayed
 	 * 
 	 * @param event
 	 *            Clicking on the transaction history button
@@ -213,17 +231,21 @@ public class UserPageController {
 	@FXML
 	private void clickOnTransactionHistory(ActionEvent event) {
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("TransactionHistoryPage.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(
+					getClass().getResource("TransactionHistoryPage.fxml"));
 
 			BorderPane transactionHistory = (BorderPane) fxmlLoader.load();
 
-			Scene transactionHistoryScene = new Scene(transactionHistory, Main.TRANSACTIONHISTORYPAGE_WIDTH,
+			Scene transactionHistoryScene = new Scene(transactionHistory,
+					Main.TRANSACTIONHISTORYPAGE_WIDTH,
 					Main.TRANSACTIONHISTORYPAGE_HEIGHT);
 			Stage userTransactionHistoryStage = new Stage();
 
 			userTransactionHistoryStage.setScene(transactionHistoryScene);
-			userTransactionHistoryStage.setTitle(Main.TRANSACTIONHISTORYPAGE_TITLE);
-			userTransactionHistoryStage.initModality(Modality.APPLICATION_MODAL);
+			userTransactionHistoryStage
+					.setTitle(Main.TRANSACTIONHISTORYPAGE_TITLE);
+			userTransactionHistoryStage
+					.initModality(Modality.APPLICATION_MODAL);
 			userTransactionHistoryStage.showAndWait();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -232,7 +254,8 @@ public class UserPageController {
 	}
 
 	/**
-	 * This method loads the window from where the user chooses a profile picture.
+	 * This method loads the window from where the user chooses a profile
+	 * picture.
 	 * 
 	 * @param event
 	 *            Clicking on choose avatar button
@@ -240,12 +263,13 @@ public class UserPageController {
 	@FXML
 	private void clickOnChooseAvatar(ActionEvent event) {
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ChooseAvatarPage.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(
+					getClass().getResource("ChooseAvatarPage.fxml"));
 
 			BorderPane chooseAvatar = (BorderPane) fxmlLoader.load();
 
-			Scene chooseAvatarScene = new Scene(chooseAvatar, Main.CHOOSEAVATARPAGE_WIDTH,
-					Main.CHOOSEAVATARPAGE_HEIGHT);
+			Scene chooseAvatarScene = new Scene(chooseAvatar,
+					Main.CHOOSEAVATARPAGE_WIDTH, Main.CHOOSEAVATARPAGE_HEIGHT);
 			Stage chooseAvatarStage = new Stage();
 
 			chooseAvatarStage.setScene(chooseAvatarScene);
@@ -267,11 +291,13 @@ public class UserPageController {
 	@FXML
 	private void clickOnProfile(ActionEvent event) {
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("UserProfilePage.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(
+					getClass().getResource("UserProfilePage.fxml"));
 
 			BorderPane profileInfo = (BorderPane) fxmlLoader.load();
 
-			Scene profileInfoScene = new Scene(profileInfo, Main.CHOOSEAVATARPAGE_WIDTH, Main.CHOOSEAVATARPAGE_HEIGHT);
+			Scene profileInfoScene = new Scene(profileInfo,
+					Main.CHOOSEAVATARPAGE_WIDTH, Main.CHOOSEAVATARPAGE_HEIGHT);
 			Stage profileInfoStage = new Stage();
 
 			profileInfoStage.setScene(profileInfoScene);

@@ -25,8 +25,8 @@ public class UserReservedItemsPageController {
 
 	/**
 	 * This method is called whenever the reserved items page is opened. It goes
-	 * through all the items that have been reserved for the user and displays them
-	 * all.
+	 * through all the items that have been reserved for the user and displays
+	 * them all.
 	 */
 	public void initialize() {
 		curUser = LoginController.getLoggedUser();
@@ -34,7 +34,8 @@ public class UserReservedItemsPageController {
 			// returnRequestCopies.add(copy);
 			Resource copyOf = copy.getResource();
 			String copyProperties = (copyOf.getTitle() + ", " + copyOf.getYear()
-					+ ". This has been reserved for you on " + copy.getDateRequested());
+					+ ". This has been reserved for you on "
+					+ copy.getDateRequested());
 			reservedItemsList.getItems().add(copyProperties);
 		}
 	}

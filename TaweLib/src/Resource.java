@@ -13,7 +13,9 @@ import javafx.scene.control.Alert.AlertType;
 public class Resource implements Serializable {
 
 	/**
-	 * @param id Static id which is updated every time a new resource is created.
+	 * @param id
+	 *            Static id which is updated every time a new resource is
+	 *            created.
 	 */
 	private static int id = 0;
 	private int curResourceID;
@@ -27,10 +29,14 @@ public class Resource implements Serializable {
 	/**
 	 * Constructor for a resource.
 	 * 
-	 * @param title       Title of the resource.
-	 * @param year        Year of resource release.
-	 * @param image       Cover image for the resource.
-	 * @param numOfCopies How many copies exist of the resource in the library.
+	 * @param title
+	 *            Title of the resource.
+	 * @param year
+	 *            Year of resource release.
+	 * @param image
+	 *            Cover image for the resource.
+	 * @param numOfCopies
+	 *            How many copies exist of the resource in the library.
 	 */
 	public Resource(String title, String year, String image, int numOfCopies) {
 		id++;
@@ -99,7 +105,8 @@ public class Resource implements Serializable {
 	/**
 	 * Method to create more copies.
 	 * 
-	 * @param newNumberOfCopies The new number of copies.
+	 * @param newNumberOfCopies
+	 *            The new number of copies.
 	 */
 	public void addCopies(int newNumberOfCopies) {
 		int copiesToAdd = newNumberOfCopies - this.numOfCopies;
@@ -108,7 +115,8 @@ public class Resource implements Serializable {
 		alert.setContentText("Copies added successfuly!");
 		if (!copies.isEmpty()) {
 			for (int i = 0; i < copiesToAdd; i++) {
-				copies.add(new Copy(this, copies.get((copies.size() - 1)).getCopyId() + 1));
+				copies.add(new Copy(this,
+						copies.get((copies.size() - 1)).getCopyId() + 1));
 				this.setNumOfCopies(newNumberOfCopies);
 				alert.showAndWait();
 			}
@@ -124,7 +132,8 @@ public class Resource implements Serializable {
 	/**
 	 * Method to remove copies.
 	 * 
-	 * @param copiesToRemove The copies to be removed.
+	 * @param copiesToRemove
+	 *            The copies to be removed.
 	 */
 	public void removeCopies(int copiesToRemove) {
 		int notAvailable = 0;
@@ -133,7 +142,8 @@ public class Resource implements Serializable {
 		alert1.setHeaderText("Success!");
 		alert1.setContentText("Copies removed successfuly!");
 		for (Copy copy : copies) {
-			if (copy.getIsBorrowed() || copy.getIsRequested() || copy.getIsReserved()) {
+			if (copy.getIsBorrowed() || copy.getIsRequested()
+					|| copy.getIsReserved()) {
 				notAvailable++;
 			} else {
 				freeCopies.add(copy);
@@ -150,8 +160,10 @@ public class Resource implements Serializable {
 			alert1.showAndWait();
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
-			alert.setHeaderText("There are not enough free copies which can be removed!");
-			alert.setContentText("Please wait until enough copies are returned so that they can be removed!");
+			alert.setHeaderText(
+					"There are not enough free copies which can be removed!");
+			alert.setContentText(
+					"Please wait until enough copies are returned so that they can be removed!");
 			alert.showAndWait();
 		}
 	}
@@ -172,7 +184,8 @@ public class Resource implements Serializable {
 	/**
 	 * Method to add a user to the waiting list.
 	 * 
-	 * @param user The User for the waiting list.
+	 * @param user
+	 *            The User for the waiting list.
 	 */
 	public void addToWaitList(User user) {
 		waitingList.add(user);
@@ -181,7 +194,8 @@ public class Resource implements Serializable {
 	/**
 	 * Setter method to set title.
 	 * 
-	 * @param title The new title of this item.
+	 * @param title
+	 *            The new title of this item.
 	 */
 	public void setTitle(String title) {
 		this.title = title;
@@ -190,7 +204,8 @@ public class Resource implements Serializable {
 	/**
 	 * Setter method to set year.
 	 * 
-	 * @param year The new year of this item.
+	 * @param year
+	 *            The new year of this item.
 	 */
 	public void setYear(String year) {
 		this.year = year;
@@ -199,7 +214,8 @@ public class Resource implements Serializable {
 	/**
 	 * Setter method for thumbnailImage
 	 * 
-	 * @param thumbnailImage The new thumnailImage of this item.
+	 * @param thumbnailImage
+	 *            The new thumnailImage of this item.
 	 */
 	public void setThumbnailImage(String thumbnailImage) {
 		this.thumbnailImage = thumbnailImage;
@@ -217,7 +233,8 @@ public class Resource implements Serializable {
 	/**
 	 * Setter method for number of copies
 	 * 
-	 * @param numOfCopies The new number of copies for this item.
+	 * @param numOfCopies
+	 *            The new number of copies for this item.
 	 */
 	public void setNumOfCopies(int numOfCopies) {
 		this.numOfCopies = numOfCopies;
@@ -227,8 +244,9 @@ public class Resource implements Serializable {
 	 * ToString method to print out nicely our Object.
 	 */
 	public String toString() {
-		String result = "ID:\t\t\t\t" + this.getID() + "\nTitle:\t\t\t\t" + this.getTitle() + "\nYear published:\t"
-				+ this.getYear() + "\nNumber of Copies:\t" + this.getNumOfCopies();
+		String result = "ID:\t\t\t\t" + this.getID() + "\nTitle:\t\t\t\t"
+				+ this.getTitle() + "\nYear published:\t" + this.getYear()
+				+ "\nNumber of Copies:\t" + this.getNumOfCopies();
 		return result;
 	}
 

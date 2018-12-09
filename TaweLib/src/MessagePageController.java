@@ -16,43 +16,43 @@ import javafx.stage.Stage;
  */
 public class MessagePageController {
 
-    @FXML
-    private BorderPane messagePane;
+	@FXML
+	private BorderPane messagePane;
 
-    @FXML
-    private ListView<String> messageList;
+	@FXML
+	private ListView<String> messageList;
 
-    private User curUser;
+	private User curUser;
 
-    /**
-     * Obtains all all user messages accordingly and stores them into
-     * log/messageList.
-     */
-    public void initialize() {
-	curUser = LoginController.getLoggedUser();
-	Collections.reverse(curUser.getMessages());
-	for (int i = 0; i < curUser.getMessages().size(); i++) {
-	    messageList.getItems().add(curUser.getMessages().get(i));
+	/**
+	 * Obtains all all user messages accordingly and stores them into
+	 * log/messageList.
+	 */
+	public void initialize() {
+		curUser = LoginController.getLoggedUser();
+		Collections.reverse(curUser.getMessages());
+		for (int i = 0; i < curUser.getMessages().size(); i++) {
+			messageList.getItems().add(curUser.getMessages().get(i));
+		}
 	}
-    }
 
-    /**
-     * Actions will be made when the user clicks on the button. Returns to
-     * previous window by closing the current/most recent one.
-     * 
-     * @param event
-     */
-    @FXML
-    private void clickOnBack(ActionEvent event) {
-	closeWindow();
-    }
+	/**
+	 * Actions will be made when the user clicks on the button. Returns to
+	 * previous window by closing the current/most recent one.
+	 * 
+	 * @param event
+	 */
+	@FXML
+	private void clickOnBack(ActionEvent event) {
+		closeWindow();
+	}
 
-    /**
-     * This method closes the window.
-     */
-    @FXML
-    private void closeWindow() { // A method which close the window
-	Stage stage = (Stage) messagePane.getScene().getWindow();
-	stage.close();
-    }
+	/**
+	 * This method closes the window.
+	 */
+	@FXML
+	private void closeWindow() { // A method which close the window
+		Stage stage = (Stage) messagePane.getScene().getWindow();
+		stage.close();
+	}
 }

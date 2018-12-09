@@ -40,11 +40,13 @@ public class TransactionHistoryPageController {
 	@FXML
 	void clickOnFineHistory(ActionEvent event) {
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FineHistoryPage.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(
+					getClass().getResource("FineHistoryPage.fxml"));
 
 			BorderPane fineHistory = (BorderPane) fxmlLoader.load();
 
-			Scene fineHistoryScene = new Scene(fineHistory, Main.TRANSACTIONHISTORYPAGE_WIDTH,
+			Scene fineHistoryScene = new Scene(fineHistory,
+					Main.TRANSACTIONHISTORYPAGE_WIDTH,
 					Main.TRANSACTIONHISTORYPAGE_HEIGHT);
 			Stage fineHistoryStage = new Stage();
 
@@ -67,11 +69,13 @@ public class TransactionHistoryPageController {
 	@FXML
 	void clickOnPaymentHistory(ActionEvent event) {
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PaymentHistoryPage.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(
+					getClass().getResource("PaymentHistoryPage.fxml"));
 
 			BorderPane paymentHistory = (BorderPane) fxmlLoader.load();
 
-			Scene paymentHistoryScene = new Scene(paymentHistory, Main.TRANSACTIONHISTORYPAGE_WIDTH,
+			Scene paymentHistoryScene = new Scene(paymentHistory,
+					Main.TRANSACTIONHISTORYPAGE_WIDTH,
 					Main.TRANSACTIONHISTORYPAGE_HEIGHT);
 			Stage paymentHistoryStage = new Stage();
 

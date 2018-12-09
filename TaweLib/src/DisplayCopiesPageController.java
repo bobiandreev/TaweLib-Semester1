@@ -12,11 +12,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- * <h1> Display Copies Page Controller. (GUI) </h1>
- * The DisplayCopiesPageController class which controls the DisplayCopiesPageController.fxml
+ * <h1>Display Copies Page Controller. (GUI)</h1> The
+ * DisplayCopiesPageController class which controls the
+ * DisplayCopiesPageController.fxml
  * 
  * 
- * @author Ming
+ * @author Ming and Boris
  * @version 1.0
  * @since 2018-12-06
  *
@@ -35,8 +36,8 @@ public class DisplayCopiesPageController {
 
 	/**
 	 * Initialize the controller. Displays appropriate message according to
-	 * whether or not a copy of a requested item/resource is available.
-	 * (Checks first the status of a resource copy.)
+	 * whether or not a copy of a requested item/resource is available. (Checks
+	 * first the status of a resource copy.)
 	 */
 	@FXML
 	private void initialize() {
@@ -50,38 +51,42 @@ public class DisplayCopiesPageController {
 			} else {
 				borrowed = "Available.";
 			}
-			stringCopies = "Copy: " + copy.getCopyId() + "\t\tStatus: " + borrowed + "\n";
+			stringCopies = "Copy: " + copy.getCopyId() + "\t\tStatus: "
+					+ borrowed + "\n";
 			copyList.getItems().add(stringCopies);
 		}
 	}
 
 	/**
-	 * Actions will be carried out when button is clicked to go through
-	 * the list of copies (copyList) for display. Appropriate alert boxes
-	 * pop up when unexpected/non-existent list item is being pulled or
-	 * when logged in as a User without permission (When User is not a
-	 * Librarian).
+	 * Actions will be carried out when button is clicked to go through the list
+	 * of copies (copyList) for display. Appropriate alert boxes pop up when
+	 * unexpected/non-existent list item is being pulled or when logged in as a
+	 * User without permission (When User is not a Librarian).
 	 * 
-	 * @param event - When the mouse clicks on the check copy history button.
+	 * @param event
+	 *            - When the mouse clicks on the check copy history button.
 	 */
 	@FXML
 	void clickOnCheckCopyHistory(ActionEvent event) {
 		if (curUser instanceof Librarian) {
-			
-			if (copyList.getSelectionModel().getSelectedIndex() < 0){
+
+			if (copyList.getSelectionModel().getSelectedIndex() < 0) {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setHeaderText("Error");
 				alert.setContentText("Please select a copy");
 				alert.showAndWait();
-				
+
 			} else {
-				selectedCopy = resource.getCopies().get(copyList.getSelectionModel().getSelectedIndex());
+				selectedCopy = resource.getCopies()
+						.get(copyList.getSelectionModel().getSelectedIndex());
 				try {
-					FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CopyHistoryPage.fxml"));
+					FXMLLoader fxmlLoader = new FXMLLoader(
+							getClass().getResource("CopyHistoryPage.fxml"));
 
 					BorderPane copyHistory = (BorderPane) fxmlLoader.load();
 
-					Scene copyHistoryScene = new Scene(copyHistory, Main.BROWSEANDSEARCHPAGE_WIDTH,
+					Scene copyHistoryScene = new Scene(copyHistory,
+							Main.BROWSEANDSEARCHPAGE_WIDTH,
 							Main.BROWSEANDSEARCHPAGE_HEIGHT);
 					Stage copyHistoryStage = new Stage();
 
@@ -94,7 +99,7 @@ public class DisplayCopiesPageController {
 					System.exit(-1);
 				}
 			}
-			
+
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setHeaderText("Error!");
@@ -102,22 +107,22 @@ public class DisplayCopiesPageController {
 			alert.showAndWait();
 		}
 	}
-	
+
 	/**
 	 * Getter method which returns a selected copy.
 	 * 
-	 * @return selectedCopy
-	 * 			A copy item which has been selected. 
+	 * @return selectedCopy A copy item which has been selected.
 	 */
 	public static Copy getSelectedCopy() {
 		return selectedCopy;
 	}
 
 	/**
-	 * Actions will be made when the user clicks on the button.
-	 * Returns to previous window by closing the current/most recent one.
+	 * Actions will be made when the user clicks on the button. Returns to
+	 * previous window by closing the current/most recent one.
 	 * 
-	 * @param event - When the mouse clicks on the button.
+	 * @param event
+	 *            - When the mouse clicks on the button.
 	 */
 	@FXML
 	void clickOnBack(ActionEvent event) {
@@ -125,10 +130,11 @@ public class DisplayCopiesPageController {
 	}
 
 	/**
-	 * Actions will be made when the User clicks on the button.
-	 * Makes a request for a copy of an item/resource on behalf of the User.
+	 * Actions will be made when the User clicks on the button. Makes a request
+	 * for a copy of an item/resource on behalf of the User.
 	 * 
-	 * @param event - When the mouse clicks on the button.
+	 * @param event
+	 *            - When the mouse clicks on the button.
 	 */
 	@FXML
 	void clickOnRequestACopy(ActionEvent event) {

@@ -25,15 +25,17 @@ public class UserRequestedItemsPageController {
 	private User curUser;
 
 	/**
-	 * This method gets called whenever the requested items paged is opened. It goes
-	 * through the list of requested items of the user and displays them all.
+	 * This method gets called whenever the requested items paged is opened. It
+	 * goes through the list of requested items of the user and displays them
+	 * all.
 	 */
 	public void initialize() {
 		curUser = LoginController.getLoggedUser();
 		for (Copy copy : curUser.getRequestedItems()) {
 			// returnRequestCopies.add(copy);
 			Resource copyOf = copy.getResource();
-			String copyProperties = (copyOf.getTitle() + ", " + copyOf.getYear() + ". You have requested this on "
+			String copyProperties = (copyOf.getTitle() + ", " + copyOf.getYear()
+					+ ". You have requested this on "
 					+ copy.getDateRequested());
 			requestedItemsList.getItems().add(copyProperties);
 		}
