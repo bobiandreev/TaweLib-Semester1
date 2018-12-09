@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 /**
  * <h1> Create a new Book resource. </h1>
  * The CreateBookPageController Class which controls the CreateBookPage.fxml
+ * It contains methods to create a new book object with the gui
  * 
  * @author Ming
  * @version 1.0
@@ -65,7 +66,7 @@ public class CreateBookPageController {
 	 * Actions will be made when the user clicks on the button.
 	 * Returns to previous window by closing the current/most recent one.
 	 * 
-	 * @param event - When the mouse clicks on the button.
+	 * @param event - When the mouse clicks on the back button.
 	 */
     @FXML
     private void clickOnBack(ActionEvent event) {
@@ -103,8 +104,8 @@ public class CreateBookPageController {
     }
     
     /**
-	 * Actions will be made when the user clicks on the button.
-	 * Setting of thumbnail image for the Book.
+	 * 
+	 * This method is called whenever a new thumbnail image for the Book is set.
 	 * 
 	 * @param event - When the mouse clicks on the button.
 	 * @throws IOException

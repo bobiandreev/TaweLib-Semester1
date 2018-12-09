@@ -90,6 +90,10 @@ public class DVD extends Resource {
 		this.subtitles = subtitles;
 	}
 
+	/**
+	 * Setter method for the director of the film 
+	 * @param director Director of the film
+	 */
 	public void setDirector(String director) {
 		this.director = director;
 	}

@@ -15,8 +15,9 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
- * <h1> Create a new DVD resource. </h1>
- * The CreateDVDPageController Class which controls the CreateDVDPage.fxml
+ * <h1>Create a new DVD resource.</h1> The CreateDVDPageController Class which
+ * controls the CreateDVDPage.fxml Contains methods which can create a new DVD
+ * object
  * 
  * @author Ming
  * @version 1.0
@@ -55,11 +56,12 @@ public class CreateDVDPageController {
 	private String image;
 
 	/**
-	 * Actions will be made when the user clicks on the button.
-	 * Triggers alert box for indication of new DVD item creation.
-	 * (Creates a new DVD resource with all fields entered.)
+	 * Actions will be made when the user clicks on the button. Triggers alert box
+	 * for indication of new DVD item creation. (Creates a new DVD resource with all
+	 * fields entered.)
 	 * 
-	 * @param event - When the mouse clicks on the button.
+	 * @param event
+	 *            - When the mouse clicks on the confirm button.
 	 */
 	@FXML
 	private void clickOnConfirm(ActionEvent event) {
@@ -81,11 +83,12 @@ public class CreateDVDPageController {
 	}
 
 	/**
-	 * Actions will be made when the user clicks on the button.
-	 * Setting of thumbnail image for the Laptop.
+	 * This method is called when setting of thumbnail image for the Laptop.
 	 * 
-	 * @param event - When the mouse clicks on the button.
+	 * @param event
+	 *            - When the mouse clicks on the new image button.
 	 * @throws IOException
+	 *             Exception thrown if the file specified does not exist
 	 */
 	@FXML
 	public void clickOnThumbnailImage(ActionEvent event) throws IOException {
@@ -101,10 +104,11 @@ public class CreateDVDPageController {
 	}
 
 	/**
-	 * Actions will be made when the user clicks on the button.
-	 * Returns to previous window by closing the current/most recent one.
+	 * Actions will be made when the user clicks on the button. Returns to previous
+	 * window by closing the current/most recent one.
 	 * 
-	 * @param event - When the mouse clicks on the button.
+	 * @param event
+	 *            - When the mouse clicks on the back button.
 	 */
 	@FXML
 	private void clickOnBack(ActionEvent event) {

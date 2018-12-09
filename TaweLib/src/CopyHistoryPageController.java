@@ -18,7 +18,9 @@ public class CopyHistoryPageController {
 	private Copy selectedCopy;
 
 	/**
-	 * Method to initialize the opening state of the window.
+	 * This is called whenever the copy history page is opened. It goes through the
+	 * list containing the copys history and displays it.
+	 * 
 	 */
 
 	@FXML
@@ -33,7 +35,8 @@ public class CopyHistoryPageController {
 	/**
 	 * Method to close the window.
 	 * 
-	 * @param event Mouse click on Back button.
+	 * @param event
+	 *            Mouse click on Back button.
 	 */
 
 	@FXML

@@ -8,11 +8,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 /**
- * <h1> Process borrow requests. </h1>
- * The BorrowRequestPageController Class which controls the
- * BorrowRequestPage.fxml
+ * <h1>Process borrow requests.</h1> The BorrowRequestPageController Class which
+ * controls the BorrowRequestPage.fxml
  * 
- * @author Ming
+ * @author Ming and Boris
  * @version 1.0
  * @since 2018-12-04
  *
@@ -26,14 +25,9 @@ public class BorrowRequestPageController {
 	@FXML
 	private ListView<String> borrowRequestList;
 
-	// private ArrayList<String> borrowRequests = new ArrayList<>();
-	// private ArrayList<> borrowRequests = new ArrayList<>();
-
 	/**
-	 * Initialize the controller. The following happen in this order: 1) First an
-	 * instance of the controller is created (the constructor is called), 2) Next
-	 * the @FXML variables are bound to the GUI components. 3) Finally, this
-	 * initialize method is called.
+	 * This method gets called whenever the borrow request page is opened. It goes
+	 * through all users and their requests to borrow items and displays them.
 	 */
 	public void initialize() {
 		for (User user : Librarian.getUsersList()) {
@@ -47,11 +41,12 @@ public class BorrowRequestPageController {
 	}
 
 	/**
-	 * Actions will be made when the user clicks on the button.
-	 * Approves the borrow request. Displays appropriate alert boxes
-	 * accordingly.
+	 * When librarian has selected a request to approve and clicks approve this gets
+	 * executed. It updates the attributes for the copy of the resource and the user
+	 * requesting.
 	 * 
-	 * @param event - When the mouse clicks on the button.
+	 * @param event
+	 *            Clicking the approve button
 	 */
 	@FXML
 	void clickOnApprove(ActionEvent event) {
@@ -81,11 +76,12 @@ public class BorrowRequestPageController {
 	}
 
 	/**
-	 * Actions will be made when the user clicks on the button.
-	 * Disapprove borrow requests. Displays appropriate alert boxes
-	 * accordingly.
+	  * When librarian has selected a request to not approve and clicks not approve this gets
+	 * executed. It updates the attributes for the copy of the resource and the user
+	 * requesting.
 	 * 
-	 * @param event - When the mouse clicks on the button.
+	 * @param event
+	 *            Clicking not approve.
 	 */
 	@FXML
 	void clickOnNotApprove(ActionEvent event) {
@@ -115,10 +111,10 @@ public class BorrowRequestPageController {
 	}
 
 	/**
-	 * Actions will be made when the user clicks on the button.
-	 * Returns to previous window by closing the current/most recent one.
+	 * Calls the method which closes the window.
 	 * 
-	 * @param event - When the mouse clicks on the button.
+	 * @param event
+	 *            Clicking on the back button.
 	 */
 	@FXML
 	void clickOnBack(ActionEvent event) {

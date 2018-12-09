@@ -30,8 +30,7 @@ public class Book extends Resource {
 	 * @param publisher
 	 *            Publisher of the book.
 	 */
-	public Book(String title, String year,String image, int numOfCopies,
-			String author, String publisher) {
+	public Book(String title, String year, String image, int numOfCopies, String author, String publisher) {
 		super(title, year, image, numOfCopies);
 		this.author = author;
 		this.publisher = publisher;
@@ -112,20 +111,33 @@ public class Book extends Resource {
 		this.language = language;
 	}
 
+	/**
+	 * Setter method for the author of the book
+	 * 
+	 * @param author
+	 *            Author of the book
+	 */
 	public void setAuthor(String author) {
 		this.author = author;
 	}
 
+	/**
+	 * Setter method for the publisher of the book
+	 * 
+	 * @param publisher
+	 *            Publisher of the book
+	 */
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
 	}
-	
+
+	/**
+	 * To string method for the book
+	 */
 	public String toString() {
 		String result = super.toString();
-		result += "\nAuthor:\t\t\t" + this.getAuthor() + "\nPublisher:\t\t\t" + 
-				this.getPublisher() + "\nGenre:\t\t\t" + this.getGenre() + 
-				"\nISBN:\t\t\t" + this.getISBN() +  "\nLanguage:\t\t" + 
-				this.getLanguage();
+		result += "\nAuthor:\t\t\t" + this.getAuthor() + "\nPublisher:\t\t\t" + this.getPublisher() + "\nGenre:\t\t\t"
+				+ this.getGenre() + "\nISBN:\t\t\t" + this.getISBN() + "\nLanguage:\t\t" + this.getLanguage();
 		return result;
 	}
 }

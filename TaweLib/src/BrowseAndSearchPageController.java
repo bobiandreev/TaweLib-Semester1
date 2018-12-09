@@ -16,10 +16,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- * The BrowseAndSearchPageController Class which controls the
- * BrowseAndSearchPage.fxml
+ * This class is responsible for the actions done within the Browse and Search
+ * window.
  * 
- * @author Ming
+ * @author Ming and Boris
  *
  */
 public class BrowseAndSearchPageController {
@@ -29,7 +29,7 @@ public class BrowseAndSearchPageController {
 	private ArrayList<Resource> laptopList;
 	private static ArrayList<Resource> currentList = new ArrayList<>();
 	private static Resource selectedResource;
-	
+
 	public static Resource getSelectedResource() {
 		return selectedResource;
 	}
@@ -62,6 +62,13 @@ public class BrowseAndSearchPageController {
 		return resourceToEdit;
 	}
 
+	/**
+	 * This method gets the selected by the user resource and opens the edit page
+	 * for it.
+	 * 
+	 * @param event
+	 *            Clicking the edit button
+	 */
 	@FXML
 	void clickOnEdit(ActionEvent event) {
 		curUser = LoginController.getLoggedUser();
@@ -89,17 +96,19 @@ public class BrowseAndSearchPageController {
 			if (selectedResource instanceof LaptopComputer) {
 				Laptop();
 			}
-		}
-		else {
+		} else {
 			Alert alert1 = new Alert(AlertType.ERROR);
 			alert1.setTitle("Error");
 			alert1.setHeaderText("Can not do this action!");
 			alert1.setContentText("Only librarians can edit items!");
 			alert1.showAndWait();
-			
+
 		}
 	}
 
+	/**
+	 * This method opens the edit book window.
+	 */
 	@FXML
 	private void Book() {
 		try {
@@ -120,6 +129,9 @@ public class BrowseAndSearchPageController {
 		}
 	}
 
+	/**
+	 * This method opens the edit DVD window.
+	 */
 	@FXML
 	private void DVD() {
 		try {
@@ -140,6 +152,9 @@ public class BrowseAndSearchPageController {
 		}
 	}
 
+	/**
+	 * This method opens the laptop edit window.
+	 */
 	@FXML
 	private void Laptop() {
 		try {
@@ -160,6 +175,13 @@ public class BrowseAndSearchPageController {
 		}
 	}
 
+	/**
+	 * This method opens up an alert containing all of the information for a
+	 * resource
+	 * 
+	 * @param event
+	 *            Clicking on the info button
+	 */
 	@FXML
 	void clickOnInfo(ActionEvent event) {
 		int selectedIndex = browseAndSearchList.getSelectionModel().getSelectedIndex();
@@ -183,9 +205,12 @@ public class BrowseAndSearchPageController {
 	}
 
 	/**
-	 * Actions will be made when the user click on the button
+	 * This method searches through the resource list for items with the same name
+	 * as the string put in the search box. Results vary depending on which of the
+	 * boxes for filtering are selected.
 	 * 
 	 * @param event
+	 *            Clicking on the search button
 	 */
 	@FXML
 	private void clickOnSearch(ActionEvent event) {
@@ -236,10 +261,9 @@ public class BrowseAndSearchPageController {
 	}
 
 	/**
-	 * Initialize the controller. The following happen in this order: 1) First an
-	 * instance of the controller is created (the constructor is called), 2) Next
-	 * the @FXML variables are bound to the GUI components. 3) Finally, this
-	 * initialize method is called.
+	 * This method is called whenever the browse and search window is opened. It
+	 * checks which ones of the filter boxes are ticked and adds the necessary items
+	 * to the list view to be displayed.
 	 */
 	public void initialize() {
 		resourceList = SearchBrowse.getResources();
@@ -283,7 +307,8 @@ public class BrowseAndSearchPageController {
 	}
 
 	/**
-	 * Handle the Book Check Box. Searching filter of resources.
+	 * This method used whenever one of the checkboxes is clicked. It then adds the
+	 * necessary items to the list view.
 	 */
 	private void handleBookCheckBoxAction() {
 		if (bookCheckBox.isSelected()) {
@@ -349,9 +374,11 @@ public class BrowseAndSearchPageController {
 	}
 
 	/**
-	 * Actions will be made when the user click on the button
+	 * This method opens a new window where all of the copies of a resource are
+	 * displayed and a user can see if they are borrowed or not.
 	 * 
 	 * @param event
+	 *            Clicking on the check for copies button
 	 */
 	@FXML
 	private void clickOnCheckForCopies(ActionEvent event) {
@@ -377,13 +404,14 @@ public class BrowseAndSearchPageController {
 			}
 			stringCopies += "Copy: " + copy.getCopyId() + "\t\tStatus: " + borrowed + "\n";
 		}
-		
+
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DisplayCopiesPage.fxml"));
 
 			BorderPane copiesAvailable = (BorderPane) fxmlLoader.load();
 
-			Scene copiesAvailableScene = new Scene(copiesAvailable, Main.BROWSEANDSEARCHPAGE_WIDTH, Main.BROWSEANDSEARCHPAGE_HEIGHT);
+			Scene copiesAvailableScene = new Scene(copiesAvailable, Main.BROWSEANDSEARCHPAGE_WIDTH,
+					Main.BROWSEANDSEARCHPAGE_HEIGHT);
 			Stage copiesAvailableStage = new Stage();
 
 			copiesAvailableStage.setScene(copiesAvailableScene);
@@ -395,17 +423,17 @@ public class BrowseAndSearchPageController {
 			System.exit(-1);
 		}
 	}
-		
-	/*	alert.setTitle("Copies");
-		alert.setHeaderText(null);
-		alert.setContentText(stringCopies);
-		alert.showAndWait();
-		*/
+
+	/*
+	 * alert.setTitle("Copies"); alert.setHeaderText(null);
+	 * alert.setContentText(stringCopies); alert.showAndWait();
+	 */
 
 	/**
-	 * Actions will be made when the user click on the button
+	 * Calls the close window method
 	 * 
 	 * @param event
+	 *            Clicking on the back button
 	 */
 	@FXML
 	private void clickOnBack(ActionEvent event) {
@@ -421,11 +449,17 @@ public class BrowseAndSearchPageController {
 		stage.close();
 	}
 
+	/**
+	 * Clears all the lists from filters
+	 */
 	private void clearLists() {
 		currentList.clear();
 		browseAndSearchList.getItems().clear();
 	}
 
+	/**
+	 * Adds all resources to the list view
+	 */
 	private void addAllResourcesToList() {
 		// currentList = resourceList;
 		for (Resource resource : resourceList) {
@@ -434,6 +468,9 @@ public class BrowseAndSearchPageController {
 		}
 	}
 
+	/**
+	 * Adds books to the list view
+	 */
 	private void addBookToList() {
 		for (Resource resource : bookList) {
 			currentList.add(resource);
@@ -441,6 +478,9 @@ public class BrowseAndSearchPageController {
 		}
 	}
 
+	/**
+	 * Adds dvds to the list view
+	 */
 	private void addDVDToList() {
 		for (Resource resource : dvdList) {
 			currentList.add(resource);
@@ -448,6 +488,9 @@ public class BrowseAndSearchPageController {
 		}
 	}
 
+	/**
+	 * Adds laptops to the list view
+	 */
 	private void addLaptopToList() {
 		for (Resource resource : laptopList) {
 			currentList.add(resource);
