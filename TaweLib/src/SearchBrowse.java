@@ -161,7 +161,7 @@ public class SearchBrowse {
 			Copy reservedCopy = copyWithDate(resource, minDate);
 			user.getReservedFor().add(reservedCopy);
 			reservedCopy.setDateRequested(Copy.getDateNow());
-			System.out.println(reservedCopy.getDateRequested());
+			//System.out.println(reservedCopy.getDateRequested());
 			reservedCopy.setReserved(true);
 			reservedCopy.setReservedFor(user);
 			reservedCopy.setDueDate();
