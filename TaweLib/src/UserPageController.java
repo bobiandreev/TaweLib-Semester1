@@ -54,6 +54,9 @@ public class UserPageController {
 		curUser.checkFineHistory();
 		profilePicture.setImage(image);
 		showCurrentBalanceBox.setText("Current Balance: " + Double.toString(curUser.getBalance()));
+		for (Resource resource: SearchBrowse.getResources()) {
+			Copy.checkCopy(resource);
+		}
 	}
 
 	/**

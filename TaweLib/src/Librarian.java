@@ -151,6 +151,7 @@ public class Librarian extends User {
 					curCopy.setRequestedBy(null);
 					curCopy.setDateRequested(null);
 					curCopy.setReservedFor(null);
+					curCopy.setReserved(false);
 					curCopy.setBorrowedBy(curUser); // sets the borrower of the copy to user
 					curCopy.setDateBorrowed(Copy.getDateNow()); // sets date when copy is taken
 					curCopy.removeRequest(); // sets the boolean request in copy to false
@@ -242,7 +243,10 @@ public class Librarian extends User {
 		if (curUser.getBalance() == 0) {
 			if (flag /* approved */) {
 				curUser.getBorrowedItems().add(curCopy); // adds to borrowed items list in curUser
-				curCopy.borrow(); // sets the boolean borrow in copy to true
+				curCopy.borrow(); // sets the boolean borrow in copy to truecurCopy.setRequestedBy(null);
+				curCopy.setDateRequested(null);
+				curCopy.setReservedFor(null);
+				curCopy.setReserved(false);
 				curCopy.setRequestedBy(null);
 				curCopy.setBorrowedBy(curUser); // sets the borrower of the copy to curUser
 				curCopy.setDateBorrowed(Copy.getDateNow()); // sets date when copy is taken

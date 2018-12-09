@@ -19,7 +19,7 @@ import javafx.stage.Stage;
  * controls the CreateDVDPage.fxml Contains methods which can create a new DVD
  * object
  * 
- * @author Ming
+ * @author Ming and Boris
  * @version 1.0
  * @since 2018-12-03
  */
@@ -56,9 +56,9 @@ public class CreateDVDPageController {
 	private String image;
 
 	/**
-	 * Actions will be made when the user clicks on the button. Triggers alert box
-	 * for indication of new DVD item creation. (Creates a new DVD resource with all
-	 * fields entered.)
+	 * Actions will be made when the user clicks on the button. Triggers alert
+	 * box for indication of new DVD item creation. (Creates a new DVD resource
+	 * with all fields entered.)
 	 * 
 	 * @param event
 	 *            - When the mouse clicks on the confirm button.
@@ -72,12 +72,14 @@ public class CreateDVDPageController {
 		String runtime = this.runtime.getText();
 		String language = this.language.getText();
 		String availableSubtitles = this.availavleSubtitles.getText();
-		DVD newDVD = new DVD(title, year, image, numberOfCopies, director, runtime);
+		DVD newDVD = new DVD(title, year, image, numberOfCopies, director,
+				runtime);
 		newDVD.setSubtitles(availableSubtitles);
 		newDVD.setLanguage(language);
 		SearchBrowse.getResources().add(newDVD);
 		alert.setHeaderText("Success!");
-		alert.setContentText("This DVD has been added to the catalogue successfully!");
+		alert.setContentText(
+				"This DVD has been added to the catalogue successfully!");
 		alert.showAndWait();
 		closeWindow();
 	}
@@ -104,8 +106,8 @@ public class CreateDVDPageController {
 	}
 
 	/**
-	 * Actions will be made when the user clicks on the button. Returns to previous
-	 * window by closing the current/most recent one.
+	 * Actions will be made when the user clicks on the button. Returns to
+	 * previous window by closing the current/most recent one.
 	 * 
 	 * @param event
 	 *            - When the mouse clicks on the back button.

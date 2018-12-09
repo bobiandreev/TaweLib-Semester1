@@ -63,8 +63,8 @@ public class BrowseAndSearchPageController {
 	}
 
 	/**
-	 * This method gets the selected by the user resource and opens the edit page
-	 * for it.
+	 * This method gets the selected by the user resource and opens the edit
+	 * page for it.
 	 * 
 	 * @param event
 	 *            Clicking the edit button
@@ -73,7 +73,8 @@ public class BrowseAndSearchPageController {
 	void clickOnEdit(ActionEvent event) {
 		curUser = LoginController.getLoggedUser();
 		if (curUser instanceof Librarian) {
-			int selectedIndex = browseAndSearchList.getSelectionModel().getSelectedIndex();
+			int selectedIndex = browseAndSearchList.getSelectionModel()
+					.getSelectedIndex();
 
 			if (selectedIndex < 0) {
 				Alert alert = new Alert(AlertType.ERROR);
@@ -112,11 +113,13 @@ public class BrowseAndSearchPageController {
 	@FXML
 	private void Book() {
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EditBookPage.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(
+					getClass().getResource("EditBookPage.fxml"));
 
 			BorderPane editBook = (BorderPane) fxmlLoader.load();
 
-			Scene editBookScene = new Scene(editBook, Main.EDITBOOKPAGE_WIDTH, Main.EDITBOOKPAGE_HEIGHT);
+			Scene editBookScene = new Scene(editBook, Main.EDITBOOKPAGE_WIDTH,
+					Main.EDITBOOKPAGE_HEIGHT);
 			Stage editBookStage = new Stage();
 
 			editBookStage.setScene(editBookScene);
@@ -135,11 +138,13 @@ public class BrowseAndSearchPageController {
 	@FXML
 	private void DVD() {
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EditDVDPage.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(
+					getClass().getResource("EditDVDPage.fxml"));
 
 			BorderPane editDVD = (BorderPane) fxmlLoader.load();
 
-			Scene editDVDScene = new Scene(editDVD, Main.EDITDVDPAGE_WIDTH, Main.EDITDVDPAGE_HEIGHT);
+			Scene editDVDScene = new Scene(editDVD, Main.EDITDVDPAGE_WIDTH,
+					Main.EDITDVDPAGE_HEIGHT);
 			Stage editDVDStage = new Stage();
 
 			editDVDStage.setScene(editDVDScene);
@@ -158,11 +163,13 @@ public class BrowseAndSearchPageController {
 	@FXML
 	private void Laptop() {
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EditLaptopPage.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(
+					getClass().getResource("EditLaptopPage.fxml"));
 
 			BorderPane editDVD = (BorderPane) fxmlLoader.load();
 
-			Scene editLaptopScene = new Scene(editDVD, Main.EDITLAPTOPPAGE_WIDTH, Main.EDITLAPTOPPAGE_HEIGHT);
+			Scene editLaptopScene = new Scene(editDVD,
+					Main.EDITLAPTOPPAGE_WIDTH, Main.EDITLAPTOPPAGE_HEIGHT);
 			Stage editLaptopStage = new Stage();
 
 			editLaptopStage.setScene(editLaptopScene);
@@ -184,7 +191,8 @@ public class BrowseAndSearchPageController {
 	 */
 	@FXML
 	void clickOnInfo(ActionEvent event) {
-		int selectedIndex = browseAndSearchList.getSelectionModel().getSelectedIndex();
+		int selectedIndex = browseAndSearchList.getSelectionModel()
+				.getSelectedIndex();
 
 		if (selectedIndex < 0) {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -196,7 +204,8 @@ public class BrowseAndSearchPageController {
 		}
 		Resource selectedResource = currentList.get(selectedIndex);
 		alert.setTitle("Info");
-		Image image = new Image(selectedResource.getThumbnailImage(), 200, 135, true, true);
+		Image image = new Image(selectedResource.getThumbnailImage(), 200, 135,
+				true, true);
 		ImageView imageView = new ImageView(image);
 		alert.setGraphic(imageView);
 		alert.setHeaderText(null);
@@ -205,9 +214,9 @@ public class BrowseAndSearchPageController {
 	}
 
 	/**
-	 * This method searches through the resource list for items with the same name
-	 * as the string put in the search box. Results vary depending on which of the
-	 * boxes for filtering are selected.
+	 * This method searches through the resource list for items with the same
+	 * name as the string put in the search box. Results vary depending on which
+	 * of the boxes for filtering are selected.
 	 * 
 	 * @param event
 	 *            Clicking on the search button
@@ -219,11 +228,13 @@ public class BrowseAndSearchPageController {
 				clearLists();
 				addBookToList();
 				addDVDToList();
-			} else if (bookCheckBox.isSelected() && laptopCheckBox.isSelected()) {
+			} else if (bookCheckBox.isSelected()
+					&& laptopCheckBox.isSelected()) {
 				clearLists();
 				addBookToList();
 				addLaptopToList();
-			} else if (DVDCheckBox.isSelected() && laptopCheckBox.isSelected()) {
+			} else if (DVDCheckBox.isSelected()
+					&& laptopCheckBox.isSelected()) {
 				clearLists();
 				addDVDToList();
 				addLaptopToList();
@@ -249,10 +260,11 @@ public class BrowseAndSearchPageController {
 			checkList.addAll(SearchBrowse.search(keyword, tempList));
 			if (!checkList.isEmpty()) {
 				clearLists();
-				for (Resource resource : SearchBrowse.search(keyword, tempList)) {
+				for (Resource resource : SearchBrowse.search(keyword,
+						tempList)) {
 					currentList.add(resource);
-					browseAndSearchList.getItems()
-							.add(resource.getID() + " " + resource.getTitle() + " " + resource.getYear());
+					browseAndSearchList.getItems().add(resource.getID() + " "
+							+ resource.getTitle() + " " + resource.getYear());
 				}
 			}
 
@@ -262,8 +274,8 @@ public class BrowseAndSearchPageController {
 
 	/**
 	 * This method is called whenever the browse and search window is opened. It
-	 * checks which ones of the filter boxes are ticked and adds the necessary items
-	 * to the list view to be displayed.
+	 * checks which ones of the filter boxes are ticked and adds the necessary
+	 * items to the list view to be displayed.
 	 */
 	public void initialize() {
 		resourceList = SearchBrowse.getResources();
@@ -307,8 +319,8 @@ public class BrowseAndSearchPageController {
 	}
 
 	/**
-	 * This method used whenever one of the checkboxes is clicked. It then adds the
-	 * necessary items to the list view.
+	 * This method used whenever one of the checkboxes is clicked. It then adds
+	 * the necessary items to the list view.
 	 */
 	private void handleBookCheckBoxAction() {
 		if (bookCheckBox.isSelected()) {
@@ -382,7 +394,8 @@ public class BrowseAndSearchPageController {
 	 */
 	@FXML
 	private void clickOnCheckForCopies(ActionEvent event) {
-		int selectedIndex = browseAndSearchList.getSelectionModel().getSelectedIndex();
+		int selectedIndex = browseAndSearchList.getSelectionModel()
+				.getSelectedIndex();
 
 		if (selectedIndex < 0) {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -402,15 +415,18 @@ public class BrowseAndSearchPageController {
 			} else {
 				borrowed = "Available.";
 			}
-			stringCopies += "Copy: " + copy.getCopyId() + "\t\tStatus: " + borrowed + "\n";
+			stringCopies += "Copy: " + copy.getCopyId() + "\t\tStatus: "
+					+ borrowed + "\n";
 		}
 
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DisplayCopiesPage.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(
+					getClass().getResource("DisplayCopiesPage.fxml"));
 
 			BorderPane copiesAvailable = (BorderPane) fxmlLoader.load();
 
-			Scene copiesAvailableScene = new Scene(copiesAvailable, Main.BROWSEANDSEARCHPAGE_WIDTH,
+			Scene copiesAvailableScene = new Scene(copiesAvailable,
+					Main.BROWSEANDSEARCHPAGE_WIDTH,
 					Main.BROWSEANDSEARCHPAGE_HEIGHT);
 			Stage copiesAvailableStage = new Stage();
 
@@ -464,7 +480,8 @@ public class BrowseAndSearchPageController {
 		// currentList = resourceList;
 		for (Resource resource : resourceList) {
 			currentList.add(resource);
-			browseAndSearchList.getItems().add(resource.getID() + " " + resource.getTitle() + " " + resource.getYear());
+			browseAndSearchList.getItems().add(resource.getID() + " "
+					+ resource.getTitle() + " " + resource.getYear());
 		}
 	}
 
@@ -474,7 +491,8 @@ public class BrowseAndSearchPageController {
 	private void addBookToList() {
 		for (Resource resource : bookList) {
 			currentList.add(resource);
-			browseAndSearchList.getItems().add(resource.getID() + " " + resource.getTitle() + " " + resource.getYear());
+			browseAndSearchList.getItems().add(resource.getID() + " "
+					+ resource.getTitle() + " " + resource.getYear());
 		}
 	}
 
@@ -484,7 +502,8 @@ public class BrowseAndSearchPageController {
 	private void addDVDToList() {
 		for (Resource resource : dvdList) {
 			currentList.add(resource);
-			browseAndSearchList.getItems().add(resource.getID() + " " + resource.getTitle() + " " + resource.getYear());
+			browseAndSearchList.getItems().add(resource.getID() + " "
+					+ resource.getTitle() + " " + resource.getYear());
 		}
 	}
 
@@ -494,7 +513,8 @@ public class BrowseAndSearchPageController {
 	private void addLaptopToList() {
 		for (Resource resource : laptopList) {
 			currentList.add(resource);
-			browseAndSearchList.getItems().add(resource.getID() + " " + resource.getTitle() + " " + resource.getYear());
+			browseAndSearchList.getItems().add(resource.getID() + " "
+					+ resource.getTitle() + " " + resource.getYear());
 		}
 	}
 }

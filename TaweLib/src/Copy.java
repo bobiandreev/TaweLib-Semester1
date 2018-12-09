@@ -59,7 +59,8 @@ public class Copy implements Serializable {
 	 *             If the input is invalid.
 	 */
 	public static Date dateParser(String dateToParse) throws ParseException {
-		SimpleDateFormat parser = new SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy");
+		SimpleDateFormat parser = new SimpleDateFormat(
+				"EEE MMM d HH:mm:ss zzz yyyy");
 		if (dateToParse.equals("null")) {
 			return null;
 		}
@@ -328,22 +329,25 @@ public class Copy implements Serializable {
 	 * Setter method of the borrowing history of a copy.
 	 */
 	public void setReturnHistory() {
-		copyHistory.add("Returned by " + this.getBorrowedBy().getUsername() + " on " + this.getDateReturned());
+		copyHistory.add("Returned by " + this.getBorrowedBy().getUsername()
+				+ " on " + this.getDateReturned());
 	}
 
 	public void setBorrowHistory() {
-		copyHistory.add("Borrowed by " + this.getBorrowedBy().getUsername() + " on " + this.getDateBorrowed());
+		copyHistory.add("Borrowed by " + this.getBorrowedBy().getUsername()
+				+ " on " + this.getDateBorrowed());
 	}
 
 	/**
 	 * Method which allows the user to request a copy which then needs to be
 	 * approved by a librarian. Sets isRequested variable to true and sets the
-	 * dateRequested to the date now. Also stores which user currently has the copy.
+	 * dateRequested to the date now. Also stores which user currently has the
+	 * copy.
 	 */
 	public void requestCopy(User user) {
 		this.requestedBy = user;
 		this.request();
-		this.setDateRequested(dateNow);
+		this.setDateRequested(Copy.getDateNow());
 	}
 
 	/**
@@ -351,22 +355,26 @@ public class Copy implements Serializable {
 	 * user to request.
 	 * 
 	 * @param item
-	 *            The resource for which the user checks if there is a free copy.
-	 * @return Null if there are no free copies and the Copy object which is free if
-	 *         there is one.
+	 *            The resource for which the user checks if there is a free
+	 *            copy.
+	 * @return Null if there are no free copies and the Copy object which is
+	 *         free if there is one.
 	 */
 	public static Copy checkCopy(Resource item) {
-	//	curUser = LoginController.getLoggedUser();
+		// curUser = LoginController.getLoggedUser();
 		int i = 0;
-		while (i < item.getCopies().size() && item.getCopies().get(i).getIsBorrowed()
-				|| item.getCopies().get(i).getIsRequested() || item.getCopies().get(i).getIsReserved()) {
+		while (i < item.getCopies().size()
+				&& item.getCopies().get(i).getIsBorrowed()
+				|| item.getCopies().get(i).getIsRequested()
+				|| item.getCopies().get(i).getIsReserved()) {
 			Copy copy = item.getCopies().get(i);
 			i++;
-			
+
 			if (copy.getIsReserved() && !copy.getIsRequested()) {
-					copy.isReserved = false;
-					copy.getReservedFor().requestItem(item);;
-				
+				copy.isReserved = false;
+				copy.getReservedFor().requestItem(item);
+				;
+
 			}
 			if (i == item.getCopies().size()) {
 				// adds user to queue of users waiting for this resource
@@ -406,16 +414,20 @@ public class Copy implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Copy number " + this.getCopyId() + " of resource " + this.getResource().getTitle() + ".";
+		return "Copy number " + this.getCopyId() + " of resource "
+				+ this.getResource().getTitle() + ".";
 	}
 
 	public String toString1() {
 		if (this.getDueDate() == null) {
-			return "Copy number " + this.getCopyId() + " of resource " + this.getResource().getTitle()
+			return "Copy number " + this.getCopyId() + " of resource "
+					+ this.getResource().getTitle()
 					+ ". No due date is set for this item";
 		} else {
-			return "Copy number " + this.getCopyId() + " of resource " + this.getResource().getTitle()
-					+ ". This item is due to be returned on: " + S_D_F.format(this.getDueDate());
+			return "Copy number " + this.getCopyId() + " of resource "
+					+ this.getResource().getTitle()
+					+ ". This item is due to be returned on: "
+					+ S_D_F.format(this.getDueDate());
 		}
 	}
 }

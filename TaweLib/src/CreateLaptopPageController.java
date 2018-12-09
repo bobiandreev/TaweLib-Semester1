@@ -15,10 +15,10 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
- * <h1> Create a new Laptop resource. </h1>
- * The CreateLaptopPageController Class which controls the CreateLaptopPage.fxml
+ * <h1>Create a new Laptop resource.</h1> The CreateLaptopPageController Class
+ * which controls the CreateLaptopPage.fxml
  * 
- * @author Ming
+ * @author Ming and Boris
  * @version 1.0
  * @since 2018-12-03
  */
@@ -47,15 +47,15 @@ public class CreateLaptopPageController {
 
 	@FXML
 	private TextField numOfCopies;
-	
+
 	Alert alert = new Alert(AlertType.CONFIRMATION);
 
 	private String image;
 
-	 /**
-	 * Actions will be made when the user clicks on the button. Triggers alert box
-	 * for indication of new Laptop item creation. (Creates a new Laptop resource
-	 * with all fields entered.)
+	/**
+	 * Actions will be made when the user clicks on the button. Triggers alert
+	 * box for indication of new Laptop item creation. (Creates a new Laptop
+	 * resource with all fields entered.)
 	 * 
 	 * @param event
 	 *            - When the mouse clicks on the button.
@@ -68,19 +68,24 @@ public class CreateLaptopPageController {
 		int numberOfCopies = Integer.parseInt(this.numOfCopies.getText());
 		String model = this.model.getText();
 		String OS = this.operatingSystem.getText();
-		LaptopComputer newLaptop = new LaptopComputer(title, year, image, numberOfCopies, manufacturer, model, OS);
+		LaptopComputer newLaptop = new LaptopComputer(title, year, image,
+				numberOfCopies, manufacturer, model, OS);
 		SearchBrowse.getResources().add(newLaptop);
 		alert.setHeaderText("Success!");
-		alert.setContentText("This DVD has been added to the catalogue successfully!");
+		alert.setContentText(
+				"This DVD has been added to the catalogue successfully!");
 		alert.showAndWait();
 		closeWindow();
 	}
+
 	/**
-	 * Actions will be made when the user clicks on the button.
-	 * Setting of thumbnail image for the Laptop.
+	 * Actions will be made when the user clicks on the button. Setting of
+	 * thumbnail image for the Laptop.
 	 * 
-	 * @param event - When the mouse clicks on the button.
+	 * @param event
+	 *            - When the mouse clicks on the button.
 	 * @throws IOException
+	 *             Throws an exception if the file chosen doenst exist
 	 */
 	@FXML
 	public void clickOnThumbnailImage(ActionEvent event) throws IOException {
@@ -94,12 +99,13 @@ public class CreateLaptopPageController {
 		 * frame.setLocationRelativeTo(null); frame.setVisible(true);
 		 */
 	}
-	
+
 	/**
-	 * Actions will be made when the user clicks on the button.
-	 * Returns to previous window by closing the current/most recent one.
+	 * Actions will be made when the user clicks on the button. Returns to
+	 * previous window by closing the current/most recent one.
 	 * 
-	 * @param event - When the mouse clicks on the button.
+	 * @param event
+	 *            - When the mouse clicks on the back button.
 	 */
 	@FXML
 	private void clickOnBack(ActionEvent event) {
@@ -107,8 +113,8 @@ public class CreateLaptopPageController {
 	}
 
 	/**
-     * This method closes the window.
-     */
+	 * This method closes the window.
+	 */
 	@FXML
 	private void closeWindow() { // A method which close the window
 		Stage stage = (Stage) createLaptopPane.getScene().getWindow();
